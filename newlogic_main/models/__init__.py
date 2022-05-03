@@ -5,6 +5,5 @@
 # All Rights Reserved.
 #################################################################################
 
-from . import models
-#from . import controllers
+from . import custom_res_partner
 

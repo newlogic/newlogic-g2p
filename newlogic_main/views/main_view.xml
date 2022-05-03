@@ -7,6 +7,7 @@
         sequence="0"
        />
 
+    <menuitem id="nl_registrant_menu_root" name="Registrants" parent="nl_main_menu_root" sequence="10"/>
     <menuitem id="nl_configuration_menu_root" name="Configuration" parent="nl_main_menu_root" sequence="900"/>
 
 </odoo>

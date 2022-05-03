@@ -7,7 +7,7 @@
 {
   "name"         :  "Newlogic Main Module",
   "category"     :  "NewLogic",
-  "version"      :  "0.01",
+  "version"      :  "0.02",
   "sequence"     :  1,
   "author"       :  "New Logic",
   "website"      :  "https://newlogic.com/",
@@ -19,9 +19,11 @@
   - 
   
   """,
-  "depends"      :  ['base'],
+  "depends"      :  ['base','mail'],
   "data"         :  [
+                  'security/newlogic_security.xml',
                   'views/main_view.xml',
+                  'views/registrants_view.xml',
                     ],
   'assets'       :  {},
   "demo"         :  [],
