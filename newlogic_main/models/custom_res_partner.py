@@ -14,9 +14,10 @@ class Registrants(models.Model):
     _inherit = 'res.partner'
 
     #Custom Fields
-    date_disabled = fields.Datetime('Date Disabled', tracking=True)
-    reason_disabled = fields.Text('Reason for disabling')
-    userid_disabled = fields.Many2one('res.users', 'Disabled by', tracking=True)
+    disabled = fields.Datetime('Date Disabled', tracking=True)
+    disabled_reason = fields.Text('Reason for disabling')
+    disabled_by = fields.Many2one('res.users', 'Disabled by', tracking=True)
+    
     individual_id = fields.Many2one('nl.reg.individual','Individual')
     is_group = fields.Boolean('Group')
     group_id = fields.Many2one('nl.reg.group','Group')

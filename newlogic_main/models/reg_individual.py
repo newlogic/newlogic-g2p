@@ -14,6 +14,7 @@ class RegIndividuals(models.Model):
     _name = 'nl.reg.individual'
     _description = "Individual Registrant"
     _order = 'id desc'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char('Full Name')
     family_name = fields.Char('Family Name', tracking=True)

@@ -14,6 +14,7 @@ class RegGroups(models.Model):
     _name = 'nl.reg.group'
     _description = "Group Registrant"
     _order = 'id desc'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    name = fields.Char('Group Name')
-    kind = fields.Selection([('Household','Household'),('Families','Families')],'Kind')
+    name = fields.Char('Group Name', tracking=True)
+    kind = fields.Selection([('Household','Household'),('Families','Families')],'Kind', tracking=True)
