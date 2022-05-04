@@ -7,7 +7,7 @@
 {
   "name"         :  "Newlogic Main Module",
   "category"     :  "NewLogic",
-  "version"      :  "0.02",
+  "version"      :  "0.0.1",
   "sequence"     :  1,
   "author"       :  "New Logic",
   "website"      :  "https://newlogic.com/",
