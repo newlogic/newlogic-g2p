@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+#################################################################################
+# Author      : New Logic (<https://newlogic.com/>)
+# Copyright(c): New Logic
+# All Rights Reserved.
+#################################################################################
+{
+  "name"         :  "Newlogic Grievance System",
+  "category"     :  "NewLogic",
+  "version"      :  "0.01",
+  "sequence"     :  3,
+  "author"       :  "New Logic",
+  "website"      :  "https://newlogic.com/",
+  "license"      :  "LGPL-3",
+  "description"  :  """
+  Newlogic Grievance System
+  ========================
+  - 
+  
+  """,
+  "depends"      :  ['base', 'helpdesk_mgmt'],
+  "data"         :  [
+                    'views/custom_helpdesk_view.xml',
+                    ],
+  "application"  :  True,
+  "installable"  :  True,
+  "auto_install" :  False,
+}
