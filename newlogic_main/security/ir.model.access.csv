@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+reg_individual_nl_admin,Individual Registrant Admin Access,newlogic_main.model_nl_reg_individual,newlogic_main.group_nl_admin,1,1,1,1
+reg_group_nl_admin,Group Registrant Admin Access,newlogic_main.model_nl_reg_group,newlogic_main.group_nl_admin,1,1,1,1

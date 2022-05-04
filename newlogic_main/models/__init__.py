@@ -6,4 +6,6 @@
 #################################################################################
 
 from . import custom_res_partner
+from . import reg_individual
+from . import reg_group
 
