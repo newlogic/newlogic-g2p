@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #################################################################################
-# Author      : New Logic (<https://newlogic.com/>)
-# Copyright(c): New Logic
+# Author      : Newlogic (<https://newlogic.com/>)
+# Copyright(c): Newlogic
 # All Rights Reserved.
 #################################################################################
 {
@@ -9,7 +9,7 @@
   "category"     :  "NewLogic",
   "version"      :  "0.01",
   "sequence"     :  1,
-  "author"       :  "New Logic",
+  "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
   "license"      :  "LGPL-3",
   "description"  :  """
