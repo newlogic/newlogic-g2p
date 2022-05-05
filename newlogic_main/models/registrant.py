@@ -21,8 +21,23 @@ class Registrant(models.Model):
     disabled_reason = fields.Text('Reason for disabling')
     disabled_by = fields.Many2one('res.users', 'Disabled by', tracking=True)
     #Tag (exist in res.partner: category_id)
-    #Todo: data_source_id = fields.Many2one('nl.data.source')
     
     registrant = fields.Boolean('Registrant')
     is_group = fields.Boolean('Group')
 
+    def disable_registrant(self):
+        for rec in self:
+            if not rec.disabled:
+                rec.update({
+                    'disabled':fields.Datetime.now(),
+                    'disabled_by':self.env.user,
+                })
+
+    def enable_registrant(self):
+        for rec in self:
+            if rec.disabled:
+                rec.update({
+                    'disabled':None,
+                    'disabled_by':None,
+                    'disabled_reason':None,
+                })

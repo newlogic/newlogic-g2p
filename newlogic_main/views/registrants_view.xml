@@ -5,11 +5,12 @@
         <field name="model">res.partner</field>
         <field name="priority">100</field>
         <field name="arch" type="xml">
-            <tree string="Registrants">
+            <tree string="Registrants" decoration-danger="disabled != False">
                 <field name="name"/>
+                <field name="address"/>
                 <field name="is_group" string="Group"/>
-                <field name="state_id"/>
-                <field name="country_id"/>
+                <field name="category_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" string="Tag"/>
+                <field name="disabled" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -21,7 +22,22 @@
         <field name="arch" type="xml">
             <form string="Registrants">
                 <sheet>
-                    <div class="oe_button_box" name="button_box"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object" class="oe_stat_button" icon="fa-ban" name="disable_registrant"
+                            attrs="{'invisible':[('disabled','!=',False)]}">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Disable</span>
+                                <span class="o_stat_text">Registrant</span>
+                            </div>
+                        </button>
+                        <button type="object" class="oe_stat_button" icon="fa-check" name="enable_registrant"
+                            attrs="{'invisible':[('disabled','=',False)]}">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Enable</span>
+                                <span class="o_stat_text">Registrant</span>
+                            </div>
+                        </button>
+                    </div>
                     <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                     <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'avatar_128'}"/>
                     <div class="oe_title mb24">
@@ -102,6 +118,23 @@
                                         <field name="end_date"/>
                                     </tree>
                                 </field>
+                            </group>
+                        </page>
+                        <page string="Additional Fields">
+                            <group col="4" colspan="4">
+                                <field name="addl_fields" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Others">
+                            <group col="4" colspan="4">
+                                <field name="create_date"/>
+                                <field name="create_uid"/>
+                                <field name="write_date"/>
+                                <field name="write_uid"/>
+                                <field name="disabled" readonly="1"/>
+                                <field name="disabled_by" readonly="1"/>
+                                <field name="disabled_reason" colspan="4"/>
+                                <field name="category_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" placeholder="Tags..." colspan="4" string="Tag"/>
                             </group>
                         </page>
                     </notebook>
