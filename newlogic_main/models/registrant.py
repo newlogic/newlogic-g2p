@@ -15,7 +15,7 @@ class Registrant(models.Model):
 
     #Custom Fields
     #Todo: location = fields.Many2one('nl.location'), in location module
-    #Address (exist in res.partner: Address fields)
+    address = fields.Char('Address')
     addl_fields = fields.Text('Additional Fields')
     disabled = fields.Datetime('Date Disabled', tracking=True)
     disabled_reason = fields.Text('Reason for disabling')

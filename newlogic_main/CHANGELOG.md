@@ -1,5 +1,8 @@
 Format in CHANGELOG.md
 
+## Version[0.05] - 2022-05-05
+- [FIX] Added address field in registrant model
+
 ## Version[0.04] - 2022-05-05
 - [FIX] Registrant, individual, group models inherits res.partner
 - [ADD] Group membership, ID type, Registrant ID, Relationship, Registrant Relationship models
