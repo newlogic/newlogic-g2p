@@ -10,11 +10,18 @@ from odoo.exceptions import AccessError, UserError, ValidationError, Warning
 #from odoo.osv import expression
 #from odoo.tools import float_is_zero, float_compare
 
-class RegGroup(models.Model):
-    _inherit = 'res.partner'
+class IDType(models.Model):
+    _name = 'nl.id.type'
+    _description = 'ID Type'
+    _order = 'id desc'
 
-    #name (exist in res.partner: name)
-    kind = fields.Selection([('Household','Household'),('Families','Families')],'Kind', tracking=True)
-    group_membership_ids = fields.One2many('nl.group.membership','group','Group Members')
+    name = fields.Char('Name')
 
-    #partner_ids = fields.Many2many('res.partner', column1='category_id', column2='partner_id', string='Partners')
+class Relationship(models.Model):
+    _name = 'nl.relationship'
+    _description = 'Relationship'
+    _order = 'id desc'
+
+    name = fields.Char('Name')
+    bidirectional = fields.Boolean('Bi-directional')
+    reverse_name = fields.Char('Reverse Name')

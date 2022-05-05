@@ -25,11 +25,23 @@
                     <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                     <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'avatar_128'}"/>
                     <div class="oe_title mb24">
+                        <label for="is_group" string="Registrant is a Group"/>
+                        <field name="is_group"/>
                         <h1>
-                            <field id="registrant" name="name" placeholder="Enter name of registrant..." attrs="{'readonly':[('is_group','=',True)]}"/>
+                            <field id="registrant" name="name" placeholder="Enter name of registrant..." attrs="{'readonly':[('is_group','=',False)]}"/>
                         </h1>
+                        <div attrs="{'invisible':[('is_group','=',True)]}">
+                            <h2 class="oe_edit_only">
+                                <field name="family_name" placeholder="Family Name..." default_focus="1" required="1" class="oe_edit_only"/>
+                            </h2>
+                            <h2 class="oe_edit_only">
+                                <field name="given_name" placeholder="Given Name..." required="1" class="oe_edit_only"/>
+                            </h2>
+                            <h2 class="oe_edit_only">
+                                <field name="addl_name" placeholder="Additional Name..." required="0" class="oe_edit_only"/>
+                            </h2>
+                        </div>
                         <div class="o_row">
-                            <field name="is_group" string="Group"/>
                             <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" attrs="{'readonly': [('parent_id', '!=', False)]}" force_save="1"/>
                         </div>
                     </div>
@@ -63,6 +75,19 @@
                                 </group>
                             </group>
                         </page>                      
+                        <page string="Individual" attrs="{'invisible':[('is_group','=',True)]}">
+                            <group col="4" colspan="4">
+                                <field name="birth_place"/>
+                                <field name="birthdate"/>
+                                <field name="age"/>
+                                <field name="gender"/>
+                            </group>
+                        </page>
+                        <page string="Group" attrs="{'invisible':[('is_group','=',False)]}">
+                            <group col="4" colspan="4">
+                                <field name="kind"/>
+                            </group>
+                        </page>
                     </notebook>
                     <field name="avatar_128" invisible="1"/>
                     <field name="active" invisible="1"/>

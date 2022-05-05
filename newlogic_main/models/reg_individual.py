@@ -10,13 +10,9 @@ from odoo.exceptions import AccessError, UserError, ValidationError, Warning
 #from odoo.osv import expression
 #from odoo.tools import float_is_zero, float_compare
 
-class RegIndividuals(models.Model):
-    _name = 'nl.reg.individual'
-    _description = "Individual Registrant"
-    _order = 'id desc'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+class RegIndividual(models.Model):
+    _inherit = 'res.partner'
 
-    name = fields.Char('Full Name')
     family_name = fields.Char('Family Name', tracking=True)
     given_name = fields.Char('Given Name', tracking=True)
     addl_name = fields.Char('Additional Name', tracking=True)
@@ -25,18 +21,21 @@ class RegIndividuals(models.Model):
     age = fields.Char(compute='_calc_age', string="Age", size= 50,readonly=True)
     gender = fields.Selection([('Female','Female'),('Male','Male'),('Other','Other')],'Gender', tracking=True)
 
-    @api.onchange('family_name','given_name','addl_name')
+    #category_id = fields.Many2many('res.partner.category', column1='partner_id', column2='category_id', string='Tags', default=_default_category)
+
+    @api.onchange('is_group','family_name','given_name','addl_name')
     def name_change(self):
         vals = {}
-        name = ''
-        if self.family_name:
-            name += self.family_name + ', '
-        if self.given_name:
-            name += self.given_name + ' '
-        if self.addl_name:
-            name += self.addl_name + ' '
-        vals.update({'name': name.upper()})
-        self.update(vals)
+        if not self.is_group:
+            name = ''
+            if self.family_name:
+                name += self.family_name + ', '
+            if self.given_name:
+                name += self.given_name + ' '
+            if self.addl_name:
+                name += self.addl_name + ' '
+            vals.update({'name': name.upper()})
+            self.update(vals)
 
     @api.depends('birthdate')
     def _calc_age(self):
