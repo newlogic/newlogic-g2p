@@ -22,6 +22,7 @@
   "depends"      :  ['base','mail'],
   "data"         :  [
                   'security/newlogic_security.xml',
+                  'security/ir.model.access.csv',
                   'views/main_view.xml',
                   'views/registrants_view.xml',
                     ],
