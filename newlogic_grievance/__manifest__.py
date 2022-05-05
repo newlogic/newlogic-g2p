@@ -7,7 +7,7 @@
 {
   "name"         :  "Newlogic Grievance System",
   "category"     :  "NewLogic",
-  "version"      :  "0.01",
+  "version"      :  "0.0.1",
   "sequence"     :  3,
   "author"       :  "New Logic",
   "website"      :  "https://newlogic.com/",
