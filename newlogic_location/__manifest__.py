@@ -23,6 +23,7 @@
   "data"         :  [
                   'security/ir.model.access.csv',
                   'views/registrants_view.xml',
+                  'views/location.xml',
                     ],
   'assets'       :  {},
   "demo"         :  [],
