@@ -1,7 +1,7 @@
 <odoo>
     <record id="view_additional_data_tree" model="ir.ui.view">
         <field name="name">view_additional_data_tree</field>
-        <field name="model">nl.additional.data</field>
+        <field name="model">g2p.additional.data</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Additional Data">
@@ -9,13 +9,15 @@
                 <field name="name"/>
                 <field name="json"/>
                 <field name="tag" widget="many2many_tags"/>
+                <field name="editurl"/>
+                <field name="viewurl"/>
             </tree>
         </field>
     </record>
 
     <record id="view_additional_data_form" model="ir.ui.view">
         <field name="name">view_additional_data_form</field>
-        <field name="model">nl.additional.data</field>
+        <field name="model">g2p.additional.data</field>
         <field name="priority">100</field>
         <field name="arch" type="xml">
             <form string="Additional Data">
@@ -25,6 +27,8 @@
                         <field name="name"/>
                         <field name="json"/>
                         <field name="tag" widget="many2many_tags"/>
+                        <field name="editurl"/>
+                        <field name="viewurl"/>
                     </group>
                 </sheet>
             </form>
@@ -32,9 +36,9 @@
     </record>
 
     <record id="action_additional_data" model="ir.actions.act_window">
-        <field name="name">Basic Additional Data Object</field>
+        <field name="name">Additional Data Object</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">nl.additional.data</field>
+        <field name="res_model">g2p.additional.data</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{}</field>
         <field name="domain">[]</field>

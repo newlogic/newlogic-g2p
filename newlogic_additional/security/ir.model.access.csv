@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-additional_data_nl_admin,Additional Data Admin Access,newlogic_additional.model_nl_additional_data,newlogic_main.group_nl_admin,1,1,1,1
-additional_data_tags_nl_admin,Additional Data Tags Admin Access,newlogic_additional.model_nl_additional_data_tags,newlogic_main.group_nl_admin,1,1,1,1
-datasource_nl_admin,Datasource Admin Access,newlogic_additional.model_nl_datasource,newlogic_main.group_nl_admin,1,1,1,1
-registrant_additional_data_nl_admin,Registrant Additional Data Admin Access,newlogic_additional.model_nl_registrant_additional_data,newlogic_main.group_nl_admin,1,1,1,1
+additional_data_nl_admin,Additional Data Admin Access,newlogic_additional.model_g2p_additional_data,newlogic_main.group_nl_admin,1,1,1,1
+additional_data_tags_nl_admin,Additional Data Tags Admin Access,newlogic_additional.model_g2p_additional_data_tags,newlogic_main.group_nl_admin,1,1,1,1
+datasource_nl_admin,Datasource Admin Access,newlogic_additional.model_g2p_datasource,newlogic_main.group_nl_admin,1,1,1,1
+registrant_additional_data_nl_admin,Registrant Additional Data Admin Access,newlogic_additional.model_g2p_registrant_additional_data,newlogic_main.group_nl_admin,1,1,1,1

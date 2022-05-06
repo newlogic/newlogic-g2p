@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+<!-- Add Registrant Additional Data tree to registrant form view -->
+    <record id="view_registrants_additional_data_form" model="ir.ui.view">
+        <field name="name">view_registrants_additional_data_form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="newlogic_main.view_registrants_form"></field>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[4]" position="after">
+                <page string="Additional Data">
+                    <field name="additional_data" nolabel="1">
+                        <tree create="false" delete="false" edit="false">
+                            <field name="data"/>
+                            <field name="json_path"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

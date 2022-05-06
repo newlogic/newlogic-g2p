@@ -1,22 +1,16 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta
-from dateutil.relativedelta import relativedelta
 
-from odoo import api, fields, models, SUPERUSER_ID, _
-#from odoo.addons.website.models import ir_http
+from odoo import fields, models
 
-from odoo.exceptions import AccessError, UserError, ValidationError, Warning
-#from odoo.tools.misc import formatLang, get_lang
-#from odoo.osv import expression
-#from odoo.tools import float_is_zero, float_compare
-
-class NLAdditionalData(models.Model):
-    _name = 'nl.additional.data'
-    _description = "Basic Additional Data Object"
+class G2PAdditionalData(models.Model):
+    _name = 'g2p.additional.data'
+    _description = "Additional Data Object"
     _order = 'id desc'
 
     
-    source = fields.Many2one('nl.datasource', 'Source')
+    source = fields.Many2one('g2p.datasource', 'Source')
     name = fields.Char(string="Name")
     json = fields.Text('JSON')
-    tag = fields.Many2many('nl.additional.data.tags', string='Tag')
+    tag = fields.Many2many('g2p.additional.data.tags', string='Tag')
+    editurl = fields.Char(string="Edit URL")
+    viewurl = fields.Char(string="View URL")
