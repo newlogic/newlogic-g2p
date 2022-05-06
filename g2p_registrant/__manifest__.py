@@ -5,15 +5,15 @@
 # All Rights Reserved.
 #################################################################################
 {
-  "name"         :  "Newlogic Main Module",
-  "category"     :  "NewLogic",
+  "name"         :  "G2P registrant Module",
+  "category"     :  "Newlogic",
   "version"      :  "0.0.1",
   "sequence"     :  1,
-  "author"       :  "New Logic",
+  "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
-  "license"      :  "LGPL-3",
+  "license"      :  "Apache 2.0",
   "description"  :  """
-  Newlogic Main Module
+  G2P registrant Module
   ========================
 
   - 
