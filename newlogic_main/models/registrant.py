@@ -10,11 +10,11 @@ from odoo.exceptions import AccessError, UserError, ValidationError, Warning
 #from odoo.osv import expression
 #from odoo.tools import float_is_zero, float_compare
 
-class Registrant(models.Model):
+class G2PRegistrant(models.Model):
     _inherit = 'res.partner'
 
     #Custom Fields
-    #Todo: location = fields.Many2one('nl.location'), in location module
+    #Todo: location = fields.Many2one('g2p.location'), in location module
     address = fields.Text('Address')
     addl_fields = fields.Text('Additional Fields')
     disabled = fields.Datetime('Date Disabled', tracking=True)

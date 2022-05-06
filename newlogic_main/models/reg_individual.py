@@ -10,7 +10,7 @@ from odoo.exceptions import AccessError, UserError, ValidationError, Warning
 #from odoo.osv import expression
 #from odoo.tools import float_is_zero, float_compare
 
-class RegIndividual(models.Model):
+class G2PRegIndividual(models.Model):
     _inherit = 'res.partner'
 
     family_name = fields.Char('Family Name', tracking=True)
@@ -20,8 +20,6 @@ class RegIndividual(models.Model):
     birthdate = fields.Date('Date of Birth', tracking=True)
     age = fields.Char(compute='_calc_age', string="Age", size= 50,readonly=True)
     gender = fields.Selection([('Female','Female'),('Male','Male'),('Other','Other')],'Gender', tracking=True)
-
-    #category_id = fields.Many2many('res.partner.category', column1='partner_id', column2='category_id', string='Tags', default=_default_category)
 
     @api.onchange('is_group','family_name','given_name','addl_name')
     def name_change(self):

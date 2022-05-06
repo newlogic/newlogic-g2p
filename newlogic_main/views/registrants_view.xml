@@ -43,21 +43,21 @@
                     <div class="oe_title mb24">
                         <label for="is_group" string="Registrant is a Group"/>
                         <field name="is_group"/>
-                        <h1>
+                        <h1 attrs="{'invisible':[('is_group','=',False)]}">
                             <field id="registrant" name="name" placeholder="Enter name of group..." 
-                                attrs="{'readonly':[('is_group','=',False)],'required':[('is_group','=',True)]}"/>
+                                attrs="{'invisible':[('is_group','=',False)],'required':[('is_group','=',True)]}"/>
                         </h1>
                         <div attrs="{'invisible':[('is_group','=',True)]}">
-                            <h2 class="oe_edit_only">
-                                <field name="family_name" placeholder="Family Name..." default_focus="1"  class="oe_edit_only"
+                            <h2>
+                                <field name="family_name" placeholder="Family Name..." default_focus="1" 
                                     attrs="{'required':[('is_group','=',False)]}"/>
                             </h2>
-                            <h2 class="oe_edit_only">
-                                <field name="given_name" placeholder="Given Name..." class="oe_edit_only"
+                            <h2>
+                                <field name="given_name" placeholder="Given Name..." 
                                     attrs="{'required':[('is_group','=',False)]}"/>
                             </h2>
-                            <h2 class="oe_edit_only">
-                                <field name="addl_name" placeholder="Additional Name..." required="0" class="oe_edit_only"/>
+                            <h2>
+                                <field name="addl_name" placeholder="Additional Name..." required="0"/>
                             </h2>
                         </div>
                         <div class="o_row">
@@ -153,7 +153,7 @@
         </field>
     </record>
 
-<!-- List registrants (Card Admin) -->
+<!-- List registrants -->
     <record id="action_registrants_list" model="ir.actions.act_window">
         <field name="name">List of registrants</field>
         <field name="type">ir.actions.act_window</field>
@@ -187,8 +187,8 @@
     <menuitem id="menu_registrants_list"
         name="List"
         action="action_registrants_list"
-        parent="nl_registrant_menu_root"
+        parent="g2p_registrant_menu_root"
         sequence="10" 
-        groups="newlogic_main.group_nl_admin"/>
+        groups="newlogic_main.group_g2p_admin"/>
 
 </odoo>

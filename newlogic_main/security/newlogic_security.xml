@@ -7,7 +7,7 @@
     </record>
 
 <!-- Newlogic Admin Group -->
-    <record id="group_nl_admin" model="res.groups">
+    <record id="group_g2p_admin" model="res.groups">
         <field name="name">Administrator</field>
         <field name="category_id" ref="newlogic_main.newlogic_module"/>
         <field name="implied_ids" eval="[Command.link(ref('base.group_partner_manager'))]"/>

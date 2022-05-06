@@ -10,13 +10,13 @@ from odoo.exceptions import AccessError, UserError, ValidationError, Warning
 #from odoo.osv import expression
 #from odoo.tools import float_is_zero, float_compare
 
-class RegistrantID(models.Model):
-    _name = 'nl.reg.id'
+class G2PRegistrantID(models.Model):
+    _name = 'g2p.reg.id'
     _description = 'Registrant ID'
     _order = 'id desc'
 
     registrant = fields.Many2one('res.partner','Registrant')
-    id_type = fields.Many2one('nl.id.type','ID Type')
+    id_type = fields.Many2one('g2p.id.type','ID Type')
     value = fields.Char('Value', size=100)
 
     #Todo: name_get, name_search

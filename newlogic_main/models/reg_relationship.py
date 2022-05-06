@@ -10,19 +10,19 @@ from odoo.exceptions import AccessError, UserError, ValidationError, Warning
 #from odoo.osv import expression
 #from odoo.tools import float_is_zero, float_compare
 
-class RegistrantRelationship(models.Model):
-    _name = 'nl.reg.rel'
+class G2PRegistrantRelationship(models.Model):
+    _name = 'g2p.reg.rel'
     _description = 'Registrant Relationship'
     _order = 'id desc'
 
     registrant1 = fields.Many2one('res.partner','Registrant 1')
     registrant2 = fields.Many2one('res.partner','Registrant 2')
-    relation = fields.Many2one('nl.relationship','Relation')
+    relation = fields.Many2one('g2p.relationship','Relation')
     disabled = fields.Datetime('Date Disabled')
     disabled_by = fields.Many2one('res.users', 'Disabled by')
 
     def name_get(self):
-        res = super(RegistrantRelationship, self).name_get()
+        res = super(G2PRegistrantRelationship, self).name_get()
         for rec in self:
             name = ''
             if rec.registrant1:

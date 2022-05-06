@@ -10,15 +10,15 @@ from odoo.exceptions import AccessError, UserError, ValidationError, Warning
 #from odoo.osv import expression
 #from odoo.tools import float_is_zero, float_compare
 
-class IDType(models.Model):
-    _name = 'nl.id.type'
+class G2PIDType(models.Model):
+    _name = 'g2p.id.type'
     _description = 'ID Type'
     _order = 'id desc'
 
     name = fields.Char('Name')
 
-class Relationship(models.Model):
-    _name = 'nl.relationship'
+class G2PRelationship(models.Model):
+    _name = 'g2p.relationship'
     _description = 'Relationship'
     _order = 'id desc'
 

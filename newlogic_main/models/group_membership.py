@@ -10,8 +10,8 @@ from odoo.exceptions import AccessError, UserError, ValidationError, Warning
 #from odoo.osv import expression
 #from odoo.tools import float_is_zero, float_compare
 
-class GroupMembership(models.Model):
-    _name = 'nl.group.membership'
+class G2PGroupMembership(models.Model):
+    _name = 'g2p.group.membership'
     _description = 'Group Membership'
     _order = 'id desc'
 
@@ -22,7 +22,7 @@ class GroupMembership(models.Model):
     end_date = fields.Datetime('End Date')
 
     def name_get(self):
-        res = super(GroupMembership, self).name_get()
+        res = super(G2PGroupMembership, self).name_get()
         for rec in self:
             name = 'NONE'
             if rec.group:
