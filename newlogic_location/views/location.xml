@@ -5,6 +5,7 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Location">
+                <field name="parent"/>
                 <field name="name"/>
                 <field name="code"/>
                 <field name="altnames"/>
@@ -21,6 +22,7 @@
             <form string="Location">
                 <sheet>
                     <group>
+                        <field name="parent"/>
                         <field name="name"/>
                         <field name="code"/>
                         <field name="altnames"/>
