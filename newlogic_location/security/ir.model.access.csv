@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+nl_location_admin,Location Admin Access,newlogic_location.model_nl_location,newlogic_main.group_nl_admin,1,1,1,1
