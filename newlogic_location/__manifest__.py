@@ -5,26 +5,25 @@
 # All Rights Reserved.
 #################################################################################
 {
-  "name"         :  "Newlogic Main Module",
+  "name"         :  "Newlogic Location Module",
   "category"     :  "NewLogic",
   "version"      :  "0.0.1",
   "sequence"     :  1,
-  "author"       :  "Newlogic",
+  "author"       :  "New Logic",
   "website"      :  "https://newlogic.com/",
   "license"      :  "LGPL-3",
   "description"  :  """
-  Newlogic Main Module
+  Newlogic Location Module
   ========================
 
   - 
   
   """,
-  "depends"      :  ['base','mail'],
+  "depends"      :  ['base','newlogic_main'],
   "data"         :  [
-                  'security/newlogic_security.xml',
                   'security/ir.model.access.csv',
-                  'views/main_view.xml',
                   'views/registrants_view.xml',
+                  'views/location.xml',
                     ],
   'assets'       :  {},
   "demo"         :  [],
