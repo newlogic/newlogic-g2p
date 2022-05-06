@@ -1,12 +1,13 @@
 <odoo>
     <!-- Top menu item -->
-    <menuitem id="nl_main_menu_root"
+    <menuitem id="g2p_main_menu_root"
         name="Newlogic"
         web_icon="newlogic_main,static/src/img/icons/contacts.png"
         active="True"
         sequence="0"
        />
 
-    <menuitem id="nl_configuration_menu_root" name="Configuration" parent="nl_main_menu_root" sequence="900"/>
+    <menuitem id="g2p_registrant_menu_root" name="Registrants" parent="g2p_main_menu_root" sequence="10"/>
+    <menuitem id="g2p_configuration_menu_root" name="Configuration" parent="g2p_main_menu_root" sequence="900"/>
 
 </odoo>

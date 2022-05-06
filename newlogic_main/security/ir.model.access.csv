@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+g2p_group_membership_admin,Membership Admin Access,newlogic_main.model_g2p_group_membership,newlogic_main.group_g2p_admin,1,1,1,1
+g2p_reg_rel_admin,Registrant Relationship Admin Access,newlogic_main.model_g2p_reg_rel,newlogic_main.group_g2p_admin,1,1,1,1
+g2p_id_type_admin,ID Type Admin Access,newlogic_main.model_g2p_id_type,newlogic_main.group_g2p_admin,1,1,1,1
+g2p_relationship_admin,Relationship Admin Access,newlogic_main.model_g2p_relationship,newlogic_main.group_g2p_admin,1,1,1,1
+g2p_group_kind_admin,Group Kind Admin Access,newlogic_main.model_g2p_group_kind,newlogic_main.group_g2p_admin,1,1,1,1

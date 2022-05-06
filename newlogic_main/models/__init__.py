@@ -5,6 +5,10 @@
 # All Rights Reserved.
 #################################################################################
 
-from . import models
-#from . import controllers
-
+from . import references
+from . import registrant
+from . import individual
+from . import group
+from . import reg_id
+from . import reg_relationship
+from . import group_membership
