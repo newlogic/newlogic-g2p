@@ -2,6 +2,7 @@ Format in CHANGELOG.md
 
 ## Version[0.06] - 2022-05-06
 - [ADD] Relationship model UIs
+- [FIX] Apply fixes based on "Added registrant model and UI #19"
 
 ## Version[0.05] - 2022-05-05
 - [FIX] Added address field in registrant model
