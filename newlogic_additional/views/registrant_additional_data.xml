@@ -62,7 +62,7 @@
     <menuitem id="menu_registrant_additional_data"
         name="Registrant Additional Data"
         action="action_registrant_additional_data"
-        parent="newlogic_main.nl_registrant_menu_root"
+        parent="newlogic_main.g2p_registrant_menu_root"
         sequence="14"
-        groups="newlogic_main.group_nl_admin"/>
+        groups="newlogic_main.group_g2p_admin"/>
 </odoo>

@@ -36,8 +36,8 @@
     <menuitem id="menu_additional_data_tags"
         name="Additional Data Tags"
         action="action_additional_data_tags"
-        parent="newlogic_main.nl_registrant_menu_root"
+        parent="newlogic_main.g2p_registrant_menu_root"
         sequence="12"
-        groups="newlogic_main.group_nl_admin"/>
+        groups="newlogic_main.group_g2p_admin"/>
         
 </odoo>

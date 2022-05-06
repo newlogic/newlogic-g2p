@@ -68,7 +68,7 @@
     <menuitem id="menu_additional_data"
         name="Additional Data"
         action="action_additional_data"
-        parent="newlogic_main.nl_registrant_menu_root"
+        parent="newlogic_main.g2p_registrant_menu_root"
         sequence="11"
-        groups="newlogic_main.group_nl_admin"/>
+        groups="newlogic_main.group_g2p_admin"/>
 </odoo>
