@@ -1,12 +1,4 @@
 <odoo>
-    <!-- Top menu item -->
-    <!-- <menuitem id="nl_main_menu_root"
-        name="Newlogic"
-        web_icon="newlogic_main,static/src/img/icons/contacts.png"
-        active="True"
-        sequence="0"
-       /> -->
-
-    <menuitem id="nl_message_menu_root" name="Message" parent="newlogic_main.nl_main_menu_root" sequence="100"/>
+    <menuitem id="g2p_message_menu_root" name="Message" parent="newlogic_main.g2p_main_menu_root" sequence="100"/>
 
 </odoo>

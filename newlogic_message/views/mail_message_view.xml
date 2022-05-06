@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="nl_view_mail_message_tree" model="ir.ui.view">
-        <field name="name">nl_view_mail_message_tree</field>
+    <record id="g2p_view_mail_message_tree" model="ir.ui.view">
+        <field name="name">g2p_view_mail_message_tree</field>
         <field name="model">mail.message</field>
         <field name="priority">100</field>
         <field name="arch" type="xml">
             <tree string="Mail Message">
-                <field name="subject_display" string="Message"/>
+                <field name="subject_display" string="Initiator"/>
+                
             </tree>
             <!-- <tree
                 string="Mail Messages"
@@ -23,8 +24,8 @@
         </field>
     </record>
 
-    <record id="nl_view_mail_message_form" model="ir.ui.view">
-        <field name="name">nl_view_mail_message_form</field>
+    <record id="g2p_view_mail_message_form" model="ir.ui.view">
+        <field name="name">g2p_view_mail_message_form</field>
         <field name="model">mail.message</field>
         <field name="priority">100</field>
         <field name="arch" type="xml">
@@ -74,7 +75,7 @@
     </record>
 
 <!-- Mail Message (Mail Message Admin) -->
-    <record id="nl_action_mail_message" model="ir.actions.act_window">
+    <record id="g2p_action_mail_message" model="ir.actions.act_window">
         <field name="name">List of Mail Message</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mail.message</field>
@@ -91,25 +92,24 @@
         </field>
     </record>
 
-    <record id="nl_action_mail_thread_tree_view" model="ir.actions.act_window.view">
+    <record id="g2p_action_mail_thread_tree_view" model="ir.actions.act_window.view">
         <field name="sequence" eval="1"/>
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="nl_view_mail_message_tree"/>
-        <field name="act_window_id" ref="nl_action_mail_message"/>
+        <field name="view_id" ref="g2p_view_mail_message_tree"/>
+        <field name="act_window_id" ref="g2p_action_mail_message"/>
     </record>
 
-    <record id="nl_action_mail_thread_form_view" model="ir.actions.act_window.view">
+    <record id="g2p_action_mail_thread_form_view" model="ir.actions.act_window.view">
         <field name="sequence" eval="1"/>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="nl_view_mail_message_form"/>
-        <field name="act_window_id" ref="nl_action_mail_message"/>
+        <field name="view_id" ref="g2p_view_mail_message_form"/>
+        <field name="act_window_id" ref="g2p_action_mail_message"/>
     </record>
 
-    <menuitem id="nl_menu_mail_message"
+    <menuitem id="g2p_menu_mail_message"
         name="Mail Message List"
-        action="nl_action_mail_message"
-        parent="nl_message_menu_root"
+        action="g2p_action_mail_message"
+        parent="g2p_message_menu_root"
         sequence="10"/>
         <!-- groups="card_mgmt.group_card_admin"/> -->
-
 </odoo>

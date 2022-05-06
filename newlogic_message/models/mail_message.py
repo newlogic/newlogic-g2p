@@ -35,7 +35,7 @@ TREE_TEMPLATE = (
     "</table>"
 )
 
-class NLMailMessage(models.Model):
+class G2PMailMessage(models.Model):
     _inherit = "mail.message"
 
     subject_display = fields.Html(string="Subject Display", compute="_compute_subject_display")
@@ -59,6 +59,29 @@ class NLMailMessage(models.Model):
                 if track_val.field.ttype == 'datetime':
                     html += (str(track_val.old_value_datetime.strftime("%m/%d/%y %H:%M:%S")) if track_val.old_value_datetime else '') + \
                         '&nbsp; &rarr; &nbsp;' + str(track_val.new_value_datetime.strftime("%m/%d/%y %H:%M:%S")) + "</td>"
+                if track_val.field.ttype == 'selection':
+                    html += (str(track_val.old_value_char) if track_val.old_value_char else '') + '&nbsp; &rarr; &nbsp;' + str(track_val.new_value_char) + "</td>"
+                if track_val.field.ttype == 'boolean':
+                    old_bool_val = ""
+                    new_bool_val = ""
+                    if track_val.old_value_integer:
+                        old_bool_val = "True"
+                    else:
+                        old_bool_val = "False"
+                    
+                    if track_val.new_value_integer:
+                        new_bool_val = "True"
+                    else:
+                        new_bool_val = "False"
+
+                    html += (str(old_bool_val)) + '&nbsp; &rarr; &nbsp;' + str(new_bool_val) + "</td>"
+                if track_val.field.ttype == 'float':
+                    html += (str(track_val.old_value_float) if track_val.old_value_float else '') + '&nbsp; &rarr; &nbsp;' + str(track_val.new_value_float) + "</td>"
+                if track_val.field.ttype == 'integer':
+                    html += (str(track_val.old_value_integer) if track_val.old_value_integer else '') + '&nbsp; &rarr; &nbsp;' + str(track_val.new_value_integer) + "</td>"
+                if track_val.field.ttype == 'monetary':
+                    html += (str(track_val.old_value_monetary) if track_val.old_value_monetary else '') + '&nbsp; &rarr; &nbsp;' + str(track_val.new_value_monetary) + "</td>"
+                    
                 html = html + "</tr>"
             html = html + "</table>"
 
@@ -90,7 +113,7 @@ class NLMailMessage(models.Model):
                 # rec.res_id,
                 notification_icons,
                 #create computed value of tracking values to get track value note
-                rec.body if rec.body else (rec.subtype_id.description if rec.subtype_id.description else ''),
+                rec.body if rec.body else (rec.subtype_id.description if rec.subtype_id.description else (rec.track_display if rec.track_display else '')),
                 # rec.description if rec.description
                 # else rec.subtype_id.description,
             )
