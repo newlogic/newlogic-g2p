@@ -5,7 +5,6 @@
 # All Rights Reserved.
 #################################################################################
 
-from . import references
 from . import registrant
 from . import individual
 from . import group

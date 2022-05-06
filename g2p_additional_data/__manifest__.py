@@ -5,7 +5,7 @@
 # All Rights Reserved.
 #################################################################################
 {
-  "name"         :  "Newlogic Additional Data Module",
+  "name"         :  "G2P Additional Data Module",
   "category"     :  "G2P",
   "version"      :  "0.0.1",
   "sequence"     :  1,
