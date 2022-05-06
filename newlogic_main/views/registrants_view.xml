@@ -113,7 +113,7 @@
                                             domain="[('registrant','=',True),('is_company','=',False)]"
                                             options="{'no_open':True, 'no_quick_create':True, 'no_create':True}" 
                                             string="Member Name"/>
-                                        <field name="kind"/>
+                                        <field name="kind" widget="many2many_tags" options="{'no_open':True, 'no_create_edit':True}"/>
                                         <field name="start_date"/>
                                         <field name="end_date"/>
                                     </tree>

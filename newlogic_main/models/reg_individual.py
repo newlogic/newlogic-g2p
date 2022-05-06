@@ -10,7 +10,7 @@ from odoo.exceptions import AccessError, UserError, ValidationError, Warning
 #from odoo.osv import expression
 #from odoo.tools import float_is_zero, float_compare
 
-class G2PRegIndividual(models.Model):
+class G2PIndividual(models.Model):
     _inherit = 'res.partner'
 
     family_name = fields.Char('Family Name', tracking=True)

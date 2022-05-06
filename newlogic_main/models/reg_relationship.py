@@ -38,3 +38,12 @@ class G2PRegistrantRelationship(models.Model):
         if name:
             args = ['|',('registrant1', operator, name),('registrant2', operator, name)] + args
         return self._search(args, limit=limit, access_rights_uid=name_get_uid)
+
+class G2PRelationship(models.Model):
+    _name = 'g2p.relationship'
+    _description = 'Relationship'
+    _order = 'id desc'
+
+    name = fields.Char('Name')
+    bidirectional = fields.Boolean('Bi-directional')
+    reverse_name = fields.Char('Reverse Name')

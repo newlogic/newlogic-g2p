@@ -17,7 +17,7 @@ class G2PGroupMembership(models.Model):
 
     group = fields.Many2one('res.partner','Group')
     individual = fields.Many2one('res.partner','Individual')
-    kind = fields.Char('Head of Household')
+    kind = fields.Many2many('g2p.group.kind',string='Kind')
     start_date = fields.Datetime('Start Date')
     end_date = fields.Datetime('End Date')
 
@@ -36,3 +36,10 @@ class G2PGroupMembership(models.Model):
         if name:
             args = [('group', operator, name)] + args
         return self._search(args, limit=limit, access_rights_uid=name_get_uid)
+
+class G2PGoupKind(models.Model):
+    _name = 'g2p.group.kind'
+    _description = 'Group Kind'
+    _order = 'id desc'
+
+    name = fields.Char('Kind')

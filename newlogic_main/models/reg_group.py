@@ -10,7 +10,7 @@ from odoo.exceptions import AccessError, UserError, ValidationError, Warning
 #from odoo.osv import expression
 #from odoo.tools import float_is_zero, float_compare
 
-class G2PRegGroup(models.Model):
+class G2PGroup(models.Model):
     _inherit = 'res.partner'
 
     #name (exist in res.partner: name)
