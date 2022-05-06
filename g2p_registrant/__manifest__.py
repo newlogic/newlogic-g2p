@@ -5,25 +5,26 @@
 # All Rights Reserved.
 #################################################################################
 {
-  "name"         :  "Newlogic Location Module",
-  "category"     :  "NewLogic",
+  "name"         :  "G2P registrant Module",
+  "category"     :  "Newlogic",
   "version"      :  "0.0.1",
   "sequence"     :  1,
-  "author"       :  "New Logic",
+  "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
-  "license"      :  "LGPL-3",
+  "license"      :  "Apache 2.0",
   "description"  :  """
-  Newlogic Location Module
+  G2P registrant Module
   ========================
 
   - 
   
   """,
-  "depends"      :  ['base','newlogic_main'],
+  "depends"      :  ['base','mail'],
   "data"         :  [
+                  'security/newlogic_security.xml',
                   'security/ir.model.access.csv',
+                  'views/main_view.xml',
                   'views/registrants_view.xml',
-                  'views/location.xml',
                     ],
   'assets'       :  {},
   "demo"         :  [],

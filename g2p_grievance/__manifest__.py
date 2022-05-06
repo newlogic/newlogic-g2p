@@ -5,13 +5,13 @@
 # All Rights Reserved.
 #################################################################################
 {
-  "name"         :  "Newlogic Grievance System",
-  "category"     :  "NewLogic",
+  "name"         :  "G2P Grievance System",
+  "category"     :  "G2P",
   "version"      :  "0.0.1",
   "sequence"     :  3,
   "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
-  "license"      :  "LGPL-3",
+  "license"      :  "Apache 2.0",
   "description"  :  """
   Newlogic Grievance System
   ========================

@@ -5,21 +5,21 @@
 # All Rights Reserved.
 #################################################################################
 {
-  "name"         :  "Newlogic Additional Data Object",
-  "category"     :  "NewLogic",
+  "name"         :  "Newlogic Additional Data Module",
+  "category"     :  "G2P",
   "version"      :  "0.0.1",
   "sequence"     :  1,
   "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
-  "license"      :  "LGPL-3",
+  "license"      :  "Apache 2.0",
   "description"  :  """
-  Newlogic Additional Data Object
+  Newlogic Additional Data
   ========================
 
   - 
   
   """,
-  "depends"      :  ['base', 'newlogic_main'],
+  "depends"      :  ['base', 'g2p_registrant'],
   "data"         :  [
                      'security/ir.model.access.csv',
                      'views/additional_data.xml',
