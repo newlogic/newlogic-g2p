@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+additional_data_g2p_admin,Additional Data Admin Access,g2p_additional_data.model_g2p_additional_data,g2p_registrant.group_g2p_admin,1,1,1,1
+additional_data_tags_g2p_admin,Additional Data Tags Admin Access,g2p_additional_data.model_g2p_additional_data_tags,g2p_registrant.group_g2p_admin,1,1,1,1
+datasource_g2p_admin,Datasource Admin Access,g2p_additional_data.model_g2p_datasource,g2p_registrant.group_g2p_admin,1,1,1,1
+registrant_additional_data_g2p_admin,Registrant Additional Data Admin Access,g2p_additional_data.model_g2p_registrant_additional_data,g2p_registrant.group_g2p_admin,1,1,1,1

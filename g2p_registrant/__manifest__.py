@@ -1,28 +1,30 @@
 # -*- coding: utf-8 -*-
 #################################################################################
-# Author      : New Logic (<https://newlogic.com/>)
-# Copyright(c): New Logic
+# Author      : Newlogic (<https://newlogic.com/>)
+# Copyright(c): Newlogic
 # All Rights Reserved.
 #################################################################################
 {
-  "name"         :  "Newlogic Message Module",
-  "category"     :  "NewLogic",
+  "name"         :  "G2P registrant Module",
+  "category"     :  "G2P",
   "version"      :  "0.0.1",
   "sequence"     :  1,
-  "author"       :  "New Logic",
+  "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
-  "license"      :  "LGPL-3",
+  "license"      :  "Other OSI approved licence",
   "description"  :  """
-  Newlogic Main Module
+  G2P registrant Module
   ========================
 
   - 
   
   """,
-  "depends"      :  ['base', 'mail', 'newlogic_main'],
+  "depends"      :  ['base','mail'],
   "data"         :  [
+                  'security/newlogic_security.xml',
+                  'security/ir.model.access.csv',
                   'views/main_view.xml',
-                  'views/mail_message_view.xml',
+                  'views/registrants_view.xml',
                     ],
   'assets'       :  {},
   "demo"         :  [],

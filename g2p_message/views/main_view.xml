@@ -1,0 +1,4 @@
+<odoo>
+    <menuitem id="g2p_message_menu_root" name="Message Log" parent="g2p_registrant.g2p_main_menu_root" sequence="100"/>
+
+</odoo>

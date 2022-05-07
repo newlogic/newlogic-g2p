@@ -1,31 +1,27 @@
 # -*- coding: utf-8 -*-
 #################################################################################
-# Author      : New Logic (<https://newlogic.com/>)
-# Copyright(c): New Logic
+# Author      : Newlogic (<https://newlogic.com/>)
+# Copyright(c): Newlogic
 # All Rights Reserved.
 #################################################################################
 {
-  "name"         :  "Newlogic Main Module",
-  "category"     :  "NewLogic",
-  "version"      :  "0.01",
-  "sequence"     :  1,
-  "author"       :  "New Logic",
+  "name"         :  "G2P Grievance System",
+  "category"     :  "G2P",
+  "version"      :  "0.0.1",
+  "sequence"     :  3,
+  "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
-  "license"      :  "LGPL-3",
+  "license"      :  "Other OSI approved licence",
   "description"  :  """
-  Newlogic Main Module
+  Newlogic Grievance System
   ========================
-
   - 
   
   """,
-  "depends"      :  ['base'],
+  "depends"      :  ['base', 'helpdesk_mgmt'],
   "data"         :  [
-                  'views/main_view.xml',
+                    'views/custom_helpdesk_view.xml',
                     ],
-  'assets'       :  {},
-  "demo"         :  [],
-  "images"       :  [],
   "application"  :  True,
   "installable"  :  True,
   "auto_install" :  False,
