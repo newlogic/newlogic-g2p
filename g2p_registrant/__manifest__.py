@@ -5,23 +5,26 @@
 # All Rights Reserved.
 #################################################################################
 {
-  "name"         :  "Newlogic Main Module",
-  "category"     :  "NewLogic",
-  "version"      :  "0.01",
+  "name"         :  "G2P registrant Module",
+  "category"     :  "G2P",
+  "version"      :  "0.0.1",
   "sequence"     :  1,
   "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
-  "license"      :  "LGPL-3",
+  "license"      :  "Other OSI approved licence",
   "description"  :  """
-  Newlogic Main Module
+  G2P registrant Module
   ========================
 
   - 
   
   """,
-  "depends"      :  ['base'],
+  "depends"      :  ['base','mail'],
   "data"         :  [
+                  'security/newlogic_security.xml',
+                  'security/ir.model.access.csv',
                   'views/main_view.xml',
+                  'views/registrants_view.xml',
                     ],
   'assets'       :  {},
   "demo"         :  [],

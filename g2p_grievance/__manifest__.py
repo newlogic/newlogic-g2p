@@ -5,29 +5,23 @@
 # All Rights Reserved.
 #################################################################################
 {
-  "name"         :  "Newlogic Location Module",
-  "category"     :  "NewLogic",
+  "name"         :  "G2P Grievance System",
+  "category"     :  "G2P",
   "version"      :  "0.0.1",
-  "sequence"     :  1,
-  "author"       :  "New Logic",
+  "sequence"     :  3,
+  "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
-  "license"      :  "LGPL-3",
+  "license"      :  "Other OSI approved licence",
   "description"  :  """
-  Newlogic Location Module
+  Newlogic Grievance System
   ========================
-
   - 
   
   """,
-  "depends"      :  ['base','newlogic_main'],
+  "depends"      :  ['base', 'helpdesk_mgmt'],
   "data"         :  [
-                  'security/ir.model.access.csv',
-                  'views/registrants_view.xml',
-                  'views/location.xml',
+                    'views/custom_helpdesk_view.xml',
                     ],
-  'assets'       :  {},
-  "demo"         :  [],
-  "images"       :  [],
   "application"  :  True,
   "installable"  :  True,
   "auto_install" :  False,

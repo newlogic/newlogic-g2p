@@ -1,0 +1,43 @@
+<odoo>
+    <record id="view_additional_data_tags_tree" model="ir.ui.view">
+        <field name="name">view_additional_data_tags_tree</field>
+        <field name="model">g2p.additional.data.tags</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree string="Additional Data Tags" multi_edit="1" editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_additional_data_tags" model="ir.actions.act_window">
+        <field name="name">Additional Data Tags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">g2p.additional.data.tags</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{}</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Additional Data Tags!
+            </p><p>
+                Click the create button to enter the information of the Additional Data Tags.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_additional_data_tags_tree_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_additional_data_tags_tree"/>
+        <field name="act_window_id" ref="action_additional_data_tags"/>
+    </record>
+
+    <menuitem id="menu_additional_data_tags"
+        name="Additional Data Tags"
+        action="action_additional_data_tags"
+        parent="g2p_registrant.g2p_registrant_menu_root"
+        sequence="12"
+        groups="g2p_registrant.group_g2p_admin"/>
+        
+</odoo>

@@ -66,7 +66,7 @@
     <menuitem id="menu_g2plocation"
         name="Location"
         action="action_g2plocation"
-        parent="newlogic_main.g2p_registrant_menu_root"
+        parent="g2p_registrant.g2p_registrant_menu_root"
         sequence="15"
-        groups="newlogic_main.group_g2p_admin"/>
+        groups="g2p_registrant.group_g2p_admin"/>
 </odoo>
