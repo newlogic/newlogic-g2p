@@ -63,6 +63,6 @@
         name="Registrant Additional Data"
         action="action_registrant_additional_data"
         parent="g2p_registrant.g2p_registrant_menu_root"
-        sequence="14"
+        sequence="24"
         groups="g2p_registrant.group_g2p_admin"/>
 </odoo>

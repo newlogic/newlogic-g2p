@@ -2,12 +2,12 @@
 <odoo>
 
 <!-- Add Registrant Additional Data tree to registrant form view -->
-    <record id="view_registrants_additional_data_form" model="ir.ui.view">
-        <field name="name">view_registrants_additional_data_form</field>
+    <record id="view_additional_groups_form" model="ir.ui.view">
+        <field name="name">view_additional_groups_form</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="g2p_registrant.view_registrants_form"></field>
+        <field name="inherit_id" ref="g2p_registrant.view_groups_form"></field>
         <field name="arch" type="xml">
-            <xpath expr="//notebook/page[4]" position="after">
+            <xpath expr="//notebook/page[2]" position="after">
                 <page string="Additional Data">
                     <field name="additional_data" nolabel="1">
                         <tree create="false" delete="false" edit="false">
