@@ -2,6 +2,7 @@ Format in CHANGELOG.md
 
 ## Version[0.07] - 2022-05-07
 - [ADD] Additional fields and other fixes based on "Added registrant model and UI #19"
+- [UPD] Split the Individual and Group registration interface.
 
 ## Version[0.06] - 2022-05-06
 - [ADD] Relationship model UIs

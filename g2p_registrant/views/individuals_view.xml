@@ -140,7 +140,7 @@
 
 <!-- List registrants -->
     <record id="action_individuals_list" model="ir.actions.act_window">
-        <field name="name">Individual</field>
+        <field name="name">Individuals</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field>

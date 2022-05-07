@@ -11,7 +11,7 @@
   "sequence"     :  1,
   "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
-  "license"      :  "GPL-2",
+  "license"      :  "Other OSI approved licence",
   "description"  :  """
   G2P registrant Module
   ========================

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="eSMIS_sched_transfer_wizard_view_form" model="ir.ui.view">
+            <field name="name">eSMIS_sched_transfer_wizard_view_form</field>
+            <field name="model">esmis.lms.activity.transfer.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="lms_act_id" options="{'no_open':True,'no_create':True}" readonly="1"/>
+                            </h1>
+                            <div class="o_row">
+                            </div>
+                        </div>
+                        <group colspan="4" col="4">
+                            <field name="name"/>
+                            <field name="curr_sy_term_id" options="{'no_open':True,'no_create':True}" readonly="1"/>
+                            <field name="sched_id" options="{'no_open':True,'no_create':True}" colspan="4"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_transfer_activity" string="Transfer" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_eSMIS_sched_transfer_wizard" model="ir.actions.act_window">
+            <field name="name">Transfer to Schedule</field>
+            <field name="res_model">esmis.lms.activity.transfer.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>
