@@ -11,3 +11,4 @@ from . import group
 from . import reg_id
 from . import reg_relationship
 from . import group_membership
+from . import registrant_attribute

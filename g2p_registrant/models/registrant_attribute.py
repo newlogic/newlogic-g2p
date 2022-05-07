@@ -10,11 +10,11 @@ class RegistrantAttribute(models.Model):
 
     name = fields.Char('Attribute', required=True)
     company_id = fields.Many2one('res.company', default=lambda self: self.env.company, tracking=True)
-    value_ids = fields.One2many('product.attribute.value', 'attribute_id', 'Values', copy=True)
+    value_ids = fields.One2many('g2p.reg.attribute.value', 'attribute_id', 'Values', copy=True)
     sequence = fields.Integer('Sequence', help="Determine the display order", index=True)
     kind = fields.Selection([('Integer','int'),('Char','char'),('Text','text'),('Date','date'),('Boolean','boolean'),('Float','float')], 'Kind', default='char', tracking=True)
     visible = fields.Selection([('All','all'),('Registrant','reg'),('Group','grp')], 'Visible', default='reg', tracking=True)
-    programs = fields.Many2many('g2p.program')
+    # programs = fields.Many2many('g2p.program')
 
 
 class RegistrantAttributeValue(models.Model):
