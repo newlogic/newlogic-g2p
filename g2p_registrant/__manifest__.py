@@ -5,28 +5,26 @@
 # All Rights Reserved.
 #################################################################################
 {
-  "name"         :  "Newlogic Additional Data Object",
-  "category"     :  "NewLogic",
+  "name"         :  "G2P registrant Module",
+  "category"     :  "G2P",
   "version"      :  "0.0.1",
   "sequence"     :  1,
   "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
-  "license"      :  "LGPL-3",
+  "license"      :  "Other OSI approved licence",
   "description"  :  """
-  Newlogic Additional Data Object
+  G2P registrant Module
   ========================
 
   - 
   
   """,
-  "depends"      :  ['base', 'newlogic_main'],
+  "depends"      :  ['base','mail'],
   "data"         :  [
-                     'security/ir.model.access.csv',
-                     'views/additional_data.xml',
-                     'views/additional_data_tags.xml',
-                     'views/datasource.xml',
-                     'views/registrant_additional_data.xml',
-                     'views/registrant_views.xml',
+                  'security/newlogic_security.xml',
+                  'security/ir.model.access.csv',
+                  'views/main_view.xml',
+                  'views/registrants_view.xml',
                     ],
   'assets'       :  {},
   "demo"         :  [],
