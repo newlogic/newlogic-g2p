@@ -9,8 +9,7 @@ from odoo.exceptions import AccessError, UserError, ValidationError, Warning
 class G2PGroup(models.Model):
     _inherit = 'res.partner'
 
-    #name (exist in res.partner: name)
-    kind = fields.Selection([('Household','Household'),('Families','Families')],'Kind', tracking=True)
+    kind = fields.Many2one('g2p.group.kind','Kind', tracking=True)
+    #kind = fields.Selection([],'Kind')
     group_membership_ids = fields.One2many('g2p.group.membership','group','Group Members')
 
-    #partner_ids = fields.Many2many('res.partner', column1='category_id', column2='partner_id', string='Partners')

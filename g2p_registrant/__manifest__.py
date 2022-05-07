@@ -11,7 +11,7 @@
   "sequence"     :  1,
   "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
-  "license"      :  "Apache 2.0",
+  "license"      :  "GPL-2",
   "description"  :  """
   G2P registrant Module
   ========================
@@ -24,7 +24,9 @@
                   'security/newlogic_security.xml',
                   'security/ir.model.access.csv',
                   'views/main_view.xml',
-                  'views/registrants_view.xml',
+                  #'views/all_registrants_view.xml',
+                  'views/individuals_view.xml',
+                  'views/groups_view.xml',
                     ],
   'assets'       :  {},
   "demo"         :  [],

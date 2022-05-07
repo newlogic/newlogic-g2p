@@ -16,6 +16,8 @@ class G2PRegistrantRelationship(models.Model):
     relation = fields.Many2one('g2p.relationship','Relation')
     disabled = fields.Datetime('Date Disabled')
     disabled_by = fields.Many2one('res.users', 'Disabled by')
+    start_date = fields.Datetime('Start Date')
+    end_date = fields.Datetime('End Date')
 
     def name_get(self):
         res = super(G2PRegistrantRelationship, self).name_get()
