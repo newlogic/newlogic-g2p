@@ -11,7 +11,7 @@
   "sequence"     :  3,
   "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
-  "license"      :  "Apache 2.0",
+  "license"      :  "Other OSI approved licence",
   "description"  :  """
   Newlogic Grievance System
   ========================

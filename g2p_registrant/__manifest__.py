@@ -6,12 +6,12 @@
 #################################################################################
 {
   "name"         :  "G2P registrant Module",
-  "category"     :  "Newlogic",
+  "category"     :  "G2P",
   "version"      :  "0.0.1",
   "sequence"     :  1,
   "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
-  "license"      :  "Apache 2.0",
+  "license"      :  "Other OSI approved licence",
   "description"  :  """
   G2P registrant Module
   ========================
