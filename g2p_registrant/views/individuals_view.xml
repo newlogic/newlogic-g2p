@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Copyright 2022 Newlogic
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+       http://www.apache.org/licenses/LICENSE-2.0
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
 <odoo>
     <record id="view_individuals_list_tree" model="ir.ui.view">
         <field name="name">view_individuals_list_tree</field>
@@ -22,7 +34,8 @@
             <form string="Individual">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button type="object" class="oe_stat_button" icon="fa-ban" name="disable_registrant"
+                        <button type="action" class="oe_stat_button" icon="fa-ban" 
+                            name="%(action_disable_registrant_wizard)d"
                             attrs="{'invisible':[('disabled','!=',False)]}">
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Disable</span>
@@ -46,20 +59,23 @@
                         <div class="oe_edit_only">
                             <h2>
                                 <field name="family_name" placeholder="Family Name..." default_focus="1" 
-                                    required="1" class="oe_edit_only"/>
+                                    required="1" class="oe_edit_only"
+                                    attrs="{'readonly':[('disabled','!=',False)]}"/>
                             </h2>
                             <h2>
                                 <field name="given_name" placeholder="Given Name..." 
-                                    required="1" class="oe_edit_only"/>
+                                    required="1" class="oe_edit_only"
+                                    attrs="{'readonly':[('disabled','!=',False)]}"/>
                             </h2>
                             <h2>
                                 <field name="addl_name" placeholder="Additional Name..." 
-                                    required="0" class="oe_edit_only"/>
+                                    required="0" class="oe_edit_only"
+                                    attrs="{'readonly':[('disabled','!=',False)]}"/>
                             </h2>
                         </div>
                         <div class="o_row">
                             <label for="registration_date"/>
-                            <field name="registration_date"/>
+                            <field name="registration_date" attrs="{'readonly':[('disabled','!=',False)]}"/>
                             <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" attrs="{'readonly': [('parent_id', '!=', False)]}" force_save="1"/>
                         </div>
                     </div>
@@ -71,7 +87,7 @@
                                         <b>Address</b>
                                     </span>
                                     <div class="o_address_format">
-                                        <field name="address"/>
+                                        <field name="address" attrs="{'readonly':[('disabled','!=',False)]}"/>
                                         <!-- <field name="street" placeholder="Street..." class="o_address_street"/>
                                         <field name="street2" placeholder="Street 2..." class="o_address_street"/>
                                         <field name="city" placeholder="City" class="o_address_city"/>
@@ -81,31 +97,31 @@
                                     </div>
                                 </group>
                                 <group>
-                                    <field name="phone" widget="phone"/>
-                                    <field name="mobile" widget="phone"/>
+                                    <field name="phone" widget="phone" attrs="{'readonly':[('disabled','!=',False)]}"/>
+                                    <field name="mobile" widget="phone" attrs="{'readonly':[('disabled','!=',False)]}"/>
                                     <field name="user_ids" invisible="1"/>
-                                    <field name="email" widget="email" context="{'gravatar_image': True}" attrs="{'required': [('user_ids','!=', [])]}"/>
-                                    <field name="website" string="Website" widget="url" placeholder="e.g. https://newlogic.com"/>
+                                    <field name="email" widget="email" context="{'gravatar_image': True}" attrs="{'readonly':[('disabled','!=',False)]}"/>
+                                    <field name="website" string="Website" widget="url" placeholder="e.g. https://newlogic.com" attrs="{'readonly':[('disabled','!=',False)]}"/>
                                     <field name="active_lang_count" invisible="1"/>
                                     <label for="lang" attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}"/>
                                     <div class="o_row" attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}">
-                                        <field name="lang"/>
+                                        <field name="lang" attrs="{'readonly':[('disabled','!=',False)]}"/>
                                     </div>
                                 </group>
                             </group>
                         </page>                      
                         <page string="Personal Info">
                             <group col="6" colspan="6">
-                                <field name="birth_place" colspan="6"/>
-                                <field name="birthdate"/>
-                                <field name="birthdate_exact"/>
-                                <field name="age"/>
-                                <field name="gender"/>
+                                <field name="birth_place" colspan="6" attrs="{'readonly':[('disabled','!=',False)]}"/>
+                                <field name="birthdate" attrs="{'readonly':[('disabled','!=',False)]}"/>
+                                <field name="birthdate_exact" attrs="{'readonly':[('disabled','!=',False)]}"/>
+                                <field name="age" attrs="{'readonly':[('disabled','!=',False)]}"/>
+                                <field name="gender" attrs="{'readonly':[('disabled','!=',False)]}"/>
                             </group>
                         </page>
                         <!-- <page string="Additional Fields">
                             <group col="4" colspan="4">
-                                <field name="addl_fields" nolabel="1"/>
+                                <field name="addl_fields" nolabel="1" attrs="{'readonly':[('disabled','!=',False)]}"/>
                             </group>
                         </page> -->
                         <page string="Others">
@@ -117,7 +133,10 @@
                                 <field name="disabled" readonly="1"/>
                                 <field name="disabled_by" readonly="1"/>
                                 <field name="disabled_reason" readonly="1" colspan="4"/>
-                                <field name="category_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" placeholder="Tags..." colspan="4" string="Tag"/>
+                                <field name="category_id" widget="many2many_tags" 
+                                    options="{'color_field': 'color', 'no_create_edit': True}" 
+                                    placeholder="Tags..." colspan="4" string="Tag"
+                                    attrs="{'readonly':[('disabled','!=',False)]}"/>
                             </group>
                         </page>
                     </notebook>
