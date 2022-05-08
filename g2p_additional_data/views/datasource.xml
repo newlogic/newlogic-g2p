@@ -5,7 +5,7 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Datasource">
-                <field name="parent"/>
+                <field name="parent_id"/>
                 <field name="name"/>
                 <field name="batch"/>
             </tree>
@@ -20,7 +20,7 @@
             <form string="Datasource">
                 <sheet>
                     <group>
-                        <field name="parent"/>
+                        <field name="parent_id"/>
                         <field name="name"/>
                         <field name="batch"/>
                     </group>
@@ -63,6 +63,6 @@
         name="Datasource"
         action="action_g2p_datasource"
         parent="g2p_registrant.g2p_registrant_menu_root"
-        sequence="13"
+        sequence="23"
         groups="g2p_registrant.group_g2p_admin"/>
 </odoo>

@@ -37,7 +37,7 @@
         name="Additional Data Tags"
         action="action_additional_data_tags"
         parent="g2p_registrant.g2p_registrant_menu_root"
-        sequence="12"
+        sequence="22"
         groups="g2p_registrant.group_g2p_admin"/>
         
 </odoo>
