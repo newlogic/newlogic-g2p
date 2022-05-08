@@ -22,7 +22,8 @@
   "depends"      :  ['base','g2p_registrant'],
   "data"         :  [
                   'security/ir.model.access.csv',
-                  'views/registrants_view.xml',
+                  'views/individual_views.xml',
+                  'views/group_views.xml',
                   'views/location.xml',
                     ],
   'assets'       :  {},
