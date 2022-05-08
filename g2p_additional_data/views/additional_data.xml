@@ -8,7 +8,7 @@
                 <field name="source"/>
                 <field name="name"/>
                 <field name="json"/>
-                <field name="tag" widget="many2many_tags"/>
+                <field name="tags" widget="many2many_tags"/>
                 <field name="editurl"/>
                 <field name="viewurl"/>
             </tree>
@@ -26,7 +26,7 @@
                         <field name="source" default_focus="1" required="1"/>
                         <field name="name"/>
                         <field name="json"/>
-                        <field name="tag" widget="many2many_tags"/>
+                        <field name="tags" widget="many2many_tags"/>
                         <field name="editurl"/>
                         <field name="viewurl"/>
                     </group>
