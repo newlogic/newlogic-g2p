@@ -25,6 +25,7 @@
                   'views/individual_views.xml',
                   'views/group_views.xml',
                   'views/location.xml',
+                  'views/location_import_views.xml',
                     ],
   'assets'       :  {},
   "demo"         :  [],

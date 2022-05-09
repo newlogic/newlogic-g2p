@@ -33,12 +33,38 @@
                     </h1>
                     </div>
                     <group colspan="6" col="6">
+                        <field name="altnames" colspan="6"/>
                         <field name="code" colspan="2"/>
-                        <field name="altnames" colspan="2"/>
                         <field name="level" colspan="2"/>
                     </group>
+                    <notebook>
+                        <page string="Child">
+                            <field name="child_ids" nolabel="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="code"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="g2plocation_filter" model="ir.ui.view">
+        <field name="name">g2plocation_filter</field>
+        <field name="model">g2p.location</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <search string="Search location">
+                <field name="name"/>
+                <field name="parent_id" string="Parent"/>
+                <separator/>
+                <group expand="0" name="group_by" string="Group By">
+                    <filter name="grp_parent" string="Parent" context="{'group_by': 'parent_id'}"/>
+                </group>
+            </search>
         </field>
     </record>
 

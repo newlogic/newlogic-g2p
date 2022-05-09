@@ -7,3 +7,4 @@
 
 from . import location
 from . import registrant
+from . import location_import
