@@ -5,8 +5,8 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Registrant Additional Data">
-                <field name="registrant"/>
-                <field name="data"/>
+                <field name="registrant_id"/>
+                <field name="data_id"/>
                 <field name="json_path"/>
             </tree>
         </field>
@@ -20,14 +20,14 @@
             <form string="Registrant Additional Data">
                 <sheet>
                 <div class="oe_title mb24">
-                    <label for="registrant" string="Registrant:"/>
+                    <label for="registrant_id" string="Registrant:"/>
                     <h1>
-                        <field id="registrant" name="registrant" placeholder="Select a Registrant..."
+                        <field id="registrant_id" name="registrant_id" placeholder="Select a Registrant..."
                                 options="{'no_open':True,'no_create_edit':True,'no_create':True}"/>
                     </h1>
-                    <label for="data" string="Data:"/>
+                    <label for="data_id" string="Data:"/>
                     <h1>
-                        <field id="data" name="data" placeholder="Select a Datasource..."
+                        <field id="data_id" name="data_id" placeholder="Select a Datasource..."
                                 options="{'no_open':True,'no_create_edit':True,'no_create':True}"/>
                     </h1>
                     <div class="o_row">

@@ -8,9 +8,9 @@ class G2PAdditionalData(models.Model):
     _order = 'id desc'
 
     
-    source = fields.Many2one('g2p.datasource', 'Source')
+    source_id = fields.Many2one('g2p.datasource', 'Source')
     name = fields.Char(string="Name")
     json = fields.Text('JSON')
-    tag = fields.Many2many('g2p.additional.data.tags', string='Tag')
+    tag_ids = fields.Many2many('g2p.additional.data.tags', string='Tag')
     editurl = fields.Char(string="Edit URL")
     viewurl = fields.Char(string="View URL")
