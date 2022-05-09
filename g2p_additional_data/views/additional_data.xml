@@ -22,13 +22,26 @@
         <field name="arch" type="xml">
             <form string="Additional Data">
                 <sheet>
-                    <group>
-                        <field name="source" default_focus="1" required="1"/>
-                        <field name="name"/>
-                        <field name="json"/>
-                        <field name="tag" widget="many2many_tags"/>
-                        <field name="editurl"/>
-                        <field name="viewurl"/>
+                    <div class="oe_title mb24">
+                        <label for="source" string="Source:"/>
+                        <h1>
+                            <field id="source" name="source" placeholder="Select a Source..."
+                                    options="{'no_open':True,'no_create_edit':True,'no_create':True}"/>
+                        </h1>
+                        <label for="name" string="Name:"/>
+                        <h1>
+                            <field id="name" name="name" placeholder="Name..."/>
+                        </h1>
+                    </div>
+                    <group colspan="4" col="4">
+                        <group colspan="2" >
+                            <field name="json" colspan="2"/>
+                            <field name="tag" colspan="2" widget="many2many_tags"/>
+                        </group>
+                        <group colspan="2" >
+                            <field name="editurl" colspan="2" />
+                            <field name="viewurl" colspan="2"/>
+                        </group>
                     </group>
                 </sheet>
             </form>
@@ -68,7 +81,7 @@
     <menuitem id="menu_additional_data"
         name="Additional Data"
         action="action_additional_data"
-        parent="g2p_registrant.g2p_registrant_menu_root"
-        sequence="21"
+        parent="g2p_registrant.g2p_configuration_menu_root"
+        sequence="101"
         groups="g2p_registrant.group_g2p_admin"/>
 </odoo>

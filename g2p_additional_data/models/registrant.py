@@ -7,3 +7,4 @@ class G2PRegistrant(models.Model):
 
     #Custom Fields
     additional_data = fields.One2many('g2p.registrant.additional.data', 'registrant', string="Additional Data")
+    registration_source = fields.Many2one('g2p.datasource', 'Registration Source')
