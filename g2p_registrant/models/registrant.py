@@ -23,7 +23,7 @@ class G2PRegistrant(models.Model):
 
     #Custom Fields
     address = fields.Text('Address', tracking=True)
-    #addl_fields = fields.Text('Additional Fields', tracking=True)
+    addl_fields = fields.One2many('g2p.reg.attribute.value','partner_id','Additional Fields', tracking=True)
     disabled = fields.Datetime('Date Disabled', tracking=True)
     disabled_reason = fields.Text('Reason for disabling', tracking=True)
     disabled_by = fields.Many2one('res.users', 'Disabled by', tracking=True)
@@ -32,14 +32,6 @@ class G2PRegistrant(models.Model):
     reg_ids = fields.One2many('g2p.reg.id','registrant','Registrant IDs')
     is_registrant = fields.Boolean('Registrant')
     is_group = fields.Boolean('Group')
-
-    #def disable_registrant(self):
-    #    for rec in self:
-    #        if not rec.disabled:
-    #            rec.update({
-    #                'disabled':fields.Datetime.now(),
-    #                'disabled_by':self.env.user,
-    #            })
 
     def enable_registrant(self):
         for rec in self:

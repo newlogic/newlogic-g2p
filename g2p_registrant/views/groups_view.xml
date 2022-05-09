@@ -22,7 +22,7 @@
                 <field name="address"/>
                 <field name="kind"/>
                 <field name="group_membership_ids" string="Total Members"/>
-                <field name="category_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" string="Tag"/>
+                <field name="category_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" string="Tags"/>
                 <field name="disabled" invisible="1"/>
             </tree>
         </field>
@@ -60,11 +60,18 @@
                                 attrs="{'readonly':[('disabled','!=',False)]}"/>
                         </h1>
                         <div class="o_row">
-                            <label for="registration_date" string="Registration Date: "/>
-                            <field name="registration_date" attrs="{'readonly':[('disabled','!=',False)]}"/>
+                            <label for="category_id" string="Tags: "/>
+                            <field name="category_id" widget="many2many_tags" 
+                                options="{'color_field': 'color', 'no_create_edit': True}" 
+                                placeholder="Tags..." colspan="4" string="Tags"
+                                attrs="{'readonly':[('disabled','!=',False)]}"/>
+                            <label for="company_id" string=" | Company: " groups="base.group_multi_company" />
                             <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" attrs="{'readonly': [('parent_id', '!=', False)]}" force_save="1"/>
                         </div>
                     </div>
+                    <group colspan="4" col="4">
+                        <field name="registration_date" attrs="{'readonly':[('disabled','!=',False)]}"/>
+                    </group>
                     <notebook>
                         <page string="Contact Details">
                             <group>
@@ -121,11 +128,21 @@
                                 </tree>
                             </field>
                         </page>
-                        <!-- <page string="Additional Fields">
-                            <group col="4" colspan="4">
-                                <field name="addl_fields" nolabel="1" attrs="{'readonly':[('disabled','!=',False)]}"/>
-                            </group>
-                        </page> -->
+                        <page string="Additional Fields">
+                            <field name="addl_fields" attrs="{'readonly':[('disabled','!=',False)]}" nolabel="1">
+                                <tree string="Additional Fields" editable="top">
+                                    <field name="attribute_id" 
+                                        options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"/>
+                                    <field name="name"/>
+                                    <field name="value_int" invisible="1"/>
+                                    <field name="value_char" invisible="1"/>
+                                    <field name="value_text" invisible="1"/>
+                                    <field name="value_float" invisible="1"/>
+                                    <field name="value_date" invisible="1"/>
+                                    <field name="value_boolean" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
                         <page string="Others">
                             <group col="4" colspan="4">
                                 <field name="create_date"/>
@@ -135,10 +152,6 @@
                                 <field name="disabled" readonly="1"/>
                                 <field name="disabled_by" readonly="1"/>
                                 <field name="disabled_reason" colspan="4" readonly="1"/>
-                                <field name="category_id" widget="many2many_tags" 
-                                    options="{'color_field': 'color', 'no_create_edit': True}" 
-                                    placeholder="Tags..." colspan="4" string="Tag"
-                                    attrs="{'readonly':[('disabled','!=',False)]}"/>
                             </group>
                         </page>
                     </notebook>

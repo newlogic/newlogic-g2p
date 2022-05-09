@@ -6,6 +6,7 @@ Format in CHANGELOG.md
 - [ADD] Registrant Relationship UI
 - [ADD] Registrant ID UI
 - [ADD] ID Types UI
+- [ADD] Registrant Attribute UI
 
 ## Version[0.07] - 2022-05-07
 - [ADD] Additional fields and other fixes based on "Added registrant model and UI #19"

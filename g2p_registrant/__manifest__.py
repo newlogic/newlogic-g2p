@@ -30,11 +30,13 @@
   "data"         :  [
                   'security/newlogic_security.xml',
                   'security/ir.model.access.csv',
+                  'data/group_membership_kinds.xml',
                   'wizard/disable_registrant_view.xml',
                   'views/main_view.xml',
                   #'views/all_registrants_view.xml',
                   'views/individuals_view.xml',
                   'views/groups_view.xml',
+                  'views/registrant_attribute_view.xml',
                   'views/group_membership_view.xml',
                   'views/membership_kinds_view.xml',
                   'views/reg_relationship_view.xml',

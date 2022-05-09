@@ -24,11 +24,11 @@ class G2PGroupMembership(models.Model):
     _order = 'id desc'
     _inherit = ['mail.thread']
 
-    group = fields.Many2one('res.partner','Group',required=True,domain=[('is_group','=',True),('is_registrant','=',True)])
-    individual = fields.Many2one('res.partner','Individual',required=True,domain=[('is_group','=',False),('is_registrant','=',True)])
-    kind = fields.Many2many('g2p.group.kind',string='Kind',required=True)
-    start_date = fields.Datetime('Start Date')
-    end_date = fields.Datetime('End Date')
+    group = fields.Many2one('res.partner','Group',required=True,domain=[('is_group','=',True),('is_registrant','=',True)],tracking=True)
+    individual = fields.Many2one('res.partner','Individual',required=True,domain=[('is_group','=',False),('is_registrant','=',True)],tracking=True)
+    kind = fields.Many2many('g2p.group.kind',string='Kind',required=True,tracking=True)
+    start_date = fields.Datetime('Start Date',tracking=True)
+    end_date = fields.Datetime('End Date',tracking=True)
 
     def name_get(self):
         res = super(G2PGroupMembership, self).name_get()

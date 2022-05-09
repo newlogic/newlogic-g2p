@@ -24,13 +24,13 @@ class G2PRegistrantRelationship(models.Model):
     _order = 'id desc'
     _inherit = ['mail.thread']
 
-    registrant1 = fields.Many2one('res.partner','Registrant 1', required=True, domain=[('is_registrant','=',True),('is_group','=',False)])
-    registrant2 = fields.Many2one('res.partner','Registrant 2', required=True, domain=[('is_registrant','=',True),('is_group','=',False)])
-    relation = fields.Many2one('g2p.relationship','Relation')
-    disabled = fields.Datetime('Date Disabled')
-    disabled_by = fields.Many2one('res.users', 'Disabled by')
-    start_date = fields.Datetime('Start Date')
-    end_date = fields.Datetime('End Date')
+    registrant1 = fields.Many2one('res.partner','Registrant 1', required=True, domain=[('is_registrant','=',True),('is_group','=',False)],tracking=True)
+    registrant2 = fields.Many2one('res.partner','Registrant 2', required=True, domain=[('is_registrant','=',True),('is_group','=',False)],tracking=True)
+    relation = fields.Many2one('g2p.relationship','Relation',tracking=True)
+    disabled = fields.Datetime('Date Disabled',tracking=True)
+    disabled_by = fields.Many2one('res.users', 'Disabled by',tracking=True)
+    start_date = fields.Datetime('Start Date',tracking=True)
+    end_date = fields.Datetime('End Date',tracking=True)
 
     def name_get(self):
         res = super(G2PRegistrantRelationship, self).name_get()
