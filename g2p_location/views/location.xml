@@ -21,12 +21,21 @@
         <field name="arch" type="xml">
             <form string="Location">
                 <sheet>
-                    <group>
-                        <field name="parent_id"/>
-                        <field name="name"/>
-                        <field name="code"/>
-                        <field name="altnames"/>
-                        <field name="level"/>
+                    <div class="oe_title mb24">
+                    <label for="parent_id" string="Parent:"/>
+                    <h1>
+                        <field id="parent_id" name="parent_id" placeholder="Select a Parent..."
+                                options="{'no_open':True,'no_create_edit':True,'no_create':True}"/>
+                    </h1>
+                    <label for="name" string="Name:"/>
+                    <h1>
+                        <field id="name" name="name" placeholder="Location Name..."/>
+                    </h1>
+                    </div>
+                    <group colspan="6" col="6">
+                        <field name="code" colspan="2"/>
+                        <field name="altnames" colspan="2"/>
+                        <field name="level" colspan="2"/>
                     </group>
                 </sheet>
             </form>
@@ -66,7 +75,7 @@
     <menuitem id="menu_g2plocation"
         name="Location"
         action="action_g2plocation"
-        parent="g2p_registrant.g2p_registrant_menu_root"
-        sequence="25"
+        parent="g2p_registrant.g2p_configuration_menu_root"
+        sequence="105"
         groups="g2p_registrant.group_g2p_admin"/>
 </odoo>
