@@ -13,7 +13,7 @@
 #################################################################################
 {
   "name"         :  "G2P registrant Module",
-  "category"     :  "Newlogic",
+  "category"     :  "G2P",
   "version"      :  "0.0.1",
   "sequence"     :  1,
   "author"       :  "Newlogic",

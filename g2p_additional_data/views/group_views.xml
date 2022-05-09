@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+<!-- Add Registrant Additional Data tree to registrant form view -->
+    <record id="view_additional_groups_form" model="ir.ui.view">
+        <field name="name">view_additional_groups_form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="g2p_registrant.view_groups_form"></field>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[2]" position="after">
+                <page string="Additional Data">
+                    <field name="additional_data_ids" nolabel="1" attrs="{'readonly':[('disabled','!=',False)]}">
+                        <tree editable="top">
+                            <field name="data_id"/>
+                            <field name="json_path"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            
+            <xpath expr="//field[@name='registration_date']" position="after">
+                    <field name="registration_source_id" attrs="{'readonly':[('disabled','!=',False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

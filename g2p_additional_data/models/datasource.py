@@ -6,6 +6,6 @@ class G2PDataSource(models.Model):
     _description = "Data Source"
     _order = 'id desc'
 
-    parent = fields.Many2one('g2p.datasource', 'Parent')
+    parent_id = fields.Many2one('g2p.datasource', 'Parent')
     name = fields.Char(string="Name", required=True)
     batch = fields.Char(string="Batch")
