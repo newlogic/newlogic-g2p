@@ -96,7 +96,7 @@
                                 </group>
                             </group>
                         </page>                      
-                        <page string="Group" attrs="{'invisible':[('is_group','=',False)]}">
+                        <page string="Group">
                             <group col="4" colspan="4">
                                 <field name="kind" colspan="2" options="{'no_open':True, 'no_create_edit':True}" attrs="{'readonly':[('disabled','!=',False)]}"/>
                                 <newline/>
@@ -112,6 +112,14 @@
                                     </tree>
                                 </field>
                             </group>
+                        </page>
+                        <page string="IDs">
+                            <field name="reg_ids" attrs="{'readonly':[('disabled','!=',False)]}" nolabel="1">
+                                <tree string="Registrant IDs" editable="top">
+                                    <field name="id_type" options="{'no_open':True,'no_create_edit':True,'no_create':True}"/>
+                                    <field name="value"/>
+                                </tree>
+                            </field>
                         </page>
                         <!-- <page string="Additional Fields">
                             <group col="4" colspan="4">

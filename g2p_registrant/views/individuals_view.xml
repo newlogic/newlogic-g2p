@@ -119,6 +119,14 @@
                                 <field name="gender" attrs="{'readonly':[('disabled','!=',False)]}"/>
                             </group>
                         </page>
+                        <page string="IDs">
+                            <field name="reg_ids" attrs="{'readonly':[('disabled','!=',False)]}" nolabel="1">
+                                <tree string="Registrant IDs" editable="top">
+                                    <field name="id_type" options="{'no_open':True,'no_create_edit':True,'no_create':True}"/>
+                                    <field name="value"/>
+                                </tree>
+                            </field>
+                        </page>
                         <!-- <page string="Additional Fields">
                             <group col="4" colspan="4">
                                 <field name="addl_fields" nolabel="1" attrs="{'readonly':[('disabled','!=',False)]}"/>

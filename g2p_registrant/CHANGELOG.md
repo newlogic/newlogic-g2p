@@ -1,5 +1,12 @@
 Format in CHANGELOG.md
 
+## Version[0.07] - 2022-05-09
+- [ADD] Group Membership UI
+- [ADD] Registrant ID o2m field in res.partner
+- [ADD] Registrant Relationship UI
+- [ADD] Registrant ID UI
+- [ADD] ID Types UI
+
 ## Version[0.07] - 2022-05-07
 - [ADD] Additional fields and other fixes based on "Added registrant model and UI #19"
 - [UPD] Split the Individual and Group registration interface.

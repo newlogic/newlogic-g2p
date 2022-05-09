@@ -23,8 +23,8 @@ class G2PRegistrantID(models.Model):
     _description = 'Registrant ID'
     _order = 'id desc'
 
-    registrant = fields.Many2one('res.partner','Registrant')
-    id_type = fields.Many2one('g2p.id.type','ID Type')
+    registrant = fields.Many2one('res.partner','Registrant', required=True, domain=[('is_registrant','=',True)])
+    id_type = fields.Many2one('g2p.id.type','ID Type',required=True)
     value = fields.Char('Value', size=100)
 
     def name_get(self):
