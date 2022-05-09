@@ -9,13 +9,17 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook/page[2]" position="after">
                 <page string="Additional Data">
-                    <field name="additional_data" nolabel="1">
-                        <tree create="false" delete="false" edit="false">
-                            <field name="data"/>
+                    <field name="additional_data_ids" nolabel="1" attrs="{'readonly':[('disabled','!=',False)]}">
+                        <tree editable="top">
+                            <field name="data_id"/>
                             <field name="json_path"/>
                         </tree>
                     </field>
                 </page>
+            </xpath>
+            
+            <xpath expr="//field[@name='registration_date']" position="after">
+                    <field name="registration_source_id" attrs="{'readonly':[('disabled','!=',False)]}"/>
             </xpath>
         </field>
     </record>

@@ -5,8 +5,8 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Registrant Additional Data">
-                <field name="registrant"/>
-                <field name="data"/>
+                <field name="registrant_id"/>
+                <field name="data_id"/>
                 <field name="json_path"/>
             </tree>
         </field>
@@ -19,11 +19,22 @@
         <field name="arch" type="xml">
             <form string="Registrant Additional Data">
                 <sheet>
-                    <group>
-                        <field name="registrant"/>
-                        <field name="data"/>
+                <div class="oe_title mb24">
+                    <label for="registrant_id" string="Registrant:"/>
+                    <h1>
+                        <field id="registrant_id" name="registrant_id" placeholder="Select a Registrant..."
+                                options="{'no_open':True,'no_create_edit':True,'no_create':True}"/>
+                    </h1>
+                    <label for="data_id" string="Data:"/>
+                    <h1>
+                        <field id="data_id" name="data_id" placeholder="Select a Datasource..."
+                                options="{'no_open':True,'no_create_edit':True,'no_create':True}"/>
+                    </h1>
+                    <div class="o_row">
+                        <label for="json_path" string="JSON Path:"/>
                         <field name="json_path"/>
-                    </group>
+                    </div>
+                </div>
                 </sheet>
             </form>
         </field>
@@ -63,6 +74,6 @@
         name="Registrant Additional Data"
         action="action_registrant_additional_data"
         parent="g2p_registrant.g2p_registrant_menu_root"
-        sequence="24"
+        sequence="100"
         groups="g2p_registrant.group_g2p_admin"/>
 </odoo>
