@@ -36,6 +36,7 @@
                   'views/individuals_view.xml',
                   'views/groups_view.xml',
                   'views/group_membership_view.xml',
+                  'views/membership_kinds_view.xml',
                   'views/reg_relationship_view.xml',
                   'views/relationships_view.xml',
                   'views/reg_id_view.xml',

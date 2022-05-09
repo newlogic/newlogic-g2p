@@ -53,20 +53,20 @@
                         </button>
                     </div>
                     <div class="oe_title mb24">
-                        <label for="registrant1"/>
+                        <label for="registrant1" string="Registrant 1: "/>
                         <h1>
                             <field id="registrant1" name="registrant1" placeholder="Select Registrant 1..."
                                 attrs="{'readonly':[('disabled','!=',False)]}"
                                 options="{'no_open':True,'no_create_edit':True,'no_create':True}"/>
                         </h1>
-                        <label for="registrant2"/>
+                        <label for="registrant2" string="Registrant 2: "/>
                         <h1>
                             <field id="registrant2" name="registrant2" placeholder="Select Registrant 2..."
                                 attrs="{'readonly':[('disabled','!=',False)]}"
                                 options="{'no_open':True,'no_create_edit':True,'no_create':True}"/>
                         </h1>
                         <div class="o_row">
-                            <label for="relation"/>
+                            <label for="relation" string="Relation:"/>
                             <field id="relation" name="relation" placeholder="Select Relationship..."
                                 attrs="{'readonly':[('disabled','!=',False)]}"
                                 options="{'no_open':True,'no_create_edit':True,'no_create':True}"/>

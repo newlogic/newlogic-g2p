@@ -36,18 +36,18 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box"/>
                     <div class="oe_title mb24">
-                        <label for="group"/>
+                        <label for="group" string="Group:"/>
                         <h1>
                             <field id="group" name="group" placeholder="Select a Group..."
                                 options="{'no_open':True,'no_create_edit':True,'no_create':True}"/>
                         </h1>
-                        <label for="individual"/>
+                        <label for="individual" string="Individual:"/>
                         <h1>
                             <field id="individual" name="individual" placeholder="Select an Individual..." 
                                 options="{'no_open':True,'no_create_edit':True,'no_create':True}"/>
                         </h1>
                         <div class="o_row">
-                            <label for="kind"/>
+                            <label for="kind" string="Kind:"/>
                             <field name="kind" widget="many2many_tags" options="{'no_open':True, 'no_create_edit':True}"/>
                         </div>
                     </div>

@@ -60,7 +60,7 @@
                                 attrs="{'readonly':[('disabled','!=',False)]}"/>
                         </h1>
                         <div class="o_row">
-                            <label for="registration_date"/>
+                            <label for="registration_date" string="Registration Date: "/>
                             <field name="registration_date" attrs="{'readonly':[('disabled','!=',False)]}"/>
                             <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" attrs="{'readonly': [('parent_id', '!=', False)]}" force_save="1"/>
                         </div>
