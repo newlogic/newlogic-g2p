@@ -5,7 +5,7 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Location">
-                <field name="parent"/>
+                <field name="parent_id"/>
                 <field name="name"/>
                 <field name="code"/>
                 <field name="altnames"/>
@@ -22,7 +22,7 @@
             <form string="Location">
                 <sheet>
                     <group>
-                        <field name="parent"/>
+                        <field name="parent_id"/>
                         <field name="name"/>
                         <field name="code"/>
                         <field name="altnames"/>
@@ -67,6 +67,6 @@
         name="Location"
         action="action_g2plocation"
         parent="g2p_registrant.g2p_registrant_menu_root"
-        sequence="15"
+        sequence="25"
         groups="g2p_registrant.group_g2p_admin"/>
 </odoo>
