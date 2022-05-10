@@ -1,5 +1,8 @@
 Format in CHANGELOG.md
 
+## Version[0.08] - 2022-05-10
+- [UPD] Added UI controls in Registrant Attribute
+
 ## Version[0.07] - 2022-05-09
 - [ADD] Group Membership UI
 - [ADD] Registrant ID o2m field in res.partner
