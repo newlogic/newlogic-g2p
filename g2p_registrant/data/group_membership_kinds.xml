@@ -1,0 +1,15 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Group Membership Kinds -->
+        <record id="g2p_registrant.group_kind_head_household" model="g2p.group.kind">
+            <field name="name">Head of household</field>
+        </record>
+        <record id="g2p_registrant.group_kind_principal_recipient" model="g2p.group.kind">
+            <field name="name">Principal recipient</field>
+        </record>
+        <record id="g2p_registrant.group_kind_alternative_recipient" model="g2p.group.kind">
+            <field name="name">Alternative recipient</field>
+        </record>
+
+    </data>
+</odoo>

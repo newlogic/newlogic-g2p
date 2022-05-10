@@ -22,14 +22,15 @@ class G2PRegistrantRelationship(models.Model):
     _name = 'g2p.reg.rel'
     _description = 'Registrant Relationship'
     _order = 'id desc'
+    _inherit = ['mail.thread']
 
-    registrant1 = fields.Many2one('res.partner','Registrant 1')
-    registrant2 = fields.Many2one('res.partner','Registrant 2')
-    relation = fields.Many2one('g2p.relationship','Relation')
-    disabled = fields.Datetime('Date Disabled')
-    disabled_by = fields.Many2one('res.users', 'Disabled by')
-    start_date = fields.Datetime('Start Date')
-    end_date = fields.Datetime('End Date')
+    registrant1 = fields.Many2one('res.partner','Registrant 1', required=True, domain=[('is_registrant','=',True),('is_group','=',False)],tracking=True)
+    registrant2 = fields.Many2one('res.partner','Registrant 2', required=True, domain=[('is_registrant','=',True),('is_group','=',False)],tracking=True)
+    relation = fields.Many2one('g2p.relationship','Relation',tracking=True)
+    disabled = fields.Datetime('Date Disabled',tracking=True)
+    disabled_by = fields.Many2one('res.users', 'Disabled by',tracking=True)
+    start_date = fields.Datetime('Start Date',tracking=True)
+    end_date = fields.Datetime('End Date',tracking=True)
 
     def name_get(self):
         res = super(G2PRegistrantRelationship, self).name_get()
@@ -48,6 +49,22 @@ class G2PRegistrantRelationship(models.Model):
         if name:
             args = ['|',('registrant1', operator, name),('registrant2', operator, name)] + args
         return self._search(args, limit=limit, access_rights_uid=name_get_uid)
+
+    def disable_relationship(self):
+        for rec in self:
+            if not rec.disabled:
+                rec.update({
+                    'disabled':fields.Datetime.now(),
+                    'disabled_by':self.env.user,
+                })
+
+    def enable_relationship(self):
+        for rec in self:
+            if rec.disabled:
+                rec.update({
+                    'disabled':None,
+                    'disabled_by':None,
+                })
 
 class G2PRelationship(models.Model):
     _name = 'g2p.relationship'

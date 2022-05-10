@@ -1,6 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 g2p_group_membership_admin,Membership Admin Access,g2p_registrant.model_g2p_group_membership,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_reg_rel_admin,Registrant Relationship Admin Access,g2p_registrant.model_g2p_reg_rel,g2p_registrant.group_g2p_admin,1,1,1,1
+g2p_reg_attribute_admin,Registrant Attribute Admin Access,g2p_registrant.model_g2p_reg_attribute,g2p_registrant.group_g2p_admin,1,1,1,1
+g2p_reg_attribute_value_admin,Registrant Attribute Value Admin Access,g2p_registrant.model_g2p_reg_attribute_value,g2p_registrant.group_g2p_admin,1,1,1,1
+g2p_reg_id_admin,Registrant ID Admin Access,g2p_registrant.model_g2p_reg_id,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_id_type_admin,ID Type Admin Access,g2p_registrant.model_g2p_id_type,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_relationship_admin,Relationship Admin Access,g2p_registrant.model_g2p_relationship,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_group_kind_admin,Group Kind Admin Access,g2p_registrant.model_g2p_group_kind,g2p_registrant.group_g2p_admin,1,1,1,1
