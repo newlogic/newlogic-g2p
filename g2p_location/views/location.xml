@@ -63,6 +63,7 @@
                 <separator/>
                 <group expand="0" name="group_by" string="Group By">
                     <filter name="grp_parent" string="Parent" context="{'group_by': 'parent_id'}"/>
+                    <filter name="grp_level" string="Level" context="{'group_by': 'level'}"/>
                 </group>
             </search>
         </field>

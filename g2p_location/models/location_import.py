@@ -63,107 +63,89 @@ class G2PLocationImport(models.Model):
             except TypeError as e:
                 raise ValidationError(u'ERROR: {}'.format(e))
             sheet = book.sheets()[0]
+            cols = []
             vals = []
             _logger.info('Location Import: Parsing Excel File: %s' % fields.Datetime.now())
-            for i in range(sheet.nrows):
-                if i == 0:
-                    continue
+            
+            columns = []
+            
+            mainvals = {}
+            max_cols = None
+            for row in range(sheet.nrows):
+                if row == 0: #Ignore First Row containing column headings
+                    for col in range(sheet.ncols):
+                        col_name = sheet.cell(0,col).value
+                        if col_name.find("Name") >= 0:
+                            maxcolsstr = col_name.strip("admin").replace("Name","")
+                            maxcols_name_length = (len(maxcolsstr))
+                            if maxcols_name_length == 5 or maxcols_name_length == 4:
+                                maxcolsstr = maxcolsstr[:-3]
+                            try:
+                                max_cols = int(maxcolsstr)
+                                break
+                            except:
+                                max_cols = None
+                else:
+                    if max_cols:
+                        xcols = max_cols
+                        while xcols >= 0:
+                            
+                            admin_code = None
+                            admin_name = None
+                            admin_ref = None
+                            admin_alt1 = None
+                            admin_alt2 = None
+                            state = 'Validated'
+                            errctr = 0
+                            remarks = ''
+                            #Loop through the columns
+                            for col in range(sheet.ncols):
+                                
 
-                admin0_name = sheet.cell(i, 11).value
-                admin0_code = sheet.cell(i, 12).value
-                admin1_name = sheet.cell(i, 9).value
-                admin1_code = sheet.cell(i, 10).value
-                admin2_name = sheet.cell(i, 7).value
-                admin2_code = sheet.cell(i, 8).value
-                admin3_name = sheet.cell(i, 2).value
-                admin3_code = sheet.cell(i, 3).value
-                admin3_ref = sheet.cell(i, 4).value
-                admin3_alt1 = sheet.cell(i, 5).value
-                admin3_alt2 = sheet.cell(i, 6).value
+                                #Get the column value
+                                col_value = sheet.cell(row, col).value
+                                if col_value == "<Null>":
+                                    col_value = ''
+                                
+                                #Determine the column name based on First Row rowIndex(0), columnIndex(col)
+                                col_name = sheet.cell(0,col).value
+                                if col_name.find(str(xcols)+"Pcode") >= 0:
+                                    admin_code = col_value
+                                elif col_name.find(str(xcols)+"Name") >= 0:
+                                    if not admin_name:
+                                        admin_name = col_value
+                                        if not col_value:
+                                            errctr += 1
+                                            state = 'Error'
+                                            remarks += str(errctr) + '.) Name cannot be blank; '
+                                elif col_name.find(str(xcols)+"Ref") >= 0:
+                                        admin_ref = col_value
+                                elif col_name.find(str(xcols)+"AltName1") >= 0:
+                                        admin_alt1 = col_value
+                                elif col_name.find(str(xcols)+"AltName2") >= 0:
+                                        admin_alt2 = col_value
+                            
+                            
+                            #Store values to columns
+                            columns.append({
+                                'admin_name':admin_name,
+                                'admin_code':admin_code,
+                                'admin_ref':admin_ref,
+                                'admin_alt1':admin_alt1,
+                                'admin_alt2':admin_alt2,
+                                'level':xcols,
+                                'remarks': remarks,
+                                'state' : state,
+                                'row_index' : row,
+                            })
 
-                _logger.info('Assets Import: Started: [%s] %s' % (admin0_name, fields.Datetime.now()))
+                            xcols -= 1
+                        
 
-                #Data validation
-                state = 'Validated'
-                errctr = 0
-                remarks = ''
-                mainvals = {}
+            for val in columns:
+                vals.append([0,0,val])
 
-                if not admin0_name:
-                    errctr += 1
-                    state = 'Error'
-                    remarks += str(errctr) + '.) Name cannot be blank; '
-
-                if not admin1_name:
-                    errctr += 1
-                    state = 'Error'
-                    remarks += str(errctr) + '.) Name cannot be blank; '
-
-                if not admin2_name:
-                    errctr += 1
-                    state = 'Error'
-                    remarks += str(errctr) + '.) Name cannot be blank; '
-
-                if not admin3_name:
-                    errctr += 1
-                    state = 'Error'
-                    remarks += str(errctr) + '.) Name cannot be blank; '
                 
-                if admin0_name == "<NULL>" or admin0_name == "NULL" or admin0_name == "<Null>":
-                    admin0_name = ""
-                
-                if admin0_code == "<NULL>" or admin0_code == "NULL" or admin0_code == "<Null>":
-                    admin0_code = ""
-                
-                if admin1_name == "<NULL>" or admin1_name == "NULL" or admin1_name == "<Null>":
-                    admin1_name = ""
-                
-                if admin1_code == "<NULL>" or admin1_code == "NULL" or admin1_code == "<Null>":
-                    admin1_code = ""
-                
-                if admin2_name == "<NULL>" or admin2_name == "NULL" or admin2_name == "<Null>":
-                    admin2_name = ""
-                
-                if admin2_code == "<NULL>" or admin2_code == "NULL" or admin2_code == "<Null>":
-                    admin2_code = ""
-                
-                if admin3_name == "<NULL>" or admin3_name == "NULL" or admin3_name == "<Null>":
-                    admin3_name = ""
-                
-                if admin3_code == "<NULL>" or admin3_code == "NULL" or admin3_code == "<Null>":
-                    admin3_code = ""
-                
-                if admin3_ref == "<NULL>" or admin3_ref == "NULL" or admin3_ref == "<Null>":
-                    admin3_ref = ""
-                
-                if admin3_alt1 == "<NULL>" or admin3_alt1 == "NULL" or admin3_alt1 == "<Null>":
-                    admin3_alt1 = ""
-                
-                if admin3_alt2 == "<NULL>" or admin3_alt2 == "NULL" or admin3_alt2 == "<Null>":
-                    admin3_alt2 = ""
-
-
-
-
-                
-
-                ######################################
-
-                vals.append([0,0,{
-                    'admin0_name': admin0_name,
-                    'admin0_code': admin0_code,
-                    'admin1_name': admin1_name,
-                    'admin1_code': admin1_code,
-                    'admin2_name': admin2_name,
-                    'admin2_code': admin2_code,
-                    'admin3_name': admin3_name,
-                    'admin3_code': admin3_code,
-                    'admin3_ref': admin3_ref,
-                    'admin3_alt1': admin3_alt1,
-                    'admin3_alt2': admin3_alt2,
-                    'remarks': remarks,
-                    'state': state,
-                }])
             #raise Warning('Debug: %s' % vals)
             _logger.info('Location Masterlist Import: Updating Record: %s' % fields.Datetime.now())
             mainvals.update({
@@ -175,323 +157,66 @@ class G2PLocationImport(models.Model):
                 'raw_data_ids':vals,
             })
             rec.update(mainvals)
-        _logger.info('Location Masterlist Import: Completed: %s' % fields.Datetime.now())
+            
+            _logger.info('Location Masterlist Import: Completed: %s' % fields.Datetime.now())
 
     def save_to_location(self):
         for rec in self:
+            parent_id = None
             for raw in rec.raw_data_ids:
                 if raw.state == 'Validated':
-                    if raw.admin0_name:
-                        curr_location = self.env['g2p.location'].search([('name','=',raw.admin0_name)])
-                        if not curr_location:
-                            new_vals = {
-                                'name' : raw.admin0_name or False,
-                                'code' : raw.admin0_code or False,
+                    if raw.admin_name:
+                        if raw.level == 0:
+                           new_vals = {
+                                'name' : raw.admin_name or False,
+                                'code' : raw.admin_code or False,
+                                'altnames' : raw.admin_alt1 or raw.admin_alt2 or False,
+                                'level' : raw.level or False,
                             }
-                            new_location = self.env['g2p.location'].create(new_vals)
-                            curr_parent_location = new_location.id
-                            if raw.admin1_name:
-                                curr_child_location1 = self.env['g2p.location'].search([('name','=',raw.admin1_name)])
-                                if not curr_child_location1:
-                                    child_vals = {
-                                        'parent_id' : curr_parent_location,
-                                        'name' : raw.admin1_name or False,
-                                        'code' : raw.admin1_code or False,
-                                    }
-                                    new_child_location1 = self.env['g2p.location'].create(child_vals)
-                                    curr_parent_location1 = new_child_location1.id
-                                    if raw.admin2_name:
-                                        curr_child_location2 = self.env['g2p.location'].search([('name','=',raw.admin2_name)])
-                                        if not curr_child_location2:
-                                            child_vals = {
-                                                'parent_id' : curr_parent_location1,
-                                                'name' : raw.admin2_name or False,
-                                                'code' : raw.admin2_code or False,
-                                            }
-                                            new_child_location2 = self.env['g2p.location'].create(child_vals)
-                                            curr_parent_location2 = new_child_location2.id
-                                            if raw.admin3_name:
-                                                curr_child_location3 = self.env['g2p.location'].search([('name','=',raw.admin3_name)])
-                                                if not curr_child_location3:
-                                                    child_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name or False,
-                                                        'code' : raw.admin3_code or False,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    new_child_location3 = self.env['g2p.location'].create(child_vals)
-                                                    curr_parent_location3 = new_child_location3.id
-                                                else:
-                                                    new_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name,
-                                                        'code' : raw.admin3_code,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    curr_child_location3[0].update(new_vals)
-                                        else:
-                                            new_vals = {
-                                                'parent_id' : curr_parent_location1,
-                                                'name' : raw.admin2_name,
-                                                'code' : raw.admin2_code,
-                                            }
-                                            curr_child_location2[0].update(new_vals)
-                                            curr_parent_location2 = curr_child_location2[0].id
-                                            if raw.admin3_name:
-                                                curr_child_location3 = self.env['g2p.location'].search([('name','=',raw.admin3_name)])
-                                                if not curr_child_location3:
-                                                    child_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name or False,
-                                                        'code' : raw.admin3_code or False,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    new_child_location3 = self.env['g2p.location'].create(child_vals)
-                                                    curr_parent_location3 = new_child_location3.id
-                                                else:
-                                                    new_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name,
-                                                        'code' : raw.admin3_code,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    curr_child_location3[0].update(new_vals)
-                                            
-
-                                else:
-                                    new_vals = {
-                                        'parent_id' : curr_parent_location,
-                                        'name' : raw.admin1_name,
-                                        'code' : raw.admin1_code,
-                                    }
-                                    curr_child_location1[0].update(new_vals)
-                                    curr_parent_location1 = curr_child_location1[0].id
-                                    if raw.admin2_name:
-                                        curr_child_location2 = self.env['g2p.location'].search([('name','=',raw.admin2_name)])
-                                        if not curr_child_location2:
-                                            child_vals = {
-                                                'parent_id' : curr_parent_location1,
-                                                'name' : raw.admin2_name or False,
-                                                'code' : raw.admin2_code or False,
-                                            }
-                                            new_child_location2 = self.env['g2p.location'].create(child_vals)
-                                            curr_parent_location2 = new_child_location2.id
-                                            if raw.admin3_name:
-                                                curr_child_location3 = self.env['g2p.location'].search([('name','=',raw.admin3_name)])
-                                                if not curr_child_location3:
-                                                    child_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name or False,
-                                                        'code' : raw.admin3_code or False,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    new_child_location3 = self.env['g2p.location'].create(child_vals)
-                                                    curr_parent_location3 = new_child_location3.id
-                                                else:
-                                                    new_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name,
-                                                        'code' : raw.admin3_code,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    curr_child_location3[0].update(new_vals)
-                                        else:
-                                            new_vals = {
-                                                'parent_id' : curr_parent_location1,
-                                                'name' : raw.admin2_name,
-                                                'code' : raw.admin2_code,
-                                            }
-                                            curr_child_location2[0].update(new_vals)
-                                            curr_parent_location2 = curr_child_location2[0].id
-                                            if raw.admin3_name:
-                                                curr_child_location3 = self.env['g2p.location'].search([('name','=',raw.admin3_name)])
-                                                if not curr_child_location3:
-                                                    child_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name or False,
-                                                        'code' : raw.admin3_code or False,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    new_child_location3 = self.env['g2p.location'].create(child_vals)
-                                                    curr_parent_location3 = new_child_location3.id
-                                                else:
-                                                    new_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name,
-                                                        'code' : raw.admin3_code,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    curr_child_location3[0].update(new_vals)
-                        
                         else:
                             new_vals = {
-                                'name' : raw.admin0_name,
-                                'code' : raw.admin0_code,
+                                'parent_id' : parent_id,
+                                'name' : raw.admin_name or False,
+                                'code' : raw.admin_code or False,
+                                'altnames' : raw.admin_alt1 or raw.admin_alt2 or False,
+                                'level' : raw.level or False,
                             }
-                            curr_location[0].update(new_vals)
-                            curr_parent_location = curr_location[0].id
-                            if raw.admin1_name:
-                                curr_child_location1 = self.env['g2p.location'].search([('name','=',raw.admin1_name)])
-                                if not curr_child_location1:
-                                    child_vals = {
-                                        'parent_id' : curr_parent_location,
-                                        'name' : raw.admin1_name or False,
-                                        'code' : raw.admin1_code or False,
-                                    }
-                                    new_child_location1 = self.env['g2p.location'].create(child_vals)
-                                    curr_parent_location1 = new_child_location1.id
-                                    if raw.admin2_name:
-                                        curr_child_location2 = self.env['g2p.location'].search([('name','=',raw.admin2_name)])
-                                        if not curr_child_location2:
-                                            child_vals = {
-                                                'parent_id' : curr_parent_location1,
-                                                'name' : raw.admin2_name or False,
-                                                'code' : raw.admin2_code or False,
-                                            }
-                                            new_child_location2 = self.env['g2p.location'].create(child_vals)
-                                            curr_parent_location2 = new_child_location2.id
-                                            if raw.admin3_name:
-                                                curr_child_location3 = self.env['g2p.location'].search([('name','=',raw.admin3_name)])
-                                                if not curr_child_location3:
-                                                    child_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name or False,
-                                                        'code' : raw.admin3_code or False,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    new_child_location3 = self.env['g2p.location'].create(child_vals)
-                                                    curr_parent_location3 = new_child_location3.id
-                                                else:
-                                                    new_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name,
-                                                        'code' : raw.admin3_code,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    curr_child_location3[0].update(new_vals)
-                                        else:
-                                            new_vals = {
-                                                'parent_id' : curr_parent_location1,
-                                                'name' : raw.admin2_name,
-                                                'code' : raw.admin2_code,
-                                            }
-                                            curr_child_location2[0].update(new_vals)
-                                            curr_parent_location2 = curr_child_location2[0].id
-                                            if raw.admin3_name:
-                                                curr_child_location3 = self.env['g2p.location'].search([('name','=',raw.admin3_name)])
-                                                if not curr_child_location3:
-                                                    child_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name or False,
-                                                        'code' : raw.admin3_code or False,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    new_child_location3 = self.env['g2p.location'].create(child_vals)
-                                                    curr_parent_location3 = new_child_location3.id
-                                                else:
-                                                    new_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name,
-                                                        'code' : raw.admin3_code,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    curr_child_location3[0].update(new_vals)
-                                            
+                        #Check if Location already Exist
+                        curr_location = self.env['g2p.location'].search([('name','=',raw.admin_name)])
 
-                                else:
-                                    new_vals = {
-                                        'parent_id' : curr_parent_location,
-                                        'name' : raw.admin1_name,
-                                        'code' : raw.admin1_code,
-                                    }
-                                    curr_child_location1[0].update(new_vals)
-                                    curr_parent_location1 = curr_child_location1[0].id
-                                    if raw.admin2_name:
-                                        curr_child_location2 = self.env['g2p.location'].search([('name','=',raw.admin2_name)])
-                                        if not curr_child_location2:
-                                            child_vals = {
-                                                'parent_id' : curr_parent_location1,
-                                                'name' : raw.admin2_name or False,
-                                                'code' : raw.admin2_code or False,
-                                            }
-                                            new_child_location2 = self.env['g2p.location'].create(child_vals)
-                                            curr_parent_location2 = new_child_location2.id
-                                            if raw.admin3_name:
-                                                curr_child_location3 = self.env['g2p.location'].search([('name','=',raw.admin3_name)])
-                                                if not curr_child_location3:
-                                                    child_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name or False,
-                                                        'code' : raw.admin3_code or False,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    new_child_location3 = self.env['g2p.location'].create(child_vals)
-                                                    curr_parent_location3 = new_child_location3.id
-                                                else:
-                                                    new_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name,
-                                                        'code' : raw.admin3_code,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    curr_child_location3[0].update(new_vals)
-                                        else:
-                                            new_vals = {
-                                                'parent_id' : curr_parent_location1,
-                                                'name' : raw.admin2_name,
-                                                'code' : raw.admin2_code,
-                                            }
-                                            curr_child_location2[0].update(new_vals)
-                                            curr_parent_location2 = curr_child_location2[0].id
-                                            if raw.admin3_name:
-                                                curr_child_location3 = self.env['g2p.location'].search([('name','=',raw.admin3_name)])
-                                                if not curr_child_location3:
-                                                    child_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name or False,
-                                                        'code' : raw.admin3_code or False,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    new_child_location3 = self.env['g2p.location'].create(child_vals)
-                                                    curr_parent_location3 = new_child_location3.id
-                                                else:
-                                                    new_vals = {
-                                                        'parent_id' : curr_parent_location2,
-                                                        'name' : raw.admin3_name,
-                                                        'code' : raw.admin3_code,
-                                                        'altnames' : raw.admin3_alt1 or raw.admin3_alt2 or False,
-                                                    }
-                                                    curr_child_location3[0].update(new_vals)
-                        
-                        raw.update({'state':'Posted'})
+                        if not curr_location:
+                            location_id = self.env['g2p.location'].create(new_vals)
+                            parent_id = location_id.id
+                            raw.update({'state':'Posted'})
+                        else:
+                            location_id = curr_location[0].update(new_vals)
+                            parent_id = curr_location[0].id
+                            raw.update({'state':'Updated'})
+
                         rec.update({'state':'Done'})
                     else:
-                        raw.update({'state':'Error','remarks':'Incomplete information!'})
+                        raw.update({'state':'Error'})
+
+                else:
+                    raw.update({'state':'Error','remarks':'Incomplete information!'})
 
 
 #Assets Import Raw Data
 class G2PLocationImportActivities(models.Model):
     _name = "g2p.location.import.raw"
     _description = 'Location Import Raw Data'
-    _order = 'id'
+    _order = 'row_index, level'
 
     location_import_id = fields.Many2one ('g2p.location.import', 'Location Import', required=True)
-    admin0_name = fields.Char('Admin 0 Name')
-    admin0_code = fields.Char('Admin 0 Code')
-    admin0_alt = fields.Char('Admin 0 Alt')
-    admin1_name = fields.Char('Admin 1 Name')
-    admin1_code = fields.Char('Admin 1 Code')
-    admin1_alt = fields.Char('Admin 1 Alt')
-    admin2_name = fields.Char('Admin 2 Name')
-    admin2_code = fields.Char('Admin 2 Code')
-    admin2_alt = fields.Char('Admin 2 Alt')
-    admin3_name = fields.Char('Admin 3 Name')
-    admin3_code = fields.Char('Admin 3 Code')
-    admin3_alt1 = fields.Char('Admin 3 Alt1')
-    admin3_alt2 = fields.Char('Admin 3 Alt2')
-    admin3_ref = fields.Char('Admin 3 Ref')
+    admin_name = fields.Char('Admin Name')
+    admin_code = fields.Char('Admin Code')
+    admin_alt1 = fields.Char('Admin Alt1')
+    admin_alt2 = fields.Char('Admin Alt2')
+    admin_ref = fields.Char('Admin Ref')
+    level = fields.Integer('Level')
+    row_index = fields.Integer('Row Index')
 
     remarks = fields.Text('Remarks/Errors')
-    state = fields.Selection([('New','New'),('Validated','Validated'),('Error','Error'),('No Model','No Model'),('No WBS','No WBS'),('No Activity','No Activity'),('Posted','Posted')],'Status',readonly=True,default='New')
+    state = fields.Selection([('New','New'),('Validated','Validated'),('Error','Error'),('Updated','Updated'),('Posted','Posted')],'Status',readonly=True,default='New')
 
 

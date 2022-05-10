@@ -7,8 +7,8 @@ class G2PLocation(models.Model):
     _description = 'Location'
     _order = 'id desc'
 
-    parent_id = fields.Many2one('g2p.location', 'Parent', required=True)
-    name = fields.Char('Name', required=True)
+    parent_id = fields.Many2one('g2p.location', 'Parent')
+    name = fields.Char('Name', required=True, translate=True)
     code = fields.Char('Code')
     altnames = fields.Char('Alternate Name')
     level = fields.Integer('Level')

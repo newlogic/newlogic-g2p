@@ -25,7 +25,7 @@
                             <field name="name" attrs="{'readonly':[('state','not in',('New','Uploaded'))]}"/>
                         </h2>
                         <div class="o_row">
-                            <label for="excel_file" class="oe_read_only" string="WBS Template Excel File: "/><field name="excel_file" filename="name" attrs="{'readonly':[('state','not in',('New','Uploaded'))]}"/>
+                            <label for="excel_file" class="oe_read_only" string="Location Excel File: "/><field name="excel_file" filename="name" attrs="{'readonly':[('state','not in',('New','Uploaded'))]}"/>
                         </div>
                     </div>
                     <group colspan="4" col="4">
@@ -42,34 +42,26 @@
                         <tree string="Raw Data" duplicate="0" create="0" decoration-bf="state in ('Validated','Posted')" decoration-it="state=='Error'" decoration-warning="state=='No Model'" decoration-danger="state=='Error'" decoration-success="state=='Posted'">
                             <field name="state" decoration-secondary="state=='New'" decoration-primary="state=='Validated'" decoration-success="state=='Posted'" decoration-warning="state=='No Model'" decoration-danger="state=='Error'" widget="badge"/>
                             <field name="remarks"/>
-                            <field name="admin0_name"/>
-                            <field name="admin0_code" optional="hide"/>
-                            <field name="admin1_name"/>
-                            <field name="admin1_code" optional="hide"/>
-                            <field name="admin2_name"/>
-                            <field name="admin2_code" optional="hide"/>
-                            <field name="admin3_name"/>
-                            <field name="admin3_code"/>
-                            <field name="admin3_alt1" optional="hide"/>
-                            <field name="admin3_alt2" optional="hide"/>
-                            <field name="admin3_ref" optional="hide"/>
+                            <field name="admin_name"/>
+                            <field name="admin_code" />
+                            <field name="admin_alt1"/>
+                            <field name="admin_alt2"/>
+                            <field name="admin_ref"/>
+                            <field name="level"/>
+                            <field name="row_index"/>
                         </tree>
                         <form string="Raw Data" duplicate="0" create="0">
                             <header>
                                 <field name="state" widget="statusbar" statusbar_visible="New,Validated,Posted,Error"/>
                             </header>
                             <group colspan="4" col="4">
-                                <field name="admin0_name" readonly="1"/>
-                                <field name="admin0_code" readonly="1"/>
-                                <field name="admin1_name" readonly="1"/>
-                                <field name="admin1_code" readonly="1"/>
-                                <field name="admin2_name" readonly="1"/>
-                                <field name="admin2_code" readonly="1"/>
-                                <field name="admin3_name" readonly="1"/>
-                                <field name="admin3_code" readonly="1"/>
-                                <field name="admin3_alt1" readonly="1"/>
-                                <field name="admin3_alt2" readonly="1"/>
-                                <field name="admin3_ref" readonly="1"/>
+                                <field name="admin_name" readonly="1"/>
+                                <field name="admin_code" readonly="1"/>
+                                <field name="admin_alt1" readonly="1"/>
+                                <field name="admin_alt2" readonly="1"/>
+                                <field name="admin_ref" readonly="1"/>
+                                <field name="level" readonly="1"/>
+                                <field name="row_index" readonly="1"/>
                                 <newline/>
                                 <field name="remarks" readonly="1" colspan="4"/>
                             </group>
