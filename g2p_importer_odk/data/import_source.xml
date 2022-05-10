@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="import_source_json_odk" model="import.source.json.odk">
+        <field name="chunk_size" eval="100" />
+        <field name="odata_url">https://odk.newlogic-demo.com/v1/projects/1/forms/idpass_ona_registration_example.svc</field>
+        <field name="email">jeremi@joslin.fr</field>
+        <field name="password">*zYMmnp3E42n93B*XPPh</field>
+    </record>
+
+</odoo>

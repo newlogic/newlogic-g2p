@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+  <record id="import_type_additional_data" model="import.type">
+    <field name="name">Import Additional Data</field>
+    <field name="key">additional_data</field>
+    <field name="options">
+- model: g2p.additional.data
+  importer: g2p.additional.data.importer
+    </field>
+  </record>
+</odoo>
