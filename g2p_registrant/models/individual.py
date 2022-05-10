@@ -21,15 +21,15 @@ from odoo.exceptions import AccessError, UserError, ValidationError, Warning
 class G2PIndividual(models.Model):
     _inherit = 'res.partner'
 
-    family_name = fields.Char('Family Name', tracking=True)
-    given_name = fields.Char('Given Name', tracking=True)
-    addl_name = fields.Char('Additional Name', tracking=True)
-    birth_place = fields.Char('Birth Place')
+    family_name = fields.Char('Family Name', translate=True, tracking=True)
+    given_name = fields.Char('Given Name', translate=True, tracking=True)
+    addl_name = fields.Char('Additional Name', translate=True, tracking=True)
+    birth_place = fields.Char('Birth Place', tracking=True)
     birthdate_exact = fields.Boolean('Birthdate Exact')
     birthdate = fields.Date('Date of Birth', tracking=True)
     age = fields.Char(compute='_calc_age', string="Age", size= 50,readonly=True)
     gender = fields.Selection([('Female','Female'),('Male','Male'),('Other','Other')],'Gender', tracking=True)
-    registration_date = fields.Datetime('Registration Date')
+    registration_date = fields.Date('Registration Date', tracking=True)
 
     @api.onchange('is_group','family_name','given_name','addl_name')
     def name_change(self):

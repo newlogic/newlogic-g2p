@@ -33,6 +33,8 @@ class G2PRegistrant(models.Model):
     is_registrant = fields.Boolean('Registrant')
     is_group = fields.Boolean('Group')
 
+    name = fields.Char(index=True, translate=True)
+
     def enable_registrant(self):
         for rec in self:
             if rec.disabled:

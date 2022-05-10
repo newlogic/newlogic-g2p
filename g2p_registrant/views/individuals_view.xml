@@ -85,6 +85,10 @@
                     </div>
                     <group colspan="4" col="4">
                         <field name="registration_date" attrs="{'readonly':[('disabled','!=',False)]}"/>
+                        <label for="lang" attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}"/>
+                        <div class="o_row" attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}">
+                            <field name="lang" attrs="{'readonly':[('disabled','!=',False)]}"/>
+                        </div>
                     </group>
                     <notebook>
                         <page string="Contact Details">
@@ -109,11 +113,6 @@
                                     <field name="user_ids" invisible="1"/>
                                     <field name="email" widget="email" context="{'gravatar_image': True}" attrs="{'readonly':[('disabled','!=',False)]}"/>
                                     <field name="website" string="Website" widget="url" placeholder="e.g. https://newlogic.com" attrs="{'readonly':[('disabled','!=',False)]}"/>
-                                    <field name="active_lang_count" invisible="1"/>
-                                    <label for="lang" attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}"/>
-                                    <div class="o_row" attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}">
-                                        <field name="lang" attrs="{'readonly':[('disabled','!=',False)]}"/>
-                                    </div>
                                 </group>
                             </group>
                         </page>                      
@@ -135,20 +134,20 @@
                             </field>
                         </page>
                         <page string="Additional Fields">
-                            <field name="addl_fields" attrs="{'readonly':[('disabled','!=',False)]}" nolabel="1">
-                                <tree string="Additional Fields" editable="top">
+                            <field name="addl_fields" attrs="{'readonly':[('disabled','!=',False)]}" nolabel="1" context="{'reg_form':False}">
+                                <tree string="Additional Fields">
                                     <field name="attribute_id" 
                                         domain="[('visible','in',('all','reg'))]"
                                         options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"/>
-                                    <field name="name" invisible="1"/>
-                                    <field name="value_int" string="Integer" attrs="{'invisible':[('kind','!=','int')]}"/>
-                                    <field name="value_char" string="Char" attrs="{'invisible':[('kind','!=','char')]}"/>
-                                    <field name="value_text" string="Text" attrs="{'invisible':[('kind','!=','text')]}"/>
-                                    <field name="value_float" string="Float" attrs="{'invisible':[('kind','!=','float')]}"/>
-                                    <field name="value_date" string="Date" attrs="{'invisible':[('kind','!=','date')]}"/>
-                                    <field name="value_boolean" string="Boolean" attrs="{'invisible':[('kind','!=','boolean')]}"/>
-                                    <field name="kind" invisible="1"/>
-                                    <field name="visible" invisible="1"/>
+                                    <field name="name"/>
+                                    <field name="value_int" string="Integer" invisible="1"/>
+                                    <field name="value_char" string="Char" invisible="1"/>
+                                    <field name="value_text" string="Text" invisible="1"/>
+                                    <field name="value_float" string="Float" invisible="1"/>
+                                    <field name="value_date" string="Date" invisible="1"/>
+                                    <field name="value_boolean" string="Boolean" invisible="1"/>
+                                    <field name="kind"/>
+                                    <field name="visible"/>
                                 </tree>
                             </field>
                         </page>
@@ -171,6 +170,7 @@
                     <field name="parent_id" invisible="1"/>
                     <field name="is_group" invisible="1"/>
                     <field name="name" invisible="1" class="oe_edit_only"/>
+                    <field name="active_lang_count" invisible="1"/>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids"/>

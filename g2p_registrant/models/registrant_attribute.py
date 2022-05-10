@@ -36,7 +36,7 @@ class RegistrantAttributeValue(models.Model):
     _description = 'Attribute Value'
 
     name = fields.Char(string='Value', required=True, translate=True)
-    partner_id = fields.Many2one('res.partner', help="A beneficiary", required=True, domain=[('is_registrant','=',True)])
+    partner_id = fields.Many2one('res.partner', 'Registrant', help="A beneficiary", required=True, domain=[('is_registrant','=',True)])
     attribute_id = fields.Many2one('g2p.reg.attribute', string="Attribute", ondelete='cascade', required=True, index=True)
     sequence = fields.Integer(help="Determine the display order")
     

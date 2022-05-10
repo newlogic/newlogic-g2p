@@ -2,6 +2,7 @@ Format in CHANGELOG.md
 
 ## Version[0.08] - 2022-05-10
 - [UPD] Added UI controls in Registrant Attribute
+- [UPD] Modified the Registrant Attribute Values UI tree view to open a form 
 
 ## Version[0.07] - 2022-05-09
 - [ADD] Group Membership UI
