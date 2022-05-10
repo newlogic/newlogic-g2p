@@ -11,7 +11,7 @@
   "sequence"     :  1,
   "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
-  "license"      :  "Apache 2.0",
+  "license"      :  "Other OSI approved licence",
   "description"  :  """
   Newlogic Location Module
   ========================
@@ -22,7 +22,8 @@
   "depends"      :  ['base','g2p_registrant'],
   "data"         :  [
                   'security/ir.model.access.csv',
-                  'views/registrants_view.xml',
+                  'views/individual_views.xml',
+                  'views/group_views.xml',
                   'views/location.xml',
                     ],
   'assets'       :  {},

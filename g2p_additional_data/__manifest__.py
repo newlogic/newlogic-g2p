@@ -11,7 +11,7 @@
   "sequence"     :  1,
   "author"       :  "Newlogic",
   "website"      :  "https://newlogic.com/",
-  "license"      :  "Apache 2.0",
+  "license"      :  "Other OSI approved licence",
   "description"  :  """
   Newlogic Additional Data
   ========================
@@ -26,7 +26,8 @@
                      'views/additional_data_tags.xml',
                      'views/datasource.xml',
                      'views/registrant_additional_data.xml',
-                     'views/registrant_views.xml',
+                     'views/individual_views.xml',
+                     'views/group_views.xml',
                     ],
   'assets'       :  {},
   "demo"         :  [],
