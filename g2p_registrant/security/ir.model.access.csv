@@ -4,3 +4,4 @@ g2p_reg_rel_admin,Registrant Relationship Admin Access,g2p_registrant.model_g2p_
 g2p_id_type_admin,ID Type Admin Access,g2p_registrant.model_g2p_id_type,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_relationship_admin,Relationship Admin Access,g2p_registrant.model_g2p_relationship,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_group_kind_admin,Group Kind Admin Access,g2p_registrant.model_g2p_group_kind,g2p_registrant.group_g2p_admin,1,1,1,1
+g2p_disable_registrant_wizard_admin,Disable Registrant Wizard Admin Access,g2p_registrant.model_g2p_disable_registrant_wizard,g2p_registrant.group_g2p_admin,1,1,1,1

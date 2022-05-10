@@ -5,7 +5,7 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Datasource">
-                <field name="parent"/>
+                <field name="parent_id"/>
                 <field name="name"/>
                 <field name="batch"/>
             </tree>
@@ -19,11 +19,21 @@
         <field name="arch" type="xml">
             <form string="Datasource">
                 <sheet>
-                    <group>
-                        <field name="parent"/>
-                        <field name="name"/>
+                <div class="oe_title mb24">
+                    <label for="parent_id" string="Parent:"/>
+                    <h1>
+                        <field id="parent_id" name="parent_id" placeholder="Select a Parent..."
+                                options="{'no_open':True,'no_create_edit':True,'no_create':True}"/>
+                    </h1>
+                    <label for="name" string="Name:"/>
+                    <h1>
+                        <field id="name" name="name" placeholder="Name..." />
+                    </h1>
+                    <div class="o_row">
+                        <label for="batch" string="Batch:"/>
                         <field name="batch"/>
-                    </group>
+                    </div>
+                </div>
                 </sheet>
             </form>
         </field>
@@ -62,7 +72,7 @@
     <menuitem id="menu_g2p_datasource"
         name="Datasource"
         action="action_g2p_datasource"
-        parent="g2p_registrant.g2p_registrant_menu_root"
-        sequence="13"
+        parent="g2p_registrant.g2p_configuration_menu_root"
+        sequence="103"
         groups="g2p_registrant.group_g2p_admin"/>
 </odoo>

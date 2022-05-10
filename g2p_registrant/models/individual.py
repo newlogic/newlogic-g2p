@@ -1,4 +1,16 @@
 # -*- coding: utf-8 -*-
+#################################################################################
+#   Copyright 2022 Newlogic
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#       http://www.apache.org/licenses/LICENSE-2.0
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+#################################################################################
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
@@ -13,9 +25,11 @@ class G2PIndividual(models.Model):
     given_name = fields.Char('Given Name', tracking=True)
     addl_name = fields.Char('Additional Name', tracking=True)
     birth_place = fields.Char('Birth Place')
+    birthdate_exact = fields.Boolean('Birthdate Exact')
     birthdate = fields.Date('Date of Birth', tracking=True)
     age = fields.Char(compute='_calc_age', string="Age", size= 50,readonly=True)
     gender = fields.Selection([('Female','Female'),('Male','Male'),('Other','Other')],'Gender', tracking=True)
+    registration_date = fields.Datetime('Registration Date')
 
     @api.onchange('is_group','family_name','given_name','addl_name')
     def name_change(self):
