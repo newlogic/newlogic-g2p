@@ -138,14 +138,17 @@
                             <field name="addl_fields" attrs="{'readonly':[('disabled','!=',False)]}" nolabel="1">
                                 <tree string="Additional Fields" editable="top">
                                     <field name="attribute_id" 
+                                        domain="[('visible','in',('all','reg'))]"
                                         options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"/>
-                                    <field name="name"/>
-                                    <field name="value_int" invisible="1"/>
-                                    <field name="value_char" invisible="1"/>
-                                    <field name="value_text" invisible="1"/>
-                                    <field name="value_float" invisible="1"/>
-                                    <field name="value_date" invisible="1"/>
-                                    <field name="value_boolean" invisible="1"/>
+                                    <field name="name" invisible="1"/>
+                                    <field name="value_int" string="Integer" attrs="{'invisible':[('kind','!=','int')]}"/>
+                                    <field name="value_char" string="Char" attrs="{'invisible':[('kind','!=','char')]}"/>
+                                    <field name="value_text" string="Text" attrs="{'invisible':[('kind','!=','text')]}"/>
+                                    <field name="value_float" string="Float" attrs="{'invisible':[('kind','!=','float')]}"/>
+                                    <field name="value_date" string="Date" attrs="{'invisible':[('kind','!=','date')]}"/>
+                                    <field name="value_boolean" string="Boolean" attrs="{'invisible':[('kind','!=','boolean')]}"/>
+                                    <field name="kind" invisible="1"/>
+                                    <field name="visible" invisible="1"/>
                                 </tree>
                             </field>
                         </page>
