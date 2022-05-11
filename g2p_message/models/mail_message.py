@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #################################################################################
 #   Copyright 2022 Newlogic
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,11 +10,10 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #################################################################################
-from datetime import datetime, timedelta
-from odoo import api, fields, models, SUPERUSER_ID, _
-from odoo.exceptions import AccessError, UserError, ValidationError, Warning
-
 import logging
+
+from odoo import _, api, fields, models
+
 _logger = logging.getLogger(__name__)
 
 
@@ -47,12 +45,19 @@ TREE_TEMPLATE = (
     "</table>"
 )
 
+
 class G2PMailMessage(models.Model):
     _inherit = "mail.message"
 
-    subject_display = fields.Html(string="Subject Display", compute="_compute_subject_display")
-    subtype_description = fields.Text(string='Subtype Description', related='subtype_id.description')
-    track_display = fields.Html(string="Track Display", compute="_compute_track_display")
+    subject_display = fields.Html(
+        string="Subject Display", compute="_compute_subject_display"
+    )
+    subtype_description = fields.Text(
+        string="Subtype Description", related="subtype_id.description"
+    )
+    track_display = fields.Html(
+        string="Track Display", compute="_compute_track_display"
+    )
 
     @api.depends("tracking_value_ids.field")
     def _compute_track_display(self):
@@ -62,43 +67,116 @@ class G2PMailMessage(models.Model):
                 """
             for track_val in rec.tracking_value_ids:
                 html = html + "<tr>"
-                html = html + "<td>" + str(track_val.field.field_description) + ': &nbsp;'
-                if track_val.field.ttype == 'char':
-                    html += (str(track_val.old_value_char) if track_val.old_value_char else '') + '&nbsp; &rarr; &nbsp;' + str(track_val.new_value_char) + "</td>"
-                if track_val.field.ttype == 'date':
-                    html += (str(track_val.old_value_datetime.strftime("%m/%d/%y")) if track_val.old_value_datetime else '') + \
-                        '&nbsp; &rarr; &nbsp;' + str(track_val.new_value_datetime.strftime("%m/%d/%y")) + "</td>"
-                if track_val.field.ttype == 'datetime':
-                    html += (str(track_val.old_value_datetime.strftime("%m/%d/%y %H:%M:%S")) if track_val.old_value_datetime else '') + \
-                        '&nbsp; &rarr; &nbsp;' + str(track_val.new_value_datetime.strftime("%m/%d/%y %H:%M:%S")) + "</td>"
-                if track_val.field.ttype == 'selection':
-                    html += (str(track_val.old_value_char) if track_val.old_value_char else '') + '&nbsp; &rarr; &nbsp;' + str(track_val.new_value_char) + "</td>"
-                if track_val.field.ttype == 'boolean':
+                html = (
+                    html + "<td>" + str(track_val.field.field_description) + ": &nbsp;"
+                )
+                if track_val.field.ttype == "char":
+                    html += (
+                        (
+                            str(track_val.old_value_char)
+                            if track_val.old_value_char
+                            else ""
+                        )
+                        + "&nbsp; &rarr; &nbsp;"
+                        + str(track_val.new_value_char)
+                        + "</td>"
+                    )
+                if track_val.field.ttype == "date":
+                    html += (
+                        (
+                            str(track_val.old_value_datetime.strftime("%m/%d/%y"))
+                            if track_val.old_value_datetime
+                            else ""
+                        )
+                        + "&nbsp; &rarr; &nbsp;"
+                        + str(track_val.new_value_datetime.strftime("%m/%d/%y"))
+                        + "</td>"
+                    )
+                if track_val.field.ttype == "datetime":
+                    html += (
+                        (
+                            str(
+                                track_val.old_value_datetime.strftime(
+                                    "%m/%d/%y %H:%M:%S"
+                                )
+                            )
+                            if track_val.old_value_datetime
+                            else ""
+                        )
+                        + "&nbsp; &rarr; &nbsp;"
+                        + str(
+                            track_val.new_value_datetime.strftime("%m/%d/%y %H:%M:%S")
+                        )
+                        + "</td>"
+                    )
+                if track_val.field.ttype == "selection":
+                    html += (
+                        (
+                            str(track_val.old_value_char)
+                            if track_val.old_value_char
+                            else ""
+                        )
+                        + "&nbsp; &rarr; &nbsp;"
+                        + str(track_val.new_value_char)
+                        + "</td>"
+                    )
+                if track_val.field.ttype == "boolean":
                     old_bool_val = ""
                     new_bool_val = ""
                     if track_val.old_value_integer:
                         old_bool_val = "True"
                     else:
                         old_bool_val = "False"
-                    
+
                     if track_val.new_value_integer:
                         new_bool_val = "True"
                     else:
                         new_bool_val = "False"
 
-                    html += (str(old_bool_val)) + '&nbsp; &rarr; &nbsp;' + str(new_bool_val) + "</td>"
-                if track_val.field.ttype == 'float':
-                    html += (str(track_val.old_value_float) if track_val.old_value_float else '') + '&nbsp; &rarr; &nbsp;' + str(track_val.new_value_float) + "</td>"
-                if track_val.field.ttype == 'integer':
-                    html += (str(track_val.old_value_integer) if track_val.old_value_integer else '') + '&nbsp; &rarr; &nbsp;' + str(track_val.new_value_integer) + "</td>"
-                if track_val.field.ttype == 'monetary':
-                    html += (str(track_val.old_value_monetary) if track_val.old_value_monetary else '') + '&nbsp; &rarr; &nbsp;' + str(track_val.new_value_monetary) + "</td>"
-                    
+                    html += (
+                        (str(old_bool_val))
+                        + "&nbsp; &rarr; &nbsp;"
+                        + str(new_bool_val)
+                        + "</td>"
+                    )
+                if track_val.field.ttype == "float":
+                    html += (
+                        (
+                            str(track_val.old_value_float)
+                            if track_val.old_value_float
+                            else ""
+                        )
+                        + "&nbsp; &rarr; &nbsp;"
+                        + str(track_val.new_value_float)
+                        + "</td>"
+                    )
+                if track_val.field.ttype == "integer":
+                    html += (
+                        (
+                            str(track_val.old_value_integer)
+                            if track_val.old_value_integer
+                            else ""
+                        )
+                        + "&nbsp; &rarr; &nbsp;"
+                        + str(track_val.new_value_integer)
+                        + "</td>"
+                    )
+                if track_val.field.ttype == "monetary":
+                    html += (
+                        (
+                            str(track_val.old_value_monetary)
+                            if track_val.old_value_monetary
+                            else ""
+                        )
+                        + "&nbsp; &rarr; &nbsp;"
+                        + str(track_val.new_value_monetary)
+                        + "</td>"
+                    )
+
                 html = html + "</tr>"
             html = html + "</table>"
 
             rec.track_display = html
-
 
     # -- Get Subject for tree view
     @api.depends("subject")
@@ -124,8 +202,14 @@ class G2PMailMessage(models.Model):
                 rec.date,
                 # rec.res_id,
                 notification_icons,
-                #create computed value of tracking values to get track value note
-                rec.body if rec.body else (rec.subtype_id.description if rec.subtype_id.description else (rec.track_display if rec.track_display else '')),
+                # create computed value of tracking values to get track value note
+                rec.body
+                if rec.body
+                else (
+                    rec.subtype_id.description
+                    if rec.subtype_id.description
+                    else (rec.track_display if rec.track_display else "")
+                ),
                 # rec.description if rec.description
                 # else rec.subtype_id.description,
             )

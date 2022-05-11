@@ -5,12 +5,12 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Additional Data">
-                <field name="source_id"/>
-                <field name="name"/>
-                <field name="json"/>
-                <field name="tag_ids" widget="many2many_tags"/>
-                <field name="editurl"/>
-                <field name="viewurl"/>
+                <field name="source_id" />
+                <field name="name" />
+                <field name="json" />
+                <field name="tag_ids" widget="many2many_tags" />
+                <field name="editurl" />
+                <field name="viewurl" />
             </tree>
         </field>
     </record>
@@ -23,24 +23,28 @@
             <form string="Additional Data">
                 <sheet>
                     <div class="oe_title mb24">
-                        <label for="source_id" string="Source:"/>
+                        <label for="source_id" string="Source:" />
                         <h1>
-                            <field id="source_id" name="source_id" placeholder="Select a Source..."
-                                    options="{'no_open':True,'no_create_edit':True,'no_create':True}"/>
+                            <field
+                                id="source_id"
+                                name="source_id"
+                                placeholder="Select a Source..."
+                                options="{'no_open':True,'no_create_edit':True,'no_create':True}"
+                            />
                         </h1>
-                        <label for="name" string="Name:"/>
+                        <label for="name" string="Name:" />
                         <h1>
-                            <field id="name" name="name" placeholder="Name..."/>
+                            <field id="name" name="name" placeholder="Name..." />
                         </h1>
                     </div>
                     <group colspan="4" col="4">
-                        <group colspan="2" >
-                            <field name="json" colspan="2"/>
-                            <field name="tag_ids" colspan="2" widget="many2many_tags"/>
+                        <group colspan="2">
+                            <field name="json" colspan="2" />
+                            <field name="tag_ids" colspan="2" widget="many2many_tags" />
                         </group>
-                        <group colspan="2" >
+                        <group colspan="2">
                             <field name="editurl" colspan="2" />
-                            <field name="viewurl" colspan="2"/>
+                            <field name="viewurl" colspan="2" />
                         </group>
                     </group>
                 </sheet>
@@ -65,23 +69,25 @@
     </record>
 
     <record id="action_additional_data_tree_view" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
+        <field name="sequence" eval="1" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_additional_data_tree"/>
-        <field name="act_window_id" ref="action_additional_data"/>
+        <field name="view_id" ref="view_additional_data_tree" />
+        <field name="act_window_id" ref="action_additional_data" />
     </record>
 
     <record id="action_additional_data_form_view" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
+        <field name="sequence" eval="1" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_additional_data_form"/>
-        <field name="act_window_id" ref="action_additional_data"/>
+        <field name="view_id" ref="view_additional_data_form" />
+        <field name="act_window_id" ref="action_additional_data" />
     </record>
 
-    <menuitem id="menu_additional_data"
+    <menuitem
+        id="menu_additional_data"
         name="Additional Data"
         action="action_additional_data"
         parent="g2p_registrant.g2p_configuration_menu_root"
         sequence="101"
-        groups="g2p_registrant.group_g2p_admin"/>
+        groups="g2p_registrant.group_g2p_admin"
+    />
 </odoo>

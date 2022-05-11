@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #################################################################################
 #   Copyright 2022 Newlogic
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,18 +10,23 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #################################################################################
-from odoo import _, api, fields, models
+from odoo import fields, models
+
 
 class G2PCycle(models.Model):
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _name = "g2p.cycle"
     _description = "Cycle"
-    _order = 'id desc'
+    _order = "id desc"
     _check_company_auto = True
 
     name = fields.Char(required=True, tracking=True)
-    company_id = fields.Many2one('res.company', default=lambda self: self.env.company, tracking=True)
-    program_id = fields.Many2one('g2p.program', 'Program', required=True, tracking=True)
-    
-    cycle_membership_ids = fields.One2many('g2p.cycle.membership','cycle_id','Cycle Memberships')
-    voucher_ids = fields.One2many('g2p.voucher','cycle_id','Vouchers')
+    company_id = fields.Many2one(
+        "res.company", default=lambda self: self.env.company, tracking=True
+    )
+    program_id = fields.Many2one("g2p.program", "Program", required=True, tracking=True)
+
+    cycle_membership_ids = fields.One2many(
+        "g2p.cycle.membership", "cycle_id", "Cycle Memberships"
+    )
+    voucher_ids = fields.One2many("g2p.voucher", "cycle_id", "Vouchers")

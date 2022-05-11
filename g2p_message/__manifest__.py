@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #################################################################################
 #   Copyright 2022 Newlogic
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,29 +11,22 @@
 #   limitations under the License.
 #################################################################################
 {
-  "name"         :  "G2P Message Module",
-  "category"     :  "G2P",
-  "version"      :  "0.0.1",
-  "sequence"     :  1,
-  "author"       :  "Newlogic",
-  "website"      :  "https://newlogic.com/",
-  "license"      :  "Other OSI approved licence",
-  "description"  :  """
-  Newlogic Main Module
-  ========================
-
-  - 
-  
-  """,
-  "depends"      :  ['base', 'mail', 'g2p_registrant'],
-  "data"         :  [
-                  'views/main_view.xml',
-                  'views/mail_message_view.xml',
-                    ],
-  'assets'       :  {},
-  "demo"         :  [],
-  "images"       :  [],
-  "application"  :  True,
-  "installable"  :  True,
-  "auto_install" :  False,
+    "name": "G2P Message Module",
+    "category": "G2P",
+    "version": "15.0.0.0.1",
+    "sequence": 1,
+    "author": "Newlogic",
+    "website": "https://newlogic.com/",
+    "license": "Other OSI approved licence",
+    "depends": ["base", "mail", "g2p_registrant"],
+    "data": [
+        "views/main_view.xml",
+        "views/mail_message_view.xml",
+    ],
+    "assets": {},
+    "demo": [],
+    "images": [],
+    "application": True,
+    "installable": True,
+    "auto_install": False,
 }

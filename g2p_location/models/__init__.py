@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #################################################################################
 # Author      : Newlogic (<https://newlogic.com/>)
 # Copyright(c): Newlogic

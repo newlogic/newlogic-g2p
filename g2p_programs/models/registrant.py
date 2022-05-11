@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #################################################################################
 #   Copyright 2022 Newlogic
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,12 +10,17 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #################################################################################
-from odoo import api, fields, models, _
+from odoo import fields, models
+
 
 class G2PRegistrant(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
-    #Custom Fields
-    program_membership_ids = fields.One2many('g2p.program_membership','partner_id','Program Memberships')
-    cycle_ids = fields.One2many('g2p.cycle.membership','partner_id','Cycle Memberships')
-    voucher_ids = fields.One2many('g2p.voucher','partner_id','Vouchers')
+    # Custom Fields
+    program_membership_ids = fields.One2many(
+        "g2p.program_membership", "partner_id", "Program Memberships"
+    )
+    cycle_ids = fields.One2many(
+        "g2p.cycle.membership", "partner_id", "Cycle Memberships"
+    )
+    voucher_ids = fields.One2many("g2p.voucher", "partner_id", "Vouchers")

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #################################################################################
 #   Copyright 2022 Newlogic
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,53 +10,56 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #################################################################################
-from datetime import datetime, timedelta
+from datetime import datetime
+
 from dateutil.relativedelta import relativedelta
 
-from odoo import api, fields, models, SUPERUSER_ID, _
+from odoo import api, fields, models
 
-from odoo.exceptions import AccessError, UserError, ValidationError, Warning
 
 class G2PIndividual(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
-    family_name = fields.Char('Family Name', translate=True, tracking=True)
-    given_name = fields.Char('Given Name', translate=True, tracking=True)
-    addl_name = fields.Char('Additional Name', translate=True, tracking=True)
-    birth_place = fields.Char('Birth Place', tracking=True)
-    birthdate_exact = fields.Boolean('Birthdate Exact')
-    birthdate = fields.Date('Date of Birth', tracking=True)
-    age = fields.Char(compute='_calc_age', string="Age", size= 50,readonly=True)
-    gender = fields.Selection([('Female','Female'),('Male','Male'),('Other','Other')],'Gender', tracking=True)
-    registration_date = fields.Date('Registration Date', tracking=True)
+    family_name = fields.Char("Family Name", translate=True, tracking=True)
+    given_name = fields.Char("Given Name", translate=True, tracking=True)
+    addl_name = fields.Char("Additional Name", translate=True, tracking=True)
+    birth_place = fields.Char("Birth Place", tracking=True)
+    birthdate_exact = fields.Boolean("Birthdate Exact")
+    birthdate = fields.Date("Date of Birth", tracking=True)
+    age = fields.Char(compute="_compute_calc_age", string="Age", size=50, readonly=True)
+    gender = fields.Selection(
+        [("Female", "Female"), ("Male", "Male"), ("Other", "Other")],
+        "Gender",
+        tracking=True,
+    )
+    registration_date = fields.Date("Registration Date", tracking=True)
 
-    @api.onchange('is_group','family_name','given_name','addl_name')
+    @api.onchange("is_group", "family_name", "given_name", "addl_name")
     def name_change(self):
         vals = {}
         if not self.is_group:
-            name = ''
+            name = ""
             if self.family_name:
-                name += self.family_name + ', '
+                name += self.family_name + ", "
             if self.given_name:
-                name += self.given_name + ' '
+                name += self.given_name + " "
             if self.addl_name:
-                name += self.addl_name + ' '
-            vals.update({'name': name.upper()})
+                name += self.addl_name + " "
+            vals.update({"name": name.upper()})
             self.update(vals)
 
-    @api.depends('birthdate')
-    def _calc_age(self):
+    @api.depends("birthdate")
+    def _compute_calc_age(self):
         for line in self:
             line.age = self.compute_age_from_dates(line.birthdate)
 
     def compute_age_from_dates(self, partner_dob):
-        now=datetime.strptime(str(fields.Datetime.now())[:10],'%Y-%m-%d')
-        if (partner_dob):
+        now = datetime.strptime(str(fields.Datetime.now())[:10], "%Y-%m-%d")
+        if partner_dob:
             dob = partner_dob
-            delta = relativedelta (now, dob)
-            #years_months_days = str(delta.years) +"y "+ str(delta.months) +"m "+ str(delta.days)+"d"
+            delta = relativedelta(now, dob)
+            # years_months_days = str(delta.years) +"y "+ str(delta.months) +"m "+ str(delta.days)+"d"
             years_months_days = str(delta.years)
         else:
             years_months_days = "No Birthdate!"
         return years_months_days
-

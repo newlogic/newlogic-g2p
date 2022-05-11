@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #################################################################################
 #   Copyright 2022 Newlogic
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,9 +10,10 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #################################################################################
-from odoo import api, fields, models, tools, _
+from odoo import fields, models
+
 
 class G2PRegistrantAttribute(models.Model):
     _inherit = "g2p.reg.attribute"
-    
-    program_ids = fields.Many2many('g2p.program','Programs')
+
+    program_ids = fields.Many2many("g2p.program", "Programs")

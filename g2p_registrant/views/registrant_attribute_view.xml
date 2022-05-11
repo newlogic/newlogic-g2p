@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
    Copyright 2022 Newlogic
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,11 +18,11 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Additional Fields">
-                <field name="sequence" widget="handle"/>
-                <field name="name"/>
-                <field name="kind"/>
-                <field name="visible"/>
-                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="kind" />
+                <field name="visible" />
+                <field name="company_id" groups="base.group_multi_company" />
             </tree>
         </field>
     </record>
@@ -34,44 +34,51 @@
         <field name="arch" type="xml">
             <form string="Additional Field">
                 <sheet>
-                    <div class="oe_button_box" name="button_box"/>
+                    <div class="oe_button_box" name="button_box" />
                     <div class="oe_title mb24">
-                        <label for="name" string="Attribute:"/>
+                        <label for="name" string="Attribute:" />
                         <h1>
-                            <field id="name" name="name" placeholder="Enter an attribute..."/>
+                            <field id="name" name="name" placeholder="Enter an attribute..." />
                         </h1>
                         <div class="o_row">
                             <label for="company_id" string="Company: " groups="base.group_multi_company" />
-                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" force_save="1"/>
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                options="{'no_create': True}"
+                                force_save="1"
+                            />
                         </div>
                     </div>
                     <group colspan="4" col="4">
-                        <field name="kind"/>
-                        <field name="visible"/>
+                        <field name="kind" />
+                        <field name="visible" />
                     </group>
                     <group string="Attribute Values">
                         <field name="value_ids" nolabel="1">
                             <tree string="Attribute Values">
-                                <field name="sequence" widget="handle"/>
-                                <field name="partner_id"
+                                <field name="sequence" widget="handle" />
+                                <field
+                                    name="partner_id"
                                     domain="[('is_registrant','=',True)]"
-                                    options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"/>
-                                <field name="name"/>
-                                <field name="value_int" string="Integer" invisible="1"/>
-                                <field name="value_char" string="Char" invisible="1"/>
-                                <field name="value_text" string="Text" invisible="1"/>
-                                <field name="value_float" string="Float" invisible="1"/>
-                                <field name="value_date" string="Date" invisible="1"/>
-                                <field name="value_boolean" string="Boolean" invisible="1"/>
-                                <field name="kind" invisible="1"/>
-                                <field name="visible" invisible="1"/>
+                                    options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"
+                                />
+                                <field name="name" />
+                                <field name="value_int" string="Integer" invisible="1" />
+                                <field name="value_char" string="Char" invisible="1" />
+                                <field name="value_text" string="Text" invisible="1" />
+                                <field name="value_float" string="Float" invisible="1" />
+                                <field name="value_date" string="Date" invisible="1" />
+                                <field name="value_boolean" string="Boolean" invisible="1" />
+                                <field name="kind" invisible="1" />
+                                <field name="visible" invisible="1" />
                             </tree>
                         </field>
                     </group>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -80,15 +87,15 @@
     <record id="reg_attribute_filter" model="ir.ui.view">
         <field name="name">reg_attribute_filter</field>
         <field name="model">g2p.reg.attribute</field>
-        <field name="priority" eval="1"/>
+        <field name="priority" eval="1" />
         <field name="arch" type="xml">
             <search string="Search Additional Fields">
-                <field name="name"/>
-                <field name="kind"/>
-                <field name="visible"/>
-                <group expand="0" string="Group By">                                            
-                    <filter string="Kind" name="grp_kind" context="{'group_by': 'kind'}"></filter>
-                    <filter string="Visibile" name="grp_visible" context="{'group_by': 'visible'}"></filter>
+                <field name="name" />
+                <field name="kind" />
+                <field name="visible" />
+                <group expand="0" string="Group By">
+                    <filter string="Kind" name="grp_kind" context="{'group_by': 'kind'}" />
+                    <filter string="Visibile" name="grp_visible" context="{'group_by': 'visible'}" />
                 </group>
                 <!-- <searchpanel>
                     <field name="group" icon="fa-users"/>
@@ -102,7 +109,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">g2p.reg.attribute</field>
         <field name="view_mode">tree,form</field>
-        <field name="search_view_id" ref="reg_attribute_filter"/>
+        <field name="search_view_id" ref="reg_attribute_filter" />
         <field name="context">{}</field>
         <field name="domain">[]</field>
         <field name="help" type="html">
@@ -115,25 +122,27 @@
     </record>
 
     <record id="action_reg_attribute_tree_view" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
+        <field name="sequence" eval="1" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_reg_attribute_tree"/>
-        <field name="act_window_id" ref="action_reg_attribute"/>
+        <field name="view_id" ref="view_reg_attribute_tree" />
+        <field name="act_window_id" ref="action_reg_attribute" />
     </record>
 
     <record id="action_reg_attribute_form_view" model="ir.actions.act_window.view">
-        <field name="sequence" eval="2"/>
+        <field name="sequence" eval="2" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_reg_attribute_form"/>
-        <field name="act_window_id" ref="action_reg_attribute"/>
+        <field name="view_id" ref="view_reg_attribute_form" />
+        <field name="act_window_id" ref="action_reg_attribute" />
     </record>
 
-    <menuitem id="menu_reg_attribute"
+    <menuitem
+        id="menu_reg_attribute"
         name="Additional Fields"
         action="action_reg_attribute"
         parent="g2p_configuration_menu_root"
-        sequence="40" 
-        groups="g2p_registrant.group_g2p_admin"/>
+        sequence="40"
+        groups="g2p_registrant.group_g2p_admin"
+    />
 
     <record id="view_reg_attribute_value_form" model="ir.ui.view">
         <field name="name">view_reg_attribute_value_form</field>
@@ -142,47 +151,63 @@
         <field name="arch" type="xml">
             <form string="Additional Field Attribute Value">
                 <sheet>
-                    <div class="oe_button_box" name="button_box"/>
+                    <div class="oe_button_box" name="button_box" />
                     <div class="oe_title mb24">
-                        <label for="attribute_id" string="Attribute:" invisible="context.get('reg_form',True)"/>
+                        <label
+                            for="attribute_id"
+                            string="Attribute:"
+                            invisible="context.get('reg_form',True)"
+                        />
                         <h1 invisible="context.get('reg_form',True)">
-                            <field id="attribute_id" name="attribute_id" placeholder="Select an attribute..."
+                            <field
+                                id="attribute_id"
+                                name="attribute_id"
+                                placeholder="Select an attribute..."
                                 invisible="context.get('reg_form',True)"
-                                options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"/>
+                                options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"
+                            />
                         </h1>
-                        <label for="partner_id" string="Registrant:" invisible="context.get('reg_form',False)"/>
+                        <label
+                            for="partner_id"
+                            string="Registrant:"
+                            invisible="context.get('reg_form',False)"
+                        />
                         <h1 invisible="context.get('reg_form',False)">
-                            <field id="partner_id" name="partner_id" placeholder="Select a registrant..."
+                            <field
+                                id="partner_id"
+                                name="partner_id"
+                                placeholder="Select a registrant..."
                                 invisible="context.get('reg_form',False)"
-                                options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"/>
+                                options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"
+                            />
                         </h1>
-                        <label for="name" string="Value:"/>
+                        <label for="name" string="Value:" />
                         <h1 attrs="{'invisible':[('kind','!=','int')]}">
-                            <field name="value_int"/>
+                            <field name="value_int" />
                         </h1>
                         <h1 attrs="{'invisible':[('kind','!=','char')]}">
-                            <field name="value_char"/>
+                            <field name="value_char" />
                         </h1>
                         <h1 attrs="{'invisible':[('kind','!=','text')]}">
-                            <field name="value_text"/>
+                            <field name="value_text" />
                         </h1>
                         <h1 attrs="{'invisible':[('kind','!=','date')]}">
-                            <field name="value_date"/>
+                            <field name="value_date" />
                         </h1>
                         <h1 attrs="{'invisible':[('kind','!=','boolean')]}">
-                            <field name="value_boolean"/>
+                            <field name="value_boolean" />
                         </h1>
                         <h1 attrs="{'invisible':[('kind','!=','float')]}">
-                            <field name="value_float"/>
+                            <field name="value_float" />
                         </h1>
                         <div class="o_row">
                         </div>
                     </div>
                     <group colspan="4" col="4">
-                        <field name="kind" readonly="1"/>
-                        <field name="visible" readonly="1"/>
+                        <field name="kind" readonly="1" />
+                        <field name="visible" readonly="1" />
                     </group>
-                    <field name="name" invisible="1"/>
+                    <field name="name" invisible="1" />
                 </sheet>
             </form>
         </field>

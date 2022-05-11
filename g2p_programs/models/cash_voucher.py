@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #################################################################################
 #   Copyright 2022 Newlogic
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,20 +12,32 @@
 #################################################################################
 from odoo import _, api, fields, models
 
+
 class G2PCashVoucher(models.Model):
     _name = "g2p.cash_voucher"
     _description = "Cash voucher"
-    _order = 'id desc'
+    _order = "id desc"
 
-    voucher_id = fields.Many2one("g2p.voucher", help="If empty, all users can use it", tracking=True) # one to one
+    voucher_id = fields.Many2one(
+        "g2p.voucher", help="If empty, all users can use it", tracking=True
+    )  # one to one
 
-    currency_id = fields.Many2one('res.currency', readonly=True, related='voucher_id.company_id.currency_id', tracking=True)
-    initial_amount = fields.Monetary(required=True, currency_field='currency_id')
+    currency_id = fields.Many2one(
+        "res.currency",
+        readonly=True,
+        related="voucher_id.company_id.currency_id",
+        tracking=True,
+    )
+    initial_amount = fields.Monetary(required=True, currency_field="currency_id")
     balance = fields.Monetary(compute="_compute_balance")  # in company currency
     # TODO: implement transactions against this voucher
 
     _sql_constraints = [
-        ('check_amount', 'CHECK(initial_amount >= 0)', 'The initial amount must be positive.')
+        (
+            "check_amount",
+            "CHECK(initial_amount >= 0)",
+            "The initial amount must be positive.",
+        )
     ]
 
     def _compute_name(self):

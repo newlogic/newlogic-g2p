@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #################################################################################
 #   Copyright 2022 Newlogic
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,17 +10,15 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #################################################################################
-from datetime import datetime, timedelta
-from dateutil.relativedelta import relativedelta
 
-from odoo import api, fields, models, SUPERUSER_ID, _
+from odoo import fields, models
 
-from odoo.exceptions import AccessError, UserError, ValidationError, Warning
 
 class G2PGroup(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
-    kind = fields.Many2one('g2p.group.kind','Kind', tracking=True)
-    #kind = fields.Selection([],'Kind')
-    group_membership_ids = fields.One2many('g2p.group.membership','group','Group Members')
-
+    kind = fields.Many2one("g2p.group.kind", "Kind", tracking=True)
+    # kind = fields.Selection([],'Kind')
+    group_membership_ids = fields.One2many(
+        "g2p.group.membership", "group", "Group Members"
+    )

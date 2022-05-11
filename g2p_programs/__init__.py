@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #################################################################################
 #   Copyright 2022 Newlogic
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +12,6 @@
 #################################################################################
 
 from . import models
-#from . import wizard
-#from . import controllers
 
+# from . import wizard
+# from . import controllers

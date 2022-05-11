@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
    Copyright 2022 Newlogic
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,11 +18,16 @@
         <field name="priority">100</field>
         <field name="arch" type="xml">
             <tree string="Registrants" decoration-danger="disabled != False">
-                <field name="name"/>
-                <field name="address"/>
-                <field name="is_group" string="Group"/>
-                <field name="category_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" string="Tag"/>
-                <field name="disabled" invisible="1"/>
+                <field name="name" />
+                <field name="address" />
+                <field name="is_group" string="Group" />
+                <field
+                    name="category_id"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color', 'no_create_edit': True}"
+                    string="Tag"
+                />
+                <field name="disabled" invisible="1" />
             </tree>
         </field>
     </record>
@@ -35,47 +40,84 @@
             <form string="Registrants">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button type="object" class="oe_stat_button" icon="fa-ban" name="disable_registrant"
-                            attrs="{'invisible':[('disabled','!=',False)]}">
+                        <button
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-ban"
+                            name="disable_registrant"
+                            attrs="{'invisible':[('disabled','!=',False)]}"
+                        >
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Disable</span>
                                 <span class="o_stat_text">Registrant</span>
                             </div>
                         </button>
-                        <button type="object" class="oe_stat_button" icon="fa-check" name="enable_registrant"
-                            attrs="{'invisible':[('disabled','=',False)]}">
+                        <button
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-check"
+                            name="enable_registrant"
+                            attrs="{'invisible':[('disabled','=',False)]}"
+                        >
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Enable</span>
                                 <span class="o_stat_text">Registrant</span>
                             </div>
                         </button>
                     </div>
-                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
-                    <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'avatar_128'}"/>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <field
+                        name="image_1920"
+                        widget="image"
+                        class="oe_avatar"
+                        options="{'preview_image': 'avatar_128'}"
+                    />
                     <div class="oe_title mb24">
-                        <label for="is_group" string="Registrant is a Group"/>
-                        <field name="is_group"/>
+                        <label for="is_group" string="Registrant is a Group" />
+                        <field name="is_group" />
                         <h1 attrs="{'invisible':[('is_group','=',False)]}">
-                            <field id="registrant" name="name" placeholder="Enter name of group..." 
-                                attrs="{'invisible':[('is_group','=',False)],'required':[('is_group','=',True)]}"/>
+                            <field
+                                id="registrant"
+                                name="name"
+                                placeholder="Enter name of group..."
+                                attrs="{'invisible':[('is_group','=',False)],'required':[('is_group','=',True)]}"
+                            />
                         </h1>
                         <div attrs="{'invisible':[('is_group','=',True)]}">
                             <h2>
-                                <field name="family_name" placeholder="Family Name..." default_focus="1" 
-                                    attrs="{'required':[('is_group','=',False)]}"/>
+                                <field
+                                    name="family_name"
+                                    placeholder="Family Name..."
+                                    default_focus="1"
+                                    attrs="{'required':[('is_group','=',False)]}"
+                                />
                             </h2>
                             <h2>
-                                <field name="given_name" placeholder="Given Name..." 
-                                    attrs="{'required':[('is_group','=',False)]}"/>
+                                <field
+                                    name="given_name"
+                                    placeholder="Given Name..."
+                                    attrs="{'required':[('is_group','=',False)]}"
+                                />
                             </h2>
                             <h2>
-                                <field name="addl_name" placeholder="Additional Name..." required="0"/>
+                                <field name="addl_name" placeholder="Additional Name..." required="0" />
                             </h2>
                         </div>
                         <div class="o_row">
-                            <label for="registration_date"/>
-                            <field name="registration_date"/>
-                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" attrs="{'readonly': [('parent_id', '!=', False)]}" force_save="1"/>
+                            <label for="registration_date" />
+                            <field name="registration_date" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                options="{'no_create': True}"
+                                attrs="{'readonly': [('parent_id', '!=', False)]}"
+                                force_save="1"
+                            />
                         </div>
                     </div>
                     <notebook>
@@ -86,7 +128,7 @@
                                         <b>Address</b>
                                     </span>
                                     <div class="o_address_format">
-                                        <field name="address"/>
+                                        <field name="address" />
                                         <!-- <field name="street" placeholder="Street..." class="o_address_street"/>
                                         <field name="street2" placeholder="Street 2..." class="o_address_street"/>
                                         <field name="city" placeholder="City" class="o_address_city"/>
@@ -96,41 +138,72 @@
                                     </div>
                                 </group>
                                 <group>
-                                    <field name="phone" widget="phone"/>
-                                    <field name="mobile" widget="phone"/>
-                                    <field name="user_ids" invisible="1"/>
-                                    <field name="email" widget="email" context="{'gravatar_image': True}" attrs="{'required': [('user_ids','!=', [])]}"/>
-                                    <field name="website" string="Website" widget="url" placeholder="e.g. https://newlogic.com"/>
-                                    <field name="active_lang_count" invisible="1"/>
-                                    <label for="lang" attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}"/>
-                                    <div class="o_row" attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}">
-                                        <field name="lang"/>
+                                    <field name="phone" widget="phone" />
+                                    <field name="mobile" widget="phone" />
+                                    <field name="user_ids" invisible="1" />
+                                    <field
+                                        name="email"
+                                        widget="email"
+                                        context="{'gravatar_image': True}"
+                                        attrs="{'required': [('user_ids','!=', [])]}"
+                                    />
+                                    <field
+                                        name="website"
+                                        string="Website"
+                                        widget="url"
+                                        placeholder="e.g. https://newlogic.com"
+                                    />
+                                    <field name="active_lang_count" invisible="1" />
+                                    <label
+                                        for="lang"
+                                        attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}"
+                                    />
+                                    <div
+                                        class="o_row"
+                                        attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}"
+                                    >
+                                        <field name="lang" />
                                     </div>
                                 </group>
                             </group>
-                        </page>                      
+                        </page>
                         <page string="Individual" attrs="{'invisible':[('is_group','=',True)]}">
                             <group col="6" colspan="6">
-                                <field name="birth_place" colspan="6"/>
-                                <field name="birthdate"/>
-                                <field name="birthdate_exact"/>
-                                <field name="age"/>
-                                <field name="gender"/>
+                                <field name="birth_place" colspan="6" />
+                                <field name="birthdate" />
+                                <field name="birthdate_exact" />
+                                <field name="age" />
+                                <field name="gender" />
                             </group>
                         </page>
                         <page string="Group" attrs="{'invisible':[('is_group','=',False)]}">
                             <group col="4" colspan="4">
-                                <field name="kind" colspan="2" options="{'no_open':True, 'no_create_edit':True}"/>
-                                <newline/>
-                                <field name="group_membership_ids" attrs="{'readonly':[('is_group','=',False)]}" nolabel="1" colspan="4">
+                                <field
+                                    name="kind"
+                                    colspan="2"
+                                    options="{'no_open':True, 'no_create_edit':True}"
+                                />
+                                <newline />
+                                <field
+                                    name="group_membership_ids"
+                                    attrs="{'readonly':[('is_group','=',False)]}"
+                                    nolabel="1"
+                                    colspan="4"
+                                >
                                     <tree string="Members" editable="top">
-                                        <field name="individual" 
+                                        <field
+                                            name="individual"
                                             domain="[('is_registrant','=',True),('is_company','=',False)]"
-                                            options="{'no_open':True, 'no_quick_create':True, 'no_create':True}" 
-                                            string="Member Name"/>
-                                        <field name="kind" widget="many2many_tags" options="{'no_open':True, 'no_create_edit':True}"/>
-                                        <field name="start_date"/>
-                                        <field name="end_date"/>
+                                            options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"
+                                            string="Member Name"
+                                        />
+                                        <field
+                                            name="kind"
+                                            widget="many2many_tags"
+                                            options="{'no_open':True, 'no_create_edit':True}"
+                                        />
+                                        <field name="start_date" />
+                                        <field name="end_date" />
                                     </tree>
                                 </field>
                             </group>
@@ -142,27 +215,34 @@
                         </page> -->
                         <page string="Others">
                             <group col="4" colspan="4">
-                                <field name="create_date"/>
-                                <field name="create_uid"/>
-                                <field name="write_date"/>
-                                <field name="write_uid"/>
-                                <field name="disabled" readonly="1"/>
-                                <field name="disabled_by" readonly="1"/>
-                                <field name="disabled_reason" colspan="4"/>
-                                <field name="category_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" placeholder="Tags..." colspan="4" string="Tag"/>
+                                <field name="create_date" />
+                                <field name="create_uid" />
+                                <field name="write_date" />
+                                <field name="write_uid" />
+                                <field name="disabled" readonly="1" />
+                                <field name="disabled_by" readonly="1" />
+                                <field name="disabled_reason" colspan="4" />
+                                <field
+                                    name="category_id"
+                                    widget="many2many_tags"
+                                    options="{'color_field': 'color', 'no_create_edit': True}"
+                                    placeholder="Tags..."
+                                    colspan="4"
+                                    string="Tag"
+                                />
                             </group>
                         </page>
                     </notebook>
-                    <field name="avatar_128" invisible="1"/>
-                    <field name="active" invisible="1"/>
-                    <field name="country_code" invisible="1"/>
-                    <field name="is_registrant" invisible="1"/>
-                    <field name="parent_id" invisible="1"/>
+                    <field name="avatar_128" invisible="1" />
+                    <field name="active" invisible="1" />
+                    <field name="country_code" invisible="1" />
+                    <field name="is_registrant" invisible="1" />
+                    <field name="parent_id" invisible="1" />
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -186,24 +266,26 @@
     </record>
 
     <record id="action_registrants_list_tree_view" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
+        <field name="sequence" eval="1" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_registrants_list_tree"/>
-        <field name="act_window_id" ref="action_registrants_list"/>
+        <field name="view_id" ref="view_registrants_list_tree" />
+        <field name="act_window_id" ref="action_registrants_list" />
     </record>
 
     <record id="action_registrants_form_view" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
+        <field name="sequence" eval="1" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_registrants_form"/>
-        <field name="act_window_id" ref="action_registrants_list"/>
+        <field name="view_id" ref="view_registrants_form" />
+        <field name="act_window_id" ref="action_registrants_list" />
     </record>
 
-    <menuitem id="menu_registrants_list"
+    <menuitem
+        id="menu_registrants_list"
         name="List"
         action="action_registrants_list"
         parent="g2p_registrant_menu_root"
-        sequence="10" 
-        groups="g2p_registrant.group_g2p_admin"/>
+        sequence="10"
+        groups="g2p_registrant.group_g2p_admin"
+    />
 
 </odoo>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
    Copyright 2022 Newlogic
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="ID Types" editable="bottom">
-                <field name="name"/>
+                <field name="name" />
             </tree>
         </field>
     </record>
@@ -40,17 +40,19 @@
     </record>
 
     <record id="action_id_type_tree_view" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
+        <field name="sequence" eval="1" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_id_type_tree"/>
-        <field name="act_window_id" ref="action_id_type"/>
+        <field name="view_id" ref="view_id_type_tree" />
+        <field name="act_window_id" ref="action_id_type" />
     </record>
 
-    <menuitem id="menu_id_type"
+    <menuitem
+        id="menu_id_type"
         name="ID Types"
         action="action_id_type"
         parent="g2p_configuration_menu_root"
-        sequence="10" 
-        groups="g2p_registrant.group_g2p_admin"/>
+        sequence="10"
+        groups="g2p_registrant.group_g2p_admin"
+    />
 
 </odoo>

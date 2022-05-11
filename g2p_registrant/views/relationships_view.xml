@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
    Copyright 2022 Newlogic
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,9 +18,9 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="ID Types" editable="bottom">
-                <field name="name"/>
-                <field name="bidirectional"/>
-                <field name="reverse_name"/>
+                <field name="name" />
+                <field name="bidirectional" />
+                <field name="reverse_name" />
             </tree>
         </field>
     </record>
@@ -42,17 +42,19 @@
     </record>
 
     <record id="action_relationship_tree_view" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
+        <field name="sequence" eval="1" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_relationship_tree"/>
-        <field name="act_window_id" ref="action_relationship"/>
+        <field name="view_id" ref="view_relationship_tree" />
+        <field name="act_window_id" ref="action_relationship" />
     </record>
 
-    <menuitem id="menu_relationship"
+    <menuitem
+        id="menu_relationship"
         name="Relationships"
         action="action_relationship"
         parent="g2p_configuration_menu_root"
-        sequence="20" 
-        groups="g2p_registrant.group_g2p_admin"/>
+        sequence="20"
+        groups="g2p_registrant.group_g2p_admin"
+    />
 
 </odoo>

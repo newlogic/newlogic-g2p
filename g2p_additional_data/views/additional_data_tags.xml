@@ -5,7 +5,7 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Additional Data Tags" multi_edit="1" editable="top">
-                <field name="name"/>
+                <field name="name" />
             </tree>
         </field>
     </record>
@@ -27,17 +27,19 @@
     </record>
 
     <record id="action_additional_data_tags_tree_view" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
+        <field name="sequence" eval="1" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_additional_data_tags_tree"/>
-        <field name="act_window_id" ref="action_additional_data_tags"/>
+        <field name="view_id" ref="view_additional_data_tags_tree" />
+        <field name="act_window_id" ref="action_additional_data_tags" />
     </record>
 
-    <menuitem id="menu_additional_data_tags"
+    <menuitem
+        id="menu_additional_data_tags"
         name="Additional Data Tags"
         action="action_additional_data_tags"
         parent="g2p_registrant.g2p_configuration_menu_root"
         sequence="102"
-        groups="g2p_registrant.group_g2p_admin"/>
-        
+        groups="g2p_registrant.group_g2p_admin"
+    />
+
 </odoo>
