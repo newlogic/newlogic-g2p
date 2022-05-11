@@ -28,6 +28,29 @@ limitations under the License.  -->
                     <field name="odata_url" />
                     <field name="email" />
                     <field name="password" />
+
+                    <field
+                        id="source_id"
+                        name="source_id"
+                        placeholder="Select a Source..."
+                        options="{'no_open':True,'no_create_edit':True,'no_create':True}"
+                    />
+                    <field
+                        name="tags"
+                        widget="many2many_tags"
+                        options="{'color_field': 'color', 'no_create_edit': True}"
+                        placeholder="Tags..."
+                        colspan="4"
+                        string="Tag"
+                    />
+
+                    <field
+                        id="location_id"
+                        name="location_id"
+                        placeholder="Select a location to assign..."
+                        options="{'no_open':True,'no_create_edit':True,'no_create':True}"
+                    />
+
                 </group>
             </group>
         </field>
