@@ -36,8 +36,6 @@ class G2PLocationImport(models.Model):
     excel_file = fields.Binary("Location Excel File")
     date_uploaded = fields.Datetime("Date Uploaded")
 
-    models_ids = fields.Many2many("ibspro.ref.models", string="Models")
-
     upload_id = fields.Many2one("res.users", "Uploaded by")
     date_imported = fields.Datetime("Date Imported")
     import_id = fields.Many2one("res.users", "Imported by")
