@@ -34,6 +34,8 @@ class G2PAdditionalDataRecordImporter(Component):
             "id": f"odk.{odk_id}",
             "name": odk_id,
             "registered_on": res["start"],
+            "source_id": res["source_id"],
+            "location_id": res["location_id"],
             "json": json.dumps(res),
             "_line_nr": -1,
         }

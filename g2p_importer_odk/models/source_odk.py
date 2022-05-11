@@ -63,6 +63,27 @@ class ImportSourceODK(models.Model):
     #     )
     #     return _fields
 
+    def _inject_config(self, results):
+        """Inject config to data."""
+        source_id = None
+        location_id = None
+        tag_ids = []
+
+        # force external IDs
+        # self.export_data(['source_id', 'location_id', 'tags'])
+
+        if self.source_id:
+            self.source_id.export_data(["id"])
+            source_id = list(self.source_id.get_external_id().values())[0]
+        if self.location_id:
+            self.location_id.export_data(["id"])
+            location_id = list(self.location_id.get_external_id().values())[0]
+
+        for result in results["value"]:
+            result["source_id"] = source_id
+            result["location_id"] = location_id
+            result["tag_ids"] = tag_ids
+
     def get_lines(self):
         """Retrieve lines to import."""
         self.ensure_one()
@@ -72,10 +93,12 @@ class ImportSourceODK(models.Model):
         # retrieve results
         skip = 0
         results = self._get_page(odk_client, skip)
+        self._inject_config(results)
         yield results["value"]
         while results.get("@odata.nextLink", None) is not None:
             skip += len(results["values"])
             results = self._get_page(odk_client, skip)
+            self._inject_config(results)
             yield results["value"]
 
     def _get_page(self, odk_client, skip):
