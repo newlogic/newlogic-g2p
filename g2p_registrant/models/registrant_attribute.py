@@ -27,7 +27,6 @@ class RegistrantAttribute(models.Model):
     sequence = fields.Integer('Sequence', help="Determine the display order", index=True)
     kind = fields.Selection([('int','Integer'),('char','Char'),('text','Text'),('date','Date'),('boolean','Boolean'),('float','Float')], 'Kind', default='char', required=True, tracking=True)
     visible = fields.Selection([('all','All'),('reg','Registrant'),('grp','Group')], 'Visible', default='reg', required=True, tracking=True)
-    #programs = fields.Many2many('g2p.program') Define in programs module
 
 
 class RegistrantAttributeValue(models.Model):
@@ -36,7 +35,7 @@ class RegistrantAttributeValue(models.Model):
     _description = 'Attribute Value'
 
     name = fields.Char(string='Value', required=True, translate=True)
-    partner_id = fields.Many2one('res.partner', help="A beneficiary", required=True, domain=[('is_registrant','=',True)])
+    partner_id = fields.Many2one('res.partner', 'Registrant', help="A beneficiary", required=True, domain=[('is_registrant','=',True)])
     attribute_id = fields.Many2one('g2p.reg.attribute', string="Attribute", ondelete='cascade', required=True, index=True)
     sequence = fields.Integer(help="Determine the display order")
     
