@@ -15,12 +15,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.#
-import base64
-import os
-import json
+
+from odoo import fields, models
 
 from ..components.odk_client import ODKClient
-from odoo import fields, models
 
 
 class ImportSourceODK(models.Model):
@@ -42,13 +40,15 @@ class ImportSourceODK(models.Model):
 
     # Overrided to get a store field for env purpose
     name = fields.Char(compute=False)
-    odata_url = fields.Char(string="OData URL", required=True) # https://odk.newlogic-demo.com/v1/projects/1/forms/idpass_ona_registration_example.svc
-    email = fields.Char('Email', required=True)
-    password = fields.Char('Password', required=True)
+    odata_url = fields.Char(
+        string="OData URL", required=True
+    )  # https://odk.newlogic-demo.com/v1/projects/1/forms/idpass_ona_registration_example.svc
+    email = fields.Char("Email", required=True)
+    password = fields.Char("Password", required=True)
 
-    source_id = fields.Many2one('g2p.datasource', 'Source')
-    tags = fields.Many2many('g2p.additional.data.tags', string='Tags')
-    location_id = fields.Many2one('g2p.location', 'Location')
+    source_id = fields.Many2one("g2p.datasource", "Source")
+    tags = fields.Many2many("g2p.additional.data.tags", string="Tags")
+    location_id = fields.Many2one("g2p.location", "Location")
 
     # TODO: Do we need company_id?
 
@@ -72,11 +72,11 @@ class ImportSourceODK(models.Model):
         # retrieve results
         skip = 0
         results = self._get_page(odk_client, skip)
-        yield results['value']
-        while results.get('@odata.nextLink', None) is not None:
-            skip += len(results['values'])
+        yield results["value"]
+        while results.get("@odata.nextLink", None) is not None:
+            skip += len(results["values"])
             results = self._get_page(odk_client, skip)
-            yield results['value']
+            yield results["value"]
 
     def _get_page(self, odk_client, skip):
         results = odk_client.get_responses(skip, self.chunk_size)
