@@ -26,11 +26,14 @@
                      "connector_importer",
   ],
   "data"         :  [
+                    'views/source_views.xml',
+                    "security/ir.model.access.csv",
                     'data/import_backend.xml',
                     'data/import_type.xml',
                     'data/import_source.xml',
                     'data/import_recordset.xml',
   ],
+
   "application"  :  True,
   "installable"  :  True,
   "auto_install" :  False,

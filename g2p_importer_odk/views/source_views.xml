@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_import_source_json_odk_form" model="ir.ui.view">
+        <field name="name">import.source.odk form</field>
+        <field name="model">import.source.odk</field>
+        <field name="priority" eval="99" />
+        <field name="inherit_id" ref="connector_importer.view_import_source_form" />
+        <field name="arch" type="xml">
+            <group name="common" position="after">
+                <group col="2" name="info">
+                    <field name="odata_url" />
+                    <field name="email" />
+                    <field name="password" />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

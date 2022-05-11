@@ -2,11 +2,11 @@
 <!-- Copyright 2019 Camptocamp SA
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <record id="import_recordset_partner" model="import.recordset">
-        <field name="sequence" eval="10" />
+    <record id="import_recordset_additional_data" model="import.recordset">
+<!--        <field name="sequence" eval="10" />-->
         <field name="backend_id" ref="import_backend_odk" />
-        <field name="source_model">import.source.json.odk</field>
+        <field name="source_model">import.source.odk</field>
         <field name="source_id" ref="import_source_json_odk" />
-        <field name="import_type_id" ref="import_type_partner" />
+        <field name="import_type_id" ref="import_type_additional_data" />
     </record>
 </odoo>

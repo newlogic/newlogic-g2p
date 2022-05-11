@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_import_source_odk,g2p_importer_odk.access_import_source_odk,model_import_source_odk,connector.group_connector_manager,1,1,1,1
+access_import_source_odk_user,g2p_importer_odk.access_import_source_odk_user,model_import_source_odk,connector_importer.group_importer_user,1,0,0,0

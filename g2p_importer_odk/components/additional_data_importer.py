@@ -15,7 +15,9 @@ class G2PAdditionalDataRecordImporter(Component):
         odk_id = res["__id"].split(":")[1]
         new_res = {
             "id": f"odk.{odk_id}",
+            "name": odk_id,
             "registered_on": res["start"],
             "json": json.dumps(res),
+            "_line_nr": -1,
         }
         return new_res
