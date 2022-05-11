@@ -22,6 +22,7 @@
                 <field name="address"/>
                 <field name="category_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" string="Tags"/>
                 <field name="disabled" invisible="1"/>
+                <field name="company_id" groups="base.group_multi_company"/>
             </tree>
         </field>
     </record>
