@@ -1,5 +1,10 @@
 Format in CHANGELOG.md
 
+## Version[0.10] - 2022-05-12
+
+- [UPD] Added "group_membership_ids" o2m field in individual to g2p.group.membership
+- [UPD] Added "group_membership_ids" tree view in individual_view.xml
+
 ## Version[0.09] - 2022-05-11
 
 - [UPD] Completed the Registrant Attribute UI

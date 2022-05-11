@@ -203,6 +203,30 @@
                                 <field name="gender" attrs="{'readonly':[('disabled','!=',False)]}" />
                             </group>
                         </page>
+                        <page string="Group Membership">
+                            <field
+                                name="group_membership_ids"
+                                attrs="{'readonly':[('disabled','!=',False)]}"
+                                nolabel="1"
+                                colspan="4"
+                            >
+                                <tree string="Memberships" editable="top">
+                                    <field
+                                        name="group"
+                                        domain="[('is_registrant','=',True),('is_company','=',True)]"
+                                        options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"
+                                        string="Group Name"
+                                    />
+                                    <field
+                                        name="kind"
+                                        widget="many2many_tags"
+                                        options="{'no_open':True, 'no_create_edit':True}"
+                                    />
+                                    <field name="start_date" />
+                                    <field name="end_date" />
+                                </tree>
+                            </field>
+                        </page>
                         <page string="IDs">
                             <field name="reg_ids" attrs="{'readonly':[('disabled','!=',False)]}" nolabel="1">
                                 <tree string="Registrant IDs" editable="top">

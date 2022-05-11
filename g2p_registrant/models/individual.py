@@ -39,6 +39,7 @@ class G2PIndividual(models.Model):
         tracking=True,
     )
     registration_date = fields.Date("Registration Date", tracking=True)
+    group_membership_ids = fields.One2many("g2p.group.membership", "individual", "Membership to Groups")
 
     @api.onchange("is_group", "family_name", "given_name", "addl_name")
     def name_change(self):
