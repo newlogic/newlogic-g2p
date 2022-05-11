@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Copyright 2022 Newlogic
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+       http://www.apache.org/licenses/LICENSE-2.0
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<odoo>
+    <record id="g2p_view_mail_message_tree" model="ir.ui.view">
+        <field name="name">g2p_view_mail_message_tree</field>
+        <field name="model">mail.message</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <tree string="Mail Message">
+                <field name="subject_display" string="Initiator"/>
+                
+            </tree>
+            <!-- <tree
+                string="Mail Messages"
+                decoration-bf="needaction==True"
+                decoration-danger="has_error==True"
+                default_order="id desc"
+                create='false'
+                edit='false'
+                delete='false
+            >
+                <field name="needaction" invisible="1" />
+                <field name="has_error" invisible="1" />
+            </tree> -->
+        </field>
+    </record>
+
+    <record id="g2p_view_mail_message_form" model="ir.ui.view">
+        <field name="name">g2p_view_mail_message_form</field>
+        <field name="model">mail.message</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <form string="Mail Message">
+                <sheet>
+                    <field name="author_avatar" widget="image" class="oe_avatar" />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="subject" attrs="{'invisible':[('subject', '=', False)]}"/>
+                        </h1>
+                        <h2>
+                            <field name="author_id" readonly="1"/>
+                        </h2>
+                    </div>
+                    <group>
+                        <group name="base">
+                            <field name="date" readonly="1"/> 
+                            <label for="email_from" readonly="1"/>
+                            <div class="o_row">
+                                <span style="display:contents!important">
+                                    <field name="email_from" readonly="1"/>
+                                </span>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="subtype_id" readonly="1" invisible="1"/>
+                            <field name="message_type" readonly="1" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="body" string="Body">
+                            <div style="margin-left:10px">
+                           
+                                <field name="subtype_description" nolabel="1" attrs="{'invisible':[('subtype_description', '=', False)]}"/>
+                                <field name="body" nolabel="1" attrs="{'invisible':[('body', '=', False)]}"/>
+                                <field name="track_display" nolabel="1"/>
+                            </div>
+                        </page>
+                        <page string="History" invisible="1">
+                            <!-- create computed field for this -->
+                            <field name="tracking_value_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!-- Mail Message (Mail Message Admin) -->
+    <record id="g2p_action_mail_message" model="ir.actions.act_window">
+        <field name="name">List of Mail Message</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mail.message</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="search_view_id" ref="module.filter_id"/> -->
+        <!-- <field name="context">{'default_field':True}</field> -->
+        <field name="domain">[('message_type', '=', 'notification')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                List of Mail Message
+            </p><p>
+                Mail Message List!.
+            </p>
+        </field>
+    </record>
+
+    <record id="g2p_action_mail_thread_tree_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="g2p_view_mail_message_tree"/>
+        <field name="act_window_id" ref="g2p_action_mail_message"/>
+    </record>
+
+    <record id="g2p_action_mail_thread_form_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="g2p_view_mail_message_form"/>
+        <field name="act_window_id" ref="g2p_action_mail_message"/>
+    </record>
+
+    <menuitem id="g2p_menu_mail_message"
+        name="List"
+        action="g2p_action_mail_message"
+        parent="g2p_message_menu_root"
+        sequence="10"/>
+        <!-- groups="card_mgmt.group_card_admin"/> -->
+</odoo>
