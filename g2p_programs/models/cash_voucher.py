@@ -25,14 +25,13 @@ class G2PCashVoucher(models.Model):
     _order = "id desc"
 
     voucher_id = fields.Many2one(
-        "g2p.voucher", help="If empty, all users can use it", tracking=True
+        "g2p.voucher", help="If empty, all users can use it"
     )  # one to one
 
     currency_id = fields.Many2one(
         "res.currency",
         readonly=True,
-        related="voucher_id.company_id.currency_id",
-        tracking=True,
+        related="voucher_id.company_id.currency_id"
     )
     initial_amount = fields.Monetary(required=True, currency_field="currency_id")
     balance = fields.Monetary(compute="_compute_balance")  # in company currency

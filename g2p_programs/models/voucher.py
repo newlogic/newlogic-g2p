@@ -41,7 +41,7 @@ class G2PVoucher(models.Model):
         "res.partner", "Registrant", help="A beneficiary", required=True, tracking=True
     )
     company_id = fields.Many2one(
-        "res.company", default=lambda self: self.env.company, tracking=True
+        "res.company", default=lambda self: self.env.company
     )
 
     cycle_id = fields.Many2one("g2p.cycle", required=True, tracking=True)
