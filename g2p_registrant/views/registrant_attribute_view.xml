@@ -54,7 +54,7 @@
                         <field name="kind" />
                         <field name="visible" />
                     </group>
-                    <group string="Attribute Values">
+                    <group string="Attribute Values" name="grp_attribute_val">
                         <field name="value_ids" nolabel="1">
                             <tree string="Attribute Values">
                                 <field name="sequence" widget="handle" />

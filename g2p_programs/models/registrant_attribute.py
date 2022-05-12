@@ -22,4 +22,4 @@ from odoo import fields, models
 class G2PRegistrantAttribute(models.Model):
     _inherit = "g2p.reg.attribute"
 
-    program_ids = fields.Many2many("g2p.program", "Programs")
+    program_ids = fields.Many2many("g2p.program", string="Programs")
