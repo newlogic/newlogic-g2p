@@ -19,7 +19,7 @@
 from odoo import api, fields, models
 
 
-class RegistrantAttribute(models.Model):
+class G2PRegistrantAttribute(models.Model):
     _name = "g2p.reg.attribute"
     _description = "Registrant Attribute"
     _order = "sequence, id"
@@ -56,9 +56,15 @@ class RegistrantAttribute(models.Model):
         required=True,
         tracking=True,
     )
+    total_values = fields.Integer('Total Values',compute='_count_total_values')
+
+    @api.depends("value_ids")
+    def _count_total_values(self):
+        for rec in self:
+            rec.total_values = len(rec.value_ids)
 
 
-class RegistrantAttributeValue(models.Model):
+class G2PRegistrantAttributeValue(models.Model):
     _name = "g2p.reg.attribute.value"
     _order = "attribute_id, sequence, id"
     _description = "Attribute Value"

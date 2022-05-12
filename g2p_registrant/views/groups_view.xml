@@ -18,16 +18,18 @@
         <field name="priority">200</field>
         <field name="arch" type="xml">
             <tree string="Group Registrants" decoration-danger="disabled != False">
-                <field name="name" />
-                <field name="address" />
-                <field name="kind" />
-                <field name="group_membership_ids" string="Total Members" />
+                <field name="name"/>
+                <field name="address"/>
+                <field name="phone"/>
+                <field name="kind"/>
+                <field name="group_membership_ids" string="Total Members"/>
                 <field
                     name="category_id"
                     widget="many2many_tags"
                     options="{'color_field': 'color', 'no_create_edit': True}"
                     string="Tags"
                 />
+                <field name="registration_date"/>
                 <field name="disabled" invisible="1" />
                 <field name="company_id" groups="base.group_multi_company" />
             </tree>
@@ -119,8 +121,8 @@
                     </group>
                     <notebook>
                         <page string="Contact Details">
-                            <group>
-                                <group>
+                            <group colspan="4" col="4">
+                                <group colspan="2">
                                     <span class="o_form_label o_td_label" name="address_name">
                                         <b>Address</b>
                                     </span>
@@ -137,35 +139,28 @@
                                         <field name="country_id" placeholder="Country" class="o_address_country" options="{'no_open': True, 'no_create': True}"/> -->
                                     </div>
                                 </group>
-                                <group>
-                                    <field
-                                        name="phone"
-                                        widget="phone"
-                                        attrs="{'readonly':[('disabled','!=',False)]}"
-                                    />
-                                    <field
-                                        name="mobile"
-                                        widget="phone"
-                                        attrs="{'readonly':[('disabled','!=',False)]}"
-                                    />
-                                    <field
-                                        name="user_ids"
-                                        invisible="1"
-                                        attrs="{'readonly':[('disabled','!=',False)]}"
-                                    />
+                                <group colspan="2">
+                                    <field name="phone_number_ids" attrs="{'readonly':[('disabled','!=',False)]}"
+                                        context="{'reg_form':True}" nolabel="1" colspan="2">
+                                        <tree string="Phone Numbers" decoration-danger="disabled != False">
+                                            <field name="phone_no" string="Phone Numbers"/>
+                                            <field name="date_collected"/>
+                                            <field name="disabled" invisible="1"/>
+                                        </tree>
+                                    </field>
                                     <field
                                         name="email"
                                         widget="email"
                                         context="{'gravatar_image': True}"
                                         attrs="{'readonly':[('disabled','!=',False)]}"
                                     />
-                                    <field
+                                    <!-- <field
                                         name="website"
                                         string="Website"
                                         widget="url"
                                         placeholder="e.g. https://newlogic.com"
                                         attrs="{'readonly':[('disabled','!=',False)]}"
-                                    />
+                                    /> -->
                                 </group>
                             </group>
                         </page>
@@ -232,7 +227,7 @@
                                 <field
                                     name="kind"
                                     colspan="2"
-                                    options="{'no_open':True, 'no_create_edit':True}"
+                                    options="{'no_open':True, 'no_create_edit':True,'no_create':True}"
                                     attrs="{'readonly':[('disabled','!=',False)]}"
                                 />
                                 <newline />
@@ -246,8 +241,9 @@
                                         <field
                                             name="individual"
                                             domain="[('is_registrant','=',True),('is_group','=',False)]"
-                                            options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"
+                                            options="{'no_create':True}"
                                             string="Member Name"
+                                            context="{'form_view_ref':'g2p_registrant.view_individuals_form'}"
                                         />
                                         <field
                                             name="kind"
@@ -276,14 +272,9 @@
                                 name="addl_fields"
                                 attrs="{'readonly':[('disabled','!=',False)]}"
                                 nolabel="1"
-                                context="{'reg_form':False}"
                             >
                                 <tree string="Additional Fields">
-                                    <field
-                                        name="attribute_id"
-                                        domain="[('visible','in',('all','grp'))]"
-                                        options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"
-                                    />
+                                    <field name="attribute_id"/>
                                     <field name="name" />
                                     <field name="value_int" string="Integer" invisible="1" />
                                     <field name="value_char" string="Char" invisible="1" />
@@ -294,9 +285,56 @@
                                     <field name="kind" />
                                     <field name="visible" />
                                 </tree>
+                                <form string="Additional Field Attribute Value">
+                                    <sheet>
+                                        <div class="oe_button_box" name="button_box" />
+                                        <div class="oe_title mb24">
+                                            <label
+                                                for="attribute_id"
+                                                string="Attribute:"
+                                            />
+                                            <h1>
+                                                <field
+                                                    id="attribute_id"
+                                                    name="attribute_id"
+                                                    placeholder="Select an attribute..."
+                                                    domain="[('visible','in',('all','grp'))]"
+                                                    options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"
+                                                />
+                                            </h1>
+                                            <label for="name" string="Value:" />
+                                            <h1 attrs="{'invisible':[('kind','!=','int')]}">
+                                                <field name="value_int" />
+                                            </h1>
+                                            <h1 attrs="{'invisible':[('kind','!=','char')]}">
+                                                <field name="value_char" />
+                                            </h1>
+                                            <h1 attrs="{'invisible':[('kind','!=','text')]}">
+                                                <field name="value_text" />
+                                            </h1>
+                                            <h1 attrs="{'invisible':[('kind','!=','date')]}">
+                                                <field name="value_date" />
+                                            </h1>
+                                            <h1 attrs="{'invisible':[('kind','!=','boolean')]}">
+                                                <field name="value_boolean" />
+                                            </h1>
+                                            <h1 attrs="{'invisible':[('kind','!=','float')]}">
+                                                <field name="value_float" />
+                                            </h1>
+                                            <div class="o_row">
+                                            </div>
+                                        </div>
+                                        <group colspan="4" col="4">
+                                            <field name="kind" readonly="1" />
+                                            <field name="visible" readonly="1" />
+                                        </group>
+                                        <field name="name" invisible="1" />
+                                        <field name="partner_id" invisible="1"/>
+                                    </sheet>
+                                </form>
                             </field>
                         </page>
-                        <page string="Others">
+                        <page name="other" string="Others">
                             <group col="4" colspan="4">
                                 <field name="create_date" />
                                 <field name="create_uid" />
@@ -314,7 +352,9 @@
                     <field name="is_registrant" invisible="1" />
                     <field name="parent_id" invisible="1" />
                     <field name="is_group" invisible="1" />
+                    <field name="phone" invisible="1"/>
                     <field name="active_lang_count" invisible="1" />
+                    <field name="user_ids" invisible="1"/>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" />

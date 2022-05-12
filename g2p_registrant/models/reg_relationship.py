@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 
 class G2PRegistrantRelationship(models.Model):
