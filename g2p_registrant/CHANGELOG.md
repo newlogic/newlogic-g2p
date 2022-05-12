@@ -1,10 +1,5 @@
 Format in CHANGELOG.md
 
-## Version[0.10] - 2022-05-12
-
-- [ADD] name atttribute in xml. individuals_view - notebooks(individual_detail) registrant_attribute_view -
-  group(grp_attribute_val)
-
 ## Version[0.09] - 2022-05-11
 
 - [UPD] Completed the Registrant Attribute UI
