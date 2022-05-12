@@ -136,7 +136,7 @@ class G2PLocationImport(models.Model):
                             try:
                                 max_cols = int(maxcolsstr)
                                 break
-                            except:
+                            except Exception:
                                 max_cols = None
                 else:
                     if max_cols:
