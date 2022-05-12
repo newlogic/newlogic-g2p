@@ -102,7 +102,7 @@ class G2PLocationImport(models.Model):
         for rec in self:
             rec.update({"state": "Cancelled"})
 
-    def import_data(self): # noqa: C901
+    def import_data(self):  # noqa: C901
         _logger.info("Location Import: Started: %s" % fields.Datetime.now())
         for rec in self:
             _logger.info(
@@ -113,7 +113,7 @@ class G2PLocationImport(models.Model):
                 inputx.write(base64.decodebytes(rec.excel_file))
                 book = open_workbook(file_contents=inputx.getvalue())
             except TypeError as e:
-                raise ValidationError("ERROR: {}".format(e))
+                raise ValidationError("ERROR: {}".format(e))  # noqa: C901
             sheet = book.sheets()[0]
             vals = []
             _logger.info(
