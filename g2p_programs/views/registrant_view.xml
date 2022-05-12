@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Copyright 2022 Newlogic
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+       http://www.apache.org/licenses/LICENSE-2.0
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<odoo>
+    <record id="view_registrant_ext_tree" model="ir.ui.view">
+        <field name="name">view_registrant_ext_tree</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="g2p_registrant.view_individuals_list_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="program_membership_ids"/>
+                <field name="cycle_ids"/>
+                <field name="voucher_ids"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_registrant_ext_form" model="ir.ui.view">
+        <field name="name">view_registrant_ext_form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="g2p_registrant.view_individuals_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook[@name='individual_detail']" position="inside">
+                <page string="Program Membership">
+                    <field name="program_membership_ids"/>
+                </page>
+                <page string="Cycle">
+                    <field name="cycle_ids"/>
+                </page>
+                <page string="Voucher">
+                    <field name="voucher_ids"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+
+</odoo>

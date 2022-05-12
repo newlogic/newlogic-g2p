@@ -139,7 +139,7 @@
                             <field name="lang" attrs="{'readonly':[('disabled','!=',False)]}" />
                         </div>
                     </group>
-                    <notebook>
+                    <notebook name="individual_detail">
                         <page string="Contact Details">
                             <group>
                                 <group>

@@ -1,5 +1,17 @@
 Format in CHANGELOG.md
 
+## Version[0.04] - 2022-05-12
+
+- [ADD] Created Program Membership UI
+- [ADD] Created Voucher UI
+- [ADD] Created Cash Voucher UI
+- [ADD] Created Cycle UI
+- [ADD] Created Cycle Membership UI
+- [ADD] extension for Registrant UI
+- [ADD] extension for Registrant attribute UI
+
+
+
 ## Version[0.03] - 2022-05-11
 
 - [ADD] Modified and implemented initial models: voucher, cash_voucher
