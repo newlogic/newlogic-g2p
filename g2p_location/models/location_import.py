@@ -102,7 +102,7 @@ class G2PLocationImport(models.Model):
         for rec in self:
             rec.update({"state": "Cancelled"})
 
-    def import_data(self):
+    def import_data(self): # noqa: C901
         _logger.info("Location Import: Started: %s" % fields.Datetime.now())
         for rec in self:
             _logger.info(
