@@ -39,6 +39,9 @@ class G2PRegistrant(models.Model):
 
     name = fields.Char(index=True, translate=True)
 
+    related_1_ids = fields.One2many('g2p.reg.rel','registrant2','Related to registrant 1')
+    related_2_ids = fields.One2many('g2p.reg.rel','registrant1','Related to registrant 2')
+
     def enable_registrant(self):
         for rec in self:
             if rec.disabled:

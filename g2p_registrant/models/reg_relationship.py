@@ -18,7 +18,7 @@
 #
 
 from odoo import api, fields, models
-
+from odoo.exceptions import ValidationError
 
 class G2PRegistrantRelationship(models.Model):
     _name = "g2p.reg.rel"
@@ -30,14 +30,14 @@ class G2PRegistrantRelationship(models.Model):
         "res.partner",
         "Registrant 1",
         required=True,
-        domain=[("is_registrant", "=", True), ("is_group", "=", False)],
+        domain=[("is_registrant", "=", True)],
         tracking=True,
     )
     registrant2 = fields.Many2one(
         "res.partner",
         "Registrant 2",
         required=True,
-        domain=[("is_registrant", "=", True), ("is_group", "=", False)],
+        domain=[("is_registrant", "=", True)],
         tracking=True,
     )
     relation = fields.Many2one("g2p.relationship", "Relation", tracking=True)
@@ -45,6 +45,12 @@ class G2PRegistrantRelationship(models.Model):
     disabled_by = fields.Many2one("res.users", "Disabled by", tracking=True)
     start_date = fields.Datetime("Start Date", tracking=True)
     end_date = fields.Datetime("End Date", tracking=True)
+
+    @api.constrains('registrant1','registrant2')
+    def _check_registrants(self):
+        for rec in self:
+            if rec.registrant1 == rec.registrant2:
+                raise ValidationError("Registrant 1 and Registrant 2 cannot be the same.")
 
     def name_get(self):
         res = super(G2PRegistrantRelationship, self).name_get()

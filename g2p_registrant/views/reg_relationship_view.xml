@@ -18,9 +18,9 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Registrant's Relationships" decoration-danger="disabled != False">
-                <field name="registrant1" options="{'no_open':True,'no_create_edit':True,'no_create':True}" />
-                <field name="registrant2" options="{'no_open':True,'no_create_edit':True,'no_create':True}" />
-                <field name="relation" options="{'no_open':True,'no_create_edit':True,'no_create':True}" />
+                <field name="registrant1" string="Registrant"/>
+                <field name="registrant2" string="Is Related to"/>
+                <field name="relation"/>
                 <field name="disabled" />
                 <field name="disabled_by" widget="many2one_avatar_user" />
                 <field name="start_date" />
@@ -63,7 +63,7 @@
                         </button>
                     </div>
                     <div class="oe_title mb24">
-                        <label for="registrant1" string="Registrant 1: " />
+                        <label for="registrant1" string="Registrant: " />
                         <h1>
                             <field
                                 id="registrant1"
@@ -73,7 +73,7 @@
                                 options="{'no_open':True,'no_create_edit':True,'no_create':True}"
                             />
                         </h1>
-                        <label for="registrant2" string="Registrant 2: " />
+                        <label for="registrant2" string="Is Related to: " />
                         <h1>
                             <field
                                 id="registrant2"

@@ -169,7 +169,65 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Group">
+                        <page string="Relationships">
+                            <group colspan="4" col="4" string="Registrant is related to:">
+                                <field
+                                    name="related_1_ids"
+                                    attrs="{'readonly':[('disabled','!=',False)]}"
+                                    nolabel="1"
+                                >
+                                    <tree string="Relationships 1" editable="top" decoration-danger="disabled != False">
+                                        <field
+                                            name="registrant1"
+                                            domain="[('is_registrant','=',True),('id','!=',active_id)]"
+                                            options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"
+                                            string="Registrant"
+                                        />
+                                        <field
+                                            name="relation"
+                                            options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"
+                                            string="Relation"
+                                        />
+                                        <field name="start_date" />
+                                        <field name="end_date" />
+                                        <field name="disabled" />
+                                        <field
+                                            name="disabled_by"
+                                            readonly="1"
+                                        />
+                                    </tree>
+                                </field>
+                            </group>
+                            <group colspan="4" col="4" string="Others Related to this Registrant:">
+                                <field
+                                    name="related_2_ids"
+                                    attrs="{'readonly':[('disabled','!=',False)]}"
+                                    nolabel="1"
+                                >
+                                    <tree string="Relationships 2" editable="top" decoration-danger="disabled != False">
+                                        <field
+                                            name="registrant2"
+                                            domain="[('is_registrant','=',True),('id','!=',active_id)]"
+                                            options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"
+                                            string="Registrant"
+                                        />
+                                        <field
+                                            name="relation"
+                                            options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"
+                                            string="Relation"
+                                        />
+                                        <field name="start_date" />
+                                        <field name="end_date" />
+                                        <field name="disabled" readonly="1"/>
+                                        <field
+                                            name="disabled_by"
+                                            readonly="1"
+                                        />
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Group Members">
                             <group col="4" colspan="4">
                                 <field
                                     name="kind"
@@ -187,7 +245,7 @@
                                     <tree string="Members" editable="top">
                                         <field
                                             name="individual"
-                                            domain="[('is_registrant','=',True),('is_company','=',False)]"
+                                            domain="[('is_registrant','=',True),('is_group','=',False)]"
                                             options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"
                                             string="Member Name"
                                         />
