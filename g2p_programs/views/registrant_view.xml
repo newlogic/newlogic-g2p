@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
    Copyright 2022 Newlogic
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,12 +15,12 @@
     <record id="view_registrant_ext_tree" model="ir.ui.view">
         <field name="name">view_registrant_ext_tree</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="g2p_registrant.view_individuals_list_tree"/>
+        <field name="inherit_id" ref="g2p_registrant.view_individuals_list_tree" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='category_id']" position="after">
-                <field name="program_membership_ids"/>
-                <field name="cycle_ids"/>
-                <field name="voucher_ids"/>
+                <field name="program_membership_ids" />
+                <field name="cycle_ids" />
+                <field name="voucher_ids" />
             </xpath>
         </field>
     </record>
@@ -28,21 +28,21 @@
     <record id="view_registrant_ext_form" model="ir.ui.view">
         <field name="name">view_registrant_ext_form</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="g2p_registrant.view_individuals_form"/>
+        <field name="inherit_id" ref="g2p_registrant.view_individuals_form" />
         <field name="arch" type="xml">
             <xpath expr="//notebook[@name='individual_detail']" position="inside">
                 <page string="Program Membership">
-                    <field name="program_membership_ids"/>
+                    <field name="program_membership_ids" />
                 </page>
                 <page string="Cycle">
-                    <field name="cycle_ids"/>
+                    <field name="cycle_ids" />
                 </page>
                 <page string="Voucher">
-                    <field name="voucher_ids"/>
+                    <field name="voucher_ids" />
                 </page>
             </xpath>
         </field>
     </record>
-    
+
 
 </odoo>

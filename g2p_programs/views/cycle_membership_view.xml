@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
    Copyright 2022 Newlogic
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,8 +18,8 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Cycle Membership">
-                <field name="partner_id"/>
-                <field name="cycle_id"/>
+                <field name="partner_id" />
+                <field name="cycle_id" />
                 <field
                     name="status"
                     decoration-primary="status=='draft'"
@@ -73,19 +73,23 @@
                         attrs="{'invisible': [('status', '!=', 'exited')]}"
                     />
                     <div class="oe_title mb24">
-                        <label for="partner_id" string="Registrant:"/>
+                        <label for="partner_id" string="Registrant:" />
                         <h1>
-                            <field id="partner_id" name="partner_id" placeholder="Enter the registrant name..."/>
+                            <field
+                                id="partner_id"
+                                name="partner_id"
+                                placeholder="Enter the registrant name..."
+                            />
                         </h1>
-                        <label for="cycle_id" string="Cycle:"/>
+                        <label for="cycle_id" string="Cycle:" />
                         <h2>
-                            <field name="cycle_id" placeholder="cycle..."/>
+                            <field name="cycle_id" placeholder="cycle..." />
                         </h2>
                     </div>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -108,24 +112,26 @@
     </record>
 
     <record id="action_cycle_membership_tree_view" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
+        <field name="sequence" eval="1" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_cycle_membership_tree"/>
-        <field name="act_window_id" ref="action_cycle_membership"/>
+        <field name="view_id" ref="view_cycle_membership_tree" />
+        <field name="act_window_id" ref="action_cycle_membership" />
     </record>
 
     <record id="action_cycle_membership_form_view" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
+        <field name="sequence" eval="1" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_cycle_membership_form"/>
-        <field name="act_window_id" ref="action_cycle_membership"/>
+        <field name="view_id" ref="view_cycle_membership_form" />
+        <field name="act_window_id" ref="action_cycle_membership" />
     </record>
 
-    <menuitem id="menu_cycle_membership"
+    <menuitem
+        id="menu_cycle_membership"
         name="Cycle Membership"
         action="action_cycle_membership"
         parent="g2p_registrant.g2p_program_menu_root"
-        sequence="40" 
-        groups="g2p_registrant.group_g2p_admin"/>
+        sequence="40"
+        groups="g2p_registrant.group_g2p_admin"
+    />
 
 </odoo>

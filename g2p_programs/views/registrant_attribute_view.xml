@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
    Copyright 2022 Newlogic
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,15 +15,15 @@
     <record id="view_reg_attribute_ext_form" model="ir.ui.view">
         <field name="name">view_reg_attribute_ext_form</field>
         <field name="model">g2p.reg.attribute</field>
-        <field name="inherit_id" ref="g2p_registrant.view_reg_attribute_form"/>
+        <field name="inherit_id" ref="g2p_registrant.view_reg_attribute_form" />
         <field name="arch" type="xml">
             <xpath expr="//group[@name='grp_attribute_val']" position="before">
                 <group>
-                    <field name="program_ids" widget="many2many_tags"/>
+                    <field name="program_ids" widget="many2many_tags" />
                 </group>
             </xpath>
         </field>
     </record>
-    
+
 
 </odoo>

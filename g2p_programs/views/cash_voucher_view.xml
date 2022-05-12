@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
    Copyright 2022 Newlogic
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,10 +18,10 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Cash Voucher">
-                <field name="voucher_id"/>
-                <field name="initial_amount"/>
-                <field name="balance"/>
-                <field name="currency_id"/>
+                <field name="voucher_id" />
+                <field name="initial_amount" />
+                <field name="balance" />
+                <field name="currency_id" />
             </tree>
         </field>
     </record>
@@ -33,17 +33,17 @@
         <field name="arch" type="xml">
             <form string="Cash Voucher">
                 <sheet>
-                    <div class="oe_button_box" name="button_box"/>
+                    <div class="oe_button_box" name="button_box" />
                     <div class="oe_title mb24">
-                        <label for="voucher_id" string="Voucher:"/>
+                        <label for="voucher_id" string="Voucher:" />
                         <h1>
-                            <field id="voucher_id" name="voucher_id" placeholder="Enter the voucher..."/>
+                            <field id="voucher_id" name="voucher_id" placeholder="Enter the voucher..." />
                         </h1>
                     </div>
                     <group>
                         <group>
-                            <field name="initial_amount"/>
-                            <field name="balance"/>
+                            <field name="initial_amount" />
+                            <field name="balance" />
                         </group>
                         <group>
                         </group>
@@ -70,24 +70,26 @@
     </record>
 
     <record id="action_cash_voucher_list_tree_view" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
+        <field name="sequence" eval="1" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_cash_voucher_list_tree"/>
-        <field name="act_window_id" ref="action_cash_voucher_list"/>
+        <field name="view_id" ref="view_cash_voucher_list_tree" />
+        <field name="act_window_id" ref="action_cash_voucher_list" />
     </record>
 
     <record id="action_cash_voucher_list_form_view" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
+        <field name="sequence" eval="1" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_cash_voucher_list_form"/>
-        <field name="act_window_id" ref="action_cash_voucher_list"/>
+        <field name="view_id" ref="view_cash_voucher_list_form" />
+        <field name="act_window_id" ref="action_cash_voucher_list" />
     </record>
 
-    <menuitem id="menu_cash_voucher_list"
+    <menuitem
+        id="menu_cash_voucher_list"
         name="Cash Voucher"
         action="action_cash_voucher_list"
         parent="g2p_registrant.g2p_program_menu_root"
-        sequence="60" 
-        groups="g2p_registrant.group_g2p_admin"/>
+        sequence="60"
+        groups="g2p_registrant.group_g2p_admin"
+    />
 
 </odoo>

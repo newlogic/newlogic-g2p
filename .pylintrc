@@ -19,7 +19,7 @@ disable=all
 # green travis to see optional checks that failed.
 # .pylintrc-mandatory containing only mandatory checks is used the pre-commit
 # config as a blocking check.
-
+# redundant-modulename-xml,
 enable=anomalous-backslash-in-string,
     api-one-deprecated,
     api-one-multi-together,
@@ -51,7 +51,7 @@ enable=anomalous-backslash-in-string,
     pointless-string-statement,
     print-used,
     redundant-keyword-arg,
-    redundant-modulename-xml,
+
     reimported,
     relative-import,
     return-in-init,

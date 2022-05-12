@@ -10,8 +10,6 @@ Format in CHANGELOG.md
 - [ADD] extension for Registrant UI
 - [ADD] extension for Registrant attribute UI
 
-
-
 ## Version[0.03] - 2022-05-11
 
 - [ADD] Modified and implemented initial models: voucher, cash_voucher
