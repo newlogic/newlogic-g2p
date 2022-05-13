@@ -40,6 +40,7 @@
         "views/relationships_view.xml",
         "views/reg_id_view.xml",
         "views/id_types_view.xml",
+        "views/phone_number_view.xml",
     ],
     "assets": {},
     "demo": [],

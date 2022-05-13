@@ -51,8 +51,8 @@
                         </div>
                     </div>
                     <group colspan="4" col="4">
-                        <field name="kind" />
-                        <field name="visible" />
+                        <field name="kind" attrs="{'readonly':[('total_values','&gt;',0)]}" />
+                        <field name="visible" attrs="{'readonly':[('total_values','&gt;',0)]}" />
                     </group>
                     <group string="Attribute Values" name="grp_attribute_val">
                         <field name="value_ids" nolabel="1">
@@ -75,6 +75,7 @@
                             </tree>
                         </field>
                     </group>
+                    <field name="total_values" invisible="1" />
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" />
@@ -153,31 +154,12 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box" />
                     <div class="oe_title mb24">
-                        <label
-                            for="attribute_id"
-                            string="Attribute:"
-                            invisible="context.get('reg_form',True)"
-                        />
-                        <h1 invisible="context.get('reg_form',True)">
-                            <field
-                                id="attribute_id"
-                                name="attribute_id"
-                                placeholder="Select an attribute..."
-                                invisible="context.get('reg_form',True)"
-                                options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"
-                            />
-                        </h1>
-                        <label
-                            for="partner_id"
-                            string="Registrant:"
-                            invisible="context.get('reg_form',False)"
-                        />
-                        <h1 invisible="context.get('reg_form',False)">
+                        <label for="partner_id" string="Registrant:" />
+                        <h1>
                             <field
                                 id="partner_id"
                                 name="partner_id"
                                 placeholder="Select a registrant..."
-                                invisible="context.get('reg_form',False)"
                                 options="{'no_open':True, 'no_quick_create':True, 'no_create':True}"
                             />
                         </h1>
@@ -207,6 +189,7 @@
                         <field name="kind" readonly="1" />
                         <field name="visible" readonly="1" />
                     </group>
+                    <field name="attribute_id" invisible="1" />
                     <field name="name" invisible="1" />
                 </sheet>
             </form>
