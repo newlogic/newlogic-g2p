@@ -51,8 +51,8 @@
                         </div>
                     </div>
                     <group colspan="4" col="4">
-                        <field name="kind" attrs="{'readonly':[('total_values','&gt;',0)]}"/>
-                        <field name="visible" attrs="{'readonly':[('total_values','&gt;',0)]}"/>
+                        <field name="kind" attrs="{'readonly':[('total_values','&gt;',0)]}" />
+                        <field name="visible" attrs="{'readonly':[('total_values','&gt;',0)]}" />
                     </group>
                     <group string="Attribute Values">
                         <field name="value_ids" nolabel="1">
@@ -75,7 +75,7 @@
                             </tree>
                         </field>
                     </group>
-                    <field name="total_values" invisible="1"/>
+                    <field name="total_values" invisible="1" />
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" />
@@ -154,10 +154,7 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box" />
                     <div class="oe_title mb24">
-                        <label
-                            for="partner_id"
-                            string="Registrant:"
-                        />
+                        <label for="partner_id" string="Registrant:" />
                         <h1>
                             <field
                                 id="partner_id"

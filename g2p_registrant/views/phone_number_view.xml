@@ -18,9 +18,9 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Registrant's Phone Numbers" decoration-danger="disabled != False">
-                <field name="partner_id"/>
-                <field name="phone_no"/>
-                <field name="date_collected"/>
+                <field name="partner_id" />
+                <field name="phone_no" />
+                <field name="date_collected" />
                 <field name="disabled" />
                 <field name="disabled_by" widget="many2one_avatar_user" />
             </tree>
@@ -61,7 +61,11 @@
                         </button>
                     </div>
                     <div class="oe_title mb24">
-                        <label for="partner_id" string="Registrant: " invisible="context.get('reg_form',False)"/>
+                        <label
+                            for="partner_id"
+                            string="Registrant: "
+                            invisible="context.get('reg_form',False)"
+                        />
                         <h1 invisible="context.get('reg_form',False)">
                             <field
                                 id="partner_id"
@@ -76,7 +80,11 @@
                         </div>
                     </div>
                     <group colspan="4" col="4">
-                        <field name="phone_no" widget="phone" attrs="{'readonly':[('disabled','!=',False)]}" />
+                        <field
+                            name="phone_no"
+                            widget="phone"
+                            attrs="{'readonly':[('disabled','!=',False)]}"
+                        />
                         <field name="date_collected" attrs="{'readonly':[('disabled','!=',False)]}" />
                     </group>
                     <group string="Disable Info" colspan="4" col="4">
@@ -99,13 +107,9 @@
         <field name="arch" type="xml">
             <search string="Search Phone Number">
                 <field name="phone_no" />
-                <field name="partner_id"/>
+                <field name="partner_id" />
                 <group expand="0" string="Group By">
-                    <filter
-                        string="Registrant"
-                        name="grp_partner_id"
-                        context="{'group_by': 'partner_id'}"
-                    />
+                    <filter string="Registrant" name="grp_partner_id" context="{'group_by': 'partner_id'}" />
                 </group>
             </search>
         </field>

@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 
 
 class G2PRegistrant(models.Model):
@@ -39,16 +39,29 @@ class G2PRegistrant(models.Model):
 
     name = fields.Char(index=True, translate=True)
 
-    related_1_ids = fields.One2many('g2p.reg.rel','registrant2','Related to registrant 1')
-    related_2_ids = fields.One2many('g2p.reg.rel','registrant1','Related to registrant 2')
+    related_1_ids = fields.One2many(
+        "g2p.reg.rel", "registrant2", "Related to registrant 1"
+    )
+    related_2_ids = fields.One2many(
+        "g2p.reg.rel", "registrant1", "Related to registrant 2"
+    )
 
-    phone_number_ids = fields.One2many('g2p.phone.number','partner_id','Phone Numbers')
+    phone_number_ids = fields.One2many(
+        "g2p.phone.number", "partner_id", "Phone Numbers"
+    )
 
     @api.onchange("phone_number_ids")
     def phone_number_ids_change(self):
-        phone = ''
+        phone = ""
         if self.phone_number_ids:
-            phone = ','.join([p for p in self.phone_number_ids.filtered(lambda rec: not rec.disabled).mapped('phone_no')])
+            phone = ",".join(
+                [
+                    p
+                    for p in self.phone_number_ids.filtered(
+                        lambda rec: not rec.disabled
+                    ).mapped("phone_no")
+                ]
+            )
         self.phone = phone
 
     def enable_registrant(self):

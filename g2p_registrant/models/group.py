@@ -25,4 +25,6 @@ class G2PGroup(models.Model):
 
     kind = fields.Many2one("g2p.group.kind", "Kind", tracking=True)
     # kind = fields.Selection([],'Kind')
-    group_membership_ids = fields.One2many("g2p.group.membership", "group", "Group Members")
+    group_membership_ids = fields.One2many(
+        "g2p.group.membership", "group", "Group Members"
+    )

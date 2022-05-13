@@ -17,8 +17,9 @@
 # limitations under the License.
 #
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+
 
 class G2PRegistrantRelationship(models.Model):
     _name = "g2p.reg.rel"
@@ -46,11 +47,13 @@ class G2PRegistrantRelationship(models.Model):
     start_date = fields.Datetime("Start Date", tracking=True)
     end_date = fields.Datetime("End Date", tracking=True)
 
-    @api.constrains('registrant1','registrant2')
+    @api.constrains("registrant1", "registrant2")
     def _check_registrants(self):
         for rec in self:
             if rec.registrant1 == rec.registrant2:
-                raise ValidationError("Registrant 1 and Registrant 2 cannot be the same.")
+                raise ValidationError(
+                    "Registrant 1 and Registrant 2 cannot be the same."
+                )
 
     def name_get(self):
         res = super(G2PRegistrantRelationship, self).name_get()

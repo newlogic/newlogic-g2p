@@ -16,7 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from odoo import api, fields, models
+from odoo import fields, models
+
 
 class G2PPhoneNumber(models.Model):
     _name = "g2p.phone.number"
@@ -24,9 +25,14 @@ class G2PPhoneNumber(models.Model):
     _order = "id desc"
     _rec_name = "phone_no"
 
-    partner_id = fields.Many2one('res.partner','Registrant',required=True,domain=[('is_registrant','=',True)])
+    partner_id = fields.Many2one(
+        "res.partner",
+        "Registrant",
+        required=True,
+        domain=[("is_registrant", "=", True)],
+    )
     phone_no = fields.Char("Phone Number", required=True)
-    date_collected = fields.Date("Date Collected",default=fields.Date.today)
+    date_collected = fields.Date("Date Collected", default=fields.Date.today)
     disabled = fields.Datetime("Date Disabled")
     disabled_by = fields.Many2one("res.users", "Disabled by")
 

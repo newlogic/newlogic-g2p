@@ -18,16 +18,16 @@
         <field name="priority">100</field>
         <field name="arch" type="xml">
             <tree string="Individual Registrants" decoration-danger="disabled != False">
-                <field name="name"/>
-                <field name="address"/>
-                <field name="phone"/>
+                <field name="name" />
+                <field name="address" />
+                <field name="phone" />
                 <field
                     name="category_id"
                     widget="many2many_tags"
                     options="{'color_field': 'color', 'no_create_edit': True}"
                     string="Tags"
                 />
-                <field name="registration_date"/>
+                <field name="registration_date" />
                 <field name="disabled" invisible="1" />
                 <field name="company_id" groups="base.group_multi_company" />
             </tree>
@@ -162,12 +162,17 @@
                                     </div>
                                 </group>
                                 <group colspan="2">
-                                    <field name="phone_number_ids" attrs="{'readonly':[('disabled','!=',False)]}"
-                                        context="{'reg_form':True}" nolabel="1" colspan="2">
+                                    <field
+                                        name="phone_number_ids"
+                                        attrs="{'readonly':[('disabled','!=',False)]}"
+                                        context="{'reg_form':True}"
+                                        nolabel="1"
+                                        colspan="2"
+                                    >
                                         <tree string="Phone Numbers" decoration-danger="disabled != False">
-                                            <field name="phone_no" string="Phone Numbers"/>
-                                            <field name="date_collected"/>
-                                            <field name="disabled" invisible="1"/>
+                                            <field name="phone_no" string="Phone Numbers" />
+                                            <field name="date_collected" />
+                                            <field name="disabled" invisible="1" />
                                         </tree>
                                     </field>
                                     <field
@@ -209,7 +214,11 @@
                                     attrs="{'readonly':[('disabled','!=',False)]}"
                                     nolabel="1"
                                 >
-                                    <tree string="Relationships 1" editable="top" decoration-danger="disabled != False">
+                                    <tree
+                                        string="Relationships 1"
+                                        editable="top"
+                                        decoration-danger="disabled != False"
+                                    >
                                         <field
                                             name="registrant1"
                                             domain="[('is_registrant','=',True),('id','!=',active_id)]"
@@ -224,10 +233,7 @@
                                         <field name="start_date" />
                                         <field name="end_date" />
                                         <field name="disabled" />
-                                        <field
-                                            name="disabled_by"
-                                            readonly="1"
-                                        />
+                                        <field name="disabled_by" readonly="1" />
                                     </tree>
                                 </field>
                             </group>
@@ -237,7 +243,11 @@
                                     attrs="{'readonly':[('disabled','!=',False)]}"
                                     nolabel="1"
                                 >
-                                    <tree string="Relationships 2" editable="top" decoration-danger="disabled != False">
+                                    <tree
+                                        string="Relationships 2"
+                                        editable="top"
+                                        decoration-danger="disabled != False"
+                                    >
                                         <field
                                             name="registrant2"
                                             domain="[('is_registrant','=',True),('id','!=',active_id)]"
@@ -251,11 +261,8 @@
                                         />
                                         <field name="start_date" />
                                         <field name="end_date" />
-                                        <field name="disabled" readonly="1"/>
-                                        <field
-                                            name="disabled_by"
-                                            readonly="1"
-                                        />
+                                        <field name="disabled" readonly="1" />
+                                        <field name="disabled_by" readonly="1" />
                                     </tree>
                                 </field>
                             </group>
@@ -303,7 +310,7 @@
                                 nolabel="1"
                             >
                                 <tree string="Additional Fields">
-                                    <field name="attribute_id"/>
+                                    <field name="attribute_id" />
                                     <field name="name" />
                                     <field name="value_int" string="Integer" invisible="1" />
                                     <field name="value_char" string="Char" invisible="1" />
@@ -318,10 +325,7 @@
                                     <sheet>
                                         <div class="oe_button_box" name="button_box" />
                                         <div class="oe_title mb24">
-                                            <label
-                                                for="attribute_id"
-                                                string="Attribute:"
-                                            />
+                                            <label for="attribute_id" string="Attribute:" />
                                             <h1>
                                                 <field
                                                     id="attribute_id"
@@ -358,7 +362,7 @@
                                             <field name="visible" readonly="1" />
                                         </group>
                                         <field name="name" invisible="1" />
-                                        <field name="partner_id" invisible="1"/>
+                                        <field name="partner_id" invisible="1" />
                                     </sheet>
                                 </form>
                             </field>
@@ -382,7 +386,7 @@
                     <field name="parent_id" invisible="1" />
                     <field name="is_group" invisible="1" />
                     <field name="name" invisible="1" class="oe_edit_only" />
-                    <field name="phone" invisible="1"/>
+                    <field name="phone" invisible="1" />
                     <field name="active_lang_count" invisible="1" />
                     <field name="user_ids" invisible="1" />
                 </sheet>

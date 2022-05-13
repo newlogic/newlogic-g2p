@@ -18,9 +18,9 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Registrant's Relationships" decoration-danger="disabled != False">
-                <field name="registrant1" string="Registrant"/>
-                <field name="registrant2" string="Is Related to"/>
-                <field name="relation"/>
+                <field name="registrant1" string="Registrant" />
+                <field name="registrant2" string="Is Related to" />
+                <field name="relation" />
                 <field name="disabled" />
                 <field name="disabled_by" widget="many2one_avatar_user" />
                 <field name="start_date" />

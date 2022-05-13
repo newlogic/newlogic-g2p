@@ -56,7 +56,7 @@ class G2PRegistrantAttribute(models.Model):
         required=True,
         tracking=True,
     )
-    total_values = fields.Integer('Total Values',compute='_count_total_values')
+    total_values = fields.Integer("Total Values", compute="_count_total_values")
 
     @api.depends("value_ids")
     def _count_total_values(self):

@@ -1,13 +1,15 @@
 Format in CHANGELOG.md
 
 ## Version[0.10] - 2022-05-13
-- [ADD] Support Phone numbers, date of collection, and other fixes 
+
+- [ADD] Support Phone numbers, date of collection, and other fixes
 
 ## Version[0.10] - 2022-05-12
 
 - [UPD] Added "group_membership_ids" o2m field in individual to g2p.group.membership
 - [UPD] Added "group_membership_ids" tree view in individual_view.xml
-- [ADD] name atttribute in xml. individuals_view - notebooks(individual_detail) registrant_attribute_view - group(grp_attribute_val)
+- [ADD] name atttribute in xml. individuals_view - notebooks(individual_detail) registrant_attribute_view -
+  group(grp_attribute_val)
 
 ## Version[0.09] - 2022-05-11
 
