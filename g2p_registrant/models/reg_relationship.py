@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -52,7 +52,7 @@ class G2PRegistrantRelationship(models.Model):
         for rec in self:
             if rec.registrant1 == rec.registrant2:
                 raise ValidationError(
-                    "Registrant 1 and Registrant 2 cannot be the same."
+                    _("Registrant 1 and Registrant 2 cannot be the same.")
                 )
 
     def name_get(self):
