@@ -52,7 +52,7 @@ class ODKClient:
 
     def get_responses(self, skip=0, top=100):
         url = f"{self.url}/Submissions"
-        params = {"$top": top, "$skip": skip, "$count": "true"}
+        params = {"$top": top, "$skip": skip, "$count": "true", "$expand": "*"}
 
         response = requests.get(
             url, headers=self.get_header_token(), params=params, verify=SSL_VERIFY
