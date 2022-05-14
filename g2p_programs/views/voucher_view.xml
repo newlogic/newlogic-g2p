@@ -107,7 +107,7 @@
         id="menu_voucher"
         name="Voucher"
         action="action_voucher"
-        parent="g2p_registrant.g2p_program_menu_root"
+        parent="g2p_program_voucher_root"
         sequence="50"
         groups="g2p_registrant.group_g2p_admin"
     />

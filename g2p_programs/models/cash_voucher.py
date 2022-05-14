@@ -43,6 +43,15 @@ class G2PCashVoucher(models.Model):
         )
     ]
 
+    def name_get(self):
+        res = super(G2PCashVoucher, self).name_get()
+        for rec in self:
+            name = ""
+            if rec.voucher_id:
+                name += rec.voucher_id.name + "[" + str(rec.initial_amount) + "]"
+            res.append((rec.id, name))
+        return res
+
     def _compute_name(self):
         for record in self:
             record.name = _("Cash voucher #%s", record.id)

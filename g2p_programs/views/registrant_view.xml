@@ -12,6 +12,7 @@
    limitations under the License.
 -->
 <odoo>
+    <!-- individuals view-->
     <record id="view_registrant_ext_tree" model="ir.ui.view">
         <field name="name">view_registrant_ext_tree</field>
         <field name="model">res.partner</field>
@@ -30,19 +31,52 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="g2p_registrant.view_individuals_form" />
         <field name="arch" type="xml">
-            <xpath expr="//notebook[@name='individual_detail']" position="inside">
+            <xpath expr="//page[@name='other']" position="before">
                 <page string="Program Membership">
-                    <field name="program_membership_ids" />
+                    <field name="program_membership_ids" readonly="1" />
                 </page>
                 <page string="Cycle">
-                    <field name="cycle_ids" />
+                    <field name="cycle_ids" readonly="1" />
                 </page>
                 <page string="Voucher">
-                    <field name="voucher_ids" />
+                    <field name="voucher_ids" readonly="1" />
                 </page>
             </xpath>
         </field>
     </record>
 
+    <!-- groups view-->
+
+    <record id="view_group_ext_tree" model="ir.ui.view">
+        <field name="name">view_group_ext_tree</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="g2p_registrant.view_groups_list_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="program_membership_ids" />
+                <field name="cycle_ids" />
+                <field name="voucher_ids" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_group_ext_form" model="ir.ui.view">
+        <field name="name">view_group_ext_form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="g2p_registrant.view_groups_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='other']" position="before">
+                <page string="Program Membership">
+                    <field name="program_membership_ids" readonly="1" />
+                </page>
+                <page string="Cycle">
+                    <field name="cycle_ids" readonly="1" />
+                </page>
+                <page string="Voucher">
+                    <field name="voucher_ids" readonly="1" />
+                </page>
+            </xpath>
+        </field>
+    </record>
 
 </odoo>
