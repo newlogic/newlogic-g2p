@@ -58,13 +58,14 @@ class G2PVoucher(models.Model):
     state = fields.Selection(
         [
             ("draft", "Draft"),
-            ("created", "Created"),
+            # ("created", "Created"), #  Not sure if we need created
             ("approved", "Approved"),
             ("trans2FSP", "Transferred to FSP"),
             ("rdpd2ben", "Redeemed/Paid to Beneficiary"),
             ("rejected1", "Rejected: Beneficiary didn't want the voucher"),
             ("rejected2", "Rejected: Beneficiary account does not exist"),
             ("rejected3", "Rejected: Other reason"),
+            ("expired", "Expired"),
         ],
         "Status",
         default="draft",
@@ -82,9 +83,9 @@ class G2PVoucher(models.Model):
     @api.autovacuum
     def _gc_mark_expired_voucher(self):
         self.env["g2p.voucher"].search(
-            ["&", ("state", "=", "valid"), ("expired_date", "<", fields.Date.today())]
+            ["&", ("state", "=", "approved"), ("valid_until", "<", fields.Date.today())]
         ).write({"state": "expired"})
 
     def can_be_used(self):
         # expired state are computed once a day, so can be not synchro
-        return self.state == "valid" and self.expired_date >= fields.Date.today()
+        return self.state == "approved" and self.valid_until >= fields.Date.today()

@@ -24,7 +24,7 @@
     "author": "Newlogic",
     "website": "https://newlogic.com/",
     "license": "Other OSI approved licence",
-    "depends": ["base", "mail", "g2p_registrant"],
+    "depends": ["base", "mail", "queue_job", "g2p_registrant"],
     "data": [
         "security/ir.model.access.csv",
         "views/main_view.xml",

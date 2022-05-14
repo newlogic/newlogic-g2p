@@ -20,7 +20,7 @@ from odoo import fields, models
 
 
 class G2PCycle(models.Model):
-    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _inherit = ["mail.thread", "mail.activity.mixin", "g2p.job.mixin"]
     _name = "g2p.cycle"
     _description = "Cycle"
     _order = "id desc"
@@ -34,7 +34,11 @@ class G2PCycle(models.Model):
     sequence = fields.Integer(required=True, tracking=True, editable=False)
     start_date = fields.Date(required=True, tracking=True)
     end_date = fields.Date(required=True, tracking=True)
-    status = fields.Selection([("draft", "Draft"), ("active", "Active"), ("ended", "Ended")], default="draft", tracking=True)
+    status = fields.Selection(
+        [("draft", "Draft"), ("active", "Active"), ("ended", "Ended")],
+        default="draft",
+        tracking=True,
+    )
 
     cycle_membership_ids = fields.One2many(
         "g2p.cycle.membership", "cycle_id", "Cycle Memberships"
