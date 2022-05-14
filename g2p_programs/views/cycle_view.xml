@@ -100,7 +100,7 @@
         id="menu_cycle"
         name="Cycle"
         action="action_cycle"
-        parent="g2p_registrant.g2p_program_menu_root"
+        parent="g2p_program_cycle_root"
         sequence="30"
         groups="g2p_registrant.group_g2p_admin"
     />

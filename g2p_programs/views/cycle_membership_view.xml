@@ -129,7 +129,7 @@
         id="menu_cycle_membership"
         name="Cycle Membership"
         action="action_cycle_membership"
-        parent="g2p_registrant.g2p_program_menu_root"
+        parent="g2p_program_cycle_root"
         sequence="40"
         groups="g2p_registrant.group_g2p_admin"
     />

@@ -41,3 +41,14 @@ class G2PCycleMembership(models.Model):
         default="draft",
         copy=False,
     )
+
+    def name_get(self):
+        res = super(G2PCycleMembership, self).name_get()
+        for rec in self:
+            name = ""
+            if rec.cycle_id:
+                name += "[" + rec.cycle_id.name + "] "
+            if rec.partner_id:
+                name += rec.partner_id.name
+            res.append((rec.id, name))
+        return res
