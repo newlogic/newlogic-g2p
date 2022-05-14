@@ -36,10 +36,17 @@ class G2PProgram(models.Model):
 
     # delivery_mechanism = fields.Selection([("mobile", "Mobile"), ("bank_account", "Bank Account"),
     # ("id", "ID Document"), ("biometric", "Biometrics")], default='id')
-    enrollment_criteria = fields.Selection([])
-    entitlement_calculation = fields.Selection([])
-    cycle_creator = fields.Selection([])
-    end_of_program = fields.Selection([])  # Hook for end of program
+
+    # Pre-cycle steps
+    enrollment_manager = fields.Selection([])
+    notification_manager = fields.Selection([])
+
+    # Cycle steps
+    cycle_manager = fields.Selection([])
+    entitlement_manager = fields.Selection([])
+
+    reconciliation_manager = fields.Selection([])
+    reconciliation_manager = fields.Selection([])
 
     number_of_cycles = fields.Integer(default=1)
 
