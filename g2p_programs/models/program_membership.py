@@ -40,7 +40,20 @@ class G2PProgramMembership(models.Model):
         ],
         default="draft",
         copy=False,
+        tracking=True,
     )
+
+    enrollment_date = fields.Date("Enrollment Date", tracking=True)
+    exit_date = fields.Date("Exit Date", tracking=True)
+
+    # TODO: Implement exit reasons
+    # exit_reason_id = fields.Many2one("Exit Reason", tracking=True) Default: Completed, Opt-Out, Other
+
+    # TODO: Add a field delivery_mechanism_id
+    # delivery_mechanism_id = fields.Many2one("Delivery mechanism type", help="Delivery mechanism")
+
+    # the phone number, bank account, etc.
+    delivery_mechanism_value = fields.Char("Delivery Mechanism Value", tracking=True)
 
     def name_get(self):
         res = super(G2PProgramMembership, self).name_get()

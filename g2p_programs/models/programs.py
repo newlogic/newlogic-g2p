@@ -34,7 +34,9 @@ class G2PProgram(models.Model):
         selection=[("group", "Group"), ("individual", "Individual")], default="group"
     )
 
-    enrollement_criterias = fields.Selection([])
+    # delivery_mechanism = fields.Selection([("mobile", "Mobile"), ("bank_account", "Bank Account"),
+    # ("id", "ID Document"), ("biometric", "Biometrics")], default='id')
+    enrollment_criteria = fields.Selection([])
     entitlement_calculation = fields.Selection([])
     cycle_creator = fields.Selection([])
     end_of_program = fields.Selection([])  # Hook for end of program
