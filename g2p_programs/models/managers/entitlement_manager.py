@@ -66,4 +66,5 @@ class SimpleCashEntitlement(models.Model):
 
     def validate_vouchers(self, cycle, cycle_memberships):
         # TODO: Change the status of the vouchers to `validated` for this members.
+        # move the funds from the program's wallet to the wallet of each Beneficiary that are validated
         pass

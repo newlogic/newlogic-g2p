@@ -44,3 +44,26 @@ class G2PCycle(models.Model):
         "g2p.cycle.membership", "cycle_id", "Cycle Memberships"
     )
     voucher_ids = fields.One2many("g2p.voucher", "cycle_id", "Vouchers")
+
+    # TODO: Implement the method that will call the different managers
+
+    def verify_eligibility(self):
+        # 1. Verify the eligibility of the beneficiaries using eligibility_manager.validate_cycle_eligibility()
+        pass
+
+    def notify_cycle_started(self):
+        # 1. Notify the beneficiaries using notification_manager.cycle_started()
+        pass
+
+    def prepare_entitlement(self):
+        # 1. Prepare the entitlement of the beneficiaries using entitlement_manager.prepare_vouchers()
+        pass
+
+    def validate_entitlement(self):
+        # 1. Make sure the user has the right to do this
+        # 2. Validate the entitlement of the beneficiaries using entitlement_manager.validate_vouchers()
+        pass
+
+    def export_distribution_list(self):
+        # Not sure if this should be here.
+        pass

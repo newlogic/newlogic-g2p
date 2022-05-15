@@ -37,6 +37,7 @@ class G2PProgramMembership(models.Model):
             ("enrolled", "Enrolled"),
             ("paused", "Paused"),
             ("exited", "Exited"),
+            ("not_eligible", "Not Eligible"),
         ],
         default="draft",
         copy=False,
@@ -49,11 +50,28 @@ class G2PProgramMembership(models.Model):
     # TODO: Implement exit reasons
     # exit_reason_id = fields.Many2one("Exit Reason", tracking=True) Default: Completed, Opt-Out, Other
 
+    # TODO: Implement not eligible reasons
+    # Default: "Missing data", "Does not match the criterias", "Duplicate", "Other"
+    # not_eligible_reason_id = fields.Many2one("Not Eligible Reason", tracking=True)
+
     # TODO: Add a field delivery_mechanism_id
     # delivery_mechanism_id = fields.Many2one("Delivery mechanism type", help="Delivery mechanism")
-
     # the phone number, bank account, etc.
     delivery_mechanism_value = fields.Char("Delivery Mechanism Value", tracking=True)
+
+    # TODO: JJ - Add a field for the preferred notification method
+
+    deduplication_status = fields.Selection(
+        selection=[
+            ("new", "New"),
+            ("processing", "Processing"),
+            ("verified", "Verified"),
+            ("duplicate", "duplicate"),
+        ],
+        default="new",
+        copy=False,
+        tracking=True,
+    )
 
     def name_get(self):
         res = super(G2PProgramMembership, self).name_get()
