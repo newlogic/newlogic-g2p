@@ -45,6 +45,8 @@ class G2PCycle(models.Model):
     )
     voucher_ids = fields.One2many("g2p.voucher", "cycle_id", "Vouchers")
 
+    # TODO: JJ - Add a way to link reports/Dashboard about this cycle.
+
     # TODO: Implement the method that will call the different managers
 
     def verify_eligibility(self):
@@ -66,4 +68,5 @@ class G2PCycle(models.Model):
 
     def export_distribution_list(self):
         # Not sure if this should be here.
+        # It could be customizable reports based on https://github.com/OCA/reporting-engine
         pass

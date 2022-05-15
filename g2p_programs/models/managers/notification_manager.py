@@ -33,13 +33,13 @@ class BaseNotification(models.AbstractModel):
     on_cycle_started = fields.Boolean(string="On Cycle Started", default=True)
     on_cycle_ended = fields.Boolean(string="On Cycle Ended", default=True)
 
-    def enrolled_in_program(self, program_memberships):
+    def on_enrolled_in_program(self, program_memberships):
         return
 
-    def cycle_started(self, program_memberships, cycle):
+    def on_cycle_started(self, program_memberships, cycle):
         return
 
-    def cycle_ended(self, program_memberships, cycle):
+    def on_cycle_ended(self, program_memberships, cycle):
         return
 
 
@@ -58,11 +58,11 @@ class SMSNotification(models.Model):
     )
 
     # TODO: render the templates and send the sms using a job
-    def enrolled_in_program(self, program_memberships):
+    def on_enrolled_in_program(self, program_memberships):
         return
 
-    def cycle_started(self, program_memberships, cycle):
+    def on_cycle_started(self, program_memberships, cycle):
         return
 
-    def cycle_ended(self, program_memberships, cycle):
+    def on_cycle_ended(self, program_memberships, cycle):
         return

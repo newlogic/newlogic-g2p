@@ -59,6 +59,8 @@ class G2PProgram(models.Model):
     )
     cycle_ids = fields.One2many("g2p.cycle", "program_id", "Cycles")
 
+    # TODO: JJ - Add a way to link reports/Dashboard about this program.
+
     # TODO: Implement the method that will call the different managers
     def import_beneficiaries(self):
         # 1. get the beneficiaries using the eligibility_manager.import_eligible_registrants()
