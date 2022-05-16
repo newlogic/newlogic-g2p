@@ -55,3 +55,27 @@ class G2PLocation(models.Model):
                 location.complete_name = '%s / %s' % (location.parent_id.complete_name, location.name)
             else:
                 location.complete_name = location.name
+    
+    @api.model
+    def create(self, vals):
+        Location =  super(G2PLocation, self).create(vals)
+        _logger.info(
+                    "Location ID: %s"
+                    % Location.id
+                )
+        Languages = self.env["res.lang"].search([('active', "=", True)])
+        vals_list = []
+        for lang_code in Languages:
+            vals_list.append({
+                        "name": 'g2p.location,name',
+                        "lang": lang_code.code,
+                        "res_id": Location.id,
+                        "src": Location.name,
+                        "value": None,
+                        "state": 'to_translate',
+                        "type": 'model',
+                        })
+            
+        self.env["ir.translation"]._upsert_translations(vals_list)
+        return Location
+        

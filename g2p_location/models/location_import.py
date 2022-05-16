@@ -152,6 +152,8 @@ class G2PLocationImport(models.Model):
                             errctr = 0
                             remarks = ""
                             # Loop through the columns
+                            lang = {}
+                            Languages = self.env["res.lang"].search([('active', "=", True)])
                             for col in range(sheet.ncols):
 
                                 # Get the column value
@@ -173,12 +175,31 @@ class G2PLocationImport(models.Model):
                                                 str(errctr)
                                                 + ".) Name cannot be blank; "
                                             )
+                                    
+                                    for Lang in Languages:
+                                        if col_name.find(str(xcols) + "Name_" + Lang.iso_code) >= 0:
+                                            lang.update({
+                                                Lang.iso_code: {
+                                                    'name': col_value,
+                                                    'lang_id': Lang.id,
+                                                    'iso_code': Lang.iso_code
+                                                }
+                                            })
+                                            
+                                    
                                 elif col_name.find(str(xcols) + "Ref") >= 0:
                                     admin_ref = col_value
                                 elif col_name.find(str(xcols) + "AltName1") >= 0:
                                     admin_alt1 = col_value
                                 elif col_name.find(str(xcols) + "AltName2") >= 0:
                                     admin_alt2 = col_value
+                                _logger.info(
+                                            "Location Masterlist Import: LANGUAGES: %s"
+                                            % lang
+                                            )
+                            lang_ids = []
+                            for x in lang:
+                                lang_ids.append([0, 0, lang[x]])
 
                             # Store values to columns
                             columns.append(
@@ -192,6 +213,7 @@ class G2PLocationImport(models.Model):
                                     "remarks": remarks,
                                     "state": state,
                                     "row_index": row,
+                                    "lang_ids": lang_ids
                                 }
                             )
 
@@ -255,7 +277,20 @@ class G2PLocationImport(models.Model):
                             location_id = curr_location[0].update(new_vals)
                             parent_id = curr_location[0].id
                             raw.update({"state": "Updated"})
-
+                        for lang in raw.lang_ids:
+                            vals_list = []
+                            trans_name = lang.name
+                            iso_code = lang.lang_id.code
+                            vals_list.append({
+                                            "name": 'g2p.location,name',
+                                            "lang": iso_code,
+                                            "res_id": parent_id,
+                                            "src":  raw.admin_name,
+                                            "value": trans_name,
+                                            "state": 'translated',
+                                            "type": 'model',
+                                            })
+                            self.env["ir.translation"]._update_translations(vals_list)
                         rec.update({"state": "Done"})
                     else:
                         raw.update({"state": "Error"})
@@ -280,7 +315,8 @@ class G2PLocationImportActivities(models.Model):
     admin_ref = fields.Char("Admin Ref")
     level = fields.Integer("Level")
     row_index = fields.Integer("Row Index")
-
+    lang_ids = fields.One2many(
+        "g2p.location.import.lang", "raw_id", "Languages")
     remarks = fields.Text("Remarks/Errors")
     state = fields.Selection(
         [
@@ -294,3 +330,12 @@ class G2PLocationImportActivities(models.Model):
         readonly=True,
         default="New",
     )
+class G2PLocationImportRawLanguages(models.Model):
+    _name = "g2p.location.import.lang"
+    _description = "Location Import Raw Data Languages"
+
+    name = fields.Char("Translate Name")
+    raw_id = fields.Many2one("g2p.location.import.raw", "Location Raw ID")
+    lang_id = fields.Many2one("res.lang", "Languages")
+
+    iso_code = fields.Char("ISO Code")
