@@ -26,6 +26,7 @@
     "license": "Other OSI approved licence",
     "depends": ["base", "mail", "g2p_registrant"],
     "data": [
+        "security/ir.model.access.csv",
         "views/main_view.xml",
         "views/mail_message_view.xml",
     ],
