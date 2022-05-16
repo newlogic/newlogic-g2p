@@ -5,7 +5,7 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Location">
-                <field name="parent_id" />
+                <field name="parent_id"/>
                 <field name="name" />
                 <field name="code" />
                 <field name="altnames" />
@@ -40,6 +40,7 @@
                         <field name="altnames" colspan="6" />
                         <field name="code" colspan="2" />
                         <field name="level" colspan="2" />
+                        <field name="complete_name" colspan="6" invisible = "1"/>
                     </group>
                     <notebook>
                         <page string="Child">
