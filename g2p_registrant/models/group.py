@@ -27,4 +27,4 @@ class G2PGroup(models.Model):
     group_membership_ids = fields.One2many(
         "g2p.group.membership", "group", "Group Members"
     )
-    partial_group = fields.Boolean('Partial Group')
+    is_partial_group = fields.Boolean("Partial Group")
