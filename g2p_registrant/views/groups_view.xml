@@ -118,6 +118,7 @@
                         <div class="o_row" attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}">
                             <field name="lang" attrs="{'readonly':[('disabled','!=',False)]}" />
                         </div>
+                        <field name="is_partial_group" attrs="{'readonly':[('disabled','!=',False)]}" />
                     </group>
                     <notebook>
                         <page string="Contact Details">

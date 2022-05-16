@@ -40,6 +40,7 @@
                         <field name="altnames" colspan="6" />
                         <field name="code" colspan="2" />
                         <field name="level" colspan="2" />
+                        <field name="complete_name" colspan="6" invisible="1" />
                     </group>
                     <notebook>
                         <page string="Child">

@@ -1,4 +1,5 @@
 <odoo>
+    <!-- pylint:disable=redundant-modulename-xml -->
     <data noupdate="1">
         <!-- Group Membership Kinds -->
         <record id="g2p_registrant.group_kind_head_household" model="g2p.group.kind">

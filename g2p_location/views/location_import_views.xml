@@ -122,6 +122,7 @@
                             <field name="admin_ref" />
                             <field name="level" />
                             <field name="row_index" />
+                            <field name="lang_ids" widget="many2many_tags" readonly="1" />
                         </tree>
                         <form string="Raw Data" duplicate="0" create="0">
                             <header>
@@ -139,6 +140,7 @@
                                 <field name="admin_ref" readonly="1" />
                                 <field name="level" readonly="1" />
                                 <field name="row_index" readonly="1" />
+                                <field name="lang_ids" widget="many2many_tags" readonly="1" />
                                 <newline />
                                 <field name="remarks" readonly="1" colspan="4" />
                             </group>

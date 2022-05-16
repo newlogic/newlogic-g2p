@@ -29,7 +29,7 @@
     "depends": ["base", "g2p_registrant"],
     "external_dependencies": {
         "python": [
-            "xlrd ",
+            "xlrd",
         ]
     },
     "data": [
