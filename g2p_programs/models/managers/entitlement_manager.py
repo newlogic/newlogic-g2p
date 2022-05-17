@@ -43,8 +43,8 @@ class BaseEntitlementManager(models.AbstractModel):
         raise NotImplementedError()
 
 
-class SimpleCashEntitlement(models.Model):
-    _name = "g2p.program.entitlement.manager.simple"
+class DefaultCashEntitlement(models.Model):
+    _name = "g2p.program.entitlement.manager.default"
     _inherit = "g2p.program.entitlement.manager"
 
     amount_per_cycle = fields.Monetary(

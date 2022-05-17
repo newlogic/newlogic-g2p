@@ -14,21 +14,21 @@
 <odoo>
     <record id="view_eligibility_manager_simple_tree" model="ir.ui.view">
         <field name="name">view_eligibility_manager_simple_tree</field>
-        <field name="model">g2p.program_membership.manager.simple</field>
+        <field name="model">g2p.program_membership.manager.default</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Simple Eligibility Managers" sample="1">
                 <field name="name" />
                 <field name="program_id" />
                 <field name="support_individual" />
-                <field name="support_group"/>
+                <field name="support_group" />
             </tree>
         </field>
     </record>
 
     <record id="view_eligibility_manager_simple_form" model="ir.ui.view">
         <field name="name">view_eligibility_manager_simple_form</field>
-        <field name="model">g2p.program_membership.manager.simple</field>
+        <field name="model">g2p.program_membership.manager.default</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <form string="Simple Eligibility Manager">
@@ -37,20 +37,24 @@
                     <div class="oe_title mb24">
                         <label for="name" string="Name:" />
                         <h1>
-                            <field id="name" name="name" placeholder="Enter the Manager Name..."/>
+                            <field id="name" name="name" placeholder="Enter the Manager Name..." />
                         </h1>
                         <label for="program_id" string="Program:" />
                         <h2>
-                            <field id="program_id" name="program_id" placeholder="Select a program..." 
-                                options="{'no_open':True,'no_create':True,'no_create_edit':True}"/>
+                            <field
+                                id="program_id"
+                                name="program_id"
+                                placeholder="Select a program..."
+                                options="{'no_open':True,'no_create':True,'no_create_edit':True}"
+                            />
                         </h2>
                         <div class="o_row">
                         </div>
                     </div>
                     <group colspan="4" col="4">
-                        <field name="support_individual"/>
-                        <field name="support_group"/>
-                        <field name="eligibility_domain" colspan="4"/>
+                        <field name="support_individual" />
+                        <field name="support_group" />
+                        <field name="eligibility_domain" colspan="4" />
                     </group>
                 </sheet>
             </form>
@@ -59,7 +63,7 @@
 
     <record id="eligibility_manager_simple_filter" model="ir.ui.view">
         <field name="name">eligibility_manager_simple_filter</field>
-        <field name="model">g2p.program_membership.manager.simple</field>
+        <field name="model">g2p.program_membership.manager.default</field>
         <field name="priority" eval="1" />
         <field name="arch" type="xml">
             <search string="Search Eligibility Manager">
@@ -78,7 +82,7 @@
     <record id="action_eligibility_manager_simple" model="ir.actions.act_window">
         <field name="name">Simple Eligibility Managers</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">g2p.program_membership.manager.simple</field>
+        <field name="res_model">g2p.program_membership.manager.default</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="eligibility_manager_simple_filter" />
         <field name="context">{}</field>

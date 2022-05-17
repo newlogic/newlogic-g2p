@@ -24,7 +24,7 @@ class BaseEligibility(models.AbstractModel):
     _inherit = "base.programs.manager"
     _description = "Base Eligibility"
 
-    name = fields.Char('Manager Name', required=True)
+    name = fields.Char("Manager Name", required=True)
     program_id = fields.Many2one("g2p.program", string="Program", required=True)
 
     def verify_program_eligibility(self, program_memberships):
@@ -58,8 +58,8 @@ class BaseEligibility(models.AbstractModel):
         raise NotImplementedError()
 
 
-class SimpleEligibility(models.Model):
-    _name = "g2p.program_membership.manager.simple"
+class DefaultEligibility(models.Model):
+    _name = "g2p.program_membership.manager.default"
     _inherit = "g2p.program_membership.manager"
     _description = "Simple Eligibility"
 
@@ -80,23 +80,31 @@ class SimpleEligibility(models.Model):
         domain = [("is_registrant", "=", True)]
         for rec in self:
             if rec.support_individual and not rec.support_group:
-                domain += [('is_group','=',False)]
+                domain += [("is_group", "=", False)]
             if not rec.support_individual and rec.support_group:
-                domain += [('is_group','=',True)]
-               
+                domain += [("is_group", "=", True)]
+
             if rec.eligibility_domain:
                 domain = domain + rec._safe_eval(self.eligibility_domain)
             results = self.env["res.partner"].search(domain)
 
-            #Add all the matching registrants that are not yet enrolled to the program
+            # Add all the matching registrants that are not yet enrolled to the program
             if results:
                 registrants = []
                 for r in results:
-                    registrants.append([0,0,{
-                        'partner_id':r.id,
-                        'enrollment_date': fields.Date.today(),
-                    }])
-                rec.program_id.program_membership_ids.with_delay().update({'program_membership_ids':registrants})
+                    registrants.append(
+                        [
+                            0,
+                            0,
+                            {
+                                "partner_id": r.id,
+                                "enrollment_date": fields.Date.today(),
+                            },
+                        ]
+                    )
+                rec.program_id.program_membership_ids.with_delay().update(
+                    {"program_membership_ids": registrants}
+                )
                 return True
             else:
                 return False

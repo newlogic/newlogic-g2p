@@ -62,8 +62,8 @@ class BaseCycleManager(models.AbstractModel):
         raise NotImplementedError()
 
 
-class SimpleCycleManager(models.Model):
-    _name = "g2p.cycle.manager.simple"
+class DefaultCycleManager(models.Model):
+    _name = "g2p.cycle.manager.default"
 
     _inherit = "g2p.cycle.manager"
 
