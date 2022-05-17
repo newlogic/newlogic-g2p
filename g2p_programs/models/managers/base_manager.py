@@ -22,6 +22,7 @@ from odoo.tools import safe_eval
 
 class BaseManager(models.AbstractModel):
     _name = "base.programs.manager"
+    _description = "Base Manager"
 
     def _get_eval_context(self):
         """Prepare the context used when evaluating python code
@@ -41,4 +42,4 @@ class BaseManager(models.AbstractModel):
         :param locals_dict: local variables for evaluation
         :returns: the result of the evaluation
         """
-        return safe_eval(string, self._get_eval_context(), locals_dict)
+        return safe_eval.safe_eval(string, self._get_eval_context(), locals_dict)

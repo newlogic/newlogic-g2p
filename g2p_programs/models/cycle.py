@@ -31,7 +31,7 @@ class G2PCycle(models.Model):
         "res.company", default=lambda self: self.env.company, tracking=True
     )
     program_id = fields.Many2one("g2p.program", "Program", required=True, tracking=True)
-    sequence = fields.Integer(required=True, tracking=True, editable=False)
+    sequence = fields.Integer(required=True, tracking=True, readonly=True)
     start_date = fields.Date(required=True, tracking=True)
     end_date = fields.Date(required=True, tracking=True)
     status = fields.Selection(

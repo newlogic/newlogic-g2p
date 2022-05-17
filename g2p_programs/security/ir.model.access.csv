@@ -1,7 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 g2p_program_admin,Program Admin Access,g2p_programs.model_g2p_program,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_program_membership_admin,Program Membership Admin Access,g2p_programs.model_g2p_program_membership,g2p_registrant.group_g2p_admin,1,1,1,1
+g2p_program_membership_manager_admin,Program Membership Manager Admin Access,g2p_programs.model_g2p_program_membership_manager,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_cycle_admin,Cycle Admin Access,g2p_programs.model_g2p_cycle,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_cycle_membership_admin,Cycle Membership Admin Access,g2p_programs.model_g2p_cycle_membership,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_voucher_admin,Voucher Admin Access,g2p_programs.model_g2p_voucher,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_cash_voucher_admin,Cash Voucher Admin Access,g2p_programs.model_g2p_cash_voucher,g2p_registrant.group_g2p_admin,1,1,1,1
+g2p_program_membership_manager_simple_admin,Simple Program Membership Manager Admin Access,g2p_programs.model_g2p_program_membership_manager_simple,g2p_registrant.group_g2p_admin,1,1,1,1

@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from odoo import fields, models
+from odoo import fields, models, _
 
 
 class G2PProgram(models.Model):
@@ -43,7 +43,7 @@ class G2PProgram(models.Model):
     # Pre-cycle steps
     # TODO: for those, we should allow to have multiple managers and
     #  the order of the steps should be defined by the user
-    eligibility_managers = fields.Selection([])  # All will be run
+    eligibility_managers = fields.Many2many("g2p.program_membership.manager.simple",string="Eligibility Managers")  # All will be run
     deduplication_managers = fields.Selection([])  # All will be run
     # for each beneficiary, their preferred will be used or the first one that works.
     notification_managers = fields.Selection([])
@@ -64,7 +64,35 @@ class G2PProgram(models.Model):
     # TODO: Implement the method that will call the different managers
     def import_beneficiaries(self):
         # 1. get the beneficiaries using the eligibility_manager.import_eligible_registrants()
-        pass
+        for rec in self:
+            if rec.eligibility_managers:
+                for el in rec.eligibility_managers:
+                    if not el.import_eligible_registrants():
+                        # No registrants imported. Show error message!
+                        title = _("ERROR!")
+                        message = _("There are no registrants imported.")
+                        type = 'danger' #warning, danger, info, success
+                    else:
+                        # Add import to queue job. Show success notification!
+                        title = _("ON QUEUE!")
+                        message = _("The import was put on queue. Re-open this form later to refresh the program members.")
+                        type = 'danger' 
+            else:
+                # No eligibility managers entered. Show error message!
+                title = _("ERROR!")
+                message = _("There are no eligibility managers defined.")
+                type = 'danger'
+
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': title,
+                    'message': message,
+                    'sticky': False,
+                    'type': type,
+                }
+            }                
 
     def verify_eligibility(self):
         # 1. Verify the eligibility of the beneficiaries using eligibility_manager.validate_program_eligibility()

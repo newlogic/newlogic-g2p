@@ -17,13 +17,9 @@
         <field name="model">g2p.program</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
-            <tree string="Programs">
+            <tree string="Programs" sample="1">
                 <field name="name" />
                 <field name="target_type" />
-                <field name="enrollement_criterias" />
-                <field name="cycle_creator" />
-                <field name="end_of_program" />
-                <field name="number_of_cycles" />
                 <field name="company_id" groups="base.group_multi_company" />
             </tree>
         </field>
@@ -56,16 +52,14 @@
                     </div>
                     <notebook>
                         <page string="Program Details">
-                            <group colspan="4" col="4">
-                                <field name="enrollement_criterias" />
-                                <field name="entitlement_calculation" />
-                                <field name="cycle_creator" />
-                                <field name="end_of_program" />
-                                <field name="number_of_cycles" />
-                                <field
-                                    name="payment_validation_group_id"
-                                    options="{'no_open':True,'no_create_edit':True,'no_create':True}"
-                                />
+                            <header>
+                                <button name="import_beneficiaries" type="object" string="Import Eligible Registrants" icon="fa-download" class="btn-primary"/>
+                            </header>
+                            <group string="Managers" colspan="4" col="4">
+                                <field name="eligibility_managers" widget="many2many_tags"
+                                    domain="[('program_id','=',active_id)]"
+                                    options="{'no_quick_create':True}"
+                                    context="{'default_program_id':active_id}"/>
                             </group>
                         </page>
                         <page string="Memberships">

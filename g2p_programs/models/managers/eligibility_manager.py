@@ -22,8 +22,10 @@ from odoo import fields, models
 class BaseEligibility(models.AbstractModel):
     _name = "g2p.program_membership.manager"
     _inherit = "base.programs.manager"
+    _description = "Base Eligibility"
 
-    program_id = fields.Many2one("g2p.program", string="Program", editable=False)
+    name = fields.Char('Manager Name', required=True)
+    program_id = fields.Many2one("g2p.program", string="Program", required=True)
 
     def verify_program_eligibility(self, program_memberships):
         """
@@ -52,7 +54,6 @@ class BaseEligibility(models.AbstractModel):
         """
         This method is used to import the beneficiaries in a program.
         Returns:
-
         """
         raise NotImplementedError()
 
@@ -60,12 +61,13 @@ class BaseEligibility(models.AbstractModel):
 class SimpleEligibility(models.Model):
     _name = "g2p.program_membership.manager.simple"
     _inherit = "g2p.program_membership.manager"
+    _description = "Simple Eligibility"
 
     support_individual = fields.Boolean(string="Support Individual", default=False)
     support_group = fields.Boolean(string="Support Group", default=False)
 
     # TODO: cache the parsed domain
-    eligibility_domain = fields.Char(string="Domain", default="[]")
+    eligibility_domain = fields.Text(string="Domain", default="[]")
 
     def verify_program_eligibility(self, program_membership):
         # TODO: check if the beneficiary still match the criterias
@@ -76,9 +78,25 @@ class SimpleEligibility(models.Model):
 
     def import_eligible_registrants(self):
         domain = [("is_registrant", "=", True)]
-        if self.eligibility_domain:
-            domain = domain + self._safe_eval(self.eligibility_domain)
-        self.env["res.partner"].search(domain)
+        for rec in self:
+            if rec.support_individual and not rec.support_group:
+                domain += [('is_group','=',False)]
+            if not rec.support_individual and rec.support_group:
+                domain += [('is_group','=',True)]
+               
+            if rec.eligibility_domain:
+                domain = domain + rec._safe_eval(self.eligibility_domain)
+            results = self.env["res.partner"].search(domain)
 
-        # TODO: Add all the matching registrants that are not yet enrolled to the program
-        return True
+            #Add all the matching registrants that are not yet enrolled to the program
+            if results:
+                registrants = []
+                for r in results:
+                    registrants.append([0,0,{
+                        'partner_id':r.id,
+                        'enrollment_date': fields.Date.today(),
+                    }])
+                rec.program_id.program_membership_ids.with_delay().update({'program_membership_ids':registrants})
+                return True
+            else:
+                return False
