@@ -40,11 +40,14 @@ TREE_TEMPLATE = (
     "</tr>"
     "<tr>"
     "<td>"
-    '<td id="notifications" style="text-align: right;">%s</td>'
+    '<td style="text-align: right;">%s</td>'
     "</tr>"
     "</tbody>"
     "</table>"
+    "<tr><td>"
     '<p id="text-preview" style="color: #808080;">%s</p>'
+    "</td>"
+    "</tr>"
     "</td>"
     "</tr>"
     "</tbody>"
@@ -64,6 +67,29 @@ class G2PMailMessage(models.Model):
     track_display = fields.Html(
         string="Track Display", compute="_compute_track_display"
     )
+    source_id = fields.Char(string="Source", compute="_compute_source_id")
+
+    @api.depends("model")
+    def _compute_source_id(self):
+        for rec in self:
+            source = self.env[f"{rec.model}"].browse(rec.res_id)
+            if source:
+                rec.source_id = source.display_name
+            else:
+                rec.source_id = "No Model"
+
+    def source_name(self):
+        context = self._context.copy()
+        return {
+            "name": "form_name",
+            "view_type": "form",
+            "view_mode": "form",
+            "res_model": f"{self.model}",
+            "type": "ir.actions.act_window",
+            "res_id": self.res_id,
+            "target": "main",
+            "context": context,
+        }
 
     @api.depends("tracking_value_ids.field")
     def _compute_track_display(self):
@@ -206,8 +232,8 @@ class G2PMailMessage(models.Model):
                 rec.subject if rec.subject else "",
                 rec.date,
                 rec.date,
-                # rec.res_id,
-                notification_icons,
+                # notification_icons,
+                rec.source_id,
                 # create computed value of tracking values to get track value note
                 rec.body
                 if rec.body
