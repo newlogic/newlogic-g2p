@@ -73,19 +73,19 @@ class G2PProgram(models.Model):
                         # No registrants imported. Show error message!
                         title = _("ERROR!")
                         message = _("There are no registrants imported.")
-                        type = "danger"  # warning, danger, info, success
+                        kind = "danger"  # warning, danger, info, success
                     else:
                         # Add import to queue job. Show success notification!
                         title = _("ON QUEUE!")
                         message = _(
                             "The import was put on queue. Re-open this form later to refresh the program members."
                         )
-                        type = "danger"
+                        kind = "danger"
             else:
                 # No eligibility managers entered. Show error message!
                 title = _("ERROR!")
                 message = _("There are no eligibility managers defined.")
-                type = "danger"
+                kind = "danger"
 
             return {
                 "type": "ir.actions.client",
@@ -94,7 +94,7 @@ class G2PProgram(models.Model):
                     "title": title,
                     "message": message,
                     "sticky": False,
-                    "type": type,
+                    "type": kind,
                 },
             }
 
