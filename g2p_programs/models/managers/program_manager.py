@@ -19,8 +19,8 @@
 from odoo import fields, models
 
 
-class BaseCyclesManager(models.AbstractModel):
-    _name = "g2p.cycles.manager"
+class BaseProgramManager(models.AbstractModel):
+    _name = "g2p.program.manager"
 
     program_id = fields.Many2one("g2p.program", string="Program", editable=False)
 
@@ -60,9 +60,9 @@ class BaseCyclesManager(models.AbstractModel):
         raise NotImplementedError()
 
 
-class DefaultCycleManager(models.Model):
-    _name = "g2p.cycles.manager.default"
-    _inherit = "g2p.cycles.manager"
+class DefaultProgramManager(models.Model):
+    _name = "g2p.program.manager.default"
+    _inherit = "g2p.program.manager"
 
     number_of_cycles = fields.Integer(string="Number of cycles", default=1)
 
