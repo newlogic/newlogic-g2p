@@ -14,7 +14,7 @@
     <!-- Top menu item -->
     <menuitem
         id="g2p_main_menu_root"
-        name="G2P"
+        name="Registrants"
         web_icon="g2p_registrant,static/src/img/icons/contacts.png"
         active="True"
         sequence="0"

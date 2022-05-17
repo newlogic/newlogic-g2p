@@ -25,7 +25,7 @@ class G2PRegistrantAttribute(models.Model):
     _order = "sequence, id"
     _inherit = ["mail.thread"]
 
-    name = fields.Char("Attribute", required=True)
+    name = fields.Char("Field name", required=True)
     company_id = fields.Many2one(
         "res.company", default=lambda self: self.env.company, tracking=True
     )

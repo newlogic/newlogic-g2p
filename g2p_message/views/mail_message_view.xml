@@ -19,6 +19,10 @@
         <field name="arch" type="xml">
             <tree string="Mail Message">
                 <field name="subject_display" string="Initiator" />
+                <!-- <field name="res_id"/> -->
+                <field name="model" groups="g2p_registrant.group_g2p_admin" string="Model" invisible="1" />
+                <field name="source_id" string="Source Name" invisible="1" />
+                <button name="source_name" string="Source View" type="object" class="oe_highlight" />
 
             </tree>
             <!-- <tree
@@ -76,7 +80,12 @@
                                     nolabel="1"
                                     attrs="{'invisible':[('subtype_description', '=', False)]}"
                                 />
-                                <field name="body" nolabel="1" attrs="{'invisible':[('body', '=', False)]}" />
+                                <field
+                                    name="body"
+                                    nolabel="1"
+                                    attrs="{'invisible':[('body', '=', False)]}"
+                                    readonly="1"
+                                />
                                 <field name="track_display" nolabel="1" />
                             </div>
                         </page>
@@ -86,6 +95,7 @@
                         </page>
                     </notebook>
                 </sheet>
+                <field name="body" invisible="1" />
             </form>
         </field>
     </record>
@@ -124,9 +134,9 @@
 
     <menuitem
         id="g2p_menu_mail_message"
-        name="List"
+        name="Audit Trail"
         action="g2p_action_mail_message"
-        parent="g2p_message_menu_root"
+        parent="g2p_registrant.g2p_configuration_menu_root"
         sequence="10"
     />
         <!-- groups="card_mgmt.group_card_admin"/> -->

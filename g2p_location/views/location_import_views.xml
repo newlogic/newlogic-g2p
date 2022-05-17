@@ -232,7 +232,7 @@
         id="menu_g2plocation_import"
         name="Location Import"
         action="action_view_g2plocation_import"
-        parent="g2p_registrant.g2p_data_mgmt_menu_root"
+        parent="location_main_top_menu"
         sequence="106"
         groups="g2p_registrant.group_g2p_admin"
     />
