@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class G2PCycle(models.Model):
@@ -69,4 +69,14 @@ class G2PCycle(models.Model):
     def export_distribution_list(self):
         # Not sure if this should be here.
         # It could be customizable reports based on https://github.com/OCA/reporting-engine
+        pass
+
+    def duplicate(self, new_start_date):
+        # 1. Make sure the user has the right to do this
+        # 2. Copy the cycle using the cycle manager
+        pass
+
+    @api.onchange("start_date")
+    def on_start_date_change(self, start_date):
+        # cycle_manager.on_start_date_change(self, start_date)
         pass

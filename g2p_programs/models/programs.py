@@ -49,9 +49,10 @@ class G2PProgram(models.Model):
     deduplication_managers = fields.Selection([])  # All will be run
     # for each beneficiary, their preferred will be used or the first one that works.
     notification_managers = fields.Selection([])
+    program_manager = fields.Selection([])
 
     # Cycle steps
-    cycles_manager = fields.Selection([])
+    cycle_manager = fields.Selection([])
     entitlement_manager = fields.Selection([])
 
     reconciliation_manager = fields.Selection([])

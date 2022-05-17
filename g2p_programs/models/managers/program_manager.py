@@ -31,6 +31,7 @@ class BaseProgramManager(models.AbstractModel):
             cycle: the last cycle of the program
         """
         # TODO: implement this
+        # sort the program's cycle by sequence and return the last one
         raise NotImplementedError()
 
     def new_cycle(self):
@@ -65,6 +66,9 @@ class DefaultProgramManager(models.Model):
     _inherit = "g2p.program.manager"
 
     number_of_cycles = fields.Integer(string="Number of cycles", default=1)
+    copy_last_cycle_on_new_cycle = fields.Boolean(
+        string="Copy previous cycle", default=True
+    )
 
     #  TODO: review 'calendar.recurrence' module, it seem the way to go for managing the recurrence
     # recurrence_id = fields.Many2one('calendar.recurrence', related='event_id.recurrence_id')
