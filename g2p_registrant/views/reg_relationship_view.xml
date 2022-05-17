@@ -175,13 +175,13 @@
         <field name="act_window_id" ref="action_reg_rel" />
     </record>
 
-    <menuitem
-        id="menu_reg_rel"
-        name="Registrant's Relationships"
-        action="action_reg_rel"
-        parent="g2p_registrant_menu_root"
-        sequence="40"
-        groups="g2p_registrant.group_g2p_admin"
-    />
+<!--    <menuitem-->
+<!--        id="menu_reg_rel"-->
+<!--        name="Registrant's Relationships"-->
+<!--        action="action_reg_rel"-->
+<!--        parent="g2p_registrant_menu_root"-->
+<!--        sequence="40"-->
+<!--        groups="g2p_registrant.group_g2p_admin"-->
+<!--    />-->
 
 </odoo>

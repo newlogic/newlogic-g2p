@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 {
-    "name": "G2P Message Module",
+    "name": "G2P Audit Trail Module",
     "category": "G2P",
     "version": "15.0.0.0.1",
     "sequence": 1,
@@ -27,7 +27,6 @@
     "depends": ["base", "mail", "g2p_registrant"],
     "data": [
         "security/ir.model.access.csv",
-        "views/main_view.xml",
         "views/mail_message_view.xml",
     ],
     "assets": {},

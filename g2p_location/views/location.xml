@@ -105,10 +105,20 @@
     </record>
 
     <menuitem
+        id="location_main_menu_root"
+        name="Location"
+        web_icon="g2p_registrant,static/src/img/icons/contacts.png"
+        active="True"
+        sequence="0"
+    />
+
+    <menuitem id="location_main_top_menu" name="Locations" parent="location_main_menu_root" sequence="10" />
+
+    <menuitem
         id="menu_g2plocation"
         name="Location"
         action="action_g2plocation"
-        parent="g2p_registrant.g2p_configuration_menu_root"
+        parent="g2p_location.location_main_top_menu"
         sequence="105"
         groups="g2p_registrant.group_g2p_admin"
     />

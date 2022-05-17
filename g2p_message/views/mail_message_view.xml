@@ -124,9 +124,9 @@
 
     <menuitem
         id="g2p_menu_mail_message"
-        name="List"
+        name="Audit Trail"
         action="g2p_action_mail_message"
-        parent="g2p_message_menu_root"
+        parent="g2p_registrant.g2p_configuration_menu_root"
         sequence="10"
     />
         <!-- groups="card_mgmt.group_card_admin"/> -->

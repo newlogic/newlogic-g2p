@@ -146,13 +146,13 @@
         <field name="act_window_id" ref="action_phone_number" />
     </record>
 
-    <menuitem
-        id="menu_phone_number"
-        name="Registrant's Phone Numbers"
-        action="action_phone_number"
-        parent="g2p_configuration_menu_root"
-        sequence="50"
-        groups="g2p_registrant.group_g2p_admin"
-    />
+<!--    <menuitem-->
+<!--        id="menu_phone_number"-->
+<!--        name="Registrant's Phone Numbers"-->
+<!--        action="action_phone_number"-->
+<!--        parent="g2p_configuration_menu_root"-->
+<!--        sequence="50"-->
+<!--        groups="g2p_registrant.group_g2p_admin"-->
+<!--    />-->
 
 </odoo>
