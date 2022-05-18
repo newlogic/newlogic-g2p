@@ -20,17 +20,14 @@ from odoo import api, fields, models
 
 
 class ManagerMixin(models.AbstractModel):
-    """Manager mixin.
-    """
+    """Manager mixin."""
 
     _name = "g2p.manager.mixin"
     _description = "Manager Mixin"
 
-    manager_id = fields.Integer('Manager ID')
+    manager_id = fields.Integer("Manager ID")
     manager_ref_id = fields.Reference(
-        string="Manager",
-        selection="_selection_manager_ref_id",
-        required=True
+        string="Manager", selection="_selection_manager_ref_id", required=True
     )
 
     @api.model
@@ -40,9 +37,9 @@ class ManagerMixin(models.AbstractModel):
     def open_manager_form(self):
         self.ensure_one()
         if self.manager_ref_id:
-            #Get the res_model and res_id from the manager_ref_id (reference field)
+            # Get the res_model and res_id from the manager_ref_id (reference field)
             manager_ref_id = str(self.manager_ref_id)
-            s = manager_ref_id.find('(')
+            s = manager_ref_id.find("(")
             res_model = manager_ref_id[:s]
             res_id = self.manager_ref_id.id
             if res_id:
@@ -57,12 +54,12 @@ class ManagerMixin(models.AbstractModel):
                 return action
 
         return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': 'ERROR!',
-                'message': 'The Manager field must be filled-up.',
-                'sticky': False,
-                'type': 'danger',
-            }
-        }                
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": "ERROR!",
+                "message": "The Manager field must be filled-up.",
+                "sticky": False,
+                "type": "danger",
+            },
+        }

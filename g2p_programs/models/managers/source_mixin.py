@@ -16,12 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class ManagerSourceMixin(models.AbstractModel):
-    """Manager Data Source mixin.
-    """
+    """Manager Data Source mixin."""
 
     _name = "g2p.manager.source.mixin"
     _description = "Manager Data Source Mixin"

@@ -37,6 +37,7 @@
         # "views/registrant_view.xml",
         # "views/registrant_attribute_view.xml",
         "views/managers/eligibility_manager_view.xml",
+        "views/managers/deduplication_manager_view.xml",
     ],
     "assets": {},
     "demo": [],

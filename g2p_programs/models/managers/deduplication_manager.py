@@ -47,7 +47,8 @@ class BaseDeduplication(models.AbstractModel):
     _capability_individual = False
     _capability_group = False
 
-    program_id = fields.Many2one("g2p.program", string="Program", editable=False)
+    name = fields.Char("Manager Name", required=True)
+    program_id = fields.Many2one("g2p.program", string="Program", required=True)
 
     def check_duplicates(self, program_membership):
         raise NotImplementedError()
@@ -60,7 +61,7 @@ class IDDocumentDeduplication(models.Model):
     """
 
     _name = "g2p.deduplication.manager.id_dedup"
-    _inherit = "g2p.base.deduplication.manager"
+    _inherit = ["g2p.base.deduplication.manager", "g2p.manager.source.mixin"]
 
     supported_id_document_types = fields.Many2many(
         "g2p.id.type", string="Supported ID Document Types"
@@ -78,7 +79,7 @@ class PhoneNumberDeduplication(models.Model):
     """
 
     _name = "g2p.deduplication.manager.phone_number"
-    _inherit = "g2p.base.deduplication.manager"
+    _inherit = ["g2p.base.deduplication.manager", "g2p.manager.source.mixin"]
 
     # if set, we verify that the phone number match a given regex
     phone_regex = fields.Char(string="Phone Regex")

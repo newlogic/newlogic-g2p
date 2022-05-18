@@ -12,13 +12,13 @@
    limitations under the License.
 -->
 <odoo>
-    <!-- Eligibility Manager -->
-    <record id="view_eligibility_manager_tree" model="ir.ui.view">
-        <field name="name">view_eligibility_manager_tree</field>
-        <field name="model">g2p.eligibility.manager</field>
+    <!-- Deduplication Manager -->
+    <record id="view_deduplication_manager_tree" model="ir.ui.view">
+        <field name="name">view_deduplication_manager_tree</field>
+        <field name="model">g2p.deduplication.manager</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
-            <tree string="Eligibility Managers">
+            <tree string="Deduplication Managers">
                 <field name="manager_ref_id" />
                 <field name="program_id" />
                 <field name="manager_id" invisible="1" />
@@ -26,17 +26,16 @@
         </field>
     </record>
 
-    <record id="view_eligibility_manager_form" model="ir.ui.view">
-        <field name="name">view_eligibility_manager_form</field>
-        <field name="model">g2p.eligibility.manager</field>
+    <record id="view_deduplication_manager_form" model="ir.ui.view">
+        <field name="name">view_deduplication_manager_form</field>
+        <field name="model">g2p.deduplication.manager</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
-            <form string="Eligibility Manager">
+            <form string="Deduplication Manager">
                 <sheet>
                     <group colspan="4" col="4">
-                        <field name="manager_ref_id" options="{'no_quick_create':True}" colspan="4" />
-                        <field
-                            name="program_id"
+                        <field name="manager_ref_id" options="{'no_quick_create':True}" colspan="4"/>
+                        <field name="program_id" 
                             placeholder="Select a program..."
                             options="{'no_open':True,'no_create':True,'no_create_edit':True}"
                         />
@@ -46,27 +45,26 @@
         </field>
     </record>
 
-    <!-- Default Eligibility Manager -->
-    <record id="view_eligibility_manager_default_tree" model="ir.ui.view">
-        <field name="name">view_eligibility_manager_default_tree</field>
-        <field name="model">g2p.program_membership.manager.default</field>
+    <!-- ID Deduplication Manager -->
+    <record id="view_deduplication_manager_id_dedup_tree" model="ir.ui.view">
+        <field name="name">view_deduplication_manager_id_dedup_tree</field>
+        <field name="model">g2p.deduplication.manager.id_dedup</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
-            <tree string="Default Eligibility Managers" sample="1">
+            <tree string="ID Deduplication Managers" sample="1">
                 <field name="name" />
                 <field name="program_id" />
-                <field name="support_individual" />
-                <field name="support_group" />
+                <field name="supported_id_document_types" string="# IDs"/>
             </tree>
         </field>
     </record>
 
-    <record id="view_eligibility_manager_default_form" model="ir.ui.view">
-        <field name="name">view_eligibility_manager_default_form</field>
-        <field name="model">g2p.program_membership.manager.default</field>
+    <record id="view_deduplication_manager_id_dedup_form" model="ir.ui.view">
+        <field name="name">view_deduplication_manager_id_dedup_form</field>
+        <field name="model">g2p.deduplication.manager.id_dedup</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
-            <form string="Default Eligibility Manager">
+            <form string="ID Deduplication Manager">
                 <sheet>
                     <div class="oe_button_box" name="button_box" />
                     <div class="oe_title mb24">
@@ -86,22 +84,20 @@
                         <div class="o_row">
                         </div>
                     </div>
-                    <group colspan="4" col="4">
-                        <field name="support_individual" />
-                        <field name="support_group" />
-                        <field name="eligibility_domain" colspan="4" />
+                    <group>
+                        <field name="supported_id_document_types" widget="many2many_tags" options="{'no_open':True,'no_quick_create':True,'no_create_edit':True}"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <record id="eligibility_manager_default_filter" model="ir.ui.view">
-        <field name="name">eligibility_manager_default_filter</field>
-        <field name="model">g2p.program_membership.manager.default</field>
+    <record id="deduplication_manager_id_dedup_filter" model="ir.ui.view">
+        <field name="name">deduplication_manager_id_dedup_filter</field>
+        <field name="model">g2p.deduplication.manager.id_dedup</field>
         <field name="priority" eval="1" />
         <field name="arch" type="xml">
-            <search string="Search Eligibility Manager">
+            <search string="Search ID Deduplication Managers">
                 <field name="name" />
                 <field name="program_id" />
                 <group expand="0" string="Group By">
@@ -114,43 +110,43 @@
         </field>
     </record>
 
-    <record id="action_eligibility_manager_default" model="ir.actions.act_window">
-        <field name="name">Default Eligibility Managers</field>
+    <record id="action_deduplication_manager_id_dedup" model="ir.actions.act_window">
+        <field name="name">ID Deduplication Managers</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">g2p.program_membership.manager.default</field>
+        <field name="res_model">g2p.deduplication.manager.id_dedup</field>
         <field name="view_mode">tree,form</field>
-        <field name="search_view_id" ref="eligibility_manager_default_filter" />
+        <field name="search_view_id" ref="deduplication_manager_id_dedup_filter" />
         <field name="context">{}</field>
         <field name="domain">[]</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Add an Eligibility Manager!
+                Add an ID Deduplication Manager!
             </p><p>
-                Click the create button to enter a new eligibility manager.
+                Click the create button to enter a new ID deduplication manager.
             </p>
         </field>
     </record>
 
-    <record id="action_eligibility_manager_default_tree_view" model="ir.actions.act_window.view">
+    <record id="action_deduplication_manager_id_dedup_tree_view" model="ir.actions.act_window.view">
         <field name="sequence" eval="1" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_eligibility_manager_default_tree" />
-        <field name="act_window_id" ref="action_eligibility_manager_default" />
+        <field name="view_id" ref="view_deduplication_manager_id_dedup_tree" />
+        <field name="act_window_id" ref="action_deduplication_manager_id_dedup" />
     </record>
 
-    <record id="action_eligibility_manager_default_form_view" model="ir.actions.act_window.view">
+    <record id="action_deduplication_manager_id_dedup_form_view" model="ir.actions.act_window.view">
         <field name="sequence" eval="1" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_eligibility_manager_default_form" />
-        <field name="act_window_id" ref="action_eligibility_manager_default" />
+        <field name="view_id" ref="view_deduplication_manager_id_dedup_form" />
+        <field name="act_window_id" ref="action_deduplication_manager_id_dedup" />
     </record>
 
     <menuitem
-        id="menu_eligibility_manager_default"
-        name="Default Eligibility Managers"
-        action="action_eligibility_manager_default"
+        id="menu_deduplication_manager_id_dedup"
+        name="ID Deduplication Managers"
+        action="action_deduplication_manager_id_dedup"
         parent="g2p_configuration_menu_root"
-        sequence="10"
+        sequence="20"
         groups="g2p_registrant.group_g2p_admin"
     />
 
