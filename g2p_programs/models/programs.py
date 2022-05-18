@@ -71,19 +71,31 @@ class G2PProgram(models.Model):
         # 1. get the beneficiaries using the eligibility_manager.import_eligible_registrants()
         for rec in self:
             if rec.eligibility_managers:
+                err_ctr = 0
                 for el in rec.eligibility_managers:
-                    if not el.import_eligible_registrants():
-                        # No registrants imported. Show error message!
-                        title = _("ERROR!")
-                        message = _("There are no registrants imported.")
-                        kind = "danger"  # warning, danger, info, success
-                    else:
-                        # Add import to queue job. Show success notification!
-                        title = _("ON QUEUE!")
-                        message = _(
-                            "The import was put on queue. Re-open this form later to refresh the program members."
-                        )
-                        kind = "danger"
+                    if not el.manager_ref_id.import_eligible_registrants():
+                        err_ctr += 1
+                if err_ctr == 0:
+                    # Add import to queue job. Show success notification!
+                    title = _("ON QUEUE!")
+                    message = _(
+                        "The import was put on queue. Re-open this form later to refresh the program members."
+                    )
+                    kind = "success"  # warning, danger, info, success
+                elif err_ctr == len(rec.eligibility_managers):
+                    # No registrants imported. Show error message!
+                    title = _("ERROR!")
+                    message = _("There are no registrants imported.")
+                    kind = "danger"
+                elif err_ctr < len(rec.eligibility_managers):
+                    # Not all registrants are imported. Show warning!
+                    title = _("WARNING!")
+                    message = _(
+                        "%s out of %s managers are not imported."
+                        % (err_ctr, len(rec.eligibility_managers))
+                    )
+                    kind = "warning"
+
             else:
                 # No eligibility managers entered. Show error message!
                 title = _("ERROR!")

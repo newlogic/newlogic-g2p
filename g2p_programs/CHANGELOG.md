@@ -1,5 +1,10 @@
 Format in CHANGELOG.md
 
+
+## Version[0.05] - 2022-05-18
+- [ADD] Eligibility and Deduplication Managers
+- [ADD] Eligibility and Deduplication Managers UI
+
 ## Version[0.04] - 2022-05-12
 
 - [ADD] Created Program Membership UI
