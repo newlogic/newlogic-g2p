@@ -195,7 +195,7 @@
                         </div>
                     </div>
                     <group>
-                        <field name="phone_regex"/>
+                        <field name="phone_regex" />
                     </group>
                 </sheet>
             </form>

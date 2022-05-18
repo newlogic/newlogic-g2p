@@ -1,7 +1,7 @@
 Format in CHANGELOG.md
 
-
 ## Version[0.05] - 2022-05-18
+
 - [ADD] Eligibility and Deduplication Managers
 - [ADD] Eligibility and Deduplication Managers UI
 - [ADD] ID and Phone number deduplication UI
