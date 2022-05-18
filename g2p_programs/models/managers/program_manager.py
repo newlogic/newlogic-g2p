@@ -19,8 +19,8 @@
 from odoo import fields, models
 
 
-class BaseCyclesManager(models.AbstractModel):
-    _name = "g2p.cycles.manager"
+class BaseProgramManager(models.AbstractModel):
+    _name = "g2p.program.manager"
 
     program_id = fields.Many2one("g2p.program", string="Program", editable=False)
 
@@ -31,6 +31,7 @@ class BaseCyclesManager(models.AbstractModel):
             cycle: the last cycle of the program
         """
         # TODO: implement this
+        # sort the program's cycle by sequence and return the last one
         raise NotImplementedError()
 
     def new_cycle(self):
@@ -60,11 +61,14 @@ class BaseCyclesManager(models.AbstractModel):
         raise NotImplementedError()
 
 
-class DefaultCycleManager(models.Model):
-    _name = "g2p.cycles.manager.default"
-    _inherit = "g2p.cycles.manager"
+class DefaultProgramManager(models.Model):
+    _name = "g2p.program.manager.default"
+    _inherit = "g2p.program.manager"
 
     number_of_cycles = fields.Integer(string="Number of cycles", default=1)
+    copy_last_cycle_on_new_cycle = fields.Boolean(
+        string="Copy previous cycle", default=True
+    )
 
     #  TODO: review 'calendar.recurrence' module, it seem the way to go for managing the recurrence
     # recurrence_id = fields.Many2one('calendar.recurrence', related='event_id.recurrence_id')

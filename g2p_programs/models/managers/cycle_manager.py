@@ -25,24 +25,6 @@ class BaseCycleManager(models.AbstractModel):
     program_id = fields.Many2one("g2p.program", string="Program", editable=False)
     cycle_id = fields.Many2one("g2p.cycle", string="Cycle", editable=False)
 
-    def next_cycle(self):
-        """
-        Return the next cycle of the program if any
-        Returns:
-            cycle: the next cycle of the program
-        """
-        #  TODO: Get the next cycle of the program base ont he sequence number
-        raise NotImplementedError()
-
-    def previous_cycle(self):
-        """
-        Return the previous cycle of the program if any
-        Returns:
-            cycle: the previous cycle of the program
-        """
-        #  TODO: Get the previous cycle of the program base ont he sequence number
-        raise NotImplementedError()
-
     def check_eligibility(self):
         """
         Validate the eligibility of each beneficiaries for the cycle
@@ -58,6 +40,18 @@ class BaseCycleManager(models.AbstractModel):
     def validate_vouchers(self, cycle_memberships):
         """
         Validate the entitlements for the cycle
+        """
+        raise NotImplementedError()
+
+    def new_cycle(self, new_start_date):
+        """
+        Create a new cycle for the program
+        """
+        raise NotImplementedError()
+
+    def on_start_date_change(self, start_date):
+        """
+        Hook for when the start date change
         """
         raise NotImplementedError()
 

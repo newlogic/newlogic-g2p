@@ -230,7 +230,7 @@
                                 </field>
                             </group>
                         </page>
-                        <page string="Group Members">
+                        <page string="Groups">
                             <group col="4" colspan="4">
                                 <field
                                     name="kind"
@@ -241,7 +241,7 @@
                                 <newline />
                                 <field
                                     name="group_membership_ids"
-                                    attrs="{'readonly':[('disabled','!=',False)]}"
+                                    attrs="{'readonly':[('disabled','!=',False)], 'required': False}"
                                     nolabel="1"
                                     colspan="4"
                                 >
