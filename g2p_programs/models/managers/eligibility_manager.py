@@ -39,13 +39,9 @@ class BaseEligibility(models.AbstractModel):
     _name = "g2p.program_membership.manager"
     _inherit = "base.programs.manager"
     _description = "Base Eligibility"
-    _display_name = "Base Eligibility"
 
-    name = fields.Char(compute="_compute_name")
+    name = fields.Char("Manager Name", required=True)
     program_id = fields.Many2one("g2p.program", string="Program", required=True)
-
-    def _compute_name(self):
-        self.name = self._display_name
 
     def verify_program_eligibility(self, program_memberships):
         """

@@ -41,7 +41,7 @@ class DeduplicationManager(models.Model):
 
 class BaseDeduplication(models.AbstractModel):
     _name = "g2p.base.deduplication.manager"
-    _inherit = "base.programs.manager"
+    _description = "Base Deduplication Manager"
 
     # Kind of deduplication possible
     _capability_individual = False
@@ -62,6 +62,7 @@ class IDDocumentDeduplication(models.Model):
 
     _name = "g2p.deduplication.manager.id_dedup"
     _inherit = ["g2p.base.deduplication.manager", "g2p.manager.source.mixin"]
+    _description = "ID Deduplication Manager"
 
     supported_id_document_types = fields.Many2many(
         "g2p.id.type", string="Supported ID Document Types"
@@ -80,6 +81,7 @@ class PhoneNumberDeduplication(models.Model):
 
     _name = "g2p.deduplication.manager.phone_number"
     _inherit = ["g2p.base.deduplication.manager", "g2p.manager.source.mixin"]
+    _description = "Phone Number Deduplication Manager"
 
     # if set, we verify that the phone number match a given regex
     phone_regex = fields.Char(string="Phone Regex")
@@ -97,7 +99,8 @@ class IDDocumentDeduplicationEligibility(models.Model):
     """
 
     _name = "g2p.program_membership.manager.id_dedup"
-    _inherit = "g2p.program_membership.manager"
+    _inherit = ["g2p.program_membership.manager", "g2p.manager.source.mixin"]
+    _description = "ID Document Deduplication Eligibility"
 
     def verify_program_eligibility(self, program_memberships):
         # TODO: check if beneficiaries still match the criterias
@@ -115,7 +118,8 @@ class PhoneNumberDeduplicationEligibility(models.Model):
     """
 
     _name = "g2p.program_membership.manager.phone_number"
-    _inherit = "g2p.program_membership.manager"
+    _inherit = ["g2p.program_membership.manager", "g2p.manager.source.mixin"]
+    _description = "Phone Number Deduplication Eligibility"
 
     def verify_program_eligibility(self, program_memberships):
         # TODO: check if beneficiaries still match the criterias

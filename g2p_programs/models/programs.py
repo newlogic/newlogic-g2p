@@ -50,7 +50,9 @@ class G2PProgram(models.Model):
         "g2p.deduplication.manager", string="Deduplication Managers"
     )  # All will be run
     # for each beneficiary, their preferred will be used or the first one that works.
-    notification_managers = fields.Selection([])
+    notification_managers = fields.Many2many(
+        "g2p.program.notification.manager", string="Notification Managers"
+    )
     program_manager = fields.Selection([])
 
     # Cycle steps

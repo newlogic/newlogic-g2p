@@ -22,3 +22,4 @@ from . import source_mixin
 from . import base_manager
 from . import eligibility_manager
 from . import deduplication_manager
+from . import notification_manager
