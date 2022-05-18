@@ -16,11 +16,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from odoo import fields, models
+from odoo import api, fields, models
+
+
+class DeduplicationManager(models.Model):
+    _name = "g2p.deduplication.manager"
+    _description = "Deduplication Manager"
+    _inherit = "g2p.manager.mixin"
+
+    program_id = fields.Many2one("g2p.program", "Program")
+
+    @api.model
+    def _selection_manager_ref_id(self):
+        selection = super()._selection_manager_ref_id()
+        new_managers = [
+            ("g2p.deduplication.manager.id_dedup", "ID Deduplication"),
+            ("g2p.deduplication.manager.phone_number", "Phone Number Deduplication"),
+        ]
+        for new_manager in new_managers:
+            if new_manager not in selection:
+                selection.append(new_manager)
+        return selection
 
 
 class BaseDeduplication(models.AbstractModel):
-    _name = "g2p.deduplication.manager"
+    _name = "g2p.base.deduplication.manager"
     _inherit = "base.programs.manager"
 
     # Kind of deduplication possible
@@ -40,7 +60,7 @@ class IDDocumentDeduplication(models.Model):
     """
 
     _name = "g2p.deduplication.manager.id_dedup"
-    _inherit = "g2p.deduplication.manager"
+    _inherit = "g2p.base.deduplication.manager"
 
     supported_id_document_types = fields.Many2many(
         "g2p.id.type", string="Supported ID Document Types"
@@ -58,7 +78,7 @@ class PhoneNumberDeduplication(models.Model):
     """
 
     _name = "g2p.deduplication.manager.phone_number"
-    _inherit = "g2p.deduplication.manager"
+    _inherit = "g2p.base.deduplication.manager"
 
     # if set, we verify that the phone number match a given regex
     phone_regex = fields.Char(string="Phone Regex")

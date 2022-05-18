@@ -17,5 +17,8 @@
 # limitations under the License.
 #
 
+from . import manager_mixin
+from . import source_mixin
 from . import base_manager
 from . import eligibility_manager
+from . import deduplication_manager

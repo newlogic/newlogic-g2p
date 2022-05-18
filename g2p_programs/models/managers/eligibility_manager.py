@@ -16,7 +16,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from odoo import fields, models
+from odoo import api, fields, models
+
+
+class EligibilityManager(models.Model):
+    _name = "g2p.eligibility.manager"
+    _description = "Eligibility Manager"
+    _inherit = "g2p.manager.mixin"
+
+    program_id = fields.Many2one("g2p.program", "Program")
+
+    @api.model
+    def _selection_manager_ref_id(self):
+        selection = super()._selection_manager_ref_id()
+        new_manager = ("g2p.program_membership.manager.default", "Default Eligibility")
+        if new_manager not in selection:
+            selection.append(new_manager)
+        return selection
 
 
 class BaseEligibility(models.AbstractModel):
@@ -60,7 +76,7 @@ class BaseEligibility(models.AbstractModel):
 
 class DefaultEligibility(models.Model):
     _name = "g2p.program_membership.manager.default"
-    _inherit = "g2p.program_membership.manager"
+    _inherit = ["g2p.program_membership.manager", "g2p.manager.source.mixin"]
     _description = "Simple Eligibility"
 
     support_individual = fields.Boolean(string="Support Individual", default=False)

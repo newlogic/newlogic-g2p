@@ -44,7 +44,7 @@ class G2PProgram(models.Model):
     # TODO: for those, we should allow to have multiple managers and
     #  the order of the steps should be defined by the user
     eligibility_managers = fields.Many2many(
-        "g2p.program_membership.manager.default", string="Eligibility Managers"
+        "g2p.eligibility.manager", string="Eligibility Managers"
     )  # All will be run
     deduplication_managers = fields.Selection([])  # All will be run
     # for each beneficiary, their preferred will be used or the first one that works.

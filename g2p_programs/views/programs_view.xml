@@ -52,14 +52,69 @@
                     </div>
                     <notebook>
                         <page string="Program Details">
-                            <header>
-                                <button name="import_beneficiaries" type="object" string="Import Eligible Registrants" icon="fa-download" class="btn-primary"/>
-                            </header>
-                            <group string="Managers" colspan="4" col="4">
-                                <field name="eligibility_managers" widget="many2many_tags"
-                                    domain="[('program_id','=',active_id)]"
-                                    options="{'no_quick_create':True}"
-                                    context="{'default_program_id':active_id}"/>
+                            <group colspan="4" col="4">
+                                <group colspan="2" string="Eligibility Managers">
+                                    <header colspan="2">
+                                        <button
+                                            name="import_beneficiaries"
+                                            type="object"
+                                            string="Import Registrants"
+                                            icon="fa-download"
+                                            class="btn-primary"
+                                        />
+                                    </header>
+                                    <group colspan="2">
+                                        <field name="eligibility_managers" nolabel="1" widget="manymany_list">
+                                            <tree string="Eligibility Manager" editable="top">
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                />
+                                                <field name="manager_id" invisible="1" />
+                                                <button
+                                                    name="open_manager_form"
+                                                    type="object"
+                                                    icon="fa-external-link"
+                                                    class="btn-success"
+                                                    attrs="{'invisible':[('manager_ref_id','=',False)]}"
+                                                />
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </group>
+                                <group colspan="2" string="Deduplication Managers">
+                                    <header colspan="2">
+                                        <button
+                                            name="deduplicate_beneficiaries"
+                                            type="object"
+                                            string="Deduplicate"
+                                            icon="fa-files-o"
+                                            class="btn-primary"
+                                        />
+                                    </header>
+                                    <group colspan="2">
+                                        <field
+                                            name="deduplication_managers"
+                                            nolabel="1"
+                                            widget="manymany_list"
+                                        >
+                                            <tree string="Deduplication Manager" editable="top">
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                />
+                                                <field name="manager_id" invisible="1" />
+                                                <button
+                                                    name="open_manager_form"
+                                                    type="object"
+                                                    icon="fa-external-link"
+                                                    class="btn-success"
+                                                    attrs="{'invisible':[('manager_ref_id','=',False)]}"
+                                                />
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </group>
                             </group>
                         </page>
                         <page string="Memberships">
