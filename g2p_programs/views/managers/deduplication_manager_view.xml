@@ -155,4 +155,110 @@
         groups="g2p_registrant.group_g2p_admin"
     />
 
+    <!-- Phone Number Deduplication Manager -->
+    <record id="view_deduplication_manager_phone_number_tree" model="ir.ui.view">
+        <field name="name">view_deduplication_manager_phone_number_tree</field>
+        <field name="model">g2p.deduplication.manager.phone_number</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree string="Phone Number Deduplication Managers" sample="1">
+                <field name="name" />
+                <field name="program_id" />
+                <field name="phone_regex" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_deduplication_manager_phone_number_form" model="ir.ui.view">
+        <field name="name">view_deduplication_manager_phone_number_form</field>
+        <field name="model">g2p.deduplication.manager.phone_number</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <form string="Phone Number Deduplication Manager">
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <div class="oe_title mb24">
+                        <label for="name" string="Name:" />
+                        <h1>
+                            <field id="name" name="name" placeholder="Enter the Manager Name..." />
+                        </h1>
+                        <label for="program_id" string="Program:" />
+                        <h2>
+                            <field
+                                id="program_id"
+                                name="program_id"
+                                placeholder="Select a program..."
+                                options="{'no_open':True,'no_create':True,'no_create_edit':True}"
+                            />
+                        </h2>
+                        <div class="o_row">
+                        </div>
+                    </div>
+                    <group>
+                        <field name="phone_regex"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="deduplication_manager_phone_number_filter" model="ir.ui.view">
+        <field name="name">deduplication_manager_phone_number_filter</field>
+        <field name="model">g2p.deduplication.manager.phone_number</field>
+        <field name="priority" eval="1" />
+        <field name="arch" type="xml">
+            <search string="Search Phone Number Deduplication Managers">
+                <field name="name" />
+                <field name="program_id" />
+                <field name="phone_regex" />
+                <group expand="0" string="Group By">
+                    <filter string="Program" name="grp_program_id" context="{'group_by': 'program_id'}" />
+                </group>
+                <!--<searchpanel>
+                    <field name="group" icon="fa-users"/>
+                </searchpanel> -->
+            </search>
+        </field>
+    </record>
+
+    <record id="action_deduplication_manager_phone_number" model="ir.actions.act_window">
+        <field name="name">Phone Number Deduplication Managers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">g2p.deduplication.manager.phone_number</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="deduplication_manager_phone_number_filter" />
+        <field name="context">{}</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a Phone Number Deduplication Manager!
+            </p><p>
+                Click the create button to enter a new Phone Number deduplication manager.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_deduplication_manager_phone_number_tree_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_deduplication_manager_phone_number_tree" />
+        <field name="act_window_id" ref="action_deduplication_manager_phone_number" />
+    </record>
+
+    <record id="action_deduplication_manager_phone_number_form_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_deduplication_manager_phone_number_form" />
+        <field name="act_window_id" ref="action_deduplication_manager_phone_number" />
+    </record>
+
+    <menuitem
+        id="menu_deduplication_manager_phone_number"
+        name="Phone Number Deduplication Managers"
+        action="action_deduplication_manager_phone_number"
+        parent="g2p_configuration_menu_root"
+        sequence="30"
+        groups="g2p_registrant.group_g2p_admin"
+    />
+
 </odoo>
