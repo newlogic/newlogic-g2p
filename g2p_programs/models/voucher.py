@@ -59,6 +59,7 @@ class G2PVoucher(models.Model):
         [
             ("draft", "Draft"),
             # ("created", "Created"), #  Not sure if we need created
+            ("pending_validation", "Pending Validation"),
             ("approved", "Approved"),
             ("trans2FSP", "Transferred to FSP"),
             ("rdpd2ben", "Redeemed/Paid to Beneficiary"),
