@@ -1,5 +1,9 @@
 Format in CHANGELOG.md
 
+## Version[0.07] - 2022-05-20
+
+- [ADD] All manager model methods
+
 ## Version[0.06] - 2022-05-19
 
 - [ADD] ID and Phone Number eligibility managers
