@@ -83,3 +83,14 @@ class G2PProgramMembership(models.Model):
                 name += rec.partner_id.name
             res.append((rec.id, name))
         return res
+
+    def open_beneficiaries_form(self):
+        return {
+            "name": "Program Beneficiaries",
+            "view_mode": "form",
+            "res_model": "g2p.program_membership",
+            "res_id": self.id,
+            "view_id": self.env.ref("g2p_programs.view_program_membership_form").id,
+            "type": "ir.actions.act_window",
+            "target": "new",
+        }

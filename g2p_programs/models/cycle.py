@@ -79,3 +79,14 @@ class G2PCycle(models.Model):
     def on_start_date_change(self):
         # cycle_manager.on_start_date_change(self, start_date)
         pass
+
+    def open_cycle_form(self):
+        return {
+            "name": "Cycle",
+            "view_mode": "form",
+            "res_model": "g2p.cycle",
+            "res_id": self.id,
+            "view_id": self.env.ref("g2p_programs.view_cycle_form").id,
+            "type": "ir.actions.act_window",
+            "target": "new",
+        }
