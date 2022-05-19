@@ -52,7 +52,33 @@
                         </div>
                     </div>
                     <notebook>
-                        <page string="Program Details">
+                        <page string="Beneficiaries">
+                            <field name="program_membership_ids" nolabel="1">
+                                <tree string="Program Memberships">
+                                    <field name="partner_id" />
+                                    <field
+                                        name="state"
+                                        widget="badge"
+                                        decoration-info="state == 'draft'"
+                                        decoration-warning="state == 'paused'"
+                                        decoration-success="state == 'enrolled'"
+                                        decoration-danger="state == 'exited'"
+                                        optional="show"
+                                    />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Cycles">
+                            <field name="cycle_ids" nolabel="1">
+                                <tree string="Program Cycles">
+                                    <field name="name" />
+                                    <field name="cycle_membership_ids" string="Cycle Memberships" />
+                                    <field name="voucher_ids" string="Vouchers" />
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Configuration">
                             <group colspan="4" col="4">
                                 <group colspan="2" string="Eligibility Managers">
                                     <header colspan="2">
@@ -313,31 +339,6 @@
                                     </group>
                                 </group>
                             </group>
-                        </page>
-                        <page string="Memberships">
-                            <field name="program_membership_ids" nolabel="1">
-                                <tree string="Program Memberships">
-                                    <field name="partner_id" />
-                                    <field
-                                        name="state"
-                                        widget="badge"
-                                        decoration-info="state == 'draft'"
-                                        decoration-warning="state == 'paused'"
-                                        decoration-success="state == 'enrolled'"
-                                        decoration-danger="state == 'exited'"
-                                        optional="show"
-                                    />
-                                </tree>
-                            </field>
-                        </page>
-                        <page string="Cycles">
-                            <field name="cycle_ids" nolabel="1">
-                                <tree string="Program Cycles">
-                                    <field name="name" />
-                                    <field name="cycle_membership_ids" string="Cycle Memberships" />
-                                    <field name="voucher_ids" string="Vouchers" />
-                                </tree>
-                            </field>
                         </page>
                     </notebook>
                 </sheet>
