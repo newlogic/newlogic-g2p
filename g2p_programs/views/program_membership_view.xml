@@ -81,9 +81,17 @@
                                 placeholder="Enter the registrant name..."
                             />
                         </h1>
-                        <label for="program_id" string="Program:" invisible="context.get('default_program_id',False)"/>
+                        <label
+                            for="program_id"
+                            string="Program:"
+                            invisible="context.get('default_program_id',False)"
+                        />
                         <h2 invisible="context.get('default_program_id',False)">
-                            <field name="program_id" placeholder="program..." invisible="context.get('default_program_id',False)"/>
+                            <field
+                                name="program_id"
+                                placeholder="program..."
+                                invisible="context.get('default_program_id',False)"
+                            />
                         </h2>
                     </div>
                     <group colspan="4" col="4">
