@@ -132,9 +132,9 @@
 
     <menuitem
         id="menu_program_membership"
-        name="Program Membership"
+        name="Beneficiaries"
         action="action_program_membership"
-        parent="g2p_registrant.g2p_program_menu_root"
+        parent="g2p_program_root"
         sequence="20"
         groups="g2p_registrant.group_g2p_admin"
     />

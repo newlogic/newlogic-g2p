@@ -16,7 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import logging
+
 from odoo import _, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class G2PProgram(models.Model):
@@ -68,6 +72,17 @@ class G2PProgram(models.Model):
         "g2p.program_membership", "program_id", "Program Memberships"
     )
     cycle_ids = fields.One2many("g2p.cycle", "program_id", "Cycles")
+
+    def count_beneficiaries(self, state=None):
+
+        domain = []
+        if state is not None:
+            domain = [("state", "in", state)]
+
+        total = 0
+        for rec in self.search([]):
+            total += rec.program_membership_ids.search_count(domain)
+        return {"value": total}
 
     # TODO: JJ - Add a way to link reports/Dashboard about this program.
 
