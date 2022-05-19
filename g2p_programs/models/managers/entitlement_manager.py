@@ -16,13 +16,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from odoo import fields, models
+from odoo import api, fields, models
+
+
+class EntitlementManager(models.Model):
+    _name = "g2p.program.entitlement.manager"
+    _description = "Entitlement Manager"
+    _inherit = "g2p.manager.mixin"
+
+    program_id = fields.Many2one("g2p.program", "Program")
+
+    @api.model
+    def _selection_manager_ref_id(self):
+        selection = super()._selection_manager_ref_id()
+        new_manager = ("g2p.program.entitlement.manager.default", "Default")
+        if new_manager not in selection:
+            selection.append(new_manager)
+        return selection
 
 
 class BaseEntitlementManager(models.AbstractModel):
-    _name = "g2p.program.entitlement.manager"
+    _name = "g2p.base.program.entitlement.manager"
+    _description = "Base Entitlement Manager"
 
-    program_id = fields.Many2one("g2p.program", string="Program", editable=False)
+    name = fields.Char("Manager Name", required=True)
+    program_id = fields.Many2one("g2p.program", string="Program", required=True)
 
     def prepare_vouchers(self, cycle, cycle_memberships):
         """
@@ -45,7 +63,8 @@ class BaseEntitlementManager(models.AbstractModel):
 
 class DefaultCashEntitlement(models.Model):
     _name = "g2p.program.entitlement.manager.default"
-    _inherit = "g2p.program.entitlement.manager"
+    _inherit = ["g2p.base.program.entitlement.manager", "g2p.manager.source.mixin"]
+    _description = "Default Entitlement Manager"
 
     amount_per_cycle = fields.Monetary(
         currency_field="currency_id", group_operator="sum"

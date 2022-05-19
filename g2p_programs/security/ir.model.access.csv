@@ -22,3 +22,6 @@ g2p_program_manager_default_admin,Program Manager Default Admin Access,g2p_progr
 
 g2p_cycle_manager_admin,Cycle Manager Admin Access,g2p_programs.model_g2p_cycle_manager,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_cycle_manager_default_admin,Cycle Manager Default Admin Access,g2p_programs.model_g2p_cycle_manager_default,g2p_registrant.group_g2p_admin,1,1,1,1
+
+g2p_program_entitlement_manager_admin,Program Entitlement Manager Admin Access,g2p_programs.model_g2p_program_entitlement_manager,g2p_registrant.group_g2p_admin,1,1,1,1
+g2p_program_entitlement_manager_default_admin,Program Entitlement Manager Default Admin Access,g2p_programs.model_g2p_program_entitlement_manager_default,g2p_registrant.group_g2p_admin,1,1,1,1

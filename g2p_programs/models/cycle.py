@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class G2PCycle(models.Model):

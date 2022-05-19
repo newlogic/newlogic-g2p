@@ -18,6 +18,7 @@
 #
 from odoo import api, fields, models
 
+
 class CycleManager(models.Model):
     _name = "g2p.cycle.manager"
     _description = "Cycle Manager"
@@ -32,6 +33,7 @@ class CycleManager(models.Model):
         if new_manager not in selection:
             selection.append(new_manager)
         return selection
+
 
 class BaseCycleManager(models.AbstractModel):
     _name = "g2p.base.cycle.manager"
@@ -74,7 +76,7 @@ class BaseCycleManager(models.AbstractModel):
 
 class DefaultCycleManager(models.Model):
     _name = "g2p.cycle.manager.default"
-    _inherit = ["g2p.base.cycle.manager","g2p.manager.source.mixin"]
+    _inherit = ["g2p.base.cycle.manager", "g2p.manager.source.mixin"]
     _description = "Default Cycle Manager"
 
     def check_eligibility(self):

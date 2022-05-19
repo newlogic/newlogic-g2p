@@ -57,10 +57,10 @@ class G2PProgram(models.Model):
         "g2p.program.manager", string="Program Managers"
     )
     # Cycle steps
-    cycle_managers = fields.Many2many(
-        "g2p.cycle.manager", string="Cycle Managers"
+    cycle_managers = fields.Many2many("g2p.cycle.manager", string="Cycle Managers")
+    entitlement_managers = fields.Many2many(
+        "g2p.program.entitlement.manager", string="Entitlement Managers"
     )
-    entitlement_managers = fields.Selection([])
 
     reconciliation_managers = fields.Selection([])
 

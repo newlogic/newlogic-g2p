@@ -198,11 +198,7 @@
                                     <header colspan="2">
                                     </header>
                                     <group colspan="2">
-                                        <field
-                                            name="program_managers"
-                                            nolabel="1"
-                                            widget="many2many_list"
-                                        >
+                                        <field name="program_managers" nolabel="1" widget="many2many_list">
                                             <tree string="Program Managers" editable="top">
                                                 <field
                                                     name="manager_ref_id"
@@ -246,11 +242,7 @@
                                         />
                                     </header>
                                     <group colspan="2">
-                                        <field
-                                            name="cycle_managers"
-                                            nolabel="1"
-                                            widget="many2many_list"
-                                        >
+                                        <field name="cycle_managers" nolabel="1" widget="many2many_list">
                                             <tree string="Cycle Managers" editable="top">
                                                 <field
                                                     name="manager_ref_id"
@@ -285,22 +277,39 @@
                                     <header colspan="2">
                                     </header>
                                     <group colspan="2">
-
-                                    </group>
-                                </group>
-                            </group>
-                            <group colspan="4" col="4">
-                                <group colspan="2" string="Reconciliation Managers">
-                                    <header colspan="2">
-                                    </header>
-                                    <group colspan="2">
-                                    </group>
-                                </group>
-                                <group colspan="2" string="Program Membership Managers">
-                                    <header colspan="2">
-                                    </header>
-                                    <group colspan="2">
-
+                                        <field
+                                            name="entitlement_managers"
+                                            nolabel="1"
+                                            widget="many2many_list"
+                                        >
+                                            <tree string="Entitlement Managers" editable="top">
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                    string="Managers"
+                                                />
+                                                <field name="manager_id" invisible="1" />
+                                                <button
+                                                    name="open_manager_form"
+                                                    type="object"
+                                                    icon="fa-envelope-o"
+                                                    class="btn-success"
+                                                    attrs="{'invisible':[('manager_ref_id','=',False)]}"
+                                                />
+                                            </tree>
+                                            <form string="Entitlement Manager">
+                                                <sheet>
+                                                    <group colspan="4" col="4">
+                                                        <field
+                                                            name="manager_ref_id"
+                                                            options="{'no_quick_create':True}"
+                                                            colspan="4"
+                                                        />
+                                                        <field name="program_id" invisible="1" />
+                                                    </group>
+                                                </sheet>
+                                            </form>
+                                        </field>
                                     </group>
                                 </group>
                             </group>

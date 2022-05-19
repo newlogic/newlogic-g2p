@@ -1,5 +1,10 @@
 Format in CHANGELOG.md
 
+## Version[0.06] - 2022-05-19
+
+- [ADD] Notification, Program, and Cycle Managers model and UI
+- [ADD] Entitlement Manager model and UI
+
 ## Version[0.05] - 2022-05-18
 
 - [ADD] Eligibility and Deduplication Managers

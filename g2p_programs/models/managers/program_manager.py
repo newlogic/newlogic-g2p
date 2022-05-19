@@ -18,6 +18,7 @@
 #
 from odoo import api, fields, models
 
+
 class ProgramManager(models.Model):
     _name = "g2p.program.manager"
     _description = "Program Manager"
@@ -32,6 +33,7 @@ class ProgramManager(models.Model):
         if new_manager not in selection:
             selection.append(new_manager)
         return selection
+
 
 class BaseProgramManager(models.AbstractModel):
     _name = "g2p.base.program.manager"
