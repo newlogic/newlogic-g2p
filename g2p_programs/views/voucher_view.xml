@@ -74,7 +74,7 @@
     </record>
 
     <record id="action_voucher" model="ir.actions.act_window">
-        <field name="name">Vocuher</field>
+        <field name="name">Vouchers</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">g2p.voucher</field>
         <field name="view_mode">tree,form</field>
@@ -105,7 +105,7 @@
 
     <menuitem
         id="menu_voucher"
-        name="Voucher"
+        name="Vouchers"
         action="action_voucher"
         parent="g2p_program_voucher_root"
         sequence="50"

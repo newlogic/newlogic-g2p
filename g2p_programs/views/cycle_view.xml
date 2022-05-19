@@ -112,7 +112,7 @@
 
     <menuitem
         id="menu_cycle"
-        name="Cycle"
+        name="Cycles"
         action="action_cycle"
         parent="g2p_program_cycle_root"
         sequence="30"
