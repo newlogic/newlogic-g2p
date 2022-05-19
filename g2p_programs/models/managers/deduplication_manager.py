@@ -94,6 +94,23 @@ class PhoneNumberDeduplication(models.Model):
         # TODO: check if beneficiaries still match the criterias
         return
 
+class IDPhoneEligibilityManager(models.Model):
+    """
+    Add the ID Document and Phone Number Deduplication in the Eligibility Manager
+    """
+    _inherit = "g2p.eligibility.manager"
+
+    @api.model
+    def _selection_manager_ref_id(self):
+        selection = super()._selection_manager_ref_id()
+        new_managers = [
+            ("g2p.program_membership.manager.id_dedup", "ID Document Eligibility"),
+            ("g2p.program_membership.manager.phone_number", "Phone Number Eligibility"),
+        ]
+        for new_manager in new_managers:
+            if new_manager not in selection:
+                selection.append(new_manager)
+        return selection
 
 class IDDocumentDeduplicationEligibility(models.Model):
     """

@@ -2,7 +2,8 @@ Format in CHANGELOG.md
 
 ## Version[0.06] - 2022-05-19
 
-- [FIX] Job Queue to import eligible beneficiaries 
+- [ADD] ID and Phone Number eligibility managers
+- [FIX] Job Queue to import eligible beneficiaries
 - [ADD] Notification, Program, and Cycle Managers model and UI
 - [ADD] Entitlement Manager model and UI
 
