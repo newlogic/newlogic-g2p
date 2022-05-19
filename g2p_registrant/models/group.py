@@ -31,7 +31,7 @@ class G2PGroup(models.Model):
 
     def count_individuals(self, kind=None, criteria=None):
         # Only count active groups
-        domain = [('end_date', '=?', False)]
+        domain = [("end_date", "=?", False)]
 
         # TODO: implement the search on the many2Many
         # if kind is not None:

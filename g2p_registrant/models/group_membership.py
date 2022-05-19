@@ -44,7 +44,9 @@ class G2PGroupMembership(models.Model):
         "g2p.group.kind", string="Kind", required=True, tracking=True
     )
     start_date = fields.Datetime("Start Date", tracking=True)
-    end_date = fields.Datetime("End Date", tracking=True)  # TODO: Should rename `ended_date` add a check that the date is in the past
+    end_date = fields.Datetime(
+        "End Date", tracking=True
+    )  # TODO: Should rename `ended_date` add a check that the date is in the past
 
     def name_get(self):
         res = super(G2PGroupMembership, self).name_get()
