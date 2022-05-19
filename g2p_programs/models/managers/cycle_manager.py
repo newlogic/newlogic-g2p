@@ -16,14 +16,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from odoo import fields, models
+from odoo import api, fields, models
 
+class CycleManager(models.Model):
+    _name = "g2p.cycle.manager"
+    _description = "Cycle Manager"
+    _inherit = "g2p.manager.mixin"
+
+    program_id = fields.Many2one("g2p.program", "Program")
+
+    @api.model
+    def _selection_manager_ref_id(self):
+        selection = super()._selection_manager_ref_id()
+        new_manager = ("g2p.cycle.manager.default", "Default")
+        if new_manager not in selection:
+            selection.append(new_manager)
+        return selection
 
 class BaseCycleManager(models.AbstractModel):
-    _name = "g2p.cycle.manager"
+    _name = "g2p.base.cycle.manager"
+    _description = "Base Cycle Manager"
 
-    program_id = fields.Many2one("g2p.program", string="Program", editable=False)
-    cycle_id = fields.Many2one("g2p.cycle", string="Cycle", editable=False)
+    name = fields.Char("Manager Name", required=True)
+    program_id = fields.Many2one("g2p.program", string="Program", required=True)
+    cycle_id = fields.Many2one("g2p.cycle", string="Cycle", required=True)
 
     def check_eligibility(self):
         """
@@ -58,8 +74,8 @@ class BaseCycleManager(models.AbstractModel):
 
 class DefaultCycleManager(models.Model):
     _name = "g2p.cycle.manager.default"
-
-    _inherit = "g2p.cycle.manager"
+    _inherit = ["g2p.base.cycle.manager","g2p.manager.source.mixin"]
+    _description = "Default Cycle Manager"
 
     def check_eligibility(self):
         #  TODO: call the program's eligibility manager and check if the beneficiary is still eligible

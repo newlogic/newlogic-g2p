@@ -12,13 +12,13 @@
    limitations under the License.
 -->
 <odoo>
-    <!-- Eligibility Manager -->
-    <record id="view_eligibility_manager_tree" model="ir.ui.view">
-        <field name="name">view_eligibility_manager_tree</field>
-        <field name="model">g2p.eligibility.manager</field>
+    <!-- Cycle Manager -->
+    <record id="view_cycle_manager_tree" model="ir.ui.view">
+        <field name="name">view_cycle_manager_tree</field>
+        <field name="model">g2p.cycle.manager</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
-            <tree string="Eligibility Managers">
+            <tree string="Cycle Managers">
                 <field name="manager_ref_id" />
                 <field name="program_id" />
                 <field name="manager_id" invisible="1" />
@@ -26,12 +26,12 @@
         </field>
     </record>
 
-    <record id="view_eligibility_manager_form" model="ir.ui.view">
-        <field name="name">view_eligibility_manager_form</field>
-        <field name="model">g2p.eligibility.manager</field>
+    <record id="view_cycle_manager_form" model="ir.ui.view">
+        <field name="name">view_cycle_manager_form</field>
+        <field name="model">g2p.cycle.manager</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
-            <form string="Eligibility Manager">
+            <form string="Cycle Manager">
                 <sheet>
                     <group colspan="4" col="4">
                         <field name="manager_ref_id" options="{'no_quick_create':True}" colspan="4" />
@@ -46,27 +46,26 @@
         </field>
     </record>
 
-    <!-- Default Eligibility Manager -->
-    <record id="view_eligibility_manager_default_tree" model="ir.ui.view">
-        <field name="name">view_eligibility_manager_default_tree</field>
-        <field name="model">g2p.program_membership.manager.default</field>
+    <!-- Default Cycle Manager -->
+    <record id="view_cycle_manager_default_tree" model="ir.ui.view">
+        <field name="name">view_cycle_manager_default_tree</field>
+        <field name="model">g2p.cycle.manager.default</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
-            <tree string="Default Eligibility Managers" sample="1">
+            <tree string="Default Cycle Managers" sample="1">
                 <field name="name" />
-                <field name="program_id" />
-                <field name="support_individual" />
-                <field name="support_group" />
+                <field name="program_id"/>
+                <field name="cycle_id"/>
             </tree>
         </field>
     </record>
 
-    <record id="view_eligibility_manager_default_form" model="ir.ui.view">
-        <field name="name">view_eligibility_manager_default_form</field>
-        <field name="model">g2p.program_membership.manager.default</field>
+    <record id="view_cycle_manager_default_form" model="ir.ui.view">
+        <field name="name">view_cycle_manager_default_form</field>
+        <field name="model">g2p.cycle.manager.default</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
-            <form string="Default Eligibility Manager">
+            <form string="Default Cycle Manager">
                 <sheet>
                     <div class="oe_button_box" name="button_box" />
                     <div class="oe_title mb24">
@@ -87,25 +86,25 @@
                         </div>
                     </div>
                     <group colspan="4" col="4">
-                        <field name="support_individual" />
-                        <field name="support_group" />
-                        <field name="eligibility_domain" colspan="4" />
+                        <field name="cycle_id" options="{'no_open':True,'no_create':True,'no_create_edit':True}"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <record id="eligibility_manager_default_filter" model="ir.ui.view">
-        <field name="name">eligibility_manager_default_filter</field>
-        <field name="model">g2p.program_membership.manager.default</field>
+    <record id="cycle_manager_default_filter" model="ir.ui.view">
+        <field name="name">cycle_manager_default_filter</field>
+        <field name="model">g2p.cycle.manager.default</field>
         <field name="priority" eval="1" />
         <field name="arch" type="xml">
-            <search string="Search Eligibility Manager">
+            <search string="Search Default Cycle Manager">
                 <field name="name" />
                 <field name="program_id" />
+                <field name="cycle_id" />
                 <group expand="0" string="Group By">
                     <filter string="Program" name="grp_program_id" context="{'group_by': 'program_id'}" />
+                    <filter string="Cycle" name="grp_cycle_id" context="{'group_by': 'cycle_id'}" />
                 </group>
                 <!--<searchpanel>
                     <field name="group" icon="fa-users"/>
@@ -114,43 +113,43 @@
         </field>
     </record>
 
-    <record id="action_eligibility_manager_default" model="ir.actions.act_window">
-        <field name="name">Default Eligibility Managers</field>
+    <record id="action_cycle_manager_default" model="ir.actions.act_window">
+        <field name="name">Cycle Managers</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">g2p.program_membership.manager.default</field>
+        <field name="res_model">g2p.cycle.manager.default</field>
         <field name="view_mode">tree,form</field>
-        <field name="search_view_id" ref="eligibility_manager_default_filter" />
+        <field name="search_view_id" ref="cycle_manager_default_filter" />
         <field name="context">{}</field>
         <field name="domain">[]</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Add an Eligibility Manager!
+                Add a Cycle Manager!
             </p><p>
-                Click the create button to enter a new eligibility manager.
+                Click the create button to enter a new cycle manager.
             </p>
         </field>
     </record>
 
-    <record id="action_eligibility_manager_default_tree_view" model="ir.actions.act_window.view">
+    <record id="action_cycle_manager_default_tree_view" model="ir.actions.act_window.view">
         <field name="sequence" eval="1" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_eligibility_manager_default_tree" />
-        <field name="act_window_id" ref="action_eligibility_manager_default" />
+        <field name="view_id" ref="view_cycle_manager_default_tree" />
+        <field name="act_window_id" ref="action_cycle_manager_default" />
     </record>
 
-    <record id="action_eligibility_manager_default_form_view" model="ir.actions.act_window.view">
+    <record id="action_cycle_manager_default_form_view" model="ir.actions.act_window.view">
         <field name="sequence" eval="1" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_eligibility_manager_default_form" />
-        <field name="act_window_id" ref="action_eligibility_manager_default" />
+        <field name="view_id" ref="view_cycle_manager_default_form" />
+        <field name="act_window_id" ref="action_cycle_manager_default" />
     </record>
 
     <menuitem
-        id="menu_eligibility_manager_default"
-        name="Default Eligibility Managers"
-        action="action_eligibility_manager_default"
+        id="menu_cycle_manager_default"
+        name="Default Cycle Managers"
+        action="action_cycle_manager_default"
         parent="g2p_programs.g2p_manager_menu_root"
-        sequence="100"
+        sequence="500"
         groups="g2p_registrant.group_g2p_admin"
     />
 

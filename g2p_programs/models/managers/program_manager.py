@@ -16,13 +16,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from odoo import fields, models
+from odoo import api, fields, models
 
+class ProgramManager(models.Model):
+    _name = "g2p.program.manager"
+    _description = "Program Manager"
+    _inherit = "g2p.manager.mixin"
+
+    program_id = fields.Many2one("g2p.program", "Program")
+
+    @api.model
+    def _selection_manager_ref_id(self):
+        selection = super()._selection_manager_ref_id()
+        new_manager = ("g2p.program.manager.default", "Default")
+        if new_manager not in selection:
+            selection.append(new_manager)
+        return selection
 
 class BaseProgramManager(models.AbstractModel):
-    _name = "g2p.program.manager"
+    _name = "g2p.base.program.manager"
+    _description = "Base Program Manager"
 
-    program_id = fields.Many2one("g2p.program", string="Program", editable=False)
+    name = fields.Char("Manager Name", required=True)
+    program_id = fields.Many2one("g2p.program", string="Program", required=True)
 
     def last_cycle(self):
         """
@@ -63,7 +79,8 @@ class BaseProgramManager(models.AbstractModel):
 
 class DefaultProgramManager(models.Model):
     _name = "g2p.program.manager.default"
-    _inherit = "g2p.program.manager"
+    _inherit = ["g2p.base.program.manager", "g2p.manager.source.mixin"]
+    _description = "Default Program Manager"
 
     number_of_cycles = fields.Integer(string="Number of cycles", default=1)
     copy_last_cycle_on_new_cycle = fields.Boolean(

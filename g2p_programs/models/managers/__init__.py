@@ -23,3 +23,5 @@ from . import base_manager
 from . import eligibility_manager
 from . import deduplication_manager
 from . import notification_manager
+from . import program_manager
+from . import cycle_manager

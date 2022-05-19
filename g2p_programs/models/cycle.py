@@ -31,10 +31,10 @@ class G2PCycle(models.Model):
         "res.company", default=lambda self: self.env.company, tracking=True
     )
     program_id = fields.Many2one("g2p.program", "Program", required=True, tracking=True)
-    sequence = fields.Integer(required=True, tracking=True, readonly=True)
+    sequence = fields.Integer(required=True, tracking=True, readonly=True, default=1)
     start_date = fields.Date(required=True, tracking=True)
     end_date = fields.Date(required=True, tracking=True)
-    status = fields.Selection(
+    state = fields.Selection(
         [("draft", "Draft"), ("active", "Active"), ("ended", "Ended")],
         default="draft",
         tracking=True,
@@ -76,7 +76,6 @@ class G2PCycle(models.Model):
         # 2. Copy the cycle using the cycle manager
         pass
 
-    @api.onchange("start_date")
-    def on_start_date_change(self, start_date):
+    def on_start_date_change(self):
         # cycle_manager.on_start_date_change(self, start_date)
         pass

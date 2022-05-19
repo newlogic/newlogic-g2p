@@ -150,8 +150,8 @@
         id="menu_deduplication_manager_id_dedup"
         name="ID Deduplication Managers"
         action="action_deduplication_manager_id_dedup"
-        parent="g2p_configuration_menu_root"
-        sequence="20"
+        parent="g2p_programs.g2p_manager_menu_root"
+        sequence="200"
         groups="g2p_registrant.group_g2p_admin"
     />
 
@@ -256,8 +256,8 @@
         id="menu_deduplication_manager_phone_number"
         name="Phone Number Deduplication Managers"
         action="action_deduplication_manager_phone_number"
-        parent="g2p_configuration_menu_root"
-        sequence="30"
+        parent="g2p_programs.g2p_manager_menu_root"
+        sequence="210"
         groups="g2p_registrant.group_g2p_admin"
     />
 

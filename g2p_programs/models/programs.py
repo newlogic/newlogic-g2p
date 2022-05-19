@@ -53,13 +53,16 @@ class G2PProgram(models.Model):
     notification_managers = fields.Many2many(
         "g2p.program.notification.manager", string="Notification Managers"
     )
-    program_manager = fields.Selection([])
-
+    program_managers = fields.Many2many(
+        "g2p.program.manager", string="Program Managers"
+    )
     # Cycle steps
-    cycle_manager = fields.Selection([])
-    entitlement_manager = fields.Selection([])
+    cycle_managers = fields.Many2many(
+        "g2p.cycle.manager", string="Cycle Managers"
+    )
+    entitlement_managers = fields.Selection([])
 
-    reconciliation_manager = fields.Selection([])
+    reconciliation_managers = fields.Selection([])
 
     program_membership_ids = fields.One2many(
         "g2p.program_membership", "program_id", "Program Memberships"

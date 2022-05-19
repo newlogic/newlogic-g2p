@@ -6,10 +6,19 @@ g2p_cycle_admin,Cycle Admin Access,g2p_programs.model_g2p_cycle,g2p_registrant.g
 g2p_cycle_membership_admin,Cycle Membership Admin Access,g2p_programs.model_g2p_cycle_membership,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_voucher_admin,Voucher Admin Access,g2p_programs.model_g2p_voucher,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_cash_voucher_admin,Cash Voucher Admin Access,g2p_programs.model_g2p_cash_voucher,g2p_registrant.group_g2p_admin,1,1,1,1
+
 g2p_eligibility_manager_admin,Eligibility Manager Admin Access,g2p_programs.model_g2p_eligibility_manager,g2p_registrant.group_g2p_admin,1,1,1,1
-g2p_deduplication_manager_admin,Deduplication Manager Admin Access,g2p_programs.model_g2p_deduplication_manager,g2p_registrant.group_g2p_admin,1,1,1,1
-g2p_program_notification_manager_admin,Program Notification Manager Admin Access,g2p_programs.model_g2p_program_notification_manager,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_program_membership_manager_default_admin,Default Program Membership Manager Admin Access,g2p_programs.model_g2p_program_membership_manager_default,g2p_registrant.group_g2p_admin,1,1,1,1
+
+g2p_deduplication_manager_admin,Deduplication Manager Admin Access,g2p_programs.model_g2p_deduplication_manager,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_deduplication_manager_id_dedup_admin,Deduplication Manager ID Admin Access,g2p_programs.model_g2p_deduplication_manager_id_dedup,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_deduplication_manager_phone_number_admin,Deduplication Manager Phone Number Admin Access,g2p_programs.model_g2p_deduplication_manager_phone_number,g2p_registrant.group_g2p_admin,1,1,1,1
+
+g2p_program_notification_manager_admin,Program Notification Manager Admin Access,g2p_programs.model_g2p_program_notification_manager,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_program_notification_manager_sms_admin,Program Notification Manager SMS Admin Access,g2p_programs.model_g2p_program_notification_manager_sms,g2p_registrant.group_g2p_admin,1,1,1,1
+
+g2p_program_manager_admin,Program Manager Admin Access,g2p_programs.model_g2p_program_manager,g2p_registrant.group_g2p_admin,1,1,1,1
+g2p_program_manager_default_admin,Program Manager Default Admin Access,g2p_programs.model_g2p_program_manager_default,g2p_registrant.group_g2p_admin,1,1,1,1
+
+g2p_cycle_manager_admin,Cycle Manager Admin Access,g2p_programs.model_g2p_cycle_manager,g2p_registrant.group_g2p_admin,1,1,1,1
+g2p_cycle_manager_default_admin,Cycle Manager Default Admin Access,g2p_programs.model_g2p_cycle_manager_default,g2p_registrant.group_g2p_admin,1,1,1,1
