@@ -54,7 +54,7 @@ class G2PLocation(models.Model):
     def _compute_complete_name(self):
         for location in self:
             if location.parent_id:
-                location.complete_name = "%s / %s" % (
+                location.complete_name = "%s > %s" % (
                     location.parent_id.complete_name,
                     location.name,
                 )

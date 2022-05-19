@@ -273,7 +273,10 @@ class G2PLocationImport(models.Model):
                             }
                         # Check if Location already Exist
                         curr_location = self.env["g2p.location"].search(
-                            [("name", "=", raw.admin_name)]
+                            [
+                                ("name", "=", raw.admin_name),
+                                ("code", "=", raw.admin_code),
+                            ]
                         )
 
                         if not curr_location:
