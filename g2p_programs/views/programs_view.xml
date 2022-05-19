@@ -237,7 +237,7 @@
                                             name="create_new_cycle"
                                             type="object"
                                             string="Create Cycle"
-                                            icon="fa-download"
+                                            icon="fa-repeat"
                                             class="btn-primary"
                                         />
                                     </header>

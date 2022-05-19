@@ -18,7 +18,6 @@
 #
 from odoo import api, fields, models
 
-
 class EligibilityManager(models.Model):
     _name = "g2p.eligibility.manager"
     _description = "Eligibility Manager"
@@ -95,9 +94,9 @@ class DefaultEligibility(models.Model):
     def import_eligible_registrants(self):
         domain = [("is_registrant", "=", True)]
         for rec in self:
-            if rec.support_individual and not rec.support_group:
+            if rec.program_id.target_type == 'individual':
                 domain += [("is_group", "=", False)]
-            if not rec.support_individual and rec.support_group:
+            if rec.program_id.target_type == 'group':
                 domain += [("is_group", "=", True)]
 
             if rec.eligibility_domain:
@@ -105,22 +104,28 @@ class DefaultEligibility(models.Model):
             results = self.env["res.partner"].search(domain)
 
             # Add all the matching registrants that are not yet enrolled to the program
+            # Get the ids from res.partner that are already existing in the g2p.program_membership.program_membership_ids
+            existing_ids = rec.program_id.program_membership_ids.mapped("partner_id.id")
             if results:
                 registrants = []
                 for r in results:
-                    registrants.append(
-                        [
-                            0,
-                            0,
-                            {
-                                "partner_id": r.id,
-                                "enrollment_date": fields.Date.today(),
-                            },
-                        ]
+                    if r.id not in existing_ids:
+                        registrants.append(
+                            [
+                                0,
+                                0,
+                                {
+                                    "partner_id": r.id,
+                                    "enrollment_date": fields.Date.today(),
+                                },
+                            ]
+                        )
+                if registrants:
+                    rec.program_id.update(
+                        {"program_membership_ids": registrants}
                     )
-                rec.program_id.program_membership_ids.with_delay().update(
-                    {"program_membership_ids": registrants}
-                )
-                return True
+                    return True
+                else:
+                    return False
             else:
                 return False

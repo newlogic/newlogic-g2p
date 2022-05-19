@@ -78,10 +78,11 @@ class G2PProgram(models.Model):
             if rec.eligibility_managers:
                 err_ctr = 0
                 for el in rec.eligibility_managers:
-                    if not el.manager_ref_id.import_eligible_registrants():
+                    # Add import to queue job.
+                    if not el.manager_ref_id.with_delay().import_eligible_registrants():
                         err_ctr += 1
                 if err_ctr == 0:
-                    # Add import to queue job. Show success notification!
+                    # Added import to queue job. Show success notification!
                     title = _("ON QUEUE!")
                     message = _(
                         "The import was put on queue. Re-open this form later to refresh the program members."
