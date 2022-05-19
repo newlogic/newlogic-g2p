@@ -17,7 +17,10 @@
 # limitations under the License.
 #
 from odoo import fields, models
+from lxml import etree
 
+#import logging
+#_logger = logging.getLogger(__name__)
 
 class G2PProgramMembership(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
@@ -26,7 +29,7 @@ class G2PProgramMembership(models.Model):
     _order = "id desc"
 
     partner_id = fields.Many2one(
-        "res.partner", "Registrant", help="A beneficiary", required=True, tracking=True
+        "res.partner", "Registrant", help="A beneficiary", required=True, tracking=True, domain=[('is_registrant','=',True)]
     )
     program_id = fields.Many2one(
         "g2p.program", "", help="A program", required=True, tracking=True
@@ -72,6 +75,33 @@ class G2PProgramMembership(models.Model):
         copy=False,
         tracking=True,
     )
+
+    def fields_view_get(self, view_id=None, view_type='form', toolbar=False, submenu=False):
+        context = self.env.context
+        #_logger.info('DEBUG: context: %s' % context)
+        result = super(G2PProgramMembership, self).fields_view_get(
+            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu)
+        if view_type == 'form':
+            update_arch = False
+            doc = etree.XML(result['arch'])
+            
+            #Check if we need to change the partner_id domain filter
+            target_type = context.get('target_type',False)
+            if target_type:
+                domain = None
+                if context.get('target_type',False) == 'group':
+                    domain = "[('is_registrant', '=', True), ('is_group','=',True)]"
+                elif context.get('target_type',False) == 'individual':
+                    domain = "[('is_registrant', '=', True), ('is_group','=',False)]"
+                if domain:
+                    update_arch = True
+                    nodes = doc.xpath("//field[@name='partner_id']")
+                    for node in nodes:
+                        node.set('domain', domain)
+
+            if update_arch:
+                result['arch'] = etree.tostring(doc, encoding='unicode')
+        return result                
 
     def name_get(self):
         res = super(G2PProgramMembership, self).name_get()

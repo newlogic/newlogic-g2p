@@ -53,7 +53,7 @@
                     </div>
                     <notebook>
                         <page string="Beneficiaries">
-                            <field name="program_membership_ids" nolabel="1">
+                            <field name="program_membership_ids" nolabel="1" context="{'target_type':target_type,'default_program_id':active_id}">
                                 <tree string="Program Memberships">
                                     <button
                                         name="open_beneficiaries_form"

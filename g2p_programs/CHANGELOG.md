@@ -2,6 +2,10 @@ Format in CHANGELOG.md
 
 ## Version[0.07] - 2022-05-20
 
+- [ADD] partner_id (m2o res.partner) fields dynamic domain in method fields_view_get
+- [ADD] UIs with program_id (m2o g2p.program) automaticall hide if loaded from a o2m table
+- [FIX] UI filters for loading groups or individuals based on program target type
+- [FIX] Automatically set program to all manager popup forms
 - [ADD] All manager model methods
 
 ## Version[0.06] - 2022-05-19
