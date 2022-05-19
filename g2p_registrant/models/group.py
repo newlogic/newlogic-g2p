@@ -28,3 +28,23 @@ class G2PGroup(models.Model):
         "g2p.group.membership", "group", "Group Members"
     )
     is_partial_group = fields.Boolean("Partial Group")
+
+    def count_individuals(self, kind=None, criteria=None):
+        # Only count active groups
+        domain = [('end_date', '=?', False)]
+
+        # TODO: implement the search on the many2Many
+        # if kind is not None:
+        #     domain += [("kind", "in", state)]
+
+        new_domain = []
+        if criteria is not None:
+            # This will break if they use logical operators between criteria
+            for el in criteria:
+                new_domain += [("individual." + el[0], el[1], el[2])]
+
+        total = 0
+        for rec in self:
+            total += rec.group_membership_ids.search_count(domain)
+
+            return total
