@@ -25,9 +25,7 @@
     "website": "https://newlogic.com/",
     "license": "Other OSI approved licence",
     "depends": ["base", "g2p_registrant"],
-    "data": [
-        "views/cus_partner_view.xml",
-    ],
+    "data": [],
     "assets": {},
     "demo": [],
     "images": [],

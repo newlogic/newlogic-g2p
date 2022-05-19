@@ -17,9 +17,12 @@
 # limitations under the License.
 #
 
+
 import logging
 
-from odoo import _, fields, models
+from lxml import etree
+
+from odoo import models
 
 _logger = logging.getLogger(__name__)
 
@@ -27,57 +30,57 @@ _logger = logging.getLogger(__name__)
 class G2PResPartner(models.Model):
     _inherit = "res.partner"
 
-    ui_view_id = fields.Many2one("ir.ui.view", string="UI View")
+    def fields_view_get(
+        self, view_id=None, view_type="form", toolbar=False, submenu=False
+    ):
+        res = super(G2PResPartner, self).fields_view_get(
+            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
+        )
 
-    def custom_view_create(self, inherit_id, arch_base):
-        custom_view_id = (
-            self.env["ir.ui.view"]
-            .sudo()
-            .create(
-                {
-                    "name": "individuals.inherit.fields",
-                    "xml_id": "individuals.inherit.fields",
-                    "type": "form",
-                    "model": "res.partner",
-                    "mode": "extension",
-                    "inherit_id": inherit_id.id,
-                    "arch_base": arch_base,
-                    "active": True,
-                }
+        doc = etree.XML(res["arch"])
+
+        if view_type == "form":
+            doc = etree.XML(res["arch"])
+            other_page = doc.xpath("//page[@name='other']")
+
+            model_fields_id = self.env["ir.model.fields"].search(
+                [("model_id", "=", "res.partner"), ("state", "=", "manual")]
             )
-        )
-        _logger.debug(f"Model trigger create: {custom_view_id}")
-        return custom_view_id
 
-    def custom_form_view(self):
-        inherit_id = self.env.ref("g2p_registrant.view_individuals_form")
-        model_id = self.env["ir.model.fields"].search(
-            [("model_id", "=", "res.partner"), ("state", "=", "manual")]
-        )
+            if other_page:
+                custom_page = etree.Element("page", {"string": "Custom Fields"})
+                criteria_page = etree.Element("page", {"string": "Criteria Fields"})
+                other_page[0].addprevious(custom_page)
+                other_page[0].addprevious(criteria_page)
 
-        arch_base = _(
-            '<?xml version="1.0"?>'
-            "<data>"
-            '<page name="custom" position="inside">'
-            '<group col="4" colspan="4">'
-        )
+                custom_group = etree.SubElement(
+                    custom_page, "group", {"col": "4", "colspan": "4"}
+                )
+                criteria_group = etree.SubElement(
+                    criteria_page, "group", {"col": "4", "colspan": "4"}
+                )
 
-        for rec in model_id:
-            arch_base += f'<field name="{rec.name}"/>'
+                for rec in model_fields_id:
+                    if rec.name.startswith("x_custom_"):
+                        etree.SubElement(
+                            custom_group,
+                            "field",
+                            {
+                                "name": f"{rec.name}",
+                            },
+                        )
 
-        arch_base += "</group></page></data>"
+                    if rec.name.startswith("x_criteria_"):
+                        # doc.xpath("//page[@name='other']")
+                        etree.SubElement(
+                            criteria_group,
+                            "field",
+                            {
+                                "name": f"{rec.name}",
+                                "readonly": "1",
+                            },
+                        )
 
-        _logger.debug(f"Model: {model_id}")
-        _logger.debug(f"Model: {arch_base}")
+                res["arch"] = etree.tostring(doc, encoding="unicode")
 
-        if not self.ui_view_id:
-            custom_view_id = self.custom_view_create(inherit_id, arch_base)
-            self.ui_view_id = custom_view_id
-
-        else:
-            self.ui_view_id.unlink()
-            custom_view_id = self.custom_view_create(inherit_id, arch_base)
-            self.ui_view_id = custom_view_id
-
-        _logger.debug(f"Model: {str(self._inherit[0])}")
-        return {"type": "ir.actions.client", "tag": "reload"}
+        return res

@@ -18,5 +18,3 @@
 #
 
 from . import cus_partner
-
-# from . import controllers
