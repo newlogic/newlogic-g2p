@@ -180,7 +180,7 @@
                                             name="notify_eligible_beneficiaries"
                                             type="object"
                                             string="Notify Registrants"
-                                            icon="fa-download"
+                                            icon="fa-envelope-o"
                                             class="btn-primary"
                                         />
                                     </header>
@@ -200,7 +200,7 @@
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
-                                                    icon="fa-envelope-o"
+                                                    icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                 />
@@ -235,7 +235,7 @@
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
-                                                    icon="fa-envelope-o"
+                                                    icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                 />
@@ -279,7 +279,7 @@
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
-                                                    icon="fa-envelope-o"
+                                                    icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                 />
@@ -318,7 +318,7 @@
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
-                                                    icon="fa-envelope-o"
+                                                    icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                 />
