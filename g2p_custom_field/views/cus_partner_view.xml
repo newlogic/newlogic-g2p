@@ -23,13 +23,13 @@
                     <group col="4" colspan="4">
                     <div>
                         <button
-                            type="object"
-                            class="oe_stat_button btn-warning"
-                            icon="fa-arrow-circle-down"
-                            name="custom_form_view"
-                        >Load all custom field</button>
+                                type="object"
+                                class="oe_stat_button btn-warning"
+                                icon="fa-arrow-circle-down"
+                                name="custom_form_view"
+                            >Load all custom field</button>
                     </div>
-                        <field name="ui_view_id" invisible="1"/>
+                        <field name="ui_view_id" invisible="1" />
                     </group>
                 </page>
             </xpath>
