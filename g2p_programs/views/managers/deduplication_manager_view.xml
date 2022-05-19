@@ -202,7 +202,7 @@
                         </div>
                     </div>
                     <group colspan="4" col="4">
-                        <field name="phone_regex" colspan="4"/>
+                        <field name="phone_regex" colspan="4" />
                         <field name="capability_individual" />
                         <field name="capability_group" />
                     </group>

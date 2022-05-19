@@ -12,7 +12,7 @@
 -->
 <odoo>
 
-    <menuitem id="g2p_program_menu_root" name="Programs" sequence="10" />
+    <menuitem id="g2p_program_menu_root" name="Programs" sequence="0" />
     <!-- Programs sub-menu -->
     <menuitem id="g2p_program_root" name="Programs" parent="g2p_program_menu_root" sequence="100" />
     <menuitem id="g2p_program_cycle_root" name="Cycles" parent="g2p_program_menu_root" sequence="200" />

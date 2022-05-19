@@ -49,7 +49,9 @@ class BaseDeduplication(models.AbstractModel):
 
     name = fields.Char("Manager Name", required=True)
     program_id = fields.Many2one("g2p.program", string="Program", required=True)
-    capability_individual = fields.Boolean("Deduplicate Individuals", default=_capability_individual)
+    capability_individual = fields.Boolean(
+        "Deduplicate Individuals", default=_capability_individual
+    )
     capability_group = fields.Boolean("Deduplicate Groups", default=_capability_group)
 
     def check_duplicates(self, program_membership):

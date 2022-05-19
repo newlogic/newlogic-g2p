@@ -18,6 +18,7 @@
 #
 from odoo import api, fields, models
 
+
 class EligibilityManager(models.Model):
     _name = "g2p.eligibility.manager"
     _description = "Eligibility Manager"
@@ -94,9 +95,9 @@ class DefaultEligibility(models.Model):
     def import_eligible_registrants(self):
         domain = [("is_registrant", "=", True)]
         for rec in self:
-            if rec.program_id.target_type == 'individual':
+            if rec.program_id.target_type == "individual":
                 domain += [("is_group", "=", False)]
-            if rec.program_id.target_type == 'group':
+            if rec.program_id.target_type == "group":
                 domain += [("is_group", "=", True)]
 
             if rec.eligibility_domain:
@@ -121,9 +122,7 @@ class DefaultEligibility(models.Model):
                             ]
                         )
                 if registrants:
-                    rec.program_id.update(
-                        {"program_membership_ids": registrants}
-                    )
+                    rec.program_id.update({"program_membership_ids": registrants})
                     return True
                 else:
                     return False
