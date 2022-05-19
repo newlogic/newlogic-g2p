@@ -56,6 +56,12 @@
                             <field name="program_membership_ids" nolabel="1">
                                 <tree string="Program Memberships">
                                     <field name="partner_id" />
+                                    <button
+                                        name="open_beneficiaries_form"
+                                        type="object"
+                                        icon="fa-external-link"
+                                        class="btn-success"
+                                    />
                                     <field
                                         name="state"
                                         widget="badge"
@@ -72,6 +78,12 @@
                             <field name="cycle_ids" nolabel="1">
                                 <tree string="Program Cycles">
                                     <field name="name" />
+                                    <button
+                                        name="open_cycle_form"
+                                        type="object"
+                                        icon="fa-external-link"
+                                        class="btn-success"
+                                    />
                                     <field name="cycle_membership_ids" string="Cycle Memberships" />
                                     <field name="voucher_ids" string="Vouchers" />
                                 </tree>
