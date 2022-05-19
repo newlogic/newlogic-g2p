@@ -74,7 +74,7 @@ class IDDocumentDeduplication(models.Model):
 
     def check_duplicates(self, program_memberships):
         # TODO: check if beneficiaries still match the criterias
-        return
+        return True
 
 
 class PhoneNumberDeduplication(models.Model):
@@ -92,12 +92,14 @@ class PhoneNumberDeduplication(models.Model):
 
     def check_duplicates(self, program_memberships):
         # TODO: check if beneficiaries still match the criterias
-        return
+        return True
+
 
 class IDPhoneEligibilityManager(models.Model):
     """
     Add the ID Document and Phone Number Deduplication in the Eligibility Manager
     """
+
     _inherit = "g2p.eligibility.manager"
 
     @api.model
@@ -112,10 +114,10 @@ class IDPhoneEligibilityManager(models.Model):
                 selection.append(new_manager)
         return selection
 
+
 class IDDocumentDeduplicationEligibility(models.Model):
     """
     This model is used to check if a beneficiary has the required documents to be deduplicated.
-
     It uses the IDDocumentDeduplication configuration to perform the check
     """
 
@@ -134,7 +136,6 @@ class IDDocumentDeduplicationEligibility(models.Model):
 class PhoneNumberDeduplicationEligibility(models.Model):
     """
     This model is used to check if a beneficiary has a phone number to be deduplicated
-
     It uses the PhoneNumberDeduplication configuration to perform the check
     """
 
