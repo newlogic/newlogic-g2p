@@ -41,7 +41,7 @@ class G2PGroupMembership(models.Model):
         tracking=True,
     )
     kind = fields.Many2many(
-        "g2p.group.kind", string="Kind", required=True, tracking=True
+        "g2p.group.membership.kind", string="Kind", required=True, tracking=True
     )
     start_date = fields.Datetime("Start Date", tracking=True)
     end_date = fields.Datetime(
@@ -67,9 +67,9 @@ class G2PGroupMembership(models.Model):
         return self._search(args, limit=limit, access_rights_uid=name_get_uid)
 
 
-class G2PGoupKind(models.Model):
-    _name = "g2p.group.kind"
-    _description = "Group Kind"
+class G2PGroupMembershipKind(models.Model):
+    _name = "g2p.group.membership.kind"
+    _description = "Group Membership Kind"
     _order = "id desc"
 
     name = fields.Char("Kind")
