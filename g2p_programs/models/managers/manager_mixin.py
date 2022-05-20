@@ -49,6 +49,7 @@ class ManagerMixin(models.AbstractModel):
                         "views": [(self.env[res_model].get_manager_view_id(), "form")],
                         "res_id": res_id,
                         "target": "new",
+                        "context": self.env.context,
                     }
                 )
                 return action

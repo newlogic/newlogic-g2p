@@ -20,9 +20,6 @@ from lxml import etree
 
 from odoo import fields, models
 
-# import logging
-# _logger = logging.getLogger(__name__)
-
 
 class G2PProgramMembership(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
@@ -87,7 +84,6 @@ class G2PProgramMembership(models.Model):
         self, view_id=None, view_type="form", toolbar=False, submenu=False
     ):
         context = self.env.context
-        # _logger.info('DEBUG: context: %s' % context)
         result = super(G2PProgramMembership, self).fields_view_get(
             view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
         )
@@ -125,12 +121,17 @@ class G2PProgramMembership(models.Model):
         return res
 
     def open_beneficiaries_form(self):
-        return {
-            "name": "Program Beneficiaries",
-            "view_mode": "form",
-            "res_model": "g2p.program_membership",
-            "res_id": self.id,
-            "view_id": self.env.ref("g2p_programs.view_program_membership_form").id,
-            "type": "ir.actions.act_window",
-            "target": "new",
-        }
+        for rec in self:
+            return {
+                "name": "Program Beneficiaries",
+                "view_mode": "form",
+                "res_model": "g2p.program_membership",
+                "res_id": rec.id,
+                "view_id": self.env.ref("g2p_programs.view_program_membership_form").id,
+                "type": "ir.actions.act_window",
+                "target": "new",
+                "context": {
+                    "target_type": rec.program_id.target_type,
+                    "default_program_id": rec.program_id.id,
+                },
+            }
