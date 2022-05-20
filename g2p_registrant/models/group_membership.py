@@ -80,12 +80,12 @@ class G2PGroupMembership(models.Model):
     def open_group_form(self):
         return {
             "name": "Group Membership",
-            +"view_mode": "form",
-            +"res_model": "res.partner",
-            +"res_id": self.group.id,
-            +"view_id": self.env.ref("g2p_registrant.view_groups_form").id,
-            +"type": "ir.actions.act_window",
-            +"target": "new",
+            "view_mode": "form",
+            "res_model": "res.partner",
+            "res_id": self.group.id,
+            "view_id": self.env.ref("g2p_registrant.view_groups_form").id,
+            "type": "ir.actions.act_window",
+            "target": "new",
         }
 
 
