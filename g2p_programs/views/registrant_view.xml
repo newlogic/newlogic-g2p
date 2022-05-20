@@ -32,7 +32,7 @@
         <field name="inherit_id" ref="g2p_registrant.view_individuals_form" />
         <field name="arch" type="xml">
             <xpath expr="//page[@name='other']" position="before">
-                <page string="Program Membership">
+                <page string="Program">
                     <field name="program_membership_ids" readonly="1" nolabel="1">
                       <tree>
                           <button
@@ -125,7 +125,7 @@
         <field name="inherit_id" ref="g2p_registrant.view_groups_form" />
         <field name="arch" type="xml">
             <xpath expr="//page[@name='other']" position="before">
-                <page string="Program Membership">
+                <page string="Programs">
                   <field name="program_membership_ids" readonly="1" nolabel="1">
                     <tree>
                         <button
