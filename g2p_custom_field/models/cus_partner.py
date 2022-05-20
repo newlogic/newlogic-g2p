@@ -74,8 +74,9 @@ class G2PResPartner(models.Model):
                             criteria_group,
                             "field",
                             {
-                                "name": f"{rec.name}",
+                                "name": rec.name,
                                 "readonly": "1",
+                                "class": "oe_read_only",
                             },
                         )
 
