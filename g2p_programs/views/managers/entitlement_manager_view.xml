@@ -34,7 +34,12 @@
             <form string="Entitlement Manager">
                 <sheet>
                     <group colspan="4" col="4">
-                        <field name="manager_ref_id" options="{'no_quick_create':True}" colspan="4" />
+                        <field
+                            name="manager_ref_id"
+                            options="{'no_quick_create':True}"
+                            colspan="4"
+                            context="{'default_program_id':program_id}"
+                        />
                         <field
                             name="program_id"
                             placeholder="Select a program..."
@@ -75,13 +80,18 @@
                         <h1>
                             <field id="name" name="name" placeholder="Enter the Manager Name..." />
                         </h1>
-                        <label for="program_id" string="Program:" />
-                        <h2>
+                        <label
+                            for="program_id"
+                            string="Program:"
+                            invisible="context.get('default_program_id',False)"
+                        />
+                        <h2 invisible="context.get('default_program_id',False)">
                             <field
                                 id="program_id"
                                 name="program_id"
                                 placeholder="Select a program..."
                                 options="{'no_open':True,'no_create':True,'no_create_edit':True}"
+                                invisible="context.get('default_program_id',False)"
                             />
                         </h2>
                         <div class="o_row">

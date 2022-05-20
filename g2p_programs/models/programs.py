@@ -87,7 +87,63 @@ class G2PProgram(models.Model):
     # TODO: JJ - Add a way to link reports/Dashboard about this program.
 
     # TODO: Implement the method that will call the different managers
+
     def import_beneficiaries(self):
+        for rec in self:
+            domain = [("is_registrant", "=", True)]
+            if rec.target_type == "individual":
+                domain += [("is_group", "=", False)]
+            if rec.target_type == "group":
+                domain += [("is_group", "=", True)]
+
+            # Get the ids from res.partner that are existing in the g2p.program_membership.program_membership_ids
+            existing_ids = rec.program_membership_ids.mapped("partner_id.id")
+            if existing_ids:
+                # Prevent importing registrants existing in g2p.program_membership.program_membership_ids
+                domain += [("id", "not in", existing_ids)]
+
+            # Add import to queue job.
+            self.with_delay()._import_beneficiaries(rec, domain)
+            # Added import to queue job. Show success notification!
+            title = _("ON QUEUE!")
+            message = _(
+                "The import for the project %s was put on queue. Re-open this form later to refresh the program members."
+                % rec.name
+            )
+            kind = "success"  # warning, danger, info, success
+            return {
+                "type": "ir.actions.client",
+                "tag": "display_notification",
+                "params": {
+                    "title": title,
+                    "message": message,
+                    "sticky": False,
+                    "type": kind,
+                },
+            }
+
+    def _import_beneficiaries(self, rec, domain):
+        # Add all the matching registrants that are not yet enrolled to the program
+        results = self.env["res.partner"].search(domain)
+        if results:
+            registrants = []
+            for r in results:
+                registrants.append(
+                    [
+                        0,
+                        0,
+                        {
+                            "partner_id": r.id,
+                            "enrollment_date": fields.Date.today(),
+                        },
+                    ]
+                )
+            rec.update({"program_membership_ids": registrants})
+            return {"status": "SUCCESS", "data": registrants}
+        else:
+            return {"status": "FAILED", "data": "No registrants imported"}
+
+    def import_beneficiaries_OLD(self):
         # 1. get the beneficiaries using the eligibility_manager.import_eligible_registrants()
         for rec in self:
             if rec.eligibility_managers:

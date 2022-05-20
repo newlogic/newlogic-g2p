@@ -93,8 +93,8 @@ class DefaultEligibility(models.Model):
         return self.verify_program_eligibility(cycle)
 
     def import_eligible_registrants(self):
-        domain = [("is_registrant", "=", True)]
         for rec in self:
+            domain = [("is_registrant", "=", True)]
             if rec.program_id.target_type == "individual":
                 domain += [("is_group", "=", False)]
             if rec.program_id.target_type == "group":

@@ -32,8 +32,18 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <form string="Program">
+                <header>
+                    <button
+                        name="import_beneficiaries"
+                        type="object"
+                        string="Import Registrants"
+                        icon="fa-download"
+                        class="btn-primary"
+                    />
+                </header>
                 <sheet>
-                    <div class="oe_button_box" name="button_box" />
+                    <div class="oe_button_box" name="button_box">
+                    </div>
                     <div class="oe_title mb24">
                         <label for="name" string="Program:" />
                         <h1>
@@ -97,15 +107,6 @@
                         <page string="Configuration">
                             <group colspan="4" col="4">
                                 <group colspan="2" string="Eligibility Managers">
-                                    <header colspan="2">
-                                        <button
-                                            name="import_beneficiaries"
-                                            type="object"
-                                            string="Import Registrants"
-                                            icon="fa-download"
-                                            class="btn-primary"
-                                        />
-                                    </header>
                                     <group colspan="2">
                                         <field
                                             name="eligibility_managers"
@@ -147,26 +148,19 @@
                                     </group>
                                 </group>
                                 <group colspan="2" string="Deduplication Managers">
-                                    <header colspan="2">
-                                        <button
-                                            name="deduplicate_beneficiaries"
-                                            type="object"
-                                            string="Deduplicate"
-                                            icon="fa-files-o"
-                                            class="btn-primary"
-                                        />
-                                    </header>
                                     <group colspan="2">
                                         <field
                                             name="deduplication_managers"
                                             nolabel="1"
                                             widget="many2many_list"
+                                            context="{'default_program_id':active_id}"
                                         >
                                             <tree string="Deduplication Managers" editable="top">
                                                 <field
                                                     name="manager_ref_id"
                                                     options="{'no_quick_create':True}"
                                                     string="Managers"
+                                                    context="{'default_program_id':active_id}"
                                                 />
                                                 <field name="manager_id" invisible="1" />
                                                 <button
@@ -175,6 +169,7 @@
                                                     icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
+                                                    context="{'default_program_id':active_id}"
                                                 />
                                             </tree>
                                             <form string="Deduplication Manager">
@@ -184,6 +179,7 @@
                                                             name="manager_ref_id"
                                                             options="{'no_quick_create':True}"
                                                             colspan="4"
+                                                            context="{'default_program_id':program_id}"
                                                         />
                                                         <field name="program_id" invisible="1" />
                                                     </group>
@@ -195,26 +191,19 @@
                             </group>
                             <group colspan="4" col="4">
                                 <group colspan="2" string="Notification Managers">
-                                    <header colspan="2">
-                                        <button
-                                            name="notify_eligible_beneficiaries"
-                                            type="object"
-                                            string="Notify Registrants"
-                                            icon="fa-envelope-o"
-                                            class="btn-primary"
-                                        />
-                                    </header>
                                     <group colspan="2">
                                         <field
                                             name="notification_managers"
                                             nolabel="1"
                                             widget="many2many_list"
+                                            context="{'default_program_id':active_id}"
                                         >
                                             <tree string="Notification Managers" editable="top">
                                                 <field
                                                     name="manager_ref_id"
                                                     options="{'no_quick_create':True}"
                                                     string="Managers"
+                                                    context="{'default_program_id':active_id}"
                                                 />
                                                 <field name="manager_id" invisible="1" />
                                                 <button
@@ -223,6 +212,7 @@
                                                     icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
+                                                    context="{'default_program_id':active_id}"
                                                 />
                                             </tree>
                                             <form string="Notification Manager">
@@ -232,6 +222,7 @@
                                                             name="manager_ref_id"
                                                             options="{'no_quick_create':True}"
                                                             colspan="4"
+                                                            context="{'default_program_id':program_id}"
                                                         />
                                                         <field name="program_id" invisible="1" />
                                                     </group>
@@ -241,15 +232,19 @@
                                     </group>
                                 </group>
                                 <group colspan="2" string="Program Managers">
-                                    <header colspan="2">
-                                    </header>
                                     <group colspan="2">
-                                        <field name="program_managers" nolabel="1" widget="many2many_list">
+                                        <field
+                                            name="program_managers"
+                                            nolabel="1"
+                                            widget="many2many_list"
+                                            context="{'default_program_id':active_id}"
+                                        >
                                             <tree string="Program Managers" editable="top">
                                                 <field
                                                     name="manager_ref_id"
                                                     options="{'no_quick_create':True}"
                                                     string="Managers"
+                                                    context="{'default_program_id':active_id}"
                                                 />
                                                 <field name="manager_id" invisible="1" />
                                                 <button
@@ -258,6 +253,7 @@
                                                     icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
+                                                    context="{'default_program_id':active_id}"
                                                 />
                                             </tree>
                                             <form string="Program Manager">
@@ -267,6 +263,7 @@
                                                             name="manager_ref_id"
                                                             options="{'no_quick_create':True}"
                                                             colspan="4"
+                                                            context="{'default_program_id':program_id}"
                                                         />
                                                         <field name="program_id" invisible="1" />
                                                     </group>
@@ -278,22 +275,19 @@
                             </group>
                             <group colspan="4" col="4">
                                 <group colspan="2" string="Cycle Managers">
-                                    <header colspan="2">
-                                        <button
-                                            name="create_new_cycle"
-                                            type="object"
-                                            string="Create Cycle"
-                                            icon="fa-repeat"
-                                            class="btn-primary"
-                                        />
-                                    </header>
                                     <group colspan="2">
-                                        <field name="cycle_managers" nolabel="1" widget="many2many_list">
+                                        <field
+                                            name="cycle_managers"
+                                            nolabel="1"
+                                            widget="many2many_list"
+                                            context="{'default_program_id':active_id}"
+                                        >
                                             <tree string="Cycle Managers" editable="top">
                                                 <field
                                                     name="manager_ref_id"
                                                     options="{'no_quick_create':True}"
                                                     string="Managers"
+                                                    context="{'default_program_id':active_id}"
                                                 />
                                                 <field name="manager_id" invisible="1" />
                                                 <button
@@ -302,6 +296,7 @@
                                                     icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
+                                                    context="{'default_program_id':active_id}"
                                                 />
                                             </tree>
                                             <form string="Cycle Manager">
@@ -311,6 +306,7 @@
                                                             name="manager_ref_id"
                                                             options="{'no_quick_create':True}"
                                                             colspan="4"
+                                                            context="{'default_program_id':program_id}"
                                                         />
                                                         <field name="program_id" invisible="1" />
                                                     </group>
@@ -320,19 +316,19 @@
                                     </group>
                                 </group>
                                 <group colspan="2" string="Entitlement Managers">
-                                    <header colspan="2">
-                                    </header>
                                     <group colspan="2">
                                         <field
                                             name="entitlement_managers"
                                             nolabel="1"
                                             widget="many2many_list"
+                                            context="{'default_program_id':active_id}"
                                         >
                                             <tree string="Entitlement Managers" editable="top">
                                                 <field
                                                     name="manager_ref_id"
                                                     options="{'no_quick_create':True}"
                                                     string="Managers"
+                                                    context="{'default_program_id':active_id}"
                                                 />
                                                 <field name="manager_id" invisible="1" />
                                                 <button
@@ -341,6 +337,7 @@
                                                     icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
+                                                    context="{'default_program_id':active_id}"
                                                 />
                                             </tree>
                                             <form string="Entitlement Manager">
@@ -350,6 +347,7 @@
                                                             name="manager_ref_id"
                                                             options="{'no_quick_create':True}"
                                                             colspan="4"
+                                                            context="{'default_program_id':program_id}"
                                                         />
                                                         <field name="program_id" invisible="1" />
                                                     </group>
