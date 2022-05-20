@@ -55,13 +55,13 @@
                         <page string="Beneficiaries">
                             <field name="program_membership_ids" nolabel="1">
                                 <tree string="Program Memberships">
-                                    <field name="partner_id" />
                                     <button
                                         name="open_beneficiaries_form"
                                         type="object"
                                         icon="fa-external-link"
                                         class="btn-success"
                                     />
+                                    <field name="partner_id" />
                                     <field
                                         name="state"
                                         widget="badge"
@@ -77,13 +77,13 @@
                         <page string="Cycles">
                             <field name="cycle_ids" nolabel="1">
                                 <tree string="Program Cycles">
-                                    <field name="name" />
                                     <button
                                         name="open_cycle_form"
                                         type="object"
                                         icon="fa-external-link"
                                         class="btn-success"
                                     />
+                                    <field name="name" />
                                     <field name="cycle_membership_ids" string="Cycle Memberships" />
                                     <field name="voucher_ids" string="Vouchers" />
                                 </tree>
@@ -109,12 +109,6 @@
                                             widget="many2many_list"
                                         >
                                             <tree string="Eligibility Managers" editable="top">
-                                                <field
-                                                    name="manager_ref_id"
-                                                    options="{'no_quick_create':True}"
-                                                    string="Managers"
-                                                />
-                                                <field name="manager_id" invisible="1" />
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
@@ -122,6 +116,12 @@
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                 />
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                    string="Managers"
+                                                />
+                                                <field name="manager_id" invisible="1" />
                                             </tree>
                                             <form string="Eligibility Manager">
                                                 <sheet>
@@ -155,12 +155,6 @@
                                             widget="many2many_list"
                                         >
                                             <tree string="Deduplication Managers" editable="top">
-                                                <field
-                                                    name="manager_ref_id"
-                                                    options="{'no_quick_create':True}"
-                                                    string="Managers"
-                                                />
-                                                <field name="manager_id" invisible="1" />
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
@@ -168,6 +162,12 @@
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                 />
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                    string="Managers"
+                                                />
+                                                <field name="manager_id" invisible="1" />
                                             </tree>
                                             <form string="Deduplication Manager">
                                                 <sheet>
@@ -203,12 +203,6 @@
                                             widget="many2many_list"
                                         >
                                             <tree string="Notification Managers" editable="top">
-                                                <field
-                                                    name="manager_ref_id"
-                                                    options="{'no_quick_create':True}"
-                                                    string="Managers"
-                                                />
-                                                <field name="manager_id" invisible="1" />
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
@@ -216,6 +210,12 @@
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                 />
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                    string="Managers"
+                                                />
+                                                <field name="manager_id" invisible="1" />
                                             </tree>
                                             <form string="Notification Manager">
                                                 <sheet>
@@ -238,12 +238,6 @@
                                     <group colspan="2">
                                         <field name="program_managers" nolabel="1" widget="many2many_list">
                                             <tree string="Program Managers" editable="top">
-                                                <field
-                                                    name="manager_ref_id"
-                                                    options="{'no_quick_create':True}"
-                                                    string="Managers"
-                                                />
-                                                <field name="manager_id" invisible="1" />
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
@@ -251,6 +245,12 @@
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                 />
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                    string="Managers"
+                                                />
+                                                <field name="manager_id" invisible="1" />
                                             </tree>
                                             <form string="Program Manager">
                                                 <sheet>
@@ -282,12 +282,6 @@
                                     <group colspan="2">
                                         <field name="cycle_managers" nolabel="1" widget="many2many_list">
                                             <tree string="Cycle Managers" editable="top">
-                                                <field
-                                                    name="manager_ref_id"
-                                                    options="{'no_quick_create':True}"
-                                                    string="Managers"
-                                                />
-                                                <field name="manager_id" invisible="1" />
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
@@ -295,6 +289,12 @@
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                 />
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                    string="Managers"
+                                                />
+                                                <field name="manager_id" invisible="1" />
                                             </tree>
                                             <form string="Cycle Manager">
                                                 <sheet>
@@ -321,12 +321,6 @@
                                             widget="many2many_list"
                                         >
                                             <tree string="Entitlement Managers" editable="top">
-                                                <field
-                                                    name="manager_ref_id"
-                                                    options="{'no_quick_create':True}"
-                                                    string="Managers"
-                                                />
-                                                <field name="manager_id" invisible="1" />
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
@@ -334,6 +328,12 @@
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                 />
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                    string="Managers"
+                                                />
+                                                <field name="manager_id" invisible="1" />
                                             </tree>
                                             <form string="Entitlement Manager">
                                                 <sheet>

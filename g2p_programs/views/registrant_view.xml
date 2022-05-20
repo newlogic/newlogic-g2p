@@ -33,13 +33,72 @@
         <field name="arch" type="xml">
             <xpath expr="//page[@name='other']" position="before">
                 <page string="Program Membership">
-                    <field name="program_membership_ids" readonly="1" />
+                    <field name="program_membership_ids" readonly="1" nolabel="1">
+                      <tree>
+                          <button
+                                name="open_beneficiaries_form"
+                                type="object"
+                                icon="fa-external-link"
+                                class="btn-success"
+                            />
+                          <field name="partner_id" />
+                          <field name="program_id" />
+                          <field name="enrollment_date" />
+                          <field name="exit_date" />
+                          <field name="delivery_mechanism_value" />
+                          <field
+                                name="state"
+                                decoration-primary="state=='draft'"
+                                decoration-warning="state=='paused'"
+                                decoration-success="state=='enrolled'"
+                                decoration-danger="state=='exited'"
+                                widget="badge"
+                                string="Status"
+                            />
+                      </tree>
+                    </field>
                 </page>
                 <page string="Cycle">
-                    <field name="cycle_ids" readonly="1" />
+                    <field name="cycle_ids" readonly="1" nolabel="1">
+                      <tree>
+                          <button
+                                name="open_cycle_membership_form"
+                                type="object"
+                                icon="fa-external-link"
+                                class="btn-success"
+                            />
+                          <field name="partner_id" />
+                          <field name="cycle_id" />
+                          <field
+                                name="status"
+                                decoration-primary="status=='draft'"
+                                decoration-warning="status=='paused'"
+                                decoration-success="status=='enrolled'"
+                                decoration-danger="status=='exited'"
+                                widget="badge"
+                            />
+                      </tree>
+                    </field>
                 </page>
                 <page string="Voucher">
-                    <field name="voucher_ids" readonly="1" />
+                    <field name="voucher_ids" readonly="1" nolabel="1">
+                      <tree>
+                          <button
+                                name="open_voucher_form"
+                                type="object"
+                                icon="fa-external-link"
+                                class="btn-success"
+                            />
+                          <field name="name" />
+                          <field name="code" />
+                          <field name="partner_id" />
+                          <field name="cycle_id" />
+                          <field name="valid_from" />
+                          <field name="valid_until" />
+                          <field name="state" />
+                          <field name="company_id" groups="base.group_multi_company" />
+                      </tree>
+                    </field>
                 </page>
             </xpath>
         </field>
@@ -67,13 +126,72 @@
         <field name="arch" type="xml">
             <xpath expr="//page[@name='other']" position="before">
                 <page string="Program Membership">
-                    <field name="program_membership_ids" readonly="1" />
+                  <field name="program_membership_ids" readonly="1" nolabel="1">
+                    <tree>
+                        <button
+                                name="open_beneficiaries_form"
+                                type="object"
+                                icon="fa-external-link"
+                                class="btn-success"
+                            />
+                        <field name="partner_id" />
+                        <field name="program_id" />
+                        <field name="enrollment_date" />
+                        <field name="exit_date" />
+                        <field name="delivery_mechanism_value" />
+                        <field
+                                name="state"
+                                decoration-primary="state=='draft'"
+                                decoration-warning="state=='paused'"
+                                decoration-success="state=='enrolled'"
+                                decoration-danger="state=='exited'"
+                                widget="badge"
+                                string="Status"
+                            />
+                    </tree>
+                  </field>
                 </page>
                 <page string="Cycle">
-                    <field name="cycle_ids" readonly="1" />
+                  <field name="cycle_ids" readonly="1" nolabel="1">
+                    <tree>
+                        <button
+                                name="open_cycle_membership_form"
+                                type="object"
+                                icon="fa-external-link"
+                                class="btn-success"
+                            />
+                        <field name="partner_id" />
+                        <field name="cycle_id" />
+                        <field
+                                name="status"
+                                decoration-primary="status=='draft'"
+                                decoration-warning="status=='paused'"
+                                decoration-success="status=='enrolled'"
+                                decoration-danger="status=='exited'"
+                                widget="badge"
+                            />
+                    </tree>
+                  </field>
                 </page>
                 <page string="Voucher">
-                    <field name="voucher_ids" readonly="1" />
+                  <field name="voucher_ids" readonly="1" nolabel="1">
+                    <tree>
+                        <button
+                                name="open_voucher_form"
+                                type="object"
+                                icon="fa-external-link"
+                                class="btn-success"
+                            />
+                        <field name="name" />
+                        <field name="code" />
+                        <field name="partner_id" />
+                        <field name="cycle_id" />
+                        <field name="valid_from" />
+                        <field name="valid_until" />
+                        <field name="state" />
+                        <field name="company_id" groups="base.group_multi_company" />
+                    </tree>
+                  </field>
                 </page>
             </xpath>
         </field>

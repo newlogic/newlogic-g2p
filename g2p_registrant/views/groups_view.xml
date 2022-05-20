@@ -182,6 +182,12 @@
                                         editable="top"
                                         decoration-danger="disabled != False"
                                     >
+                                        <button
+                                            name="open_relationship1_form"
+                                            type="object"
+                                            icon="fa-external-link"
+                                            class="btn-success"
+                                        />
                                         <field
                                             name="registrant1"
                                             domain="[('is_registrant','=',True),('id','!=',active_id)]"
@@ -211,6 +217,12 @@
                                         editable="top"
                                         decoration-danger="disabled != False"
                                     >
+                                        <button
+                                            name="open_relationship2_form"
+                                            type="object"
+                                            icon="fa-external-link"
+                                            class="btn-success"
+                                        />
                                         <field
                                             name="registrant2"
                                             domain="[('is_registrant','=',True),('id','!=',active_id)]"
@@ -230,7 +242,7 @@
                                 </field>
                             </group>
                         </page>
-                        <page string="Groups">
+                        <page string="Group Members">
                             <group col="4" colspan="4">
                                 <field
                                     name="kind"
@@ -246,6 +258,12 @@
                                     colspan="4"
                                 >
                                     <tree string="Members" editable="top">
+                                        <button
+                                            name="open_individual_form"
+                                            type="object"
+                                            icon="fa-external-link"
+                                            class="btn-success"
+                                        />
                                         <field
                                             name="individual"
                                             domain="[('is_registrant','=',True),('is_group','=',False)]"

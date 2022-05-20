@@ -65,10 +65,46 @@
                     </group>
                     <notebook>
                         <page string="Cycle Membership">
-                            <field name="cycle_membership_ids" />
+                          <field name="cycle_membership_ids" nolabel="1">
+                            <tree>
+                                <button
+                                        name="open_cycle_membership_form"
+                                        type="object"
+                                        icon="fa-external-link"
+                                        class="btn-success"
+                                    />
+                                <field name="partner_id" />
+                                <field name="cycle_id" />
+                                <field
+                                        name="status"
+                                        decoration-primary="status=='draft'"
+                                        decoration-warning="status=='paused'"
+                                        decoration-success="status=='enrolled'"
+                                        decoration-danger="status=='exited'"
+                                        widget="badge"
+                                    />
+                            </tree>
+                          </field>
                         </page>
                         <page string="Voucher">
-                           <field name="voucher_ids" />
+                          <field name="voucher_ids" nolabel="1">
+                            <tree>
+                                <button
+                                        name="open_voucher_form"
+                                        type="object"
+                                        icon="fa-external-link"
+                                        class="btn-success"
+                                    />
+                                <field name="name" />
+                                <field name="code" />
+                                <field name="partner_id" />
+                                <field name="cycle_id" />
+                                <field name="valid_from" />
+                                <field name="valid_until" />
+                                <field name="state" />
+                                <field name="company_id" groups="base.group_multi_company" />
+                            </tree>
+                          </field>
                         </page>
                     </notebook>
                 </sheet>

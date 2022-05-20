@@ -52,3 +52,14 @@ class G2PCycleMembership(models.Model):
                 name += rec.partner_id.name
             res.append((rec.id, name))
         return res
+
+    def open_cycle_membership_form(self):
+        return {
+            "name": "Cycle Membership",
+            "view_mode": "form",
+            "res_model": "g2p.cycle.membership",
+            "res_id": self.id,
+            "view_id": self.env.ref("g2p_programs.view_cycle_membership_form").id,
+            "type": "ir.actions.act_window",
+            "target": "new",
+        }

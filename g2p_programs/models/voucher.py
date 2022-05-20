@@ -89,3 +89,14 @@ class G2PVoucher(models.Model):
     def can_be_used(self):
         # expired state are computed once a day, so can be not synchro
         return self.state == "approved" and self.valid_until >= fields.Date.today()
+
+    def open_voucher_form(self):
+        return {
+            "name": "Voucher",
+            "view_mode": "form",
+            "res_model": "g2p.voucher",
+            "res_id": self.id,
+            "view_id": self.env.ref("g2p_programs.view_voucher_form").id,
+            "type": "ir.actions.act_window",
+            "target": "new",
+        }
