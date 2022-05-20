@@ -111,14 +111,23 @@
                                             name="eligibility_managers"
                                             nolabel="1"
                                             widget="many2many_list"
+                                            context="{'default_program_id':active_id}"
                                         >
                                             <tree string="Eligibility Managers" editable="top">
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                    string="Managers"
+                                                    context="{'default_program_id':active_id}"
+                                                />
+                                                <field name="manager_id" invisible="1" />
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
                                                     icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
+                                                    context="{'default_program_id':active_id}"
                                                 />
                                                 <field
                                                     name="manager_ref_id"
@@ -134,6 +143,7 @@
                                                             name="manager_ref_id"
                                                             options="{'no_quick_create':True}"
                                                             colspan="4"
+                                                            context="{'default_program_id':program_id}"
                                                         />
                                                         <field name="program_id" invisible="1" />
                                                     </group>
