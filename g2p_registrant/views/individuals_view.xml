@@ -200,7 +200,7 @@
                                 />
                                 <field name="birthdate" attrs="{'readonly':[('disabled','!=',False)]}" />
                                 <field
-                                    name="birthdate_exact"
+                                    name="birthdate_not_exact"
                                     attrs="{'readonly':[('disabled','!=',False)]}"
                                 />
                                 <field name="age" attrs="{'readonly':[('disabled','!=',False)]}" />
