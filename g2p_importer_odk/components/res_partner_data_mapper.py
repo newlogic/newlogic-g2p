@@ -16,32 +16,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from odoo.addons.component.core import Component
+from odoo.addons.connector_importer.utils.mapper_utils import xmlid_to_rel
 
-{
-    "name": "G2P ODK Importer",
-    "category": "G2P",
-    "version": "15.0.0.0.1",
-    "sequence": 3,
-    "author": "Newlogic",
-    "website": "https://newlogic.com/",
-    "license": "Other OSI approved licence",
-    "depends": [
-        "base",
-        "g2p_additional_data",
-        "g2p_location",
-        "g2p_registrant",
-        # oca
-        "connector_importer",
-    ],
-    "data": [
-        "views/source_views.xml",
-        "security/ir.model.access.csv",
-        "data/import_backend.xml",
-        "data/import_type.xml",
-        "data/import_source.xml",
-        "data/import_recordset.xml",
-    ],
-    "application": True,
-    "installable": True,
-    "auto_install": False,
-}
+
+class ResPartnerGroupMapper(Component):
+    _name = "g2p.res.partner.group.data.mapper"
+    _inherit = "importer.base.mapper"
+    _apply_on = "res.partner"
+
+    # TODO: How do we set tag_ids?
+    direct = [
+        ("id", "id"),
+        ("name", "name"),
+        ("given_name", "given_name"),
+        ("family_name", "family_name"),
+        ("birthdate", "birthdate"),
+        ("birth_place", "birth_place"),
+        ("registration_date", "registration_date"),
+        ("is_registrant", "is_registrant"),
+        ("is_group", "is_group"),
+    ]
+

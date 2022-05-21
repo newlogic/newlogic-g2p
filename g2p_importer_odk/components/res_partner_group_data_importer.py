@@ -20,24 +20,27 @@ import json
 
 from odoo.addons.component.core import Component
 
+import logging
+_logger = logging.getLogger(__name__)
 
-class G2PAdditionalDataRecordImporter(Component):
-    _name = "g2p.additional.data.importer"
+class G2PResPartnerGroupDataRecordImporter(Component):
+    _name = "g2p.res.partner.group.data.importer"
     _inherit = ["importer.record"]
-    _apply_on = "g2p.additional.data"
+    _apply_on = "res.partner"
     odoo_unique_key = "id"
     odoo_unique_key_is_xmlid = True
 
     def prepare_line(self, line):
         res = super().prepare_line(line)
         odk_id = res["__id"].split(":")[1]
+       
         new_res = {
-            "id": f"odk.add.{odk_id}",
-            "name": odk_id,
-            "registered_on": res["start"],
-            "source_id": res["source_id"],
-            "location_id": res["location_id"],
-            "json": json.dumps(res),
+            "id": f"odk.group.{odk_id}",
+            "name": res['registration_mrz']['document_number'],
+            "registration_date": '2000-01-25',
+            "is_registrant": 'True',
+            "is_group": 'True',
             "_line_nr": -1,
         }
+        _logger.debug(f"Result: {new_res}")
         return new_res
