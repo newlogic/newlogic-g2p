@@ -83,6 +83,7 @@ class DefaultEligibility(models.Model):
     _inherit = ["g2p.program_membership.manager", "g2p.manager.source.mixin"]
     _description = "Simple Eligibility"
 
+    # TODO: rename to allow_
     support_individual = fields.Boolean(string="Support Individual", default=False)
     support_group = fields.Boolean(string="Support Group", default=False)
 
@@ -96,6 +97,7 @@ class DefaultEligibility(models.Model):
         for rec in self:
             ids = program_memberships.mapped("partner_id.id")
             domain = [("id", "in", ids)]
+            # TODO: use the config of the program
             if rec.support_group and not rec.support_individual:
                 domain += [("is_group", "=", True)]
             if rec.support_individual and not rec.support_group:
@@ -112,39 +114,39 @@ class DefaultEligibility(models.Model):
     def verify_cycle_eligibility(self, cycle, program_membership):
         return self.enroll_eligible_registrants(cycle)
 
-    def import_eligible_registrants(self):
-        domain = [("is_registrant", "=", True)]
-        for rec in self:
-            if rec.program_id.target_type == "individual":
-                domain += [("is_group", "=", False)]
-            if rec.program_id.target_type == "group":
-                domain += [("is_group", "=", True)]
-
-            if rec.eligibility_domain:
-                domain = domain + rec._safe_eval(self.eligibility_domain)
-            results = self.env["res.partner"].search(domain)
-
-            # Add all the matching registrants that are not yet enrolled to the program
-            # Get the ids from res.partner that are already existing in the g2p.program_membership.program_membership_ids
-            existing_ids = rec.program_id.program_membership_ids.mapped("partner_id.id")
-            if results:
-                registrants = []
-                for r in results:
-                    if r.id not in existing_ids:
-                        registrants.append(
-                            [
-                                0,
-                                0,
-                                {
-                                    "partner_id": r.id,
-                                    "enrollment_date": fields.Date.today(),
-                                },
-                            ]
-                        )
-                if registrants:
-                    rec.program_id.update({"program_membership_ids": registrants})
-                    return True
-                else:
-                    return False
-            else:
-                return False
+    # def import_eligible_registrants(self):
+    #     domain = [("is_registrant", "=", True)]
+    #     for rec in self:
+    #         if rec.program_id.target_type == "individual":
+    #             domain += [("is_group", "=", False)]
+    #         if rec.program_id.target_type == "group":
+    #             domain += [("is_group", "=", True)]
+    #
+    #         if rec.eligibility_domain:
+    #             domain = domain + rec._safe_eval(self.eligibility_domain)
+    #         results = self.env["res.partner"].search(domain)
+    #
+    #         # Add all the matching registrants that are not yet enrolled to the program
+    #         # Get the ids from res.partner that are already existing in the g2p.program_membership.program_membership_ids
+    #         existing_ids = rec.program_id.program_membership_ids.mapped("partner_id.id")
+    #         if results:
+    #             registrants = []
+    #             for r in results:
+    #                 if r.id not in existing_ids:
+    #                     registrants.append(
+    #                         [
+    #                             0,
+    #                             0,
+    #                             {
+    #                                 "partner_id": r.id,
+    #                                 "enrollment_date": fields.Date.today(),
+    #                             },
+    #                         ]
+    #                     )
+    #             if registrants:
+    #                 rec.program_id.update({"program_membership_ids": registrants})
+    #                 return True
+    #             else:
+    #                 return False
+    #         else:
+    #             return False

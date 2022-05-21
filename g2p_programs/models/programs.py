@@ -142,17 +142,39 @@ class G2PProgram(models.Model):
             if rec.eligibility_managers:
                 for el in rec.eligibility_managers:
                     members = el.manager_ref_id.enroll_eligible_registrants(members)
+                # list the one not already enrolled:
+                _logger.info("members filtered: %s", members)
+                not_enrolled = members.filtered(lambda m: m.state != "enrolled")
+                _logger.info("not_enrolled: %s", not_enrolled)
+                not_enrolled.write(
+                    {
+                        "state": "enrolled",
+                        "enrollment_date": fields.Datetime.now(),
+                    }
+                )
+                if len(not_enrolled) > 0:
+                    message = _(
+                        "%s Beneficiaries enrolled."
+                        % len(not_enrolled)
+                    )
+                    kind = "success"
+                else:
+                    message = _("No Beneficiaries enrolled.")
+                    kind = "warning"
+            else:
+                message = _("No Eligibility Manager defined.")
+                kind = "error"
 
-            # list the one not already enrolled:
-            _logger.info("members filtered: %s", members)
-            not_enrolled = members.filtered(lambda m: m.state != "enrolled")
-            _logger.info("not_enrolled: %s", not_enrolled)
-            not_enrolled.write(
-                {
-                    "state": "enrolled",
-                    "enrollment_date": fields.Datetime.now(),
-                }
-            )
+            return {
+                "type": "ir.actions.client",
+                "tag": "display_notification",
+                "params": {
+                    "title": _("Enrollment"),
+                    "message": message,
+                    "sticky": True,
+                    "type": kind,
+                },
+            }
 
     def deduplicate_beneficiaries(self):
         # 1. Deduplicate the beneficiaries using deduplication_manager.check_duplicates()
@@ -166,4 +188,47 @@ class G2PProgram(models.Model):
         # 1. Create the next cycle using cycles_manager.new_cycle()
         # 2. Import the beneficiaries from the previous cycle to this one. If it is the first one, import from the
         # program memberships.
-        pass
+        for rec in self:
+
+            message = None
+            kind = "success"
+            _logger.info("rec.cycle_managers: %s", len(rec.cycle_managers))
+            _logger.info("rec.program_managers: %s", rec.program_managers)
+            if len(rec.cycle_managers) == 0:
+                message = _("No Eligibility Manager defined.")
+                kind = "error"
+            elif len(rec.program_managers) == 0:
+                message = _("No Program Manager defined.")
+                kind = "error"
+
+            if message is not None:
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Cycle"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,
+                    },
+                }
+
+            rec.program_managers.ensure_one()
+            rec.cycle_managers.ensure_one()
+            for pm in rec.program_managers:
+                _logger.info("-" * 80)
+                _logger.info("pm: %s", pm)
+                new_cycle = pm.manager_ref_id.new_cycle()
+                message = _(
+                    "New cycle %s created." % new_cycle.name
+                )
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Cycle"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,
+                    },
+                }

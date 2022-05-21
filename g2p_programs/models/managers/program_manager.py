@@ -16,8 +16,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import logging
+from datetime import datetime
+
 from odoo import api, fields, models
 
+_logger = logging.getLogger(__name__)
 
 class ProgramManager(models.Model):
     _name = "g2p.program.manager"
@@ -93,5 +97,19 @@ class DefaultProgramManager(models.Model):
     # recurrence_id = fields.Many2one('calendar.recurrence', related='event_id.recurrence_id')
 
     def new_cycle(self):
-        #  TODO: implement this and set the start date of the new cycle based on the last cycle and the recurrence.
-        pass
+        """
+        Create the next cycle of the program
+        Returns:
+            cycle: the newly created cycle
+        """
+        for rec in self:
+            cycles = self.env["g2p.cycle"].search([("program_id", "=", rec.program_id.id)])
+            new_cycle = None
+            _logger.info("cycles: %s", cycles)
+            if len(cycles) == 0:
+                if rec.program_id.cycle_managers:
+                    _logger.info("cycle managers: %s", rec.program_id.cycle_managers)
+                    rec.program_id.cycle_managers.ensure_one()
+                    for cm in rec.program_id.cycle_managers:
+                        new_cycle = cm.manager_ref_id.new_cycle("Cycle 1", datetime.now())
+            return new_cycle

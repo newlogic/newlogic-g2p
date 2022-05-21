@@ -16,7 +16,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import logging
+from datetime import timedelta
+
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class CycleManager(models.Model):
@@ -41,7 +46,7 @@ class BaseCycleManager(models.AbstractModel):
 
     name = fields.Char("Manager Name", required=True)
     program_id = fields.Many2one("g2p.program", string="Program", required=True)
-    cycle_id = fields.Many2one("g2p.cycle", string="Cycle", required=True)
+    # cycle_id = fields.Many2one("g2p.cycle", string="Cycle", required=True)
 
     def check_eligibility(self):
         """
@@ -61,7 +66,7 @@ class BaseCycleManager(models.AbstractModel):
         """
         raise NotImplementedError()
 
-    def new_cycle(self, new_start_date):
+    def new_cycle(self, name, new_start_date):
         """
         Create a new cycle for the program
         """
@@ -79,6 +84,8 @@ class DefaultCycleManager(models.Model):
     _inherit = ["g2p.base.cycle.manager", "g2p.manager.source.mixin"]
     _description = "Default Cycle Manager"
 
+    cycle_duration = fields.Integer("Cycle Duration", required=True)
+
     def check_eligibility(self):
         #  TODO: call the program's eligibility manager and check if the beneficiary is still eligible
         pass
@@ -92,3 +99,21 @@ class DefaultCycleManager(models.Model):
         # TODO: call the program's entitlement manager and validate the entitlements
         # TODO: Use a Job attached to the cycle
         pass
+
+    def new_cycle(self, name, new_start_date):
+        _logger.info("Creating new cycle for program %s", self.program_id.name)
+        _logger.info("New start date: %s", new_start_date)
+        _logger.info("self: %s", self)
+        for rec in self:
+            cycle = self.env["g2p.cycle"].create(
+                {
+                    "program_id": rec.program_id.id,
+                    "name": name,
+                    "state": "draft",
+                    "sequence": 1,
+                    "start_date": new_start_date,
+                    "end_date": new_start_date + timedelta(days=rec.cycle_duration),
+                }
+            )
+            _logger.info("New cycle created: %s", cycle.name)
+            return cycle
