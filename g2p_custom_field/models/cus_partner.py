@@ -42,15 +42,14 @@ class G2PResPartner(models.Model):
             other_page = doc.xpath("//page[@name='other']")
 
             model_fields_id = self.env["ir.model.fields"].search(
-                [("model_id", "=", "res.partner")]
+                [("model_id", "=", "res.partner")],
+                order="ttype, field_description",
             )
 
             if other_page:
                 is_group = self._context.get("default_is_group", False)
                 custom_page = etree.Element("page", {"string": "Custom Fields"})
                 criteria_page = etree.Element("page", {"string": "Criteria Fields"})
-                other_page[0].addprevious(custom_page)
-                other_page[0].addprevious(criteria_page)
 
                 custom_group = etree.SubElement(
                     custom_page, "group", {"col": "4", "colspan": "4"}
@@ -60,8 +59,6 @@ class G2PResPartner(models.Model):
                 )
 
                 for rec in model_fields_id:
-                    if rec.ttype == "boolean":
-                        continue
                     els = rec.name.split("_")
                     if len(els) >= 3 and (
                         els[2] == "grp" and not is_group or els[2] == "ind" and is_group
@@ -80,6 +77,10 @@ class G2PResPartner(models.Model):
                             },
                         )
 
+                if custom_group.getchildren():
+                    other_page[0].addprevious(custom_page)
+                if criteria_group.getchildren():
+                    other_page[0].addprevious(criteria_page)
                 res["arch"] = etree.tostring(doc, encoding="unicode")
 
         return res
