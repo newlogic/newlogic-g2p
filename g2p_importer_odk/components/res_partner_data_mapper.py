@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 from odoo.addons.component.core import Component
-from odoo.addons.connector_importer.utils.mapper_utils import xmlid_to_rel
 
 
 class ResPartnerGroupMapper(Component):
@@ -37,4 +36,3 @@ class ResPartnerGroupMapper(Component):
         ("is_registrant", "is_registrant"),
         ("is_group", "is_group"),
     ]
-

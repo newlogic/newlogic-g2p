@@ -16,12 +16,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import json
+
+import logging
 
 from odoo.addons.component.core import Component
 
-import logging
 _logger = logging.getLogger(__name__)
+
 
 class G2PResPartnerIndividualDataRecordImporter(Component):
     _name = "g2p.res.partner.individual.data.importer"
@@ -34,15 +35,19 @@ class G2PResPartnerIndividualDataRecordImporter(Component):
         res = super().prepare_line(line)
         odk_id = res["__id"].split(":")[1]
 
-        fullname = str(res['registration_id_pass']['surname']) + ', ' + str(res['registration_id_pass']['given_names'])
+        fullname = (
+            str(res["registration_id_pass"]["surname"])
+            + ", "
+            + str(res["registration_id_pass"]["given_names"])
+        )
         new_res = {
-            "id": f"odk.partner.{odk_id}",
+            "id": f"odk.individual.{odk_id}",
             "name": fullname,
-            "given_name": res['registration_id_pass']['given_names'],
-            "family_name": res['registration_id_pass']['surname'],
-            "birthdate": '1900-01-24',
-            "birth_place": res['registration_id_pass']["place_of_birth"],
-            "is_registrant": 'True',
+            "given_name": res["registration_id_pass"]["given_names"],
+            "family_name": res["registration_id_pass"]["surname"],
+            "birthdate": "1900-01-24",
+            "birth_place": res["registration_id_pass"]["place_of_birth"],
+            "is_registrant": "True",
             "_line_nr": -1,
         }
 

@@ -16,12 +16,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import json
+
+import logging
 
 from odoo.addons.component.core import Component
 
-import logging
 _logger = logging.getLogger(__name__)
+
 
 class G2PResPartnerGroupDataRecordImporter(Component):
     _name = "g2p.res.partner.group.data.importer"
@@ -33,13 +34,13 @@ class G2PResPartnerGroupDataRecordImporter(Component):
     def prepare_line(self, line):
         res = super().prepare_line(line)
         odk_id = res["__id"].split(":")[1]
-       
+
         new_res = {
             "id": f"odk.group.{odk_id}",
-            "name": res['registration_mrz']['document_number'],
-            "registration_date": '2000-01-25',
-            "is_registrant": 'True',
-            "is_group": 'True',
+            "name": res["registration_mrz"]["document_number"],
+            "registration_date": "2000-01-25",
+            "is_registrant": "True",
+            "is_group": "True",
             "_line_nr": -1,
         }
         _logger.debug(f"Result: {new_res}")

@@ -32,7 +32,7 @@ class G2PAdditionalDataRecordImporter(Component):
         res = super().prepare_line(line)
         odk_id = res["__id"].split(":")[1]
         new_res = {
-            "id": f"odk.add.{odk_id}",
+            "id": f"odk.{odk_id}",
             "name": odk_id,
             "registered_on": res["start"],
             "source_id": res["source_id"],
