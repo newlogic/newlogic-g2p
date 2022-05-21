@@ -16,7 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import logging
+
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class EligibilityManager(models.Model):
@@ -43,7 +47,7 @@ class BaseEligibility(models.AbstractModel):
     name = fields.Char("Manager Name", required=True)
     program_id = fields.Many2one("g2p.program", string="Program", required=True)
 
-    def verify_program_eligibility(self, program_memberships):
+    def enroll_eligible_registrants(self, program_memberships):
         """
         This method is used to validate if a user match the criteria needed to be enrolled in a program.
         Args:
@@ -85,12 +89,28 @@ class DefaultEligibility(models.Model):
     # TODO: cache the parsed domain
     eligibility_domain = fields.Text(string="Domain", default="[]")
 
-    def verify_program_eligibility(self, program_membership):
+    def enroll_eligible_registrants(self, program_memberships):
         # TODO: check if the beneficiary still match the criterias
-        return True
+        _logger.info("-" * 100)
+        _logger.info("Checking eligibility for %s", program_memberships)
+        for rec in self:
+            ids = program_memberships.mapped("partner_id.id")
+            domain = [("id", "in", ids)]
+            if rec.support_group and not rec.support_individual:
+                domain += [("is_group", "=", True)]
+            if rec.support_individual and not rec.support_group:
+                domain += [("is_group", "=", False)]
+            domain += rec._safe_eval(self.eligibility_domain)
+
+            _logger.info("Eligibility domain: %s", domain)
+            beneficiaries = self.env["res.partner"].search(domain).ids
+            _logger.info("Beneficiaries: %s", beneficiaries)
+            return self.env["g2p.program_membership"].search(
+                [("partner_id", "in", beneficiaries)]
+            )
 
     def verify_cycle_eligibility(self, cycle, program_membership):
-        return self.verify_program_eligibility(cycle)
+        return self.enroll_eligible_registrants(cycle)
 
     def import_eligible_registrants(self):
         domain = [("is_registrant", "=", True)]

@@ -134,9 +134,25 @@ class G2PProgram(models.Model):
                 },
             }
 
-    def verify_eligibility(self):
-        # 1. Verify the eligibility of the beneficiaries using eligibility_manager.validate_program_eligibility()
-        pass
+    def enroll_eligible_registrants(self):
+        # TODO: JJ - Think about how can we make it asynchronous.
+        for rec in self:
+            members = rec.program_membership_ids
+            _logger.info("members: %s", members)
+            if rec.eligibility_managers:
+                for el in rec.eligibility_managers:
+                    members = el.manager_ref_id.enroll_eligible_registrants(members)
+
+            # list the one not already enrolled:
+            _logger.info("members filtered: %s", members)
+            not_enrolled = members.filtered(lambda m: m.state != "enrolled")
+            _logger.info("not_enrolled: %s", not_enrolled)
+            not_enrolled.write(
+                {
+                    "state": "enrolled",
+                    "enrollment_date": fields.Datetime.now(),
+                }
+            )
 
     def deduplicate_beneficiaries(self):
         # 1. Deduplicate the beneficiaries using deduplication_manager.check_duplicates()

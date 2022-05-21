@@ -125,12 +125,12 @@ class IDDocumentDeduplicationEligibility(models.Model):
     _inherit = ["g2p.program_membership.manager", "g2p.manager.source.mixin"]
     _description = "ID Document Deduplication Eligibility"
 
-    def verify_program_eligibility(self, program_memberships):
+    def enroll_eligible_registrants(self, program_memberships):
         # TODO: check if beneficiaries still match the criterias
         return True
 
     def verify_cycle_eligibility(self, cycle, program_memberships):
-        return self.verify_program_eligibility(program_memberships)
+        return self.enroll_eligible_registrants(program_memberships)
 
 
 class PhoneNumberDeduplicationEligibility(models.Model):
@@ -143,9 +143,9 @@ class PhoneNumberDeduplicationEligibility(models.Model):
     _inherit = ["g2p.program_membership.manager", "g2p.manager.source.mixin"]
     _description = "Phone Number Deduplication Eligibility"
 
-    def verify_program_eligibility(self, program_memberships):
+    def enroll_eligible_registrants(self, program_memberships):
         # TODO: check if beneficiaries still match the criterias
         return True
 
     def verify_cycle_eligibility(self, cycle, program_memberships):
-        return self.verify_program_eligibility(program_memberships)
+        return self.enroll_eligible_registrants(program_memberships)

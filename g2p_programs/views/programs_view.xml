@@ -75,6 +75,7 @@
                                         decoration-danger="state == 'exited'"
                                         optional="show"
                                     />
+                                    <field name="enrollment_date" />
                                 </tree>
                             </field>
                         </page>
@@ -99,9 +100,9 @@
                                 <group colspan="2" string="Eligibility Managers">
                                     <header colspan="2">
                                         <button
-                                            name="import_beneficiaries"
+                                            name="enroll_eligible_registrants"
                                             type="object"
-                                            string="Import Registrants"
+                                            string="Enroll Eligible Registrants"
                                             icon="fa-download"
                                             class="btn-primary"
                                         />
