@@ -16,7 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import logging
+
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class EligibilityManager(models.Model):
@@ -43,7 +47,7 @@ class BaseEligibility(models.AbstractModel):
     name = fields.Char("Manager Name", required=True)
     program_id = fields.Many2one("g2p.program", string="Program", required=True)
 
-    def verify_program_eligibility(self, program_memberships):
+    def enroll_eligible_registrants(self, program_memberships):
         """
         This method is used to validate if a user match the criteria needed to be enrolled in a program.
         Args:
@@ -79,52 +83,44 @@ class DefaultEligibility(models.Model):
     _inherit = ["g2p.program_membership.manager", "g2p.manager.source.mixin"]
     _description = "Simple Eligibility"
 
+    # TODO: rename to allow_
     support_individual = fields.Boolean(string="Support Individual", default=False)
     support_group = fields.Boolean(string="Support Group", default=False)
 
     # TODO: cache the parsed domain
     eligibility_domain = fields.Text(string="Domain", default="[]")
 
-    def verify_program_eligibility(self, program_membership):
+    def _prepare_eligible_domain(self, membership):
+        ids = membership.mapped("partner_id.id")
+        domain = [("id", "in", ids)]
+        # TODO: use the config of the program
+        if self.support_group and not self.support_individual:
+            domain += [("is_group", "=", True)]
+        if self.support_individual and not self.support_group:
+            domain += [("is_group", "=", False)]
+        domain += self._safe_eval(self.eligibility_domain)
+        return domain
+
+    def enroll_eligible_registrants(self, program_memberships):
         # TODO: check if the beneficiary still match the criterias
-        return True
-
-    def verify_cycle_eligibility(self, cycle, program_membership):
-        return self.verify_program_eligibility(cycle)
-
-    def import_eligible_registrants(self):
+        _logger.info("-" * 100)
+        _logger.info("Checking eligibility for %s", program_memberships)
         for rec in self:
-            domain = [("is_registrant", "=", True)]
-            if rec.program_id.target_type == "individual":
-                domain += [("is_group", "=", False)]
-            if rec.program_id.target_type == "group":
-                domain += [("is_group", "=", True)]
+            beneficiaries = rec._verify_eligibility(program_memberships)
+            return self.env["g2p.program_membership"].search(
+                [("partner_id", "in", beneficiaries)]
+            )
 
-            if rec.eligibility_domain:
-                domain = domain + rec._safe_eval(self.eligibility_domain)
-            results = self.env["res.partner"].search(domain)
+    def verify_cycle_eligibility(self, cycle, membership):
+        for rec in self:
+            beneficiaries = rec._verify_eligibility(membership)
+            return self.env["g2p.cycle.membership"].search(
+                [("partner_id", "in", beneficiaries)]
+            )
 
-            # Add all the matching registrants that are not yet enrolled to the program
-            # Get the ids from res.partner that are already existing in the g2p.program_membership.program_membership_ids
-            existing_ids = rec.program_id.program_membership_ids.mapped("partner_id.id")
-            if results:
-                registrants = []
-                for r in results:
-                    if r.id not in existing_ids:
-                        registrants.append(
-                            [
-                                0,
-                                0,
-                                {
-                                    "partner_id": r.id,
-                                    "enrollment_date": fields.Date.today(),
-                                },
-                            ]
-                        )
-                if registrants:
-                    rec.program_id.update({"program_membership_ids": registrants})
-                    return True
-                else:
-                    return False
-            else:
-                return False
+    def _verify_eligibility(self, membership):
+        domain = self._prepare_eligible_domain(membership)
+        _logger.info("Eligibility domain: %s", domain)
+        beneficiaries = self.env["res.partner"].search(domain).ids
+        _logger.info("Beneficiaries: %s", beneficiaries)
+        return beneficiaries

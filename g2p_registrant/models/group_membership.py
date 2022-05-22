@@ -66,6 +66,28 @@ class G2PGroupMembership(models.Model):
             args = [("group", operator, name)] + args
         return self._search(args, limit=limit, access_rights_uid=name_get_uid)
 
+    def open_individual_form(self):
+        return {
+            "name": "Individual Member",
+            "view_mode": "form",
+            "res_model": "res.partner",
+            "res_id": self.individual.id,
+            "view_id": self.env.ref("g2p_registrant.view_individuals_form").id,
+            "type": "ir.actions.act_window",
+            "target": "new",
+        }
+
+    def open_group_form(self):
+        return {
+            "name": "Group Membership",
+            "view_mode": "form",
+            "res_model": "res.partner",
+            "res_id": self.group.id,
+            "view_id": self.env.ref("g2p_registrant.view_groups_form").id,
+            "type": "ir.actions.act_window",
+            "target": "new",
+        }
+
 
 class G2PGroupMembershipKind(models.Model):
     _name = "g2p.group.membership.kind"

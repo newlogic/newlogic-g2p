@@ -18,7 +18,9 @@
 #
 import logging
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
+
+from . import constants
 
 _logger = logging.getLogger(__name__)
 
@@ -29,6 +31,13 @@ class G2PProgram(models.Model):
     _description = "Program"
     _order = "id desc"
     _check_company_auto = True
+
+    MANAGER_ELIGIBILITY = constants.MANAGER_ELIGIBILITY
+    MANAGER_CYCLE = constants.MANAGER_CYCLE
+    MANAGER_PROGRAM = constants.MANAGER_PROGRAM
+    MANAGER_ENTITLEMENT = constants.MANAGER_ENTITLEMENT
+    MANAGER_DEDUPLICATION = constants.MANAGER_DEDUPLICATION
+    MANAGER_NOTIFICATION = constants.MANAGER_NOTIFICATION
 
     # TODO: Associate a Wallet to each program using the accounting module
     # TODO: (For later) Associate a Warehouse to each program using the stock module for in-kind programs
@@ -73,6 +82,45 @@ class G2PProgram(models.Model):
     )
     cycle_ids = fields.One2many("g2p.cycle", "program_id", "Cycles")
 
+    @api.model
+    def get_manager(self, kind):
+        self.ensure_one()
+        for rec in self:
+            if kind == self.MANAGER_CYCLE:
+                managers = rec.cycle_managers
+            elif kind == self.MANAGER_PROGRAM:
+                managers = rec.program_managers
+            elif kind == self.MANAGER_ENTITLEMENT:
+                managers = rec.entitlement_managers
+            else:
+                raise NotImplementedError("Manager not supported")
+            managers.ensure_one()
+            for el in managers:
+                return el.manager_ref_id
+
+    @api.model
+    def get_managers(self, kind):
+        self.ensure_one()
+        for rec in self:
+            if kind == self.MANAGER_ELIGIBILITY:
+                managers = rec.eligibility_managers
+            elif kind == self.MANAGER_DEDUPLICATION:
+                managers = rec.deduplication_managers
+            elif kind == self.MANAGER_NOTIFICATION:
+                managers = rec.notification_managers
+            else:
+                raise NotImplementedError("Manager not supported")
+            return [el.manager_ref_id for el in managers]
+
+    @api.model
+    def get_beneficiaries(self, state):
+        if isinstance(state, str):
+            state = [state]
+        domain = [("state", "in", state)]
+        for rec in self:
+            return rec.program_membership_ids.search(domain)
+
+    # TODO: JJ - Review
     def count_beneficiaries(self, state=None):
 
         domain = []
@@ -86,113 +134,45 @@ class G2PProgram(models.Model):
 
     # TODO: JJ - Add a way to link reports/Dashboard about this program.
 
-    # TODO: Implement the method that will call the different managers
-
-    def import_beneficiaries(self):
+    def enroll_eligible_registrants(self):
+        # TODO: JJ - Think about how can we make it asynchronous.
         for rec in self:
-            domain = [("is_registrant", "=", True)]
-            if rec.target_type == "individual":
-                domain += [("is_group", "=", False)]
-            if rec.target_type == "group":
-                domain += [("is_group", "=", True)]
-
-            # Get the ids from res.partner that are existing in the g2p.program_membership.program_membership_ids
-            existing_ids = rec.program_membership_ids.mapped("partner_id.id")
-            if existing_ids:
-                # Prevent importing registrants existing in g2p.program_membership.program_membership_ids
-                domain += [("id", "not in", existing_ids)]
-
-            # Add import to queue job.
-            self.with_delay()._import_beneficiaries(rec, domain)
-            # Added import to queue job. Show success notification!
-            title = _("ON QUEUE!")
-            message = _(
-                "The import for the project %s was put on queue. Re-open this form later to refresh the program members."
-                % rec.name
-            )
-            kind = "success"  # warning, danger, info, success
-            return {
-                "type": "ir.actions.client",
-                "tag": "display_notification",
-                "params": {
-                    "title": title,
-                    "message": message,
-                    "sticky": False,
-                    "type": kind,
-                },
-            }
-
-    def _import_beneficiaries(self, rec, domain):
-        # Add all the matching registrants that are not yet enrolled to the program
-        results = self.env["res.partner"].search(domain)
-        if results:
-            registrants = []
-            for r in results:
-                registrants.append(
-                    [
-                        0,
-                        0,
-                        {
-                            "partner_id": r.id,
-                            "enrollment_date": fields.Date.today(),
-                        },
-                    ]
+            members = rec.program_membership_ids
+            _logger.info("members: %s", members)
+            eligibility_managers = self.get_managers(self.MANAGER_ELIGIBILITY)
+            if len(eligibility_managers):
+                for el in eligibility_managers:
+                    members = el.enroll_eligible_registrants(members)
+                # list the one not already enrolled:
+                _logger.info("members filtered: %s", members)
+                not_enrolled = members.filtered(lambda m: m.state != "enrolled")
+                _logger.info("not_enrolled: %s", not_enrolled)
+                not_enrolled.write(
+                    {
+                        "state": "enrolled",
+                        "enrollment_date": fields.Datetime.now(),
+                    }
                 )
-            rec.update({"program_membership_ids": registrants})
-            return {"status": "SUCCESS", "data": registrants}
-        else:
-            return {"status": "FAILED", "data": "No registrants imported"}
-
-    def import_beneficiaries_OLD(self):
-        # 1. get the beneficiaries using the eligibility_manager.import_eligible_registrants()
-        for rec in self:
-            if rec.eligibility_managers:
-                err_ctr = 0
-                for el in rec.eligibility_managers:
-                    # Add import to queue job.
-                    if not el.manager_ref_id.with_delay().import_eligible_registrants():
-                        err_ctr += 1
-                if err_ctr == 0:
-                    # Added import to queue job. Show success notification!
-                    title = _("ON QUEUE!")
-                    message = _(
-                        "The import was put on queue. Re-open this form later to refresh the program members."
-                    )
-                    kind = "success"  # warning, danger, info, success
-                elif err_ctr == len(rec.eligibility_managers):
-                    # No registrants imported. Show error message!
-                    title = _("ERROR!")
-                    message = _("There are no registrants imported.")
-                    kind = "danger"
-                elif err_ctr < len(rec.eligibility_managers):
-                    # Not all registrants are imported. Show warning!
-                    title = _("WARNING!")
-                    message = _(
-                        "%s out of %s managers are not imported."
-                        % (err_ctr, len(rec.eligibility_managers))
-                    )
+                if len(not_enrolled) > 0:
+                    message = _("%s Beneficiaries enrolled." % len(not_enrolled))
+                    kind = "success"
+                else:
+                    message = _("No Beneficiaries enrolled.")
                     kind = "warning"
-
             else:
-                # No eligibility managers entered. Show error message!
-                title = _("ERROR!")
-                message = _("There are no eligibility managers defined.")
-                kind = "danger"
+                message = _("No Eligibility Manager defined.")
+                kind = "error"
 
             return {
                 "type": "ir.actions.client",
                 "tag": "display_notification",
                 "params": {
-                    "title": title,
+                    "title": _("Enrollment"),
                     "message": message,
-                    "sticky": False,
+                    "sticky": True,
                     "type": kind,
                 },
             }
-
-    def verify_eligibility(self):
-        # 1. Verify the eligibility of the beneficiaries using eligibility_manager.validate_program_eligibility()
-        pass
 
     def deduplicate_beneficiaries(self):
         # 1. Deduplicate the beneficiaries using deduplication_manager.check_duplicates()
@@ -206,4 +186,41 @@ class G2PProgram(models.Model):
         # 1. Create the next cycle using cycles_manager.new_cycle()
         # 2. Import the beneficiaries from the previous cycle to this one. If it is the first one, import from the
         # program memberships.
-        pass
+        for rec in self:
+            message = None
+            kind = "success"
+            cycle_manager = rec.get_manager(self.MANAGER_CYCLE)
+            program_manager = rec.get_manager(self.MANAGER_PROGRAM)
+            if cycle_manager is None:
+                message = _("No Eligibility Manager defined.")
+                kind = "error"
+            elif program_manager is None:
+                message = _("No Program Manager defined.")
+                kind = "error"
+
+            if message is not None:
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Cycle"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,
+                    },
+                }
+
+            _logger.info("-" * 80)
+            _logger.info("pm: %s", program_manager)
+            new_cycle = program_manager.new_cycle()
+            message = _("New cycle %s created." % new_cycle.name)
+            return {
+                "type": "ir.actions.client",
+                "tag": "display_notification",
+                "params": {
+                    "title": _("Cycle"),
+                    "message": message,
+                    "sticky": True,
+                    "type": kind,
+                },
+            }

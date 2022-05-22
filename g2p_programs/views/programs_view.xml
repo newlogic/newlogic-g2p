@@ -33,13 +33,6 @@
         <field name="arch" type="xml">
             <form string="Program">
                 <header>
-                    <button
-                        name="import_beneficiaries"
-                        type="object"
-                        string="Import Registrants"
-                        icon="fa-download"
-                        class="btn-primary"
-                    />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
@@ -69,13 +62,13 @@
                                 context="{'target_type':target_type,'default_program_id':active_id}"
                             >
                                 <tree string="Program Memberships">
-                                    <field name="partner_id" />
                                     <button
                                         name="open_beneficiaries_form"
                                         type="object"
                                         icon="fa-external-link"
                                         class="btn-success"
                                     />
+                                    <field name="partner_id" />
                                     <field
                                         name="state"
                                         widget="badge"
@@ -85,20 +78,22 @@
                                         decoration-danger="state == 'exited'"
                                         optional="show"
                                     />
+                                    <field name="enrollment_date" />
                                 </tree>
                             </field>
                         </page>
                         <page string="Cycles">
                             <field name="cycle_ids" nolabel="1">
                                 <tree string="Program Cycles">
-                                    <field name="name" />
                                     <button
                                         name="open_cycle_form"
                                         type="object"
                                         icon="fa-external-link"
                                         class="btn-success"
                                     />
-                                    <field name="cycle_membership_ids" string="Cycle Memberships" />
+                                    <field name="name" />
+                                    <field name="state" />
+                                    <field name="cycle_membership_ids" string="Beneficiaries" />
                                     <field name="voucher_ids" string="Vouchers" />
                                 </tree>
                             </field>
@@ -107,6 +102,15 @@
                         <page string="Configuration">
                             <group colspan="4" col="4">
                                 <group colspan="2" string="Eligibility Managers">
+                                    <header colspan="2">
+                                        <button
+                                            name="enroll_eligible_registrants"
+                                            type="object"
+                                            string="Enroll Eligible Registrants"
+                                            icon="fa-download"
+                                            class="btn-primary"
+                                        />
+                                    </header>
                                     <group colspan="2">
                                         <field
                                             name="eligibility_managers"
@@ -115,13 +119,6 @@
                                             context="{'default_program_id':active_id}"
                                         >
                                             <tree string="Eligibility Managers" editable="top">
-                                                <field
-                                                    name="manager_ref_id"
-                                                    options="{'no_quick_create':True}"
-                                                    string="Managers"
-                                                    context="{'default_program_id':active_id}"
-                                                />
-                                                <field name="manager_id" invisible="1" />
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
@@ -130,6 +127,13 @@
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                     context="{'default_program_id':active_id}"
                                                 />
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                    string="Managers"
+                                                    context="{'default_program_id':active_id}"
+                                                />
+                                                <field name="manager_id" invisible="1" />
                                             </tree>
                                             <form string="Eligibility Manager">
                                                 <sheet>
@@ -156,13 +160,6 @@
                                             context="{'default_program_id':active_id}"
                                         >
                                             <tree string="Deduplication Managers" editable="top">
-                                                <field
-                                                    name="manager_ref_id"
-                                                    options="{'no_quick_create':True}"
-                                                    string="Managers"
-                                                    context="{'default_program_id':active_id}"
-                                                />
-                                                <field name="manager_id" invisible="1" />
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
@@ -171,6 +168,13 @@
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                     context="{'default_program_id':active_id}"
                                                 />
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                    string="Managers"
+                                                    context="{'default_program_id':active_id}"
+                                                />
+                                                <field name="manager_id" invisible="1" />
                                             </tree>
                                             <form string="Deduplication Manager">
                                                 <sheet>
@@ -191,6 +195,15 @@
                             </group>
                             <group colspan="4" col="4">
                                 <group colspan="2" string="Notification Managers">
+                                    <header colspan="2">
+                                        <button
+                                            name="notify_eligible_beneficiaries"
+                                            type="object"
+                                            string="Notify Registrants"
+                                            icon="fa-envelope-o"
+                                            class="btn-primary"
+                                        />
+                                    </header>
                                     <group colspan="2">
                                         <field
                                             name="notification_managers"
@@ -199,13 +212,6 @@
                                             context="{'default_program_id':active_id}"
                                         >
                                             <tree string="Notification Managers" editable="top">
-                                                <field
-                                                    name="manager_ref_id"
-                                                    options="{'no_quick_create':True}"
-                                                    string="Managers"
-                                                    context="{'default_program_id':active_id}"
-                                                />
-                                                <field name="manager_id" invisible="1" />
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
@@ -214,6 +220,13 @@
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                     context="{'default_program_id':active_id}"
                                                 />
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                    string="Managers"
+                                                    context="{'default_program_id':active_id}"
+                                                />
+                                                <field name="manager_id" invisible="1" />
                                             </tree>
                                             <form string="Notification Manager">
                                                 <sheet>
@@ -240,13 +253,6 @@
                                             context="{'default_program_id':active_id}"
                                         >
                                             <tree string="Program Managers" editable="top">
-                                                <field
-                                                    name="manager_ref_id"
-                                                    options="{'no_quick_create':True}"
-                                                    string="Managers"
-                                                    context="{'default_program_id':active_id}"
-                                                />
-                                                <field name="manager_id" invisible="1" />
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
@@ -255,6 +261,13 @@
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                     context="{'default_program_id':active_id}"
                                                 />
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                    string="Managers"
+                                                    context="{'default_program_id':active_id}"
+                                                />
+                                                <field name="manager_id" invisible="1" />
                                             </tree>
                                             <form string="Program Manager">
                                                 <sheet>
@@ -283,13 +296,6 @@
                                             context="{'default_program_id':active_id}"
                                         >
                                             <tree string="Cycle Managers" editable="top">
-                                                <field
-                                                    name="manager_ref_id"
-                                                    options="{'no_quick_create':True}"
-                                                    string="Managers"
-                                                    context="{'default_program_id':active_id}"
-                                                />
-                                                <field name="manager_id" invisible="1" />
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
@@ -298,6 +304,13 @@
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                     context="{'default_program_id':active_id}"
                                                 />
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                    string="Managers"
+                                                    context="{'default_program_id':active_id}"
+                                                />
+                                                <field name="manager_id" invisible="1" />
                                             </tree>
                                             <form string="Cycle Manager">
                                                 <sheet>
@@ -324,13 +337,6 @@
                                             context="{'default_program_id':active_id}"
                                         >
                                             <tree string="Entitlement Managers" editable="top">
-                                                <field
-                                                    name="manager_ref_id"
-                                                    options="{'no_quick_create':True}"
-                                                    string="Managers"
-                                                    context="{'default_program_id':active_id}"
-                                                />
-                                                <field name="manager_id" invisible="1" />
                                                 <button
                                                     name="open_manager_form"
                                                     type="object"
@@ -339,6 +345,13 @@
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
                                                     context="{'default_program_id':active_id}"
                                                 />
+                                                <field
+                                                    name="manager_ref_id"
+                                                    options="{'no_quick_create':True}"
+                                                    string="Managers"
+                                                    context="{'default_program_id':active_id}"
+                                                />
+                                                <field name="manager_id" invisible="1" />
                                             </tree>
                                             <form string="Entitlement Manager">
                                                 <sheet>

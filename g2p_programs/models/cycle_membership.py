@@ -21,6 +21,7 @@ from odoo import fields, models
 
 class G2PCycleMembership(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
+    # TODO: rename "g2p.cycle.membership" to "g2p.cycle.beneficiaries"
     _name = "g2p.cycle.membership"
     _description = "Cycle Membership"
     _order = "id desc"
@@ -31,15 +32,18 @@ class G2PCycleMembership(models.Model):
     cycle_id = fields.Many2one(
         "g2p.cycle", "Cycle", help="A cycle", required=True, tracking=True
     )
-    status = fields.Selection(
+    enrollment_date = fields.Date("Enrollment Date", tracking=True)
+    state = fields.Selection(
         selection=[
             ("draft", "Draft"),
             ("enrolled", "Enrolled"),
             ("paused", "Paused"),
             ("exited", "Exited"),
+            ("not_eligible", "Not Eligible"),
         ],
         default="draft",
         copy=False,
+        tracking=True,
     )
 
     def name_get(self):
@@ -52,3 +56,14 @@ class G2PCycleMembership(models.Model):
                 name += rec.partner_id.name
             res.append((rec.id, name))
         return res
+
+    def open_cycle_membership_form(self):
+        return {
+            "name": "Cycle Membership",
+            "view_mode": "form",
+            "res_model": "g2p.cycle.membership",
+            "res_id": self.id,
+            "view_id": self.env.ref("g2p_programs.view_cycle_membership_form").id,
+            "type": "ir.actions.act_window",
+            "target": "new",
+        }

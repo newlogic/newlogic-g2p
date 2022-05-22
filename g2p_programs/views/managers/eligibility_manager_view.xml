@@ -99,7 +99,12 @@
                     <group colspan="4" col="4">
                         <field name="support_individual" />
                         <field name="support_group" />
-                        <field name="eligibility_domain" colspan="4" />
+                        <field
+                            name="eligibility_domain"
+                            colspan="4"
+                            widget="domain"
+                            options="{'model': 'res.partner'}"
+                        />
                     </group>
                 </sheet>
             </form>

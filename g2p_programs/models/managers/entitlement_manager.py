@@ -77,11 +77,39 @@ class DefaultCashEntitlement(models.Model):
         "res.groups", string="Payment Validation Group"
     )
 
-    # TODO: JJ - Think about how we could simply allow to have an amount per individual of a group with a maximum amount.
-
-    def prepare_vouchers(self, cycle, cycle_memberships):
+    def prepare_vouchers(self, cycle, beneficiaries):
         # TODO: create a Voucher of `amount_per_cycle` for each member that do not have one yet for the cycle and
-        pass
+        benecifiaries_ids = beneficiaries.mapped("partner_id.id")
+        benecifiaries_with_vouchers = (
+            self.env["g2p.voucher"]
+            .search(
+                [("cycle_id", "=", cycle.id), ("partner_id", "in", benecifiaries_ids)]
+            )
+            .mapped("partner_id.id")
+        )
+        vouchers_to_create = [
+            benecifiaries_id
+            for benecifiaries_id in benecifiaries_ids
+            if benecifiaries_id not in benecifiaries_with_vouchers
+        ]
+
+        voucher_start_validity = cycle.start_date
+        voucher_end_validity = cycle.end_date
+        voucher_currency = self.currency_id.id
+
+        for beneficiary_id in vouchers_to_create:
+            self.env["g2p.voucher"].create(
+                {
+                    "cycle_id": cycle.id,
+                    "partner_id": beneficiary_id,
+                    "initial_amount": self.amount_per_cycle,
+                    "currency_id": voucher_currency,
+                    "state": "draft",
+                    "is_cash_voucher": True,
+                    "valid_from": voucher_start_validity,
+                    "valid_until": voucher_end_validity,
+                }
+            )
 
     def validate_vouchers(self, cycle, cycle_memberships):
         # TODO: Change the status of the vouchers to `validated` for this members.

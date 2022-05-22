@@ -29,7 +29,7 @@
                     decoration-success="state=='active'"
                     decoration-danger="state=='ended'"
                     widget="badge"
-                    string="Status"
+                    string="State"
                 />
             </tree>
         </field>
@@ -63,12 +63,62 @@
                             force_save="1"
                         />
                     </group>
+                    <button
+                        name="copy_beneficiaries_from_program"
+                        type="object"
+                        string="Copy Beneficiary"
+                        icon="fa-repeat"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="prepare_entitlement"
+                        type="object"
+                        string="Prepare Entitlement"
+                        icon="fa-repeat"
+                        class="btn-primary"
+                    />
                     <notebook>
-                        <page string="Cycle Membership">
-                            <field name="cycle_membership_ids" />
+                        <page string="Beneficiaries">
+                          <field name="cycle_membership_ids" nolabel="1">
+                            <tree>
+                                <button
+                                        name="open_cycle_membership_form"
+                                        type="object"
+                                        icon="fa-external-link"
+                                        class="btn-success"
+                                    />
+                                <field name="partner_id" />
+                                <field
+                                        name="state"
+                                        decoration-primary="state=='draft'"
+                                        decoration-warning="state=='paused'"
+                                        decoration-success="state=='enrolled'"
+                                        decoration-danger="state=='exited'"
+                                        widget="badge"
+                                    />
+                                <field name="enrollment_date" />
+                            </tree>
+                          </field>
                         </page>
                         <page string="Voucher">
-                           <field name="voucher_ids" />
+                          <field name="voucher_ids" nolabel="1">
+                            <tree>
+                                <button
+                                        name="open_voucher_form"
+                                        type="object"
+                                        icon="fa-external-link"
+                                        class="btn-success"
+                                    />
+                                <field name="name" />
+                                <field name="code" />
+                                <field name="partner_id" />
+                                <field name="cycle_id" />
+                                <field name="valid_from" />
+                                <field name="valid_until" />
+                                <field name="state" />
+                                <field name="company_id" groups="base.group_multi_company" />
+                            </tree>
+                          </field>
                         </page>
                     </notebook>
                 </sheet>

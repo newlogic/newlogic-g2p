@@ -60,7 +60,6 @@
             <tree string="Default Cycle Managers" sample="1">
                 <field name="name" />
                 <field name="program_id" />
-                <field name="cycle_id" />
             </tree>
         </field>
     </record>
@@ -77,6 +76,7 @@
                         <label for="name" string="Name:" />
                         <h1>
                             <field id="name" name="name" placeholder="Enter the Manager Name..." />
+                            <field name="cycle_duration" />
                         </h1>
                         <label
                             for="program_id"
@@ -95,12 +95,6 @@
                         <div class="o_row">
                         </div>
                     </div>
-                    <group colspan="4" col="4">
-                        <field
-                            name="cycle_id"
-                            options="{'no_open':True,'no_create':True,'no_create_edit':True}"
-                        />
-                    </group>
                 </sheet>
             </form>
         </field>
@@ -114,10 +108,8 @@
             <search string="Search Default Cycle Manager">
                 <field name="name" />
                 <field name="program_id" />
-                <field name="cycle_id" />
                 <group expand="0" string="Group By">
                     <filter string="Program" name="grp_program_id" context="{'group_by': 'program_id'}" />
-                    <filter string="Cycle" name="grp_cycle_id" context="{'group_by': 'cycle_id'}" />
                 </group>
                 <!--<searchpanel>
                     <field name="group" icon="fa-users"/>

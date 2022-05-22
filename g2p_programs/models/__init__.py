@@ -17,8 +17,9 @@
 # limitations under the License.
 #
 
-from . import managers
+from . import constants
 from . import job_related_mixin
+from . import managers
 from . import programs
 from . import registrant
 from . import registrant_attribute
