@@ -73,7 +73,7 @@ class BaseCycleManager(models.AbstractModel):
         """
         raise NotImplementedError()
 
-    def add_beneficiaries(self, cycle, beneficiaries, status="draft"):
+    def add_beneficiaries(self, cycle, beneficiaries, state="draft"):
         """
         Add beneficiaries to the cycle
         """
@@ -124,16 +124,16 @@ class DefaultCycleManager(models.Model):
             _logger.info("New cycle created: %s", cycle.name)
             return cycle
 
-    def copy_beneficiaries_from_program(self, cycle, status="enrolled"):
+    def copy_beneficiaries_from_program(self, cycle, state="enrolled"):
         for rec in self:
             if cycle.state not in [cycle.STATE_DRAFT, cycle.STATE_ACTIVE]:
                 raise ValidationError(_("The Cycle is not in Draft or Active Mode"))
             beneficiary_ids = rec.program_id.get_beneficiaries(["enrolled"]).mapped(
                 "partner_id.id"
             )
-            rec.add_beneficiaries(cycle, beneficiary_ids, status)
+            rec.add_beneficiaries(cycle, beneficiary_ids, state)
 
-    def add_beneficiaries(self, cycle, beneficiaries, status="draft"):
+    def add_beneficiaries(self, cycle, beneficiaries, state="draft"):
         """
         Add beneficiaries to the cycle
         """
@@ -151,7 +151,7 @@ class DefaultCycleManager(models.Model):
                         {
                             "partner_id": r,
                             "enrollment_date": fields.Date.today(),
-                            "status": status,
+                            "state": state,
                         },
                     ]
                 )

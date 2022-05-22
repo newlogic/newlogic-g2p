@@ -113,7 +113,7 @@ class G2PProgram(models.Model):
             return [el.manager_ref_id for el in managers]
 
     @api.model
-    def get_beneficiaries(self, state=None):
+    def get_beneficiaries(self, state):
         domain = [("state", "in", state)]
         for rec in self:
             return rec.program_membership_ids.search(domain)

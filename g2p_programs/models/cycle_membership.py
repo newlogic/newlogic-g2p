@@ -32,15 +32,17 @@ class G2PCycleMembership(models.Model):
         "g2p.cycle", "Cycle", help="A cycle", required=True, tracking=True
     )
     enrollment_date = fields.Date("Enrollment Date", tracking=True)
-    status = fields.Selection(
+    state = fields.Selection(
         selection=[
             ("draft", "Draft"),
             ("enrolled", "Enrolled"),
             ("paused", "Paused"),
             ("exited", "Exited"),
+            ("not_eligible", "Not Eligible"),
         ],
         default="draft",
         copy=False,
+        tracking=True,
     )
 
     def name_get(self):

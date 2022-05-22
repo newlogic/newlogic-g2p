@@ -21,11 +21,11 @@
                 <field name="partner_id" />
                 <field name="cycle_id" />
                 <field
-                    name="status"
-                    decoration-primary="status=='draft'"
-                    decoration-warning="status=='paused'"
-                    decoration-success="status=='enrolled'"
-                    decoration-danger="status=='exited'"
+                    name="state"
+                    decoration-primary="state=='draft'"
+                    decoration-warning="state=='paused'"
+                    decoration-success="state=='enrolled'"
+                    decoration-danger="state=='exited'"
                     widget="badge"
                 />
             </tree>
@@ -39,11 +39,7 @@
         <field name="arch" type="xml">
             <form string="Cycle Membership">
                 <header>
-                    <field
-                        name="status"
-                        widget="statusbar"
-                        statusbar_visible="draft,enrolled,paused,exited"
-                    />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,enrolled,paused,exited" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
@@ -52,25 +48,25 @@
                         name="web_ribbon"
                         title="DRAFT"
                         bg_color="bg-primary"
-                        attrs="{'invisible': [('status', '!=', 'draft')]}"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}"
                     />
                     <widget
                         name="web_ribbon"
                         title="ENROLLED"
                         bg_color="bg-success"
-                        attrs="{'invisible': [('status', '!=', 'enrolled')]}"
+                        attrs="{'invisible': [('state', '!=', 'enrolled')]}"
                     />
                     <widget
                         name="web_ribbon"
                         title="PAUSED"
                         bg_color="bg-warning"
-                        attrs="{'invisible': [('status', '!=', 'paused')]}"
+                        attrs="{'invisible': [('state', '!=', 'paused')]}"
                     />
                     <widget
                         name="web_ribbon"
                         title="EXITED"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('status', '!=', 'exited')]}"
+                        attrs="{'invisible': [('state', '!=', 'exited')]}"
                     />
                     <div class="oe_title mb24">
                         <label for="partner_id" string="Registrant:" />

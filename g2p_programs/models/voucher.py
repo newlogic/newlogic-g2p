@@ -49,6 +49,12 @@ class G2PVoucher(models.Model):
         default=lambda self: fields.Date.add(fields.Date.today(), years=1)
     )
 
+    is_cash_voucher = fields.Boolean("Cash Voucher", default=False)
+    currency_id = fields.Many2one("res.currency")
+    initial_amount = fields.Monetary(required=True, currency_field="currency_id")
+    balance = fields.Monetary(compute="_compute_balance")  # in company currency
+    # TODO: implement transactions against this voucher
+
     # state = fields.Selection(
     #    selection=[('draft', 'Draft'), ('valid', 'Valid'), ('expired', 'Expired')],
     #    default='draft',
@@ -78,7 +84,15 @@ class G2PVoucher(models.Model):
 
     def _compute_name(self):
         for record in self:
-            record.name = _("Voucher #%s", record.id)
+            name = _("Voucher")
+            if record.is_cash_voucher:
+                name += " Cash [" + str(record.initial_amount) + "]"
+            record.name = name
+
+    @api.depends("initial_amount")
+    def _compute_balance(self):
+        for record in self:
+            record.balance = record.initial_amount
 
     @api.autovacuum
     def _gc_mark_expired_voucher(self):

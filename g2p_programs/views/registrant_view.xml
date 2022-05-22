@@ -70,11 +70,11 @@
                           <field name="partner_id" />
                           <field name="cycle_id" />
                           <field
-                                name="status"
-                                decoration-primary="status=='draft'"
-                                decoration-warning="status=='paused'"
-                                decoration-success="status=='enrolled'"
-                                decoration-danger="status=='exited'"
+                                name="state"
+                                decoration-primary="state=='draft'"
+                                decoration-warning="state=='paused'"
+                                decoration-success="state=='enrolled'"
+                                decoration-danger="state=='exited'"
                                 widget="badge"
                             />
                       </tree>
@@ -163,11 +163,11 @@
                         <field name="partner_id" />
                         <field name="cycle_id" />
                         <field
-                                name="status"
-                                decoration-primary="status=='draft'"
-                                decoration-warning="status=='paused'"
-                                decoration-success="status=='enrolled'"
-                                decoration-danger="status=='exited'"
+                                name="state"
+                                decoration-primary="state=='draft'"
+                                decoration-warning="state=='paused'"
+                                decoration-success="state=='enrolled'"
+                                decoration-danger="state=='exited'"
                                 widget="badge"
                             />
                     </tree>

@@ -29,7 +29,7 @@
                     decoration-success="state=='active'"
                     decoration-danger="state=='ended'"
                     widget="badge"
-                    string="Status"
+                    string="State"
                 />
             </tree>
         </field>
@@ -70,6 +70,13 @@
                         icon="fa-repeat"
                         class="btn-primary"
                     />
+                    <button
+                        name="prepare_entitlement"
+                        type="object"
+                        string="Prepare Entitlement"
+                        icon="fa-repeat"
+                        class="btn-primary"
+                    />
                     <notebook>
                         <page string="Beneficiaries">
                           <field name="cycle_membership_ids" nolabel="1">
@@ -82,11 +89,11 @@
                                     />
                                 <field name="partner_id" />
                                 <field
-                                        name="status"
-                                        decoration-primary="status=='draft'"
-                                        decoration-warning="status=='paused'"
-                                        decoration-success="status=='enrolled'"
-                                        decoration-danger="status=='exited'"
+                                        name="state"
+                                        decoration-primary="state=='draft'"
+                                        decoration-warning="state=='paused'"
+                                        decoration-success="state=='enrolled'"
+                                        decoration-danger="state=='exited'"
                                         widget="badge"
                                     />
                                 <field name="enrollment_date" />

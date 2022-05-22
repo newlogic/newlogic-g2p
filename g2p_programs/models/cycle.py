@@ -19,7 +19,7 @@
 
 import logging
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 from . import constants
 
@@ -56,6 +56,12 @@ class G2PCycle(models.Model):
     )
     voucher_ids = fields.One2many("g2p.voucher", "cycle_id", "Vouchers")
 
+    @api.model
+    def get_beneficiaries(self, state):
+        domain = [("state", "in", state)]
+        for rec in self:
+            return rec.cycle_membership_ids.search(domain)
+
     # TODO: JJ - Add a way to link reports/Dashboard about this cycle.
 
     # TODO: Implement the method that will call the different managers
@@ -78,7 +84,10 @@ class G2PCycle(models.Model):
 
     def prepare_entitlement(self):
         # 1. Prepare the entitlement of the beneficiaries using entitlement_manager.prepare_vouchers()
-        pass
+        beneficiaries = self.get_beneficiaries(["enrolled"])
+        self.program_id.get_manager(constants.MANAGER_ENTITLEMENT).prepare_vouchers(
+            self, beneficiaries
+        )
 
     def validate_entitlement(self):
         # 1. Make sure the user has the right to do this
