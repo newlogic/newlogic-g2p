@@ -16,7 +16,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+import logging
+
 from odoo import fields, models
+
+from . import constants
+
+_logger = logging.getLogger(__name__)
 
 
 class G2PCycle(models.Model):
@@ -25,6 +32,10 @@ class G2PCycle(models.Model):
     _description = "Cycle"
     _order = "id desc"
     _check_company_auto = True
+
+    STATE_DRAFT = constants.STATE_DRAFT
+    STATE_ACTIVE = constants.STATE_ACTIVE
+    STATE_ENDED = constants.STATE_ENDED
 
     name = fields.Char(required=True, tracking=True)
     company_id = fields.Many2one(
@@ -35,7 +46,7 @@ class G2PCycle(models.Model):
     start_date = fields.Date(required=True, tracking=True)
     end_date = fields.Date(required=True, tracking=True)
     state = fields.Selection(
-        [("draft", "Draft"), ("active", "Active"), ("ended", "Ended")],
+        [(STATE_DRAFT, "Draft"), (STATE_ACTIVE, "Active"), (STATE_ENDED, "Ended")],
         default="draft",
         tracking=True,
     )
@@ -48,6 +59,14 @@ class G2PCycle(models.Model):
     # TODO: JJ - Add a way to link reports/Dashboard about this cycle.
 
     # TODO: Implement the method that will call the different managers
+
+    # @api.model
+    def copy_beneficiaries_from_program(self):
+        # _logger.info("Copying beneficiaries from program, cycles: %s", cycles)
+        self.ensure_one()
+        self.program_id.get_manager(
+            constants.MANAGER_CYCLE
+        ).copy_beneficiaries_from_program(self)
 
     def verify_eligibility(self):
         # 1. Verify the eligibility of the beneficiaries using eligibility_manager.validate_cycle_eligibility()

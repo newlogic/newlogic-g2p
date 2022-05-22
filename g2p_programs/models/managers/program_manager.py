@@ -21,7 +21,10 @@ from datetime import datetime
 
 from odoo import api, fields, models
 
+from ..programs import G2PProgram
+
 _logger = logging.getLogger(__name__)
+
 
 class ProgramManager(models.Model):
     _name = "g2p.program.manager"
@@ -103,13 +106,22 @@ class DefaultProgramManager(models.Model):
             cycle: the newly created cycle
         """
         for rec in self:
-            cycles = self.env["g2p.cycle"].search([("program_id", "=", rec.program_id.id)])
+            cycles = self.env["g2p.cycle"].search(
+                [("program_id", "=", rec.program_id.id)]
+            )
             new_cycle = None
             _logger.info("cycles: %s", cycles)
+            cycle_manager = rec.program_id.get_managers(G2PProgram.MANAGER_CYCLE)
             if len(cycles) == 0:
-                if rec.program_id.cycle_managers:
-                    _logger.info("cycle managers: %s", rec.program_id.cycle_managers)
-                    rec.program_id.cycle_managers.ensure_one()
-                    for cm in rec.program_id.cycle_managers:
-                        new_cycle = cm.manager_ref_id.new_cycle("Cycle 1", datetime.now())
+                _logger.info("cycle manager: %s", cycle_manager)
+                new_cycle = cycle_manager.new_cycle("Cycle 1", datetime.now())
+
+            # Copy the enrolled beneficiaries
+            if new_cycle is not None:
+                program_beneficiaries = rec.program_id.get_beneficiaries(
+                    "enrolled"
+                ).mapped("partner_id.id")
+                cycle_manager.add_beneficiaries(
+                    new_cycle, program_beneficiaries, "enrolled"
+                )
             return new_cycle

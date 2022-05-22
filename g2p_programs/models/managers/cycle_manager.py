@@ -19,7 +19,8 @@
 import logging
 from datetime import timedelta
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -72,6 +73,12 @@ class BaseCycleManager(models.AbstractModel):
         """
         raise NotImplementedError()
 
+    def add_beneficiaries(self, cycle, beneficiaries, status="draft"):
+        """
+        Add beneficiaries to the cycle
+        """
+        raise NotImplementedError()
+
     def on_start_date_change(self, start_date):
         """
         Hook for when the start date change
@@ -103,7 +110,6 @@ class DefaultCycleManager(models.Model):
     def new_cycle(self, name, new_start_date):
         _logger.info("Creating new cycle for program %s", self.program_id.name)
         _logger.info("New start date: %s", new_start_date)
-        _logger.info("self: %s", self)
         for rec in self:
             cycle = self.env["g2p.cycle"].create(
                 {
@@ -117,3 +123,40 @@ class DefaultCycleManager(models.Model):
             )
             _logger.info("New cycle created: %s", cycle.name)
             return cycle
+
+    def copy_beneficiaries_from_program(self, cycle, status="enrolled"):
+        for rec in self:
+            if cycle.state not in [cycle.STATE_DRAFT, cycle.STATE_ACTIVE]:
+                raise ValidationError(_("The Cycle is not in Draft or Active Mode"))
+            beneficiary_ids = rec.program_id.get_beneficiaries(["enrolled"]).mapped(
+                "partner_id.id"
+            )
+            rec.add_beneficiaries(cycle, beneficiary_ids, status)
+
+    def add_beneficiaries(self, cycle, beneficiaries, status="draft"):
+        """
+        Add beneficiaries to the cycle
+        """
+        _logger.info("Adding beneficiaries to the cycle %s", cycle.name)
+        _logger.info("Beneficiaries: %s", beneficiaries)
+
+        existing_ids = cycle.cycle_membership_ids.mapped("partner_id.id")
+        new_beneficiaries = []
+        for r in beneficiaries:
+            if r not in existing_ids:
+                new_beneficiaries.append(
+                    [
+                        0,
+                        0,
+                        {
+                            "partner_id": r,
+                            "enrollment_date": fields.Date.today(),
+                            "status": status,
+                        },
+                    ]
+                )
+        if new_beneficiaries:
+            cycle.update({"cycle_membership_ids": new_beneficiaries})
+            return True
+        else:
+            return False

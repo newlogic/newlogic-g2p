@@ -63,8 +63,15 @@
                             force_save="1"
                         />
                     </group>
+                    <button
+                        name="copy_beneficiaries_from_program"
+                        type="object"
+                        string="Copy Beneficiary"
+                        icon="fa-repeat"
+                        class="btn-primary"
+                    />
                     <notebook>
-                        <page string="Cycle Membership">
+                        <page string="Beneficiaries">
                           <field name="cycle_membership_ids" nolabel="1">
                             <tree>
                                 <button
@@ -74,7 +81,6 @@
                                         class="btn-success"
                                     />
                                 <field name="partner_id" />
-                                <field name="cycle_id" />
                                 <field
                                         name="status"
                                         decoration-primary="status=='draft'"
@@ -83,6 +89,7 @@
                                         decoration-danger="status=='exited'"
                                         widget="badge"
                                     />
+                                <field name="enrollment_date" />
                             </tree>
                           </field>
                         </page>
