@@ -132,54 +132,6 @@ class G2PProgram(models.Model):
 
     # TODO: JJ - Add a way to link reports/Dashboard about this program.
 
-    # # TODO: Implement the method that will call the different managers
-    # def import_beneficiaries(self):
-    #     # 1. get the beneficiaries using the eligibility_manager.import_eligible_registrants()
-    #     for rec in self:
-    #         if rec.eligibility_managers:
-    #             err_ctr = 0
-    #             for el in rec.eligibility_managers:
-    #                 # Add import to queue job.
-    #                 if not el.manager_ref_id.with_delay().import_eligible_registrants():
-    #                     err_ctr += 1
-    #             if err_ctr == 0:
-    #                 # Added import to queue job. Show success notification!
-    #                 title = _("ON QUEUE!")
-    #                 message = _(
-    #                     "The import was put on queue. Re-open this form later to refresh the program members."
-    #                 )
-    #                 kind = "success"  # warning, danger, info, success
-    #             elif err_ctr == len(rec.eligibility_managers):
-    #                 # No registrants imported. Show error message!
-    #                 title = _("ERROR!")
-    #                 message = _("There are no registrants imported.")
-    #                 kind = "danger"
-    #             elif err_ctr < len(rec.eligibility_managers):
-    #                 # Not all registrants are imported. Show warning!
-    #                 title = _("WARNING!")
-    #                 message = _(
-    #                     "%s out of %s managers are not imported."
-    #                     % (err_ctr, len(rec.eligibility_managers))
-    #                 )
-    #                 kind = "warning"
-    #
-    #         else:
-    #             # No eligibility managers entered. Show error message!
-    #             title = _("ERROR!")
-    #             message = _("There are no eligibility managers defined.")
-    #             kind = "danger"
-    #
-    #         return {
-    #             "type": "ir.actions.client",
-    #             "tag": "display_notification",
-    #             "params": {
-    #                 "title": title,
-    #                 "message": message,
-    #                 "sticky": False,
-    #                 "type": kind,
-    #             },
-    #         }
-
     def enroll_eligible_registrants(self):
         # TODO: JJ - Think about how can we make it asynchronous.
         for rec in self:
@@ -232,35 +184,18 @@ class G2PProgram(models.Model):
         # 1. Create the next cycle using cycles_manager.new_cycle()
         # 2. Import the beneficiaries from the previous cycle to this one. If it is the first one, import from the
         # program memberships.
-        for rec in self:
+        message = None
+        kind = "success"
+        cycle_manager = self.get_manager(self.MANAGER_CYCLE)
+        program_manager = self.get_manager(self.MANAGER_PROGRAM)
+        if cycle_manager is None:
+            message = _("No Eligibility Manager defined.")
+            kind = "error"
+        elif program_manager is None:
+            message = _("No Program Manager defined.")
+            kind = "error"
 
-            message = None
-            kind = "success"
-            cycle_manager = self.get_manager(self.MANAGER_CYCLE)
-            program_manager = self.get_manager(self.MANAGER_PROGRAM)
-            if cycle_manager is None:
-                message = _("No Eligibility Manager defined.")
-                kind = "error"
-            elif program_manager is None:
-                message = _("No Program Manager defined.")
-                kind = "error"
-
-            if message is not None:
-                return {
-                    "type": "ir.actions.client",
-                    "tag": "display_notification",
-                    "params": {
-                        "title": _("Cycle"),
-                        "message": message,
-                        "sticky": True,
-                        "type": kind,
-                    },
-                }
-
-            _logger.info("-" * 80)
-            _logger.info("pm: %s", program_manager)
-            new_cycle = program_manager.manager_ref_id.new_cycle()
-            message = _("New cycle %s created." % new_cycle.name)
+        if message is not None:
             return {
                 "type": "ir.actions.client",
                 "tag": "display_notification",
@@ -271,3 +206,18 @@ class G2PProgram(models.Model):
                     "type": kind,
                 },
             }
+
+        _logger.info("-" * 80)
+        _logger.info("pm: %s", program_manager)
+        new_cycle = program_manager.manager_ref_id.new_cycle()
+        message = _("New cycle %s created." % new_cycle.name)
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": _("Cycle"),
+                "message": message,
+                "sticky": True,
+                "type": kind,
+            },
+        }
