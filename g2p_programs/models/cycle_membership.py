@@ -21,6 +21,7 @@ from odoo import fields, models
 
 class G2PCycleMembership(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
+    # TODO: rename "g2p.cycle.membership" to "g2p.cycle.beneficiaries"
     _name = "g2p.cycle.membership"
     _description = "Cycle Membership"
     _order = "id desc"

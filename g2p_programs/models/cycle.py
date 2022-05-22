@@ -30,10 +30,12 @@ class G2PCycle(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin", "g2p.job.mixin"]
     _name = "g2p.cycle"
     _description = "Cycle"
-    _order = "id desc"
+    _order = "sequence asc"
     _check_company_auto = True
 
     STATE_DRAFT = constants.STATE_DRAFT
+    STATE_TO_APPROVE = constants.STATE_TO_APPROVE
+    STATE_APPROVED = constants.STATE_APPROVED
     STATE_ACTIVE = constants.STATE_ACTIVE
     STATE_ENDED = constants.STATE_ENDED
 
@@ -46,7 +48,13 @@ class G2PCycle(models.Model):
     start_date = fields.Date(required=True, tracking=True)
     end_date = fields.Date(required=True, tracking=True)
     state = fields.Selection(
-        [(STATE_DRAFT, "Draft"), (STATE_ACTIVE, "Active"), (STATE_ENDED, "Ended")],
+        [
+            (STATE_DRAFT, "Draft"),
+            (STATE_TO_APPROVE, "To Approve"),
+            (STATE_APPROVED, "Approved"),
+            (STATE_ACTIVE, "Active"),
+            (STATE_ENDED, "Ended"),
+        ],
         default="draft",
         tracking=True,
     )
@@ -74,9 +82,11 @@ class G2PCycle(models.Model):
             constants.MANAGER_CYCLE
         ).copy_beneficiaries_from_program(self)
 
-    def verify_eligibility(self):
-        # 1. Verify the eligibility of the beneficiaries using eligibility_manager.validate_cycle_eligibility()
-        pass
+    @api.model
+    def verify_eligibility(self, beneficiaries):
+        self.program_id.get_manager(constants.MANAGER_CYCLE).verify_eligibility(
+            self, beneficiaries
+        )
 
     def notify_cycle_started(self):
         # 1. Notify the beneficiaries using notification_manager.cycle_started()
@@ -84,10 +94,7 @@ class G2PCycle(models.Model):
 
     def prepare_entitlement(self):
         # 1. Prepare the entitlement of the beneficiaries using entitlement_manager.prepare_vouchers()
-        beneficiaries = self.get_beneficiaries(["enrolled"])
-        self.program_id.get_manager(constants.MANAGER_ENTITLEMENT).prepare_vouchers(
-            self, beneficiaries
-        )
+        self.program_id.get_manager(constants.MANAGER_CYCLE).prepare_vouchers(self)
 
     def validate_entitlement(self):
         # 1. Make sure the user has the right to do this

@@ -77,8 +77,6 @@ class DefaultCashEntitlement(models.Model):
         "res.groups", string="Payment Validation Group"
     )
 
-    # TODO: JJ - Think about how we could simply allow to have an amount per individual of a group with a maximum amount.
-
     def prepare_vouchers(self, cycle, beneficiaries):
         # TODO: create a Voucher of `amount_per_cycle` for each member that do not have one yet for the cycle and
         benecifiaries_ids = beneficiaries.mapped("partner_id.id")
@@ -95,15 +93,21 @@ class DefaultCashEntitlement(models.Model):
             if benecifiaries_id not in benecifiaries_with_vouchers
         ]
 
+        voucher_start_validity = cycle.start_date
+        voucher_end_validity = cycle.end_date
+        voucher_currency = self.currency_id.id
+
         for beneficiary_id in vouchers_to_create:
             self.env["g2p.voucher"].create(
                 {
                     "cycle_id": cycle.id,
                     "partner_id": beneficiary_id,
                     "initial_amount": self.amount_per_cycle,
-                    "currency_id": self.currency_id.id,
+                    "currency_id": voucher_currency,
                     "state": "draft",
                     "is_cash_voucher": True,
+                    "valid_from": voucher_start_validity,
+                    "valid_until": voucher_end_validity,
                 }
             )
 

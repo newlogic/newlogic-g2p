@@ -22,6 +22,8 @@ from datetime import timedelta
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
+from .. import constants
+
 _logger = logging.getLogger(__name__)
 
 
@@ -49,25 +51,25 @@ class BaseCycleManager(models.AbstractModel):
     program_id = fields.Many2one("g2p.program", string="Program", required=True)
     # cycle_id = fields.Many2one("g2p.cycle", string="Cycle", required=True)
 
-    def check_eligibility(self):
+    def check_eligibility(self, beneficiaries):
         """
         Validate the eligibility of each beneficiaries for the cycle
         """
         raise NotImplementedError()
 
-    def prepare_vouchers(self):
+    def prepare_vouchers(self, cycle):
         """
         Prepare the entitlements for the cycle
         """
         raise NotImplementedError()
 
-    def validate_vouchers(self, cycle_memberships):
+    def validate_vouchers(self, cycle, cycle_memberships):
         """
         Validate the entitlements for the cycle
         """
         raise NotImplementedError()
 
-    def new_cycle(self, name, new_start_date):
+    def new_cycle(self, name, new_start_date, sequence):
         """
         Create a new cycle for the program
         """
@@ -93,21 +95,34 @@ class DefaultCycleManager(models.Model):
 
     cycle_duration = fields.Integer("Cycle Duration", required=True)
 
-    def check_eligibility(self):
-        #  TODO: call the program's eligibility manager and check if the beneficiary is still eligible
-        pass
+    def check_eligibility(self, beneficiaries):
+        # TODO: disable beneficiaries not valid anymore and disable their voucher if they
+        #  have been created.
+        filtered_beneficiaries = self.program_id.get_manager(
+            constants.MANAGER_ELIGIBILITY
+        ).verify_cycle_eligibility(beneficiaries)
+        return filtered_beneficiaries
 
-    def prepare_vouchers(self):
-        # TODO: call the program's entitlement manager and prepare the entitlements
-        # TODO: Use a Job attached to the cycle
-        pass
+    def prepare_vouchers(self, cycle):
+        for rec in self:
+            rec._ensure_can_edit_cycle(cycle)
+            # Get all the enrolled beneficiaries
+            beneficiaries = rec.program_id.get_beneficiaries(["enrolled"])
 
-    def validate_vouchers(self, cycle_memberships):
+            rec.program_id.get_manager(constants.MANAGER_ENTITLEMENT).prepare_vouchers(
+                cycle, beneficiaries
+            )
+
+    def validate_vouchers(self, cycle, cycle_memberships):
         # TODO: call the program's entitlement manager and validate the entitlements
         # TODO: Use a Job attached to the cycle
-        pass
+        # TODO: Implement validation workflow
+        for rec in self:
+            rec.program_id.get_manager(constants.MANAGER_ENTITLEMENT).validate_vouchers(
+                cycle_memberships
+            )
 
-    def new_cycle(self, name, new_start_date):
+    def new_cycle(self, name, new_start_date, sequence):
         _logger.info("Creating new cycle for program %s", self.program_id.name)
         _logger.info("New start date: %s", new_start_date)
         for rec in self:
@@ -116,7 +131,7 @@ class DefaultCycleManager(models.Model):
                     "program_id": rec.program_id.id,
                     "name": name,
                     "state": "draft",
-                    "sequence": 1,
+                    "sequence": sequence,
                     "start_date": new_start_date,
                     "end_date": new_start_date + timedelta(days=rec.cycle_duration),
                 }
@@ -125,9 +140,9 @@ class DefaultCycleManager(models.Model):
             return cycle
 
     def copy_beneficiaries_from_program(self, cycle, state="enrolled"):
+        self._ensure_can_edit_cycle(cycle)
+
         for rec in self:
-            if cycle.state not in [cycle.STATE_DRAFT, cycle.STATE_ACTIVE]:
-                raise ValidationError(_("The Cycle is not in Draft or Active Mode"))
             beneficiary_ids = rec.program_id.get_beneficiaries(["enrolled"]).mapped(
                 "partner_id.id"
             )
@@ -137,6 +152,7 @@ class DefaultCycleManager(models.Model):
         """
         Add beneficiaries to the cycle
         """
+        self._ensure_can_edit_cycle(cycle)
         _logger.info("Adding beneficiaries to the cycle %s", cycle.name)
         _logger.info("Beneficiaries: %s", beneficiaries)
 
@@ -160,3 +176,7 @@ class DefaultCycleManager(models.Model):
             return True
         else:
             return False
+
+    def _ensure_can_edit_cycle(self, cycle):
+        if cycle.state not in [cycle.STATE_DRAFT]:
+            raise ValidationError(_("The Cycle is not in Draft Mode"))

@@ -114,6 +114,8 @@ class G2PProgram(models.Model):
 
     @api.model
     def get_beneficiaries(self, state):
+        if isinstance(state, str):
+            state = [state]
         domain = [("state", "in", state)]
         for rec in self:
             return rec.program_membership_ids.search(domain)
@@ -184,18 +186,34 @@ class G2PProgram(models.Model):
         # 1. Create the next cycle using cycles_manager.new_cycle()
         # 2. Import the beneficiaries from the previous cycle to this one. If it is the first one, import from the
         # program memberships.
-        message = None
-        kind = "success"
-        cycle_manager = self.get_manager(self.MANAGER_CYCLE)
-        program_manager = self.get_manager(self.MANAGER_PROGRAM)
-        if cycle_manager is None:
-            message = _("No Eligibility Manager defined.")
-            kind = "error"
-        elif program_manager is None:
-            message = _("No Program Manager defined.")
-            kind = "error"
+        for rec in self:
+            message = None
+            kind = "success"
+            cycle_manager = rec.get_manager(self.MANAGER_CYCLE)
+            program_manager = rec.get_manager(self.MANAGER_PROGRAM)
+            if cycle_manager is None:
+                message = _("No Eligibility Manager defined.")
+                kind = "error"
+            elif program_manager is None:
+                message = _("No Program Manager defined.")
+                kind = "error"
 
-        if message is not None:
+            if message is not None:
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Cycle"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,
+                    },
+                }
+
+            _logger.info("-" * 80)
+            _logger.info("pm: %s", program_manager)
+            new_cycle = program_manager.new_cycle()
+            message = _("New cycle %s created." % new_cycle.name)
             return {
                 "type": "ir.actions.client",
                 "tag": "display_notification",
@@ -206,18 +224,3 @@ class G2PProgram(models.Model):
                     "type": kind,
                 },
             }
-
-        _logger.info("-" * 80)
-        _logger.info("pm: %s", program_manager)
-        new_cycle = program_manager.manager_ref_id.new_cycle()
-        message = _("New cycle %s created." % new_cycle.name)
-        return {
-            "type": "ir.actions.client",
-            "tag": "display_notification",
-            "params": {
-                "title": _("Cycle"),
-                "message": message,
-                "sticky": True,
-                "type": kind,
-            },
-        }

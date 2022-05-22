@@ -90,26 +90,37 @@ class DefaultEligibility(models.Model):
     # TODO: cache the parsed domain
     eligibility_domain = fields.Text(string="Domain", default="[]")
 
+    def _prepare_eligible_domain(self, membership):
+        ids = membership.mapped("partner_id.id")
+        domain = [("id", "in", ids)]
+        # TODO: use the config of the program
+        if self.support_group and not self.support_individual:
+            domain += [("is_group", "=", True)]
+        if self.support_individual and not self.support_group:
+            domain += [("is_group", "=", False)]
+        domain += self._safe_eval(self.eligibility_domain)
+        return domain
+
     def enroll_eligible_registrants(self, program_memberships):
         # TODO: check if the beneficiary still match the criterias
         _logger.info("-" * 100)
         _logger.info("Checking eligibility for %s", program_memberships)
         for rec in self:
-            ids = program_memberships.mapped("partner_id.id")
-            domain = [("id", "in", ids)]
-            # TODO: use the config of the program
-            if rec.support_group and not rec.support_individual:
-                domain += [("is_group", "=", True)]
-            if rec.support_individual and not rec.support_group:
-                domain += [("is_group", "=", False)]
-            domain += rec._safe_eval(self.eligibility_domain)
-
-            _logger.info("Eligibility domain: %s", domain)
-            beneficiaries = self.env["res.partner"].search(domain).ids
-            _logger.info("Beneficiaries: %s", beneficiaries)
+            beneficiaries = rec._verify_eligibility(program_memberships)
             return self.env["g2p.program_membership"].search(
                 [("partner_id", "in", beneficiaries)]
             )
 
-    def verify_cycle_eligibility(self, cycle, program_membership):
-        return self.enroll_eligible_registrants(cycle)
+    def verify_cycle_eligibility(self, cycle, membership):
+        for rec in self:
+            beneficiaries = rec._verify_eligibility(membership)
+            return self.env["g2p.cycle.membership"].search(
+                [("partner_id", "in", beneficiaries)]
+            )
+
+    def _verify_eligibility(self, membership):
+        domain = self._prepare_eligible_domain(membership)
+        _logger.info("Eligibility domain: %s", domain)
+        beneficiaries = self.env["res.partner"].search(domain).ids
+        _logger.info("Beneficiaries: %s", beneficiaries)
+        return beneficiaries

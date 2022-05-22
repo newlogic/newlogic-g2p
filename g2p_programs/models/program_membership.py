@@ -23,6 +23,7 @@ from odoo import fields, models
 
 class G2PProgramMembership(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
+    # TODO: rename g2p.program_membership to g2p.program.beneficiaries
     _name = "g2p.program_membership"
     _description = "Program Membership"
     _order = "id desc"
