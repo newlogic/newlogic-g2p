@@ -18,6 +18,7 @@
 #
 
 
+import json
 import logging
 
 from lxml import etree
@@ -71,15 +72,19 @@ class G2PResPartner(models.Model):
                         )
 
                     if rec.name.startswith("x_criteria_"):
-                        # doc.xpath("//page[@name='other']")
-                        etree.SubElement(
+                        crit = etree.SubElement(
                             criteria_group,
                             "field",
                             {
                                 "name": f"{rec.name}",
-                                "readonly": "1",
                             },
                         )
+
+                        _logger.debug(f"crit: {crit}")
+                        crit.set("readonly", "1")
+                        modifiers = {"readonly": True}
+                        crit.set("modifiers", json.dumps(modifiers))
+                        _logger.debug(f"crit: {crit}")
 
                 res["arch"] = etree.tostring(doc, encoding="unicode")
 
