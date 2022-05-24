@@ -60,6 +60,7 @@
             <tree string="Default Cycle Managers" sample="1">
                 <field name="name" />
                 <field name="program_id" />
+                <field name="cycle_duration" />
             </tree>
         </field>
     </record>
@@ -76,7 +77,6 @@
                         <label for="name" string="Name:" />
                         <h1>
                             <field id="name" name="name" placeholder="Enter the Manager Name..." />
-                            <field name="cycle_duration" />
                         </h1>
                         <label
                             for="program_id"
@@ -94,6 +94,9 @@
                         </h2>
                         <div class="o_row">
                         </div>
+                        <group string="Cycle Settings" colspan="4" col="4">
+                            <field name="cycle_duration" />
+                        </group>
                     </div>
                 </sheet>
             </form>

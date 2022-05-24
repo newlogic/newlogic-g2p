@@ -45,7 +45,31 @@
                     <field name="state" widget="statusbar" statusbar_visible="draft,active,ended" />
                 </header>
                 <sheet>
-                    <div class="oe_button_box" name="button_box" />
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-files-o"
+                            name="copy_beneficiaries_from_program"
+                            attrs="{'invisible':[('state','!=','draft')]}"
+                        >
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Copy Beneficiaries</span>
+                                <span class="o_stat_text">from Program</span>
+                            </div>
+                        </button>
+                        <button
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-files-o"
+                            name="prepare_entitlement"
+                        >
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Prepare</span>
+                                <span class="o_stat_text">Entitlement</span>
+                            </div>
+                        </button>
+                    </div>
                     <div class="oe_title mb24">
                         <label for="name" string="Cycle:" />
                         <h1>
@@ -63,20 +87,6 @@
                             force_save="1"
                         />
                     </group>
-                    <button
-                        name="copy_beneficiaries_from_program"
-                        type="object"
-                        string="Copy Beneficiary"
-                        icon="fa-repeat"
-                        class="btn-primary"
-                    />
-                    <button
-                        name="prepare_entitlement"
-                        type="object"
-                        string="Prepare Entitlement"
-                        icon="fa-repeat"
-                        class="btn-primary"
-                    />
                     <notebook>
                         <page string="Beneficiaries">
                           <field name="cycle_membership_ids" nolabel="1">

@@ -21,6 +21,7 @@
                 <field name="name" />
                 <field name="target_type" />
                 <field name="program_membership_ids" string="# Eligibles" />
+                <field name="cycle_ids" string="# Cycles" />
                 <field name="company_id" groups="base.group_multi_company" />
             </tree>
         </field>
@@ -56,6 +57,15 @@
                     </div>
                     <notebook>
                         <page string="Beneficiaries">
+                            <header>
+                                <button
+                                    name="enroll_eligible_registrants"
+                                    type="object"
+                                    string="Enroll Eligible Registrants"
+                                    icon="fa-download"
+                                    class="btn-primary"
+                                />
+                            </header>
                             <field
                                 name="program_membership_ids"
                                 nolabel="1"
@@ -83,6 +93,15 @@
                             </field>
                         </page>
                         <page string="Cycles">
+                            <header>
+                                <button
+                                    name="create_new_cycle"
+                                    type="object"
+                                    string="Create New Cycle"
+                                    icon="fa-undo"
+                                    class="btn-primary"
+                                />
+                            </header>
                             <field name="cycle_ids" nolabel="1">
                                 <tree string="Program Cycles">
                                     <button
@@ -92,9 +111,24 @@
                                         class="btn-success"
                                     />
                                     <field name="name" />
-                                    <field name="state" />
+                                    <field
+                                        name="state"
+                                        decoration-primary="state=='draft'"
+                                        decoration-success="state=='active'"
+                                        decoration-danger="state=='ended'"
+                                        widget="badge"
+                                        optional="show"
+                                    />
                                     <field name="cycle_membership_ids" string="Beneficiaries" />
                                     <field name="voucher_ids" string="Vouchers" />
+                                    <button
+                                        name="copy_beneficiaries_from_program"
+                                        type="object"
+                                        string="Add Beneficiaries"
+                                        icon="fa-plus-square"
+                                        class="btn-success"
+                                        attrs="{'invisible':[('state','!=','draft')]}"
+                                    />
                                 </tree>
                             </field>
                         </page>
@@ -288,6 +322,15 @@
                             </group>
                             <group colspan="4" col="4">
                                 <group colspan="2" string="Cycle Managers">
+                                    <header colspan="2">
+                                        <button
+                                            name="create_new_cycle"
+                                            type="object"
+                                            string="Create New Cycle"
+                                            icon="fa-undo"
+                                            class="btn-primary"
+                                        />
+                                    </header>
                                     <group colspan="2">
                                         <field
                                             name="cycle_managers"
