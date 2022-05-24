@@ -42,6 +42,7 @@
         "views/managers/program_manager_view.xml",
         "views/managers/cycle_manager_view.xml",
         "views/managers/entitlement_manager_view.xml",
+        "wizard/assign_to_program_wizard.xml",
     ],
     "assets": {},
     "demo": [],

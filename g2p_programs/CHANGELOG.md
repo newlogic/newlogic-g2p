@@ -2,7 +2,7 @@ Format in CHANGELOG.md
 
 ## Version[0.08] - 2022-05-24
 
-- [FIX] Minor Fixes in models and UI
+- [ADD] Assign to Program Wizard
 
 ## Version[0.07] - 2022-05-20
 

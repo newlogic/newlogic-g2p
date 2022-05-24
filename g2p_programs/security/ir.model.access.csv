@@ -27,3 +27,6 @@ g2p_cycle_manager_default_admin,Cycle Manager Default Admin Access,g2p_programs.
 
 g2p_program_entitlement_manager_admin,Program Entitlement Manager Admin Access,g2p_programs.model_g2p_program_entitlement_manager,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_program_entitlement_manager_default_admin,Program Entitlement Manager Default Admin Access,g2p_programs.model_g2p_program_entitlement_manager_default,g2p_registrant.group_g2p_admin,1,1,1,1
+
+g2p_assign_registrant_program_wizard_admin,Assign Registrant to Program Wizard Admin Access,g2p_programs.model_g2p_assign_program_wizard,g2p_registrant.group_g2p_admin,1,1,1,1
+g2p_assign_registrant_wizard_admin,Assign Registrants to Program Admin Access,g2p_programs.model_g2p_assign_program_registrants,g2p_registrant.group_g2p_admin,1,1,1,1
