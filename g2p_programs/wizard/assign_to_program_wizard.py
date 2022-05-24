@@ -16,11 +16,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from odoo import api, fields, models
-
 import logging
 
+from odoo import api, fields, models
+
 _logger = logging.getLogger(__name__)
+
 
 class G2PAssignToProgramWizard(models.TransientModel):
     _name = "g2p.assign.program.wizard"
@@ -29,16 +30,24 @@ class G2PAssignToProgramWizard(models.TransientModel):
     @api.model
     def default_get(self, fields):
         res = super(G2PAssignToProgramWizard, self).default_get(fields)
-        _logger.info("Assigning to Program Wizard with IDs: %s" % self.env.context.get("active_ids"))
+        _logger.info(
+            "Assigning to Program Wizard with IDs: %s"
+            % self.env.context.get("active_ids")
+        )
         if self.env.context.get("active_ids"):
             reg_ids = []
             for rec in self.env.context.get("active_ids"):
-                reg_ids.append([0,0,{"partner_id":rec}])
+                reg_ids.append([0, 0, {"partner_id": rec}])
             _logger.info("REG IDS: %s" % reg_ids)
             res["registrant_ids"] = reg_ids
         return res
 
-    registrant_ids = fields.One2many("g2p.assign.program.registrants", "program_id", string="Registrant", required=True)
+    registrant_ids = fields.One2many(
+        "g2p.assign.program.registrants",
+        "program_id",
+        string="Registrant",
+        required=True,
+    )
     program_id = fields.Many2one(
         "g2p.program", "", help="A program", required=True, tracking=True
     )
@@ -56,8 +65,8 @@ class G2PAssignToProgramWizard(models.TransientModel):
             else:
                 rec.update({"state": "Okay"})
                 main_vals = {
-                "partner_id": rec.partner_id.id,
-                "program_id": self.program_id.id,
+                    "partner_id": rec.partner_id.id,
+                    "program_id": self.program_id.id,
                 }
                 _logger.info("Assigning to Program Membership: %s" % main_vals)
                 self.env["g2p.program_membership"].create(main_vals)
@@ -69,11 +78,15 @@ class G2PAssignToProgramWizard(models.TransientModel):
             "name": "Assign to Program",
             "view_mode": "form",
             "res_model": "g2p.assign.program.wizard",
-            "view_id": self.env.ref("g2p_programs.assign_to_program_wizard_form_view").id,
+            "view_id": self.env.ref(
+                "g2p_programs.assign_to_program_wizard_form_view"
+            ).id,
             "type": "ir.actions.act_window",
             "target": "new",
-            "context": self.env.context
+            "context": self.env.context,
         }
+
+
 class G2PAssignToProgramRegistrants(models.TransientModel):
     _name = "g2p.assign.program.registrants"
     _description = "Registrant Assign to Program"
@@ -82,7 +95,11 @@ class G2PAssignToProgramRegistrants(models.TransientModel):
         "res.partner", "Registrant", help="A beneficiary", required=True, tracking=True
     )
     program_id = fields.Many2one(
-        "g2p.assign.program.wizard", "Program Wizard", help="A program", required=True, tracking=True
+        "g2p.assign.program.wizard",
+        "Program Wizard",
+        help="A program",
+        required=True,
+        tracking=True,
     )
     state = fields.Selection(
         [

@@ -21,36 +21,31 @@
                     <sheet>
                         <div class="oe_title">
                             <h1>
-                                <label for="program_id" string="Program"/>
+                                <label for="program_id" string="Program" />
                             </h1>
                             <h1>
-                                <field name="program_id" options="{'no_open':True}"/>
+                                <field name="program_id" options="{'no_open':True}" />
                             </h1>
                             <div class="o_row">
                             </div>
                         </div>
                         <field name="registrant_ids" nolabel="1">
                           <tree string="Registrants">
-                              <field name="partner_id"/>
+                              <field name="partner_id" />
                               <field
-                                  name="state"
-                                  decoration-secondary="state=='New'"
-                                  decoration-primary="state=='Okay'"
-                                  decoration-success="state=='Posted'"
-                                  decoration-danger="state=='Assigned'"
-                                  widget="badge"
-                                  readonly="1"
-                              />
+                                    name="state"
+                                    decoration-secondary="state=='New'"
+                                    decoration-primary="state=='Okay'"
+                                    decoration-success="state=='Posted'"
+                                    decoration-danger="state=='Assigned'"
+                                    widget="badge"
+                                    readonly="1"
+                                />
                           </tree>
                         </field>
                     </sheet>
                     <footer>
-                        <button
-                            name="assign_registrant"
-                            string="Assign"
-                            type="object"
-                            class="oe_highlight"
-                        />
+                        <button name="assign_registrant" string="Assign" type="object" class="oe_highlight" />
                         <button string="Cancel" class="btn-secondary" special="cancel" />
                     </footer>
                 </form>
