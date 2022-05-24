@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -54,7 +54,7 @@ class G2PGroupMembership(models.Model):
             if self.individual.id == rec.individual.id:
                 rec_count += 1
         if rec_count > 1:
-            raise ValidationError(_("Duplication of Member is not allowed"))  # noqa
+            raise ValidationError(_("Duplication of Member is not allowed "))
 
     def name_get(self):
         res = super(G2PGroupMembership, self).name_get()
