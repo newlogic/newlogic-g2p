@@ -102,7 +102,7 @@
                                     class="btn-primary"
                                 />
                             </header>
-                            <field name="cycle_ids" nolabel="1">
+                            <field name="cycle_ids" nolabel="1" context="{'default_program_id':active_id}">
                                 <tree string="Program Cycles">
                                     <button
                                         name="open_cycle_form"

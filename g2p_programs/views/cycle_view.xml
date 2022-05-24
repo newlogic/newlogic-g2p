@@ -61,7 +61,7 @@
                         <button
                             type="object"
                             class="oe_stat_button"
-                            icon="fa-files-o"
+                            icon="fa-check-square-o"
                             name="check_eligibility"
                             attrs="{'invisible':[('state','!=','draft')]}"
                         >
@@ -72,7 +72,7 @@
                         <button
                             type="object"
                             class="oe_stat_button"
-                            icon="fa-files-o"
+                            icon="fa-file-text-o"
                             name="prepare_entitlement"
                         >
                             <div class="o_form_field o_stat_info">
@@ -88,7 +88,11 @@
                         </h1>
                     </div>
                     <group colspan="4" col="4">
-                        <field name="program_id" colspan="4" />
+                        <field
+                            name="program_id"
+                            colspan="4"
+                            invisible="context.get('default_program_id',False)"
+                        />
                         <field name="start_date" />
                         <field name="end_date" />
                         <field
