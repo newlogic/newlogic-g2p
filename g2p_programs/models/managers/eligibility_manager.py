@@ -91,10 +91,8 @@ class DefaultEligibility(models.Model):
     eligibility_domain = fields.Text(string="Domain", default="[]")
 
     def _prepare_eligible_domain(self, membership):
-        domain = [("is_registrant", "=", True)]
-        if membership:
-            ids = membership.mapped("partner_id.id")
-            domain += [("id", "in", ids)]
+        ids = membership.mapped("partner_id.id")
+        domain = [("id", "in", ids)]
         # TODO: use the config of the program
         if self.support_group and not self.support_individual:
             domain += [("is_group", "=", True)]
