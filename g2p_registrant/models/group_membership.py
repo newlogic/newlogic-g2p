@@ -40,9 +40,7 @@ class G2PGroupMembership(models.Model):
         domain=[("is_group", "=", False), ("is_registrant", "=", True)],
         tracking=True,
     )
-    kind = fields.Many2many(
-        "g2p.group.membership.kind", string="Kind", required=True, tracking=True
-    )
+    kind = fields.Many2many("g2p.group.membership.kind", string="Kind", tracking=True)
     start_date = fields.Datetime("Start Date", tracking=True)
     end_date = fields.Datetime(
         "End Date", tracking=True
