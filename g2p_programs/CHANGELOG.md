@@ -1,5 +1,9 @@
 Format in CHANGELOG.md
 
+## Version[0.08] - 2022-05-24
+
+- [FIX] Minor Fixes in models and UI
+
 ## Version[0.07] - 2022-05-20
 
 - [ADD] partner_id (m2o res.partner) fields dynamic domain in method fields_view_get
