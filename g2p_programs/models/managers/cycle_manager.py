@@ -95,6 +95,12 @@ class DefaultCycleManager(models.Model):
 
     cycle_duration = fields.Integer("Cycle Duration", required=True)
 
+    approver_group_id = fields.Many2one(
+        comodel_name="res.groups",
+        string="Approver Group",
+        copy=True,
+    )
+
     def check_eligibility(self, cycle, beneficiaries=None):
         # TODO: disable beneficiaries not valid anymore and disable their voucher if they
         #  have been created.

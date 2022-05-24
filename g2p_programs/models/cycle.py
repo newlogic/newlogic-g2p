@@ -64,6 +64,11 @@ class G2PCycle(models.Model):
     )
     voucher_ids = fields.One2many("g2p.voucher", "cycle_id", "Vouchers")
 
+    def approve(self):
+        # 1. Make sure the user has the right to do this
+        # 2. Approve the cycle using the cycle manager
+        pass
+
     @api.model
     def get_beneficiaries(self, state):
         if isinstance(state, str):
