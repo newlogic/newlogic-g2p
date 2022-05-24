@@ -62,6 +62,17 @@
                             type="object"
                             class="oe_stat_button"
                             icon="fa-files-o"
+                            name="check_eligibility"
+                            attrs="{'invisible':[('state','!=','draft')]}"
+                        >
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Verify Eligibility</span>
+                            </div>
+                        </button>
+                        <button
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-files-o"
                             name="prepare_entitlement"
                         >
                             <div class="o_form_field o_stat_info">

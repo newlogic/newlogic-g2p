@@ -12,6 +12,16 @@
    limitations under the License.
 -->
 <odoo>
+    <record model="ir.actions.server" id="print_instance">
+        <field name="name">Res Partner Server Action</field>
+        <field name="model_id" ref="model_res_partner" />
+        <field name="binding_model_id" ref="g2p_registrant.model_res_partner" />
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            raise Warning(records)
+        </field>
+    </record>
     <record id="view_program_membership_tree" model="ir.ui.view">
         <field name="name">view_program_membership_tree</field>
         <field name="model">g2p.program_membership</field>

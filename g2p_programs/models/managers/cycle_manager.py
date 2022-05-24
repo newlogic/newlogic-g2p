@@ -51,7 +51,7 @@ class BaseCycleManager(models.AbstractModel):
     program_id = fields.Many2one("g2p.program", string="Program", required=True)
     # cycle_id = fields.Many2one("g2p.cycle", string="Cycle", required=True)
 
-    def check_eligibility(self, beneficiaries):
+    def check_eligibility(self, cycle, beneficiaries=None):
         """
         Validate the eligibility of each beneficiaries for the cycle
         """
@@ -95,19 +95,57 @@ class DefaultCycleManager(models.Model):
 
     cycle_duration = fields.Integer("Cycle Duration", required=True)
 
-    def check_eligibility(self, beneficiaries):
+    def check_eligibility(self, cycle, beneficiaries=None):
         # TODO: disable beneficiaries not valid anymore and disable their voucher if they
         #  have been created.
-        filtered_beneficiaries = self.program_id.get_manager(
-            constants.MANAGER_ELIGIBILITY
-        ).verify_cycle_eligibility(beneficiaries)
-        return filtered_beneficiaries
+        for rec in self:
+            rec._ensure_can_edit_cycle(cycle)
+
+            # Get all the enrolled beneficiaries
+            if beneficiaries is None:
+                beneficiaries = cycle.get_beneficiaries(["draft", "enrolled"])
+
+            eligibility_managers = rec.program_id.get_managers(
+                constants.MANAGER_ELIGIBILITY
+            )
+            filtered_beneficiaries = beneficiaries
+            for manager in eligibility_managers:
+                filtered_beneficiaries = manager.verify_cycle_eligibility(
+                    cycle, filtered_beneficiaries
+                )
+
+            filtered_beneficiaries.write({"state": "enrolled"})
+
+            beneficiaries_ids = beneficiaries.ids
+            filtered_beneficiaries_ids = filtered_beneficiaries.ids
+            _logger.info("Beneficiaries: %s", beneficiaries_ids)
+            _logger.info("Filtered beneficiaries: %s", filtered_beneficiaries_ids)
+            ids_to_remove = list(
+                set(beneficiaries_ids) - set(filtered_beneficiaries_ids)
+            )
+
+            # Mark the beneficiaries as not eligible
+            memberships_to_remove = self.env["g2p.cycle.membership"].browse(
+                ids_to_remove
+            )
+            memberships_to_remove.write({"state": "not_eligible"})
+
+            # Disable the vouchers of the beneficiaries
+            vouchers = self.env["g2p.voucher"].search(
+                [
+                    ("cycle_id", "=", cycle.id),
+                    ("partner_id", "in", memberships_to_remove.mapped("partner_id.id")),
+                ]
+            )
+            vouchers.write({"state": "cancelled"})
+
+            return filtered_beneficiaries
 
     def prepare_vouchers(self, cycle):
         for rec in self:
             rec._ensure_can_edit_cycle(cycle)
             # Get all the enrolled beneficiaries
-            beneficiaries = rec.program_id.get_beneficiaries(["enrolled"])
+            beneficiaries = cycle.get_beneficiaries(["enrolled"])
 
             rec.program_id.get_manager(constants.MANAGER_ENTITLEMENT).prepare_vouchers(
                 cycle, beneficiaries

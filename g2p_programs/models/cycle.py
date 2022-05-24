@@ -66,6 +66,8 @@ class G2PCycle(models.Model):
 
     @api.model
     def get_beneficiaries(self, state):
+        if isinstance(state, str):
+            state = [state]
         domain = [("state", "in", state)]
         for rec in self:
             return rec.cycle_membership_ids.search(domain)
@@ -82,9 +84,8 @@ class G2PCycle(models.Model):
             constants.MANAGER_CYCLE
         ).copy_beneficiaries_from_program(self)
 
-    @api.model
-    def verify_eligibility(self, beneficiaries):
-        self.program_id.get_manager(constants.MANAGER_CYCLE).verify_eligibility(
+    def check_eligibility(self, beneficiaries=None):
+        self.program_id.get_manager(constants.MANAGER_CYCLE).check_eligibility(
             self, beneficiaries
         )
 

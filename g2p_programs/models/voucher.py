@@ -71,6 +71,7 @@ class G2PVoucher(models.Model):
             ("rejected1", "Rejected: Beneficiary didn't want the voucher"),
             ("rejected2", "Rejected: Beneficiary account does not exist"),
             ("rejected3", "Rejected: Other reason"),
+            ("cancelled", "Cancelled"),
             ("expired", "Expired"),
         ],
         "Status",
