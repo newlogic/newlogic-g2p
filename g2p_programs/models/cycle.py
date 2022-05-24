@@ -117,10 +117,6 @@ class G2PCycle(models.Model):
         # 2. Copy the cycle using the cycle manager
         pass
 
-    def on_start_date_change(self):
-        # cycle_manager.on_start_date_change(self, start_date)
-        pass
-
     def open_cycle_form(self):
         return {
             "name": "Cycle",
@@ -131,3 +127,11 @@ class G2PCycle(models.Model):
             "type": "ir.actions.act_window",
             "target": "new",
         }
+
+    @api.onchange("start_date")
+    def on_start_date_change(self):
+        self.program_id.get_manager(constants.MANAGER_CYCLE).on_start_date_change(self)
+
+    @api.onchange("state")
+    def on_state_change(self):
+        self.program_id.get_manager(constants.MANAGER_CYCLE).on_state_change(self)

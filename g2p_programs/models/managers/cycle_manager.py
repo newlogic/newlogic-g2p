@@ -81,11 +81,20 @@ class BaseCycleManager(models.AbstractModel):
         """
         raise NotImplementedError()
 
-    def on_start_date_change(self, start_date):
+    def on_start_date_change(self, cycle):
         """
         Hook for when the start date change
         """
-        raise NotImplementedError()
+
+    def on_state_change(self, cycle):
+        """
+        Hook for when the state change
+        Args:
+            cycle:
+
+        Returns:
+
+        """
 
 
 class DefaultCycleManager(models.Model):
