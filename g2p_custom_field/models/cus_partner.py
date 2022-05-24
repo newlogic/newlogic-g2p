@@ -18,6 +18,7 @@
 #
 
 
+import json
 import logging
 
 from lxml import etree
@@ -67,7 +68,7 @@ class G2PResPartner(models.Model):
                     if len(els) >= 2 and els[1] == "cst":
                         etree.SubElement(custom_group, "field", {"name": rec.name})
                     elif len(els) >= 2 and els[1] == "crt":
-                        etree.SubElement(
+                        new_field = etree.SubElement(
                             criteria_group,
                             "field",
                             {
@@ -76,11 +77,15 @@ class G2PResPartner(models.Model):
                                 "class": "oe_read_only",
                             },
                         )
+                        new_field.set("readonly", "1")
+                        modifiers = {"readonly": True}
+                        new_field.set("modifiers", json.dumps(modifiers))
 
                 if custom_group.getchildren():
                     other_page[0].addprevious(custom_page)
                 if criteria_group.getchildren():
                     other_page[0].addprevious(criteria_page)
+
                 res["arch"] = etree.tostring(doc, encoding="unicode")
 
         return res
