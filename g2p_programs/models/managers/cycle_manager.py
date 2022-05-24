@@ -81,11 +81,20 @@ class BaseCycleManager(models.AbstractModel):
         """
         raise NotImplementedError()
 
-    def on_start_date_change(self, start_date):
+    def on_start_date_change(self, cycle):
         """
         Hook for when the start date change
         """
-        raise NotImplementedError()
+
+    def on_state_change(self, cycle):
+        """
+        Hook for when the state change
+        Args:
+            cycle:
+
+        Returns:
+
+        """
 
 
 class DefaultCycleManager(models.Model):
@@ -94,6 +103,12 @@ class DefaultCycleManager(models.Model):
     _description = "Default Cycle Manager"
 
     cycle_duration = fields.Integer("Cycle Duration", required=True)
+
+    approver_group_id = fields.Many2one(
+        comodel_name="res.groups",
+        string="Approver Group",
+        copy=True,
+    )
 
     def check_eligibility(self, cycle, beneficiaries=None):
         # TODO: disable beneficiaries not valid anymore and disable their voucher if they
