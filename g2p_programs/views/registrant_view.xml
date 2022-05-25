@@ -32,14 +32,73 @@
         <field name="inherit_id" ref="g2p_registrant.view_individuals_form" />
         <field name="arch" type="xml">
             <xpath expr="//page[@name='other']" position="before">
-                <page string="Program Membership">
-                    <field name="program_membership_ids" readonly="1" />
+                <page string="Program">
+                    <field name="program_membership_ids" readonly="1" nolabel="1">
+                      <tree>
+                          <button
+                                name="open_beneficiaries_form"
+                                type="object"
+                                icon="fa-external-link"
+                                class="btn-success"
+                            />
+                          <field name="partner_id" />
+                          <field name="program_id" />
+                          <field name="enrollment_date" />
+                          <field name="exit_date" />
+                          <field name="delivery_mechanism_value" />
+                          <field
+                                name="state"
+                                decoration-primary="state=='draft'"
+                                decoration-warning="state=='paused'"
+                                decoration-success="state=='enrolled'"
+                                decoration-danger="state=='exited'"
+                                widget="badge"
+                                string="Status"
+                            />
+                      </tree>
+                    </field>
                 </page>
                 <page string="Cycle">
-                    <field name="cycle_ids" readonly="1" />
+                    <field name="cycle_ids" readonly="1" nolabel="1">
+                      <tree>
+                          <button
+                                name="open_cycle_membership_form"
+                                type="object"
+                                icon="fa-external-link"
+                                class="btn-success"
+                            />
+                          <field name="partner_id" />
+                          <field name="cycle_id" />
+                          <field
+                                name="state"
+                                decoration-primary="state=='draft'"
+                                decoration-warning="state=='paused'"
+                                decoration-success="state=='enrolled'"
+                                decoration-danger="state=='exited'"
+                                widget="badge"
+                            />
+                      </tree>
+                    </field>
                 </page>
                 <page string="Voucher">
-                    <field name="voucher_ids" readonly="1" />
+                    <field name="voucher_ids" readonly="1" nolabel="1">
+                      <tree>
+                          <button
+                                name="open_voucher_form"
+                                type="object"
+                                icon="fa-external-link"
+                                class="btn-success"
+                            />
+                          <field name="name" />
+                          <field name="code" />
+                          <field name="partner_id" />
+                          <field name="cycle_id" />
+                          <field name="valid_from" />
+                          <field name="valid_until" />
+                          <field name="state" />
+                          <field name="company_id" groups="base.group_multi_company" />
+                      </tree>
+                    </field>
                 </page>
             </xpath>
         </field>
@@ -66,17 +125,84 @@
         <field name="inherit_id" ref="g2p_registrant.view_groups_form" />
         <field name="arch" type="xml">
             <xpath expr="//page[@name='other']" position="before">
-                <page string="Program Membership">
-                    <field name="program_membership_ids" readonly="1" />
+                <page string="Programs">
+                  <field name="program_membership_ids" readonly="1" nolabel="1">
+                    <tree>
+                        <button
+                                name="open_beneficiaries_form"
+                                type="object"
+                                icon="fa-external-link"
+                                class="btn-success"
+                            />
+                        <field name="partner_id" />
+                        <field name="program_id" />
+                        <field name="enrollment_date" />
+                        <field name="exit_date" />
+                        <field name="delivery_mechanism_value" />
+                        <field
+                                name="state"
+                                decoration-primary="state=='draft'"
+                                decoration-warning="state=='paused'"
+                                decoration-success="state=='enrolled'"
+                                decoration-danger="state=='exited'"
+                                widget="badge"
+                                string="Status"
+                            />
+                    </tree>
+                  </field>
                 </page>
                 <page string="Cycle">
-                    <field name="cycle_ids" readonly="1" />
+                  <field name="cycle_ids" readonly="1" nolabel="1">
+                    <tree>
+                        <button
+                                name="open_cycle_membership_form"
+                                type="object"
+                                icon="fa-external-link"
+                                class="btn-success"
+                            />
+                        <field name="partner_id" />
+                        <field name="cycle_id" />
+                        <field
+                                name="state"
+                                decoration-primary="state=='draft'"
+                                decoration-warning="state=='paused'"
+                                decoration-success="state=='enrolled'"
+                                decoration-danger="state=='exited'"
+                                widget="badge"
+                            />
+                    </tree>
+                  </field>
                 </page>
                 <page string="Voucher">
-                    <field name="voucher_ids" readonly="1" />
+                  <field name="voucher_ids" readonly="1" nolabel="1">
+                    <tree>
+                        <button
+                                name="open_voucher_form"
+                                type="object"
+                                icon="fa-external-link"
+                                class="btn-success"
+                            />
+                        <field name="name" />
+                        <field name="code" />
+                        <field name="partner_id" />
+                        <field name="cycle_id" />
+                        <field name="valid_from" />
+                        <field name="valid_until" />
+                        <field name="state" />
+                        <field name="company_id" groups="base.group_multi_company" />
+                    </tree>
+                  </field>
                 </page>
             </xpath>
         </field>
     </record>
 
+    <record model="ir.actions.server" id="assign_to_program">
+      <field name="name">Assign to Program</field>
+      <field name="model_id" ref="g2p_programs.model_g2p_assign_program_wizard" />
+      <field name="binding_model_id" ref="base.model_res_partner" />
+      <field name="binding_view_types">list</field>
+      <field name="state">code</field>
+      <field name="code">action = model.open_wizard()</field>
+    </record>
 </odoo>

@@ -32,13 +32,27 @@ class G2PVoucher(models.Model):
     def _generate_code(self):
         return str(uuid4())[4:-8][3:]
 
+    def _default_journal_id(self):
+        journals = self.env["account.journal"].search(
+            [("beneficiary_disb", "=", True), ("type", "in", ("bank", "cash"))]
+        )
+        if journals:
+            return journals[0].id
+        else:
+            return None
+
     name = fields.Char(compute="_compute_name")
     code = fields.Char(
         default=lambda x: x._generate_code(), required=True, readonly=True, copy=False
     )
 
     partner_id = fields.Many2one(
-        "res.partner", "Registrant", help="A beneficiary", required=True, tracking=True
+        "res.partner",
+        "Registrant",
+        help="A beneficiary",
+        required=True,
+        tracking=True,
+        domain=[("is_registrant", "=", True)],
     )
     company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
 
@@ -49,22 +63,39 @@ class G2PVoucher(models.Model):
         default=lambda self: fields.Date.add(fields.Date.today(), years=1)
     )
 
-    # state = fields.Selection(
-    #    selection=[('draft', 'Draft'), ('valid', 'Valid'), ('expired', 'Expired')],
-    #    default='draft',
-    #    copy=False
-    # )
+    is_cash_voucher = fields.Boolean("Cash Voucher", default=False)
+    currency_id = fields.Many2one(
+        "res.currency",
+        required=True,
+        default=lambda self: self.env.user.company_id.currency_id
+        and self.env.user.company_id.currency_id.id
+        or None,
+    )
+    initial_amount = fields.Monetary(required=True, currency_field="currency_id")
+    balance = fields.Monetary(compute="_compute_balance")  # in company currency
+    # TODO: implement transactions against this voucher
+
+    journal_id = fields.Many2one(
+        "account.journal",
+        "Disbursement Journal",
+        required=True,
+        domain=[("beneficiary_disb", "=", True), ("type", "in", ("bank", "cash"))],
+        default=_default_journal_id,
+    )
+    disbursement_id = fields.Many2one("account.payment", "Disbursement Journal Entry")
 
     state = fields.Selection(
         [
             ("draft", "Draft"),
-            ("created", "Created"),
+            ("pending_validation", "Pending Validation"),
             ("approved", "Approved"),
             ("trans2FSP", "Transferred to FSP"),
             ("rdpd2ben", "Redeemed/Paid to Beneficiary"),
             ("rejected1", "Rejected: Beneficiary didn't want the voucher"),
             ("rejected2", "Rejected: Beneficiary account does not exist"),
             ("rejected3", "Rejected: Other reason"),
+            ("cancelled", "Cancelled"),
+            ("expired", "Expired"),
         ],
         "Status",
         default="draft",
@@ -77,14 +108,75 @@ class G2PVoucher(models.Model):
 
     def _compute_name(self):
         for record in self:
-            record.name = _("Voucher #%s", record.id)
+            name = _("Voucher")
+            if record.is_cash_voucher:
+                name += " Cash [" + str(record.initial_amount) + "]"
+            record.name = name
+
+    @api.depends("initial_amount")
+    def _compute_balance(self):
+        for record in self:
+            record.balance = record.initial_amount
 
     @api.autovacuum
     def _gc_mark_expired_voucher(self):
         self.env["g2p.voucher"].search(
-            ["&", ("state", "=", "valid"), ("expired_date", "<", fields.Date.today())]
+            ["&", ("state", "=", "approved"), ("valid_until", "<", fields.Date.today())]
         ).write({"state": "expired"})
 
     def can_be_used(self):
         # expired state are computed once a day, so can be not synchro
-        return self.state == "valid" and self.expired_date >= fields.Date.today()
+        return self.state == "approved" and self.valid_until >= fields.Date.today()
+
+    def approve_voucher(self):
+        for rec in self:
+            if rec.state in ("draft", "pending_validation"):
+                # Prepare journal entry (account.move) via account.payment
+                payment = {
+                    "partner_id": rec.partner_id.id,
+                    "payment_type": "outbound",
+                    "amount": rec.initial_amount,
+                    "currency_id": rec.currency_id.id,
+                    "journal_id": rec.journal_id.id,
+                    "partner_type": "supplier",
+                }
+                new_payment = self.env["account.payment"].create(payment)
+                rec.update({"disbursement_id": new_payment.id, "state": "approved"})
+            else:
+                message = _("The voucher must be in 'pending validation' state.")
+                kind = "error"
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Voucher"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,
+                    },
+                }
+
+    def open_voucher_form(self):
+        return {
+            "name": "Voucher",
+            "view_mode": "form",
+            "res_model": "g2p.voucher",
+            "res_id": self.id,
+            "view_id": self.env.ref("g2p_programs.view_voucher_form").id,
+            "type": "ir.actions.act_window",
+            "target": "new",
+        }
+
+    def open_disb_form(self):
+        for rec in self:
+            if rec.disbursement_id:
+                res_id = rec.disbursement_id.id
+                return {
+                    "name": "Disbursement",
+                    "view_mode": "form",
+                    "res_model": "account.payment",
+                    "res_id": res_id,
+                    "view_id": self.env.ref("account.view_account_payment_form").id,
+                    "type": "ir.actions.act_window",
+                    "target": "current",
+                }

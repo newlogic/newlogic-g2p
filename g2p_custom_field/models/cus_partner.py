@@ -38,21 +38,19 @@ class G2PResPartner(models.Model):
             view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
         )
 
-        doc = etree.XML(res["arch"])
-
         if view_type == "form":
             doc = etree.XML(res["arch"])
             other_page = doc.xpath("//page[@name='other']")
 
             model_fields_id = self.env["ir.model.fields"].search(
-                [("model_id", "=", "res.partner"), ("state", "=", "manual")]
+                [("model_id", "=", "res.partner")],
+                order="ttype, field_description",
             )
 
             if other_page:
+                is_group = self._context.get("default_is_group", False)
                 custom_page = etree.Element("page", {"string": "Custom Fields"})
                 criteria_page = etree.Element("page", {"string": "Criteria Fields"})
-                other_page[0].addprevious(custom_page)
-                other_page[0].addprevious(criteria_page)
 
                 custom_group = etree.SubElement(
                     custom_page, "group", {"col": "4", "colspan": "4"}
@@ -62,29 +60,31 @@ class G2PResPartner(models.Model):
                 )
 
                 for rec in model_fields_id:
-                    if rec.name.startswith("x_custom_"):
-                        etree.SubElement(
-                            custom_group,
-                            "field",
-                            {
-                                "name": f"{rec.name}",
-                            },
-                        )
-
-                    if rec.name.startswith("x_criteria_"):
-                        crit = etree.SubElement(
+                    els = rec.name.split("_")
+                    if len(els) >= 3 and (
+                        els[2] == "grp" and not is_group or els[2] == "ind" and is_group
+                    ):
+                        continue
+                    if len(els) >= 2 and els[1] == "cst":
+                        etree.SubElement(custom_group, "field", {"name": rec.name})
+                    elif len(els) >= 2 and els[1] == "crt":
+                        new_field = etree.SubElement(
                             criteria_group,
                             "field",
                             {
-                                "name": f"{rec.name}",
+                                "name": rec.name,
+                                "readonly": "1",
+                                "class": "oe_read_only",
                             },
                         )
-
-                        _logger.debug(f"crit: {crit}")
-                        crit.set("readonly", "1")
+                        new_field.set("readonly", "1")
                         modifiers = {"readonly": True}
-                        crit.set("modifiers", json.dumps(modifiers))
-                        _logger.debug(f"crit: {crit}")
+                        new_field.set("modifiers", json.dumps(modifiers))
+
+                if custom_group.getchildren():
+                    other_page[0].addprevious(custom_page)
+                if criteria_group.getchildren():
+                    other_page[0].addprevious(criteria_page)
 
                 res["arch"] = etree.tostring(doc, encoding="unicode")
 

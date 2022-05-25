@@ -17,11 +17,10 @@
         name="Registrants"
         web_icon="g2p_registrant,static/src/img/icons/contacts.png"
         active="True"
-        sequence="0"
+        sequence="-1"
     />
 
     <menuitem id="g2p_registrant_menu_root" name="Registrants" parent="g2p_main_menu_root" sequence="10" />
-    <menuitem id="g2p_program_menu_root" name="Programs" parent="g2p_main_menu_root" sequence="500" />
     <menuitem
         id="g2p_data_mgmt_menu_root"
         name="Data Management"

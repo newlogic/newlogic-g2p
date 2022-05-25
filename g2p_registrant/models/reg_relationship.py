@@ -99,6 +99,50 @@ class G2PRegistrantRelationship(models.Model):
                     }
                 )
 
+    def open_relationship1_form(self):
+        if self.registrant1.is_group:
+            return {
+                "name": "Related Group",
+                "view_mode": "form",
+                "res_model": "res.partner",
+                "res_id": self.registrant1.id,
+                "view_id": self.env.ref("g2p_registrant.view_groups_form").id,
+                "type": "ir.actions.act_window",
+                "target": "new",
+            }
+        else:
+            return {
+                "name": "Related Registrant",
+                "view_mode": "form",
+                "res_model": "res.partner",
+                "res_id": self.registrant1.id,
+                "view_id": self.env.ref("g2p_registrant.view_individuals_form").id,
+                "type": "ir.actions.act_window",
+                "target": "new",
+            }
+
+    def open_relationship2_form(self):
+        if self.registrant2.is_group:
+            return {
+                "name": "Other Related Group",
+                "view_mode": "form",
+                "res_model": "res.partner",
+                "res_id": self.registrant2.id,
+                "view_id": self.env.ref("g2p_registrant.view_groups_form").id,
+                "type": "ir.actions.act_window",
+                "target": "new",
+            }
+        else:
+            return {
+                "name": "Other Related Registrant",
+                "view_mode": "form",
+                "res_model": "res.partner",
+                "res_id": self.registrant2.id,
+                "view_id": self.env.ref("g2p_registrant.view_individuals_form").id,
+                "type": "ir.actions.act_window",
+                "target": "new",
+            }
+
 
 class G2PRelationship(models.Model):
     _name = "g2p.relationship"

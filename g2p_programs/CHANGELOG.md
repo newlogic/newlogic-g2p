@@ -1,5 +1,37 @@
 Format in CHANGELOG.md
 
+## Version[0.09] - 2022-05-25
+
+- [FIX] Add registrants to program wizard
+- [ADD] Display Beneficiaries and vouchers of a cycle/Program like SMS Marketing Mailing Contact
+- [ADD] Accounting integration
+
+## Version[0.08] - 2022-05-24
+
+- [FIX] Minor Fixes in models and UI
+- [ADD] Assign to Program Wizard
+
+## Version[0.07] - 2022-05-20
+
+- [ADD] partner_id (m2o res.partner) fields dynamic domain in method fields_view_get
+- [ADD] UIs with program_id (m2o g2p.program) automaticall hide if loaded from a o2m table
+- [FIX] UI filters for loading groups or individuals based on program target type
+- [FIX] Automatically set program to all manager popup forms
+- [ADD] All manager model methods
+
+## Version[0.06] - 2022-05-19
+
+- [ADD] ID and Phone Number eligibility managers
+- [FIX] Job Queue to import eligible beneficiaries
+- [ADD] Notification, Program, and Cycle Managers model and UI
+- [ADD] Entitlement Manager model and UI
+
+## Version[0.05] - 2022-05-18
+
+- [ADD] Eligibility and Deduplication Managers
+- [ADD] Eligibility and Deduplication Managers UI
+- [ADD] ID and Phone number deduplication UI
+
 ## Version[0.04] - 2022-05-12
 
 - [ADD] Created Program Membership UI

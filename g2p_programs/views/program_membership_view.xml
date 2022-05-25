@@ -12,6 +12,7 @@
    limitations under the License.
 -->
 <odoo>
+
     <record id="view_program_membership_tree" model="ir.ui.view">
         <field name="name">view_program_membership_tree</field>
         <field name="model">g2p.program_membership</field>
@@ -20,6 +21,9 @@
             <tree string="Program Membership">
                 <field name="partner_id" />
                 <field name="program_id" />
+                <field name="enrollment_date" />
+                <field name="exit_date" />
+                <field name="delivery_mechanism_value" />
                 <field
                     name="state"
                     decoration-primary="state=='draft'"
@@ -78,11 +82,24 @@
                                 placeholder="Enter the registrant name..."
                             />
                         </h1>
-                        <label for="program_id" string="Program:" />
-                        <h2>
-                            <field name="program_id" placeholder="program..." />
+                        <label
+                            for="program_id"
+                            string="Program:"
+                            invisible="context.get('default_program_id',False)"
+                        />
+                        <h2 invisible="context.get('default_program_id',False)">
+                            <field
+                                name="program_id"
+                                placeholder="program..."
+                                invisible="context.get('default_program_id',False)"
+                            />
                         </h2>
                     </div>
+                    <group colspan="4" col="4">
+                        <field name="enrollment_date" />
+                        <field name="exit_date" />
+                        <field name="delivery_mechanism_value" colspan="4" />
+                    </group>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" />
@@ -124,9 +141,9 @@
 
     <menuitem
         id="menu_program_membership"
-        name="Program Membership"
+        name="Beneficiaries"
         action="action_program_membership"
-        parent="g2p_registrant.g2p_program_menu_root"
+        parent="g2p_program_root"
         sequence="20"
         groups="g2p_registrant.group_g2p_admin"
     />

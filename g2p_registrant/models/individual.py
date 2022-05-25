@@ -30,7 +30,7 @@ class G2PIndividual(models.Model):
     given_name = fields.Char("Given Name", translate=True, tracking=True)
     addl_name = fields.Char("Additional Name", translate=True, tracking=True)
     birth_place = fields.Char("Birth Place", tracking=True)
-    birthdate_exact = fields.Boolean("Birthdate Exact")
+    birthdate_not_exact = fields.Boolean("Birthdate not exact")
     birthdate = fields.Date("Date of Birth", tracking=True)
     age = fields.Char(compute="_compute_calc_age", string="Age", size=50, readonly=True)
     gender = fields.Selection(
