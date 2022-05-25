@@ -32,13 +32,27 @@ class G2PVoucher(models.Model):
     def _generate_code(self):
         return str(uuid4())[4:-8][3:]
 
+    def _default_journal_id(self):
+        journals = self.env["account.journal"].search(
+            [("beneficiary_disb", "=", True), ("type", "in", ("bank", "cash"))]
+        )
+        if journals:
+            return journals[0].id
+        else:
+            return None
+
     name = fields.Char(compute="_compute_name")
     code = fields.Char(
         default=lambda x: x._generate_code(), required=True, readonly=True, copy=False
     )
 
     partner_id = fields.Many2one(
-        "res.partner", "Registrant", help="A beneficiary", required=True, tracking=True
+        "res.partner",
+        "Registrant",
+        help="A beneficiary",
+        required=True,
+        tracking=True,
+        domain=[("is_registrant", "=", True)],
     )
     company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
 
@@ -50,16 +64,25 @@ class G2PVoucher(models.Model):
     )
 
     is_cash_voucher = fields.Boolean("Cash Voucher", default=False)
-    currency_id = fields.Many2one("res.currency")
+    currency_id = fields.Many2one(
+        "res.currency",
+        required=True,
+        default=lambda self: self.env.user.company_id.currency_id
+        and self.env.user.company_id.currency_id.id
+        or None,
+    )
     initial_amount = fields.Monetary(required=True, currency_field="currency_id")
     balance = fields.Monetary(compute="_compute_balance")  # in company currency
     # TODO: implement transactions against this voucher
 
-    # state = fields.Selection(
-    #    selection=[('draft', 'Draft'), ('valid', 'Valid'), ('expired', 'Expired')],
-    #    default='draft',
-    #    copy=False
-    # )
+    journal_id = fields.Many2one(
+        "account.journal",
+        "Disbursement Journal",
+        required=True,
+        domain=[("beneficiary_disb", "=", True), ("type", "in", ("bank", "cash"))],
+        default=_default_journal_id,
+    )
+    disbursement_id = fields.Many2one("account.payment", "Disbursement Journal Entry")
 
     state = fields.Selection(
         [
@@ -105,6 +128,34 @@ class G2PVoucher(models.Model):
         # expired state are computed once a day, so can be not synchro
         return self.state == "approved" and self.valid_until >= fields.Date.today()
 
+    def approve_voucher(self):
+        for rec in self:
+            if rec.state in ("draft", "pending_validation"):
+                # Prepare journal entry (account.move) via account.payment
+                payment = {
+                    "partner_id": rec.partner_id.id,
+                    "payment_type": "outbound",
+                    "amount": rec.initial_amount,
+                    "currency_id": rec.currency_id.id,
+                    "journal_id": rec.journal_id.id,
+                    "partner_type": "supplier",
+                }
+                new_payment = self.env["account.payment"].create(payment)
+                rec.update({"disbursement_id": new_payment.id, "state": "approved"})
+            else:
+                message = _("The voucher must be in 'pending validation' state.")
+                kind = "error"
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Voucher"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,
+                    },
+                }
+
     def open_voucher_form(self):
         return {
             "name": "Voucher",
@@ -115,3 +166,17 @@ class G2PVoucher(models.Model):
             "type": "ir.actions.act_window",
             "target": "new",
         }
+
+    def open_disb_form(self):
+        for rec in self:
+            if rec.disbursement_id:
+                res_id = rec.disbursement_id.id
+                return {
+                    "name": "Disbursement",
+                    "view_mode": "form",
+                    "res_model": "account.payment",
+                    "res_id": res_id,
+                    "view_id": self.env.ref("account.view_account_payment_form").id,
+                    "type": "ir.actions.act_window",
+                    "target": "current",
+                }

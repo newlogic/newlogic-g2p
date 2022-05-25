@@ -24,7 +24,15 @@
                 <field name="cycle_id" />
                 <field name="valid_from" />
                 <field name="valid_until" />
-                <field name="state" />
+                <field
+                    name="state"
+                    decoration-primary="state=='pending_validation'"
+                    decoration-success="state=='approved'"
+                    decoration-warning="state=='cancelled'"
+                    decoration-danger="state=='expired'"
+                    widget="badge"
+                    string="State"
+                />
                 <field name="company_id" groups="base.group_multi_company" />
             </tree>
         </field>
@@ -36,8 +44,40 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <form string="Voucher">
+                <header>
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,pending_validation,approved,expired"
+                    />
+                </header>
                 <sheet>
-                    <div class="oe_button_box" name="button_box" />
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-thumbs-o-up"
+                            name="approve_voucher"
+                            attrs="{'invisible':[('state','not in',('draft','pending_validation'))]}"
+                        >
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Approve</span>
+                                <span class="o_stat_text">Voucher</span>
+                            </div>
+                        </button>
+                        <button
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-folder-open-o"
+                            name="open_disb_form"
+                            attrs="{'invisible':[('state','!=','approved')]}"
+                        >
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Disbursement</span>
+                                <span class="o_stat_text">Form</span>
+                            </div>
+                        </button>
+                    </div>
                     <div class="oe_title mb24">
                         <label for="name" string="Voucher:" />
                         <h1>
@@ -50,19 +90,41 @@
                     </div>
                     <group>
                         <group>
-                            <field name="partner_id" />
-                            <field name="cycle_id" />
+                            <field name="partner_id" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field name="cycle_id" attrs="{'readonly':[('state','!=','draft')]}" />
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"
                                 options="{'no_create': True}"
                                 force_save="1"
+                                attrs="{'readonly':[('state','!=','draft')]}"
                             />
                         </group>
                         <group>
-                            <field name="valid_from" />
-                            <field name="valid_until" />
+                            <field name="valid_from" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field name="valid_until" attrs="{'readonly':[('state','!=','draft')]}" />
                         </group>
+                    </group>
+                    <group string="Disbursement" colspan="4" col="4">
+                        <field name="is_cash_voucher" colspan="4" invisible="1" />
+                        <field name="initial_amount" attrs="{'readonly':[('state','!=','draft')]}" />
+                        <field
+                            name="currency_id"
+                            options="{'no_open':True,'no_quick_create':True,'no_create':True}"
+                            attrs="{'readonly':[('state','!=','draft')]}"
+                        />
+                        <field
+                            name="journal_id"
+                            string="Journal"
+                            options="{'no_open':True,'no_quick_create':True,'no_create':True}"
+                            attrs="{'readonly':[('state','!=','draft')]}"
+                        />
+                        <field
+                            name="disbursement_id"
+                            options="{'no_open':True}"
+                            string="Journal Entry"
+                            readonly="1"
+                        />
                     </group>
                 </sheet>
                 <div class="oe_chatter">

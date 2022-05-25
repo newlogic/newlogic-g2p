@@ -31,4 +31,11 @@
         sequence="300"
     />
 
+    <menuitem
+        id="g2p_accounting_config_menu_root"
+        name="Accounting"
+        parent="g2p_program_configuration_menu_root"
+        sequence="400"
+    />
+
 </odoo>

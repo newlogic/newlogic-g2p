@@ -17,7 +17,8 @@
 # limitations under the License.
 #
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class G2PGroupMembership(models.Model):
@@ -40,13 +41,20 @@ class G2PGroupMembership(models.Model):
         domain=[("is_group", "=", False), ("is_registrant", "=", True)],
         tracking=True,
     )
-    kind = fields.Many2many(
-        "g2p.group.membership.kind", string="Kind", required=True, tracking=True
-    )
+    kind = fields.Many2many("g2p.group.membership.kind", string="Kind", tracking=True)
     start_date = fields.Datetime("Start Date", tracking=True)
     end_date = fields.Datetime(
         "End Date", tracking=True
     )  # TODO: Should rename `ended_date` add a check that the date is in the past
+
+    @api.constrains("individual")
+    def _check_group_members(self):
+        rec_count = 0
+        for rec in self.group.group_membership_ids:
+            if self.individual.id == rec.individual.id:
+                rec_count += 1
+        if rec_count > 1:
+            raise ValidationError(_("Duplication of Member is not allowed "))
 
     def name_get(self):
         res = super(G2PGroupMembership, self).name_get()

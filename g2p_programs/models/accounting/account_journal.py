@@ -17,7 +17,11 @@
 # limitations under the License.
 #
 
-from . import models
-from . import wizard
+from odoo import fields, models
 
-# from . import controllers
+
+class AccountJournal(models.Model):
+    _inherit = "account.journal"
+
+    # Custom Fields
+    beneficiary_disb = fields.Boolean("Beneficiary Funds")

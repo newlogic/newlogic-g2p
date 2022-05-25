@@ -24,7 +24,7 @@
     "author": "Newlogic",
     "website": "https://newlogic.com/",
     "license": "Other OSI approved licence",
-    "depends": ["base", "mail", "sms", "queue_job", "g2p_registrant"],
+    "depends": ["base", "mail", "sms", "queue_job", "g2p_registrant", "account"],
     "data": [
         "security/ir.model.access.csv",
         "views/main_view.xml",
@@ -42,6 +42,9 @@
         "views/managers/program_manager_view.xml",
         "views/managers/cycle_manager_view.xml",
         "views/managers/entitlement_manager_view.xml",
+        "views/accounting/account_journal_view.xml",
+        "views/accounting/account_journal_config_view.xml",
+        "wizard/assign_to_program_wizard.xml",
     ],
     "assets": {},
     "demo": [],

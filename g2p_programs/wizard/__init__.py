@@ -17,7 +17,4 @@
 # limitations under the License.
 #
 
-from . import models
-from . import wizard
-
-# from . import controllers
+from . import assign_to_program_wizard
