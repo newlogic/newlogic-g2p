@@ -1,5 +1,9 @@
 Format in CHANGELOG.md
 
+## Version[0.11] - 2022-05-26
+
+- [FIX] Separate Groups and Individuals menu
+
 ## Version[0.10] - 2022-05-13
 
 - [ADD] Support Phone numbers, date of collection, and other fixes
