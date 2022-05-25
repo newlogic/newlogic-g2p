@@ -16,15 +16,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from odoo import fields, models
 
-from . import constants
-from . import accounting
-from . import job_related_mixin
-from . import managers
-from . import programs
-from . import registrant
-from . import registrant_attribute
-from . import program_membership
-from . import cycle
-from . import cycle_membership
-from . import voucher
+
+class G2PRegistrant(models.Model):
+    _inherit = "res.partner"
+
+    # Custom Fields
+    program_membership_ids = fields.One2many(
+        "g2p.program_membership", "partner_id", "Program Memberships"
+    )
+    cycle_ids = fields.One2many(
+        "g2p.cycle.membership", "partner_id", "Cycle Memberships"
+    )
+    voucher_ids = fields.One2many("g2p.voucher", "partner_id", "Vouchers")

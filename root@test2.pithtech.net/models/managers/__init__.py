@@ -17,14 +17,12 @@
 # limitations under the License.
 #
 
-from . import constants
-from . import accounting
-from . import job_related_mixin
-from . import managers
-from . import programs
-from . import registrant
-from . import registrant_attribute
-from . import program_membership
-from . import cycle
-from . import cycle_membership
-from . import voucher
+from . import manager_mixin
+from . import source_mixin
+from . import base_manager
+from . import eligibility_manager
+from . import deduplication_manager
+from . import notification_manager
+from . import program_manager
+from . import cycle_manager
+from . import entitlement_manager

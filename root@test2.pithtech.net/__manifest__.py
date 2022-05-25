@@ -33,6 +33,7 @@
         "views/cycle_view.xml",
         "views/cycle_membership_view.xml",
         "views/voucher_view.xml",
+        #"views/cash_voucher_view.xml",
         "views/registrant_view.xml",
         "views/registrant_attribute_view.xml",
         "views/managers/eligibility_manager_view.xml",
