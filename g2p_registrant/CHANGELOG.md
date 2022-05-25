@@ -3,6 +3,7 @@ Format in CHANGELOG.md
 ## Version[0.11] - 2022-05-26
 
 - [FIX] Separate Groups and Individuals menu
+- [FIX] Groups and Individuals UI
 
 ## Version[0.10] - 2022-05-13
 
