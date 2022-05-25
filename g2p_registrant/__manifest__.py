@@ -29,6 +29,7 @@
         "security/newlogic_security.xml",
         "security/ir.model.access.csv",
         "data/group_membership_kinds.xml",
+        "data/group_kinds.xml",
         "wizard/disable_registrant_view.xml",
         "views/main_view.xml",
         "views/individuals_view.xml",
