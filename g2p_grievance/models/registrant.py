@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from odoo import fields, models
+from odoo import models
 
 
 class G2PGrievanceRegistrant(models.Model):
@@ -30,5 +30,5 @@ class G2PGrievanceRegistrant(models.Model):
             "view_id": self.env.ref("helpdesk_mgmt.ticket_view_form").id,
             "type": "ir.actions.act_window",
             "target": "current",
-            "context": {'default_partner_id': self.id},
+            "context": {"default_partner_id": self.id},
         }
