@@ -27,14 +27,14 @@ limitations under the License.  -->
   </record>
 
   <!-- res.partner individual -->
-  <record id="import_type_res_partner_individual_data" model="import.type">
+  <!-- <record id="import_type_res_partner_individual_data" model="import.type">
     <field name="name">Import ResPartner Individual Data</field>
     <field name="key">res_partner_individual_data</field>
     <field name="options">
 - model: res.partner
   importer: g2p.res.partner.individual.data.importer
     </field>
-  </record>
+  </record> -->
 
   <!-- res.partner group -->
   <record id="import_type_res_partner_group_data" model="import.type">

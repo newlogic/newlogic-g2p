@@ -16,7 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import logging
+
 from odoo.addons.component.core import Component
+
+_logger = logging.getLogger(__name__)
 
 
 class ResPartnerGroupMapper(Component):
@@ -30,9 +34,12 @@ class ResPartnerGroupMapper(Component):
         ("name", "name"),
         ("given_name", "given_name"),
         ("family_name", "family_name"),
-        ("birthdate", "birthdate"),
-        ("birth_place", "birth_place"),
-        ("registration_date", "registration_date"),
+        ("gender", "gender"),
+        # ("birthdate", "birthdate"),
+        # ("birth_place", "birth_place"),
+        # ("registration_date", "registration_date"),
         ("is_registrant", "is_registrant"),
         ("is_group", "is_group"),
     ]
+
+    _logger.debug(f"ResultMap: {direct}")

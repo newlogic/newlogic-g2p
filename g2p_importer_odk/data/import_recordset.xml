@@ -24,17 +24,17 @@ limitations under the License.  -->
         <field name="import_type_id" ref="import_type_additional_data" />
     </record>
 
-    <record id="import_recordset_res_partner_individuak_data" model="import.recordset">
-        <field name="backend_id" ref="import_backend_odk" />
+    <!-- <record id="import_recordset_res_partner_individual_data" model="import.recordset">
+        <field name="backend_id" ref="import_backend_cwg_ukraine_odk" />
         <field name="source_model">import.source.odk</field>
-        <field name="source_id" ref="import_source_json_odk" />
+        <field name="source_id" ref="import_source_json_odk_cwg_ukraine" />
         <field name="import_type_id" ref="import_type_res_partner_individual_data" />
-    </record>
+    </record> -->
 
     <record id="import_recordset_res_partner_group_data" model="import.recordset">
-        <field name="backend_id" ref="import_backend_odk" />
+        <field name="backend_id" ref="import_backend_cwg_ukraine_odk" />
         <field name="source_model">import.source.odk</field>
-        <field name="source_id" ref="import_source_json_odk" />
+        <field name="source_id" ref="import_source_json_odk_cwg_ukraine" />
         <field name="import_type_id" ref="import_type_res_partner_group_data" />
     </record>
 </odoo>

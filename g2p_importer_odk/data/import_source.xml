@@ -27,4 +27,13 @@ limitations under the License.  -->
         <field name="password">*zYMmnp3E42n93B*XPPh</field>
     </record>
 
+
+    <record id="import_source_json_odk_cwg_ukraine" model="import.source.odk">
+        <field name="name">CWG Ukraine ODK</field>
+        <field name="chunk_size" eval="100" />
+        <field name="odata_url">https://odk.newlogic-demo.com/v1/projects/4/forms/odk_cwg_ukraine.svc</field>
+        <field name="email">jeremi@newlogic.com</field>
+        <field name="password">*zYMmnp3E42n93B*XPPh</field>
+    </record>
+
 </odoo>
