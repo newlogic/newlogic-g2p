@@ -21,6 +21,7 @@ from . import constants
 from . import accounting
 from . import job_related_mixin
 from . import managers
+from . import accounting
 from . import programs
 from . import registrant
 from . import registrant_attribute
