@@ -17,21 +17,4 @@
 # limitations under the License.
 #
 
-
-{
-    "name": "G2P Grievance System",
-    "category": "G2P",
-    "version": "15.0.0.0.1",
-    "sequence": 3,
-    "author": "Newlogic",
-    "website": "https://newlogic.com/",
-    "license": "Other OSI approved licence",
-    "depends": ["base", "helpdesk_mgmt", "g2p_registrant"],
-    "data": [
-        "views/custom_helpdesk_view.xml",
-        "views/custom_registrant_view.xml",
-    ],
-    "application": True,
-    "installable": True,
-    "auto_install": False,
-}
+from . import registrant
