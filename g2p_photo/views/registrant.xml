@@ -21,8 +21,12 @@
         <field name="arch" type="xml">
             <xpath expr="//page[@name='other']" position="after">
                 <page string="Photos">
-                    <field name="image_ids"
-                        nolabel="1" mode="kanban" context="{'default_owner_model':'res.partner'}"/>
+                    <field
+                        name="image_ids"
+                        nolabel="1"
+                        mode="kanban"
+                        context="{'default_owner_model':'res.partner'}"
+                    />
                 </page>
             </xpath>
         </field>
@@ -37,8 +41,12 @@
         <field name="arch" type="xml">
             <xpath expr="//page[@name='other']" position="after">
                 <page string="Photos">
-                    <field name="image_ids"
-                      nolabel="1" mode="kanban" context="{'default_owner_model':'res.partner'}"/>
+                    <field
+                        name="image_ids"
+                        nolabel="1"
+                        mode="kanban"
+                        context="{'default_owner_model':'res.partner'}"
+                    />
                 </page>
             </xpath>
         </field>

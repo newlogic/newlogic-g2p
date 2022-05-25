@@ -22,8 +22,12 @@
             <xpath expr="//sheet" position="inside">
               <notebook>
                 <page string="Photos">
-                    <field name="image_ids"
-                        nolabel="1" mode="kanban" context="{'default_owner_model':'g2p.datasource'}"/>
+                    <field
+                            name="image_ids"
+                            nolabel="1"
+                            mode="kanban"
+                            context="{'default_owner_model':'g2p.datasource'}"
+                        />
                 </page>
               </notebook>
             </xpath>

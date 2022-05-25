@@ -24,7 +24,13 @@
     "author": "Newlogic",
     "website": "https://newlogic.com/",
     "license": "Other OSI approved licence",
-    "depends": ["base", "base_multi_image", "g2p_registrant", "g2p_additional_data", "g2p_programs"],
+    "depends": [
+        "base",
+        "base_multi_image",
+        "g2p_registrant",
+        "g2p_additional_data",
+        "g2p_programs",
+    ],
     "data": [
         "views/registrant.xml",
         "views/image.xml",

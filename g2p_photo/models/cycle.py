@@ -17,12 +17,11 @@
 # limitations under the License.
 #
 
-from odoo import api, fields, models
+from odoo import fields, models
+
 
 class G2PCycle(models.Model):
     _name = "g2p.cycle"
     _inherit = [_name, "base_multi_image.owner"]
 
-    image_ids = fields.One2many(
-        comodel_name="base_multi_image.image"
-    )
+    image_ids = fields.One2many(comodel_name="base_multi_image.image")

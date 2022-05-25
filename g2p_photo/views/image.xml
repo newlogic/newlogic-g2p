@@ -20,7 +20,7 @@
         <field name="inherit_id" ref="base_multi_image.image_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="after">
-                <field name="photo_category_id" string= "Image Category"/>
+                <field name="photo_category_id" string="Image Category" />
             </xpath>
         </field>
     </record>
