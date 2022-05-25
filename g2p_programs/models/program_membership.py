@@ -55,6 +55,14 @@ class G2PProgramMembership(models.Model):
     enrollment_date = fields.Date("Enrollment Date", tracking=True)
     exit_date = fields.Date("Exit Date", tracking=True)
 
+    _sql_constraints = [
+        (
+            "program_membership_unique",
+            "unique (partner_id, program_id)",
+            "Beneficiary must be unique per program.",
+        ),
+    ]
+
     # TODO: Implement exit reasons
     # exit_reason_id = fields.Many2one("Exit Reason", tracking=True) Default: Completed, Opt-Out, Other
 

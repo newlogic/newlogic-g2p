@@ -42,7 +42,9 @@ class G2PGroupMembership(models.Model):
         tracking=True,
     )
     kind = fields.Many2many("g2p.group.membership.kind", string="Kind", tracking=True)
-    start_date = fields.Datetime("Start Date", tracking=True)
+    start_date = fields.Datetime(
+        "Start Date", tracking=True, default=lambda self: fields.Datetime.now()
+    )
     end_date = fields.Datetime(
         "End Date", tracking=True
     )  # TODO: Should rename `ended_date` add a check that the date is in the past

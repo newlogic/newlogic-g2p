@@ -46,6 +46,14 @@ class G2PCycleMembership(models.Model):
         tracking=True,
     )
 
+    _sql_constraints = [
+        (
+            "cycle_membership_unique",
+            "unique (partner_id, cycle_id)",
+            "Beneficiary must be unique per cycle.",
+        ),
+    ]
+
     def name_get(self):
         res = super(G2PCycleMembership, self).name_get()
         for rec in self:

@@ -116,9 +116,9 @@ class G2PProgram(models.Model):
     def get_beneficiaries(self, state):
         if isinstance(state, str):
             state = [state]
-        domain = [("state", "in", state)]
         for rec in self:
-            return rec.program_membership_ids.search(domain)
+            domain = [("state", "in", state), ("program_id", "=", rec.id)]
+            return self.env["g2p.program_membership"].search(domain)
 
     # TODO: JJ - Review
     def count_beneficiaries(self, state=None):
@@ -127,10 +127,7 @@ class G2PProgram(models.Model):
         if state is not None:
             domain = [("state", "in", state)]
 
-        total = 0
-        for rec in self.search([]):
-            total += rec.program_membership_ids.search_count(domain)
-        return {"value": total}
+        return {"value": self.env["g2p.program_membership"].search_count(domain)}
 
     # TODO: JJ - Add a way to link reports/Dashboard about this program.
 

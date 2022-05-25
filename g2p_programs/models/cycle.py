@@ -73,9 +73,9 @@ class G2PCycle(models.Model):
     def get_beneficiaries(self, state):
         if isinstance(state, str):
             state = [state]
-        domain = [("state", "in", state)]
         for rec in self:
-            return rec.cycle_membership_ids.search(domain)
+            domain = [("state", "in", state), ("cycle_id", "=", rec.id)]
+            return self.env["g2p.cycle.membership"].search(domain)
 
     # TODO: JJ - Add a way to link reports/Dashboard about this cycle.
 
