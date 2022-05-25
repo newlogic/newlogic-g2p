@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <field name="registrant_ids" nolabel="1">
-                          <tree string="Registrants">
+                          <tree string="Registrants" editable="bottom">
                               <field name="partner_id" />
                               <field
                                     name="state"

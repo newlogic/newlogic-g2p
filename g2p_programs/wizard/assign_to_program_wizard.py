@@ -48,9 +48,7 @@ class G2PAssignToProgramWizard(models.TransientModel):
         string="Registrant",
         required=True,
     )
-    program_id = fields.Many2one(
-        "g2p.program", "", help="A program", required=True, tracking=True
-    )
+    program_id = fields.Many2one("g2p.program", "", help="A program", required=True)
 
     def assign_registrant(self):
         for rec in self.registrant_ids:
@@ -92,14 +90,17 @@ class G2PAssignToProgramRegistrants(models.TransientModel):
     _description = "Registrant Assign to Program"
 
     partner_id = fields.Many2one(
-        "res.partner", "Registrant", help="A beneficiary", required=True, tracking=True
+        "res.partner",
+        "Registrant",
+        help="A beneficiary",
+        required=True,
+        domain=[("is_registrant", "=", True)],
     )
     program_id = fields.Many2one(
         "g2p.assign.program.wizard",
         "Program Wizard",
         help="A program",
         required=True,
-        tracking=True,
     )
     state = fields.Selection(
         [

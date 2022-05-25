@@ -73,7 +73,9 @@
                         </div>
                     </div>
                     <notebook>
-                        <page string="Beneficiaries">
+                        <page string="Dashboard">
+                        </page>
+                        <!-- <page string="Beneficiaries">
                             <header>
                                 <button
                                     name="enroll_eligible_registrants"
@@ -148,7 +150,7 @@
                                     />
                                 </tree>
                             </field>
-                        </page>
+                        </page> -->
 
                         <page string="Configuration">
                             <group colspan="4" col="4">

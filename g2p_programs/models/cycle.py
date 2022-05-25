@@ -171,7 +171,11 @@ class G2PCycle(models.Model):
             "name": _("Cycle Members"),
             "type": "ir.actions.act_window",
             "res_model": "g2p.cycle.membership",
-            "context": {"create": False, "default_cycle_id": self.id},
+            "context": {
+                "create": False,
+                "default_cycle_id": self.id,
+                "search_default_enrolled_state": 1,
+            },
             "view_mode": "list,form",
             "domain": [("cycle_id", "=", self.id)],
         }
@@ -184,7 +188,11 @@ class G2PCycle(models.Model):
             "name": _("Cycle Vouchers"),
             "type": "ir.actions.act_window",
             "res_model": "g2p.voucher",
-            "context": {"create": False, "default_cycle_id": self.id},
+            "context": {
+                "create": False,
+                "default_cycle_id": self.id,
+                "search_default_approved_state": 1,
+            },
             "view_mode": "list,form",
             "domain": [("cycle_id", "=", self.id), ("state", "=", "approved")],
         }

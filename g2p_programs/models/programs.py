@@ -264,7 +264,11 @@ class G2PProgram(models.Model):
             "name": _("Beneficiaries"),
             "type": "ir.actions.act_window",
             "res_model": "g2p.program_membership",
-            "context": {"create": False, "default_program_id": self.id},
+            "context": {
+                "create": False,
+                "default_program_id": self.id,
+                "search_default_enrolled_state": 1,
+            },
             "view_mode": "list,form",
             "domain": [("program_id", "=", self.id)],
         }
@@ -277,7 +281,12 @@ class G2PProgram(models.Model):
             "name": _("Cycles"),
             "type": "ir.actions.act_window",
             "res_model": "g2p.cycle",
-            "context": {"create": False, "default_program_id": self.id},
+            "context": {
+                "create": False,
+                "default_program_id": self.id,
+                "search_default_approved_state": 1,
+                "search_default_to_approve_state": 1,
+            },
             "view_mode": "list,form",
             "domain": [("program_id", "=", self.id)],
         }

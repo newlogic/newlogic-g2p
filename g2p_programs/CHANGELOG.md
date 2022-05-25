@@ -1,5 +1,11 @@
 Format in CHANGELOG.md
 
+## Version[0.10] - 2022-05-26
+
+- [ADD] Add to registrant's form views the "Add to Program" wizard
+- [FIX] Arrange menus and UIs of programs and cycles
+- [ADD] Beneficiaries, cycles, and vouchers filters
+
 ## Version[0.09] - 2022-05-25
 
 - [FIX] Add registrants to program wizard
