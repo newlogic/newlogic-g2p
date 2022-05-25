@@ -25,8 +25,8 @@
                 <field name="company_id" groups="base.group_multi_company" />
                 <field
                     name="state"
-                    decoration-primary="state=='draft'"
-                    decoration-success="state=='active'"
+                    decoration-primary="state=='to_approve'"
+                    decoration-success="state in ('approved','active')"
                     decoration-danger="state=='ended'"
                     widget="badge"
                     string="State"
@@ -42,7 +42,11 @@
         <field name="arch" type="xml">
             <form string="Cycle">
                 <header>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,active,ended" />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,to_approve,approved,active,ended"
+                    />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
