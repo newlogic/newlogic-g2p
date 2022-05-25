@@ -58,6 +58,19 @@ class BaseDeduplication(models.AbstractModel):
         raise NotImplementedError()
 
 
+class GroupMemberDeduplication(models.Model):
+    _name = "g2p.deduplication.manager.groupmembership"
+    _description = "Group Member Deduplication"
+    _inherit = "g2p.base.deduplication.manager"
+
+    def check_duplicates(self, program_memberships):
+        """
+        This method is used to check if there are any duplicates among the groups of the beneficiaries.
+        :param program_memberships: The beneficiaries.
+        :return:
+        """
+
+
 class IDDocumentDeduplication(models.Model):
     """
     When this model is added, it should add also the IDDocumentDeduplicationEligibility to the eligibility
@@ -87,8 +100,8 @@ class PhoneNumberDeduplication(models.Model):
     _inherit = ["g2p.base.deduplication.manager", "g2p.manager.source.mixin"]
     _description = "Phone Number Deduplication Manager"
 
-    # if set, we verify that the phone number match a given regex
-    phone_regex = fields.Char(string="Phone Regex")
+    # # if set, we verify that the phone number match a given regex
+    # phone_regex = fields.Char(string="Phone Regex")
 
     def check_duplicates(self, program_memberships):
         # TODO: check if beneficiaries still match the criterias
