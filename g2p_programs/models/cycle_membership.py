@@ -32,7 +32,9 @@ class G2PCycleMembership(models.Model):
     cycle_id = fields.Many2one(
         "g2p.cycle", "Cycle", help="A cycle", required=True, tracking=True
     )
-    enrollment_date = fields.Date("Enrollment Date", tracking=True)
+    enrollment_date = fields.Date(
+        "Enrollment Date", tracking=True, default=lambda self: fields.Datetime.now()
+    )
     state = fields.Selection(
         selection=[
             ("draft", "Draft"),

@@ -52,7 +52,9 @@ class G2PProgramMembership(models.Model):
         tracking=True,
     )
 
-    enrollment_date = fields.Date("Enrollment Date", tracking=True)
+    enrollment_date = fields.Date(
+        "Enrollment Date", tracking=True, default=lambda self: fields.Datetime.now()
+    )
     exit_date = fields.Date("Exit Date", tracking=True)
 
     _sql_constraints = [

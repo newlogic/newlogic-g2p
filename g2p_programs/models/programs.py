@@ -84,13 +84,16 @@ class G2PProgram(models.Model):
 
     # Statistics
     eligible_beneficiaries_count = fields.Integer(
-        string="# Eligible Beneficiaries", compute="_compute_eligible_beneficiaries"
+        string="# Eligible Beneficiaries", compute="_compute_eligible_beneficiary_count"
+    )
+    beneficiaries_count = fields.Integer(
+        string="# Beneficiaries", compute="_compute_beneficiary_count"
     )
 
-    cycles_count = fields.Integer(string="# Cycles", compute="_compute_cycles")
+    cycles_count = fields.Integer(string="# Cycles", compute="_compute_cycle_count")
 
     @api.depends("program_membership_ids")
-    def _compute_eligible_beneficiaries(self):
+    def _compute_eligible_beneficiary_count(self):
         for rec in self:
             eligible_beneficiaries_count = 0
             if rec.program_membership_ids:
@@ -101,14 +104,17 @@ class G2PProgram(models.Model):
                 )
             rec.update({"eligible_beneficiaries_count": eligible_beneficiaries_count})
 
+    @api.depends("program_membership_ids")
+    def _compute_beneficiary_count(self):
+        for rec in self:
+            rec.update({"beneficiaries_count": len(rec.program_membership_ids)})
+
     @api.depends("cycle_ids")
-    def _compute_cycles(self):
+    def _compute_cycle_count(self):
         for rec in self:
             cycles_count = 0
             if rec.cycle_ids:
-                cycles_count = len(
-                    rec.cycle_ids.filtered(lambda bn: bn.state == "approved")
-                )
+                cycles_count = len(rec.cycle_ids)
             rec.update({"cycles_count": cycles_count})
 
     @api.model
@@ -255,12 +261,12 @@ class G2PProgram(models.Model):
         self.ensure_one()
 
         action = {
-            "name": _("Eligible Beneficiaries"),
+            "name": _("Beneficiaries"),
             "type": "ir.actions.act_window",
             "res_model": "g2p.program_membership",
             "context": {"create": False, "default_program_id": self.id},
             "view_mode": "list,form",
-            "domain": [("program_id", "=", self.id), ("state", "=", "enrolled")],
+            "domain": [("program_id", "=", self.id)],
         }
         return action
 
@@ -273,6 +279,6 @@ class G2PProgram(models.Model):
             "res_model": "g2p.cycle",
             "context": {"create": False, "default_program_id": self.id},
             "view_mode": "list,form",
-            "domain": [("program_id", "=", self.id), ("state", "=", "approved")],
+            "domain": [("program_id", "=", self.id)],
         }
         return action

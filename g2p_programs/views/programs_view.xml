@@ -20,8 +20,8 @@
             <tree string="Programs" sample="1">
                 <field name="name" />
                 <field name="target_type" />
-                <field name="eligible_beneficiaries_count" string="# Eligibles" />
-                <field name="cycles_count" string="# Approved Cycles" />
+                <field name="eligible_beneficiaries_count" string="# Beneficiaries" />
+                <field name="cycles_count" string="# Cycles" />
                 <field name="company_id" groups="base.group_multi_company" />
             </tree>
         </field>
@@ -45,13 +45,13 @@
                         >
                             <div class="o_form_field o_stat_info">
                                 <field name="eligible_beneficiaries_count" class="o_stat_value" />
-                                <span class="o_stat_text">Eligibles</span>
+                                <span class="o_stat_text">Beneficiaries</span>
                             </div>
                         </button>
                         <button type="object" class="oe_stat_button" icon="fa-undo" name="open_cycles_form">
                             <div class="o_form_field o_stat_info">
                                 <field name="cycles_count" class="o_stat_value" />
-                                <span class="o_stat_text">Appr. Cycles</span>
+                                <span class="o_stat_text">Cycles</span>
                             </div>
                         </button>
                     </div>

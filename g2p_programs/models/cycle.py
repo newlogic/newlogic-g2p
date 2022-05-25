@@ -173,7 +173,7 @@ class G2PCycle(models.Model):
             "res_model": "g2p.cycle.membership",
             "context": {"create": False, "default_cycle_id": self.id},
             "view_mode": "list,form",
-            "domain": [("cycle_id", "=", self.id), ("state", "=", "enrolled")],
+            "domain": [("cycle_id", "=", self.id)],
         }
         return action
 
