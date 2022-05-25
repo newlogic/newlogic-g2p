@@ -20,6 +20,7 @@
 from . import constants
 from . import job_related_mixin
 from . import managers
+from . import accounting
 from . import programs
 from . import registrant
 from . import registrant_attribute
@@ -28,4 +29,3 @@ from . import cycle
 from . import cycle_membership
 from . import voucher
 from . import cash_voucher
-from . import accounting

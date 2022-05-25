@@ -82,6 +82,35 @@ class G2PProgram(models.Model):
     )
     cycle_ids = fields.One2many("g2p.cycle", "program_id", "Cycles")
 
+    # Statistics
+    eligible_beneficiaries_count = fields.Integer(
+        string="# Eligible Beneficiaries", compute="_compute_eligible_beneficiaries"
+    )
+
+    cycles_count = fields.Integer(string="# Cycles", compute="_compute_cycles")
+
+    @api.depends("program_membership_ids")
+    def _compute_eligible_beneficiaries(self):
+        for rec in self:
+            eligible_beneficiaries_count = 0
+            if rec.program_membership_ids:
+                eligible_beneficiaries_count = len(
+                    rec.program_membership_ids.filtered(
+                        lambda bn: bn.state == "enrolled"
+                    )
+                )
+            rec.update({"eligible_beneficiaries_count": eligible_beneficiaries_count})
+
+    @api.depends("cycle_ids")
+    def _compute_cycles(self):
+        for rec in self:
+            cycles_count = 0
+            if rec.cycle_ids:
+                cycles_count = len(
+                    rec.cycle_ids.filtered(lambda bn: bn.state == "approved")
+                )
+            rec.update({"cycles_count": cycles_count})
+
     @api.model
     def get_manager(self, kind):
         self.ensure_one()
@@ -224,3 +253,29 @@ class G2PProgram(models.Model):
                     "type": kind,
                 },
             }
+
+    def open_eligible_beneficiaries_form(self):
+        self.ensure_one()
+
+        action = {
+            "name": _("Eligible Beneficiaries"),
+            "type": "ir.actions.act_window",
+            "res_model": "g2p.program_membership",
+            "context": {"create": False, "default_program_id": self.id},
+            "view_mode": "list,form",
+            "domain": [("program_id", "=", self.id), ("state", "=", "enrolled")],
+        }
+        return action
+
+    def open_cycles_form(self):
+        self.ensure_one()
+
+        action = {
+            "name": _("Cycles"),
+            "type": "ir.actions.act_window",
+            "res_model": "g2p.cycle",
+            "context": {"create": False, "default_program_id": self.id},
+            "view_mode": "list,form",
+            "domain": [("program_id", "=", self.id), ("state", "=", "approved")],
+        }
+        return action

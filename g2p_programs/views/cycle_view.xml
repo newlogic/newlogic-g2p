@@ -20,8 +20,8 @@
             <tree string="Cycle">
                 <field name="name" />
                 <field name="program_id" />
-                <field name="cycle_membership_ids" />
-                <field name="voucher_ids" />
+                <field name="members_count" string="# Beneficiaries" />
+                <field name="vouchers_count" string="# Vouchers" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field
                     name="state"
@@ -82,6 +82,23 @@
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Prepare</span>
                                 <span class="o_stat_text">Entitlement</span>
+                            </div>
+                        </button>
+                        <button type="object" class="oe_stat_button" icon="fa-users" name="open_members_form">
+                            <div class="o_form_field o_stat_info">
+                                <field name="members_count" class="o_stat_value" />
+                                <span class="o_stat_text">Beneficiaries</span>
+                            </div>
+                        </button>
+                        <button
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-folder-open-o"
+                            name="open_vouchers_form"
+                        >
+                            <div class="o_form_field o_stat_info">
+                                <field name="vouchers_count" class="o_stat_value" />
+                                <span class="o_stat_text">Vouchers</span>
                             </div>
                         </button>
                     </div>

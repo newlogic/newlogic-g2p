@@ -19,7 +19,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 from . import constants
 
@@ -63,6 +63,34 @@ class G2PCycle(models.Model):
         "g2p.cycle.membership", "cycle_id", "Cycle Memberships"
     )
     voucher_ids = fields.One2many("g2p.voucher", "cycle_id", "Vouchers")
+
+    # Statistics
+    members_count = fields.Integer(
+        string="# Beneficiaries", compute="_compute_members_count"
+    )
+    vouchers_count = fields.Integer(
+        string="# Vouchers", compute="_compute_vouchers_count"
+    )
+
+    @api.depends("cycle_membership_ids")
+    def _compute_members_count(self):
+        for rec in self:
+            members_count = 0
+            if rec.cycle_membership_ids:
+                members_count = len(
+                    rec.cycle_membership_ids.filtered(lambda mb: mb.state == "enrolled")
+                )
+            rec.update({"members_count": members_count})
+
+    @api.depends("voucher_ids")
+    def _compute_vouchers_count(self):
+        for rec in self:
+            vouchers_count = 0
+            if rec.voucher_ids:
+                vouchers_count = len(
+                    rec.voucher_ids.filtered(lambda mb: mb.state == "approved")
+                )
+            rec.update({"vouchers_count": vouchers_count})
 
     def approve(self):
         # 1. Make sure the user has the right to do this
@@ -135,3 +163,29 @@ class G2PCycle(models.Model):
     @api.onchange("state")
     def on_state_change(self):
         self.program_id.get_manager(constants.MANAGER_CYCLE).on_state_change(self)
+
+    def open_members_form(self):
+        self.ensure_one()
+
+        action = {
+            "name": _("Cycle Members"),
+            "type": "ir.actions.act_window",
+            "res_model": "g2p.cycle.membership",
+            "context": {"create": False, "default_cycle_id": self.id},
+            "view_mode": "list,form",
+            "domain": [("cycle_id", "=", self.id), ("state", "=", "enrolled")],
+        }
+        return action
+
+    def open_vouchers_form(self):
+        self.ensure_one()
+
+        action = {
+            "name": _("Cycle Vouchers"),
+            "type": "ir.actions.act_window",
+            "res_model": "g2p.voucher",
+            "context": {"create": False, "default_cycle_id": self.id},
+            "view_mode": "list,form",
+            "domain": [("cycle_id", "=", self.id), ("state", "=", "approved")],
+        }
+        return action

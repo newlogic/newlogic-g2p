@@ -2,6 +2,8 @@ Format in CHANGELOG.md
 
 ## Version[0.09] - 2022-05-25
 
+- [FIX] Add registrants to program wizard
+- [ADD] Display Beneficiaries and vouchers of a cycle/Program like SMS Marketing Mailing Contact
 - [ADD] Accounting integration
 
 ## Version[0.08] - 2022-05-24
