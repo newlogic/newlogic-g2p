@@ -18,7 +18,7 @@
         <field name="inherit_id" ref="account.view_account_journal_tree" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='type']" position="after">
-                <field name="beneficiary_disb"/>
+                <field name="beneficiary_disb" />
             </xpath>
         </field>
     </record>
@@ -29,7 +29,11 @@
         <field name="inherit_id" ref="account.view_account_journal_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='type']" position="after">
-                <field name="beneficiary_disb" attrs="{'invisible':[('type','not in',('cash','bank'))]}" readonly="1"/>
+                <field
+                    name="beneficiary_disb"
+                    attrs="{'invisible':[('type','not in',('cash','bank'))]}"
+                    readonly="1"
+                />
             </xpath>
         </field>
     </record>

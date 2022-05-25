@@ -19,8 +19,9 @@
 
 from odoo import fields, models
 
+
 class AccountJournal(models.Model):
     _inherit = "account.journal"
 
-    #Custom Fields
+    # Custom Fields
     beneficiary_disb = fields.Boolean("Beneficiary Funds")

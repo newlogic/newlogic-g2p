@@ -18,7 +18,12 @@
         <field name="inherit_id" ref="account.view_account_move_line_filter" />
         <field name="arch" type="xml">
             <xpath expr="//search/filter[@name='misc_filter']" position="after">
-                <filter string="Beneficiary Funds" domain="[('journal_id.type', 'in', ('bank','cash')),('journal_id.beneficiary_disb','=',True)]" name="benf_filter" context="{'default_journal_type': 'bank'}"/>
+                <filter
+                    string="Beneficiary Funds"
+                    domain="[('journal_id.type', 'in', ('bank','cash')),('journal_id.beneficiary_disb','=',True)]"
+                    name="benf_filter"
+                    context="{'default_journal_type': 'bank'}"
+                />
             </xpath>
         </field>
     </record>
@@ -28,7 +33,9 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">account.move.line</field>
         <field name="view_mode">tree,pivot,graph,kanban</field>
-        <field name="context">{'journal_type':'bank', 'search_default_group_by_move': 1, 'search_default_posted':1, 'search_default_benf_filter':1, 'name_groupby':1, 'expand': 1}</field>
+        <field
+            name="context"
+        >{'journal_type':'bank', 'search_default_group_by_move': 1, 'search_default_posted':1, 'search_default_benf_filter':1, 'name_groupby':1, 'expand': 1}</field>
         <field name="domain">[('display_type', 'not in', ('line_section', 'line_note'))]</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -39,6 +46,12 @@
         </field>
     </record>
 
-    <menuitem id="menu_action_account_moves_journal_benf" action="action_account_journal_beneficiary" groups="g2p_registrant.group_g2p_admin,account.group_account_readonly" sequence="100" parent="account.menu_finance_entries_accounting_journals"/>
+    <menuitem
+        id="menu_action_account_moves_journal_benf"
+        action="action_account_journal_beneficiary"
+        groups="g2p_registrant.group_g2p_admin,account.group_account_readonly"
+        sequence="100"
+        parent="account.menu_finance_entries_accounting_journals"
+    />
 
 </odoo>
