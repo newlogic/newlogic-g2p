@@ -21,7 +21,7 @@ import logging
 
 from odoo.addons.component.core import Component
 
-from ..log import logger
+# from ..log import logger
 
 _logger = logging.getLogger(__name__)
 
@@ -171,7 +171,7 @@ class G2PResPartnerGroupDataRecordImporter(Component):
                 try:
                     with self.env.cr.savepoint():
                         values = self.mapper.map_record(ln).values(**options)
-                    logger.debug(values)
+                    # logger.debug(values)
                     # _logger.debug(f"Result_line: {ln}")
 
                 except Exception as err:
