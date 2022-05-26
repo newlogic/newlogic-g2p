@@ -32,15 +32,6 @@ class G2PVoucher(models.Model):
     def _generate_code(self):
         return str(uuid4())[4:-8][3:]
 
-    def _default_journal_id(self):
-        journals = self.env["account.journal"].search(
-            [("beneficiary_disb", "=", True), ("type", "in", ("bank", "cash"))]
-        )
-        if journals:
-            return journals[0].id
-        else:
-            return None
-
     name = fields.Char(compute="_compute_name")
     code = fields.Char(
         default=lambda x: x._generate_code(), required=True, readonly=True, copy=False
@@ -78,9 +69,8 @@ class G2PVoucher(models.Model):
     journal_id = fields.Many2one(
         "account.journal",
         "Disbursement Journal",
-        required=True,
-        domain=[("beneficiary_disb", "=", True), ("type", "in", ("bank", "cash"))],
-        default=_default_journal_id,
+        store=True,
+        compute="_compute_journal_id",
     )
     disbursement_id = fields.Many2one("account.payment", "Disbursement Journal Entry")
 
@@ -117,6 +107,17 @@ class G2PVoucher(models.Model):
     def _compute_balance(self):
         for record in self:
             record.balance = record.initial_amount
+
+    @api.depends("cycle_id.program_id.journal_id")
+    def _compute_journal_id(self):
+        for record in self:
+            record.journal_id = (
+                record.cycle_id
+                and record.cycle_id.program_id
+                and record.cycle_id.program_id.journal_id
+                and record.cycle_id.program_id.journal_id.id
+                or None
+            )
 
     @api.autovacuum
     def _gc_mark_expired_voucher(self):

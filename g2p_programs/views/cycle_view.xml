@@ -42,6 +42,29 @@
         <field name="arch" type="xml">
             <form string="Cycle">
                 <header>
+                    <button
+                        type="object"
+                        class="btn-primary"
+                        icon="fa-files-o"
+                        name="copy_beneficiaries_from_program"
+                        attrs="{'invisible':[('state','!=','draft')]}"
+                        string="Copy Beneficiaries from Program"
+                    />
+                    <button
+                        type="object"
+                        class="btn-primary"
+                        icon="fa-check-square-o"
+                        name="check_eligibility"
+                        attrs="{'invisible':[('state','!=','draft')]}"
+                        string="Verify Eligibility"
+                    />
+                    <button
+                        type="object"
+                        class="btn-success"
+                        icon="fa-file-text-o"
+                        name="prepare_entitlement"
+                        string="Prepare Entitlement"
+                    />
                     <field
                         name="state"
                         widget="statusbar"
@@ -50,40 +73,6 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button
-                            type="object"
-                            class="oe_stat_button"
-                            icon="fa-files-o"
-                            name="copy_beneficiaries_from_program"
-                            attrs="{'invisible':[('state','!=','draft')]}"
-                        >
-                            <div class="o_form_field o_stat_info">
-                                <span class="o_stat_text">Copy Beneficiaries</span>
-                                <span class="o_stat_text">from Program</span>
-                            </div>
-                        </button>
-                        <button
-                            type="object"
-                            class="oe_stat_button"
-                            icon="fa-check-square-o"
-                            name="check_eligibility"
-                            attrs="{'invisible':[('state','!=','draft')]}"
-                        >
-                            <div class="o_form_field o_stat_info">
-                                <span class="o_stat_text">Verify Eligibility</span>
-                            </div>
-                        </button>
-                        <button
-                            type="object"
-                            class="oe_stat_button"
-                            icon="fa-file-text-o"
-                            name="prepare_entitlement"
-                        >
-                            <div class="o_form_field o_stat_info">
-                                <span class="o_stat_text">Prepare</span>
-                                <span class="o_stat_text">Entitlement</span>
-                            </div>
-                        </button>
                         <button type="object" class="oe_stat_button" icon="fa-users" name="open_members_form">
                             <div class="o_form_field o_stat_info">
                                 <field name="members_count" class="o_stat_value" />
@@ -124,7 +113,9 @@
                         />
                     </group>
                     <notebook>
-                        <page string="Beneficiaries">
+                        <page string="Dashboard">
+                        </page>
+                        <!-- <page string="Beneficiaries">
                           <field name="cycle_membership_ids" nolabel="1">
                             <tree>
                                 <button
@@ -165,7 +156,7 @@
                                 <field name="company_id" groups="base.group_multi_company" />
                             </tree>
                           </field>
-                        </page>
+                        </page> -->
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
@@ -176,11 +167,43 @@
         </field>
     </record>
 
+    <record id="cycle_filter" model="ir.ui.view">
+        <field name="name">cycle_filter</field>
+        <field name="model">g2p.cycle</field>
+        <field name="priority" eval="1" />
+        <field name="arch" type="xml">
+            <search string="Search Cycles">
+                <field name="name" />
+                <field name="program_id" />
+                <separator />
+                <filter name="filter_start_date" date="start_date" />
+                <filter name="filter_end_date" date="end_date" />
+                <separator />
+                <filter name="draft_state" string="Draft" domain="[('state','=','draft')]" />
+                <filter name="to_approve_state" string="To Approve" domain="[('state','=','to_approve')]" />
+                <filter name="approved_state" string="Approved" domain="[('state','=','approved')]" />
+                <filter name="active_state" string="Active" domain="[('state','=','active')]" />
+                <filter name="ended_state" string="Ended" domain="[('state','=','ended')]" />
+                <group expand="0" string="Group By">
+                    <filter string="Start Date" name="start_date" context="{'group_by':'start_date'}" />
+                    <filter string="End Date" name="end_date" context="{'group_by':'end_date'}" />
+                    <separator orientation="vertical" />
+                    <filter string="State" name="grp_state" context="{'group_by': 'state'}" />
+                    <filter string="Company" name="grp_company_id" context="{'group_by': 'company_id'}" />
+                </group>
+                <!-- <searchpanel>
+                    <field name="group" icon="fa-users"/>
+                </searchpanel> -->
+            </search>
+        </field>
+    </record>
+
     <record id="action_cycle" model="ir.actions.act_window">
         <field name="name">Cycle</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">g2p.cycle</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="cycle_filter" />
         <field name="context">{}</field>
         <field name="domain">[]</field>
         <field name="help" type="html">
@@ -206,13 +229,13 @@
         <field name="act_window_id" ref="action_cycle" />
     </record>
 
-    <menuitem
+    <!-- <menuitem
         id="menu_cycle"
         name="Cycles"
         action="action_cycle"
         parent="g2p_program_cycle_root"
         sequence="30"
         groups="g2p_registrant.group_g2p_admin"
-    />
+    /> -->
 
 </odoo>

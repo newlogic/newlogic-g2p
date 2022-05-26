@@ -78,12 +78,12 @@
         <field name="act_window_id" ref="action_registrant_additional_data" />
     </record>
 
-    <menuitem
+    <!-- <menuitem
         id="menu_registrant_additional_data"
         name="Registrant Additional Data"
         action="action_registrant_additional_data"
         parent="g2p_registrant.g2p_registrant_menu_root"
         sequence="100"
         groups="g2p_registrant.group_g2p_admin"
-    />
+    /> -->
 </odoo>

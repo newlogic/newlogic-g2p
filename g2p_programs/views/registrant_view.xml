@@ -201,7 +201,7 @@
       <field name="name">Assign to Program</field>
       <field name="model_id" ref="g2p_programs.model_g2p_assign_program_wizard" />
       <field name="binding_model_id" ref="base.model_res_partner" />
-      <field name="binding_view_types">list</field>
+      <field name="binding_view_types">list,form</field>
       <field name="state">code</field>
       <field name="code">action = model.open_wizard()</field>
     </record>

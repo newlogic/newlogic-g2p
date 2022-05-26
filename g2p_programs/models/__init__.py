@@ -28,4 +28,3 @@ from . import program_membership
 from . import cycle
 from . import cycle_membership
 from . import voucher
-from . import cash_voucher

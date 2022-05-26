@@ -54,4 +54,33 @@
         parent="account.menu_finance_entries_accounting_journals"
     />
 
+    <!-- Display in Programs > Accounting menu -->
+    <record id="action_account_journal_prog_benf" model="ir.actions.act_window">
+        <field name="name">Beneficiary Funds Journal</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.move.line</field>
+        <field name="view_mode">tree,pivot,graph</field>
+        <field
+            name="context"
+        >{'journal_type':'bank', 'search_default_group_by_move': 1, 'search_default_posted':1, 'name_groupby':1, 'expand': 1}</field>
+        <field name="domain">[('display_type', 'not in', ('line_section', 'line_note')),
+            ('journal_id.type', 'in', ('bank','cash')),('journal_id.beneficiary_disb','=',True)]
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                There are no Program Beneficiary Fund Journal Entries Entered!
+            </p><p>
+                Process vouchers to automatically post the journal entries here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_account_journal_prog_benf"
+        action="action_account_journal_prog_benf"
+        groups="g2p_registrant.group_g2p_admin"
+        sequence="10"
+        parent="g2p_accounting_reports_menu_root"
+    />
+
 </odoo>

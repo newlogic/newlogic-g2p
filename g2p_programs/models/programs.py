@@ -82,6 +82,14 @@ class G2PProgram(models.Model):
     )
     cycle_ids = fields.One2many("g2p.cycle", "program_id", "Cycles")
 
+    # Accounting config
+    journal_id = fields.Many2one(
+        "account.journal",
+        "Disbursement Journal",
+        required=True,
+        domain=[("beneficiary_disb", "=", True), ("type", "in", ("bank", "cash"))],
+    )
+
     # Statistics
     eligible_beneficiaries_count = fields.Integer(
         string="# Eligible Beneficiaries", compute="_compute_eligible_beneficiary_count"
@@ -264,7 +272,11 @@ class G2PProgram(models.Model):
             "name": _("Beneficiaries"),
             "type": "ir.actions.act_window",
             "res_model": "g2p.program_membership",
-            "context": {"create": False, "default_program_id": self.id},
+            "context": {
+                "create": False,
+                "default_program_id": self.id,
+                "search_default_enrolled_state": 1,
+            },
             "view_mode": "list,form",
             "domain": [("program_id", "=", self.id)],
         }
@@ -277,7 +289,12 @@ class G2PProgram(models.Model):
             "name": _("Cycles"),
             "type": "ir.actions.act_window",
             "res_model": "g2p.cycle",
-            "context": {"create": False, "default_program_id": self.id},
+            "context": {
+                "create": False,
+                "default_program_id": self.id,
+                "search_default_approved_state": 1,
+                "search_default_to_approve_state": 1,
+            },
             "view_mode": "list,form",
             "domain": [("program_id", "=", self.id)],
         }

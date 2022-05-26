@@ -45,6 +45,14 @@
         <field name="arch" type="xml">
             <form string="Voucher">
                 <header>
+                    <button
+                        type="object"
+                        class="btn-success"
+                        icon="fa-thumbs-o-up"
+                        name="approve_voucher"
+                        attrs="{'invisible':[('state','not in',('draft','pending_validation'))]}"
+                        string="Approve Voucher"
+                    />
                     <field
                         name="state"
                         widget="statusbar"
@@ -53,18 +61,6 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button
-                            type="object"
-                            class="oe_stat_button"
-                            icon="fa-thumbs-o-up"
-                            name="approve_voucher"
-                            attrs="{'invisible':[('state','not in',('draft','pending_validation'))]}"
-                        >
-                            <div class="o_form_field o_stat_info">
-                                <span class="o_stat_text">Approve</span>
-                                <span class="o_stat_text">Voucher</span>
-                            </div>
-                        </button>
                         <button
                             type="object"
                             class="oe_stat_button"
@@ -113,12 +109,7 @@
                             options="{'no_open':True,'no_quick_create':True,'no_create':True}"
                             attrs="{'readonly':[('state','!=','draft')]}"
                         />
-                        <field
-                            name="journal_id"
-                            string="Journal"
-                            options="{'no_open':True,'no_quick_create':True,'no_create':True}"
-                            attrs="{'readonly':[('state','!=','draft')]}"
-                        />
+                        <field name="journal_id" string="Journal" options="{'no_open':True}" readonly="1" />
                         <field
                             name="disbursement_id"
                             options="{'no_open':True}"
@@ -135,11 +126,48 @@
         </field>
     </record>
 
+    <record id="voucher_filter" model="ir.ui.view">
+        <field name="name">voucher_filter</field>
+        <field name="model">g2p.voucher</field>
+        <field name="priority" eval="1" />
+        <field name="arch" type="xml">
+            <search string="Search Vouchers">
+                <field name="partner_id" />
+                <field name="code" />
+                <field name="cycle_id" />
+                <separator />
+                <filter name="filter_valid_from" date="valid_from" />
+                <filter name="filter_valid_until" date="valid_until" />
+                <separator />
+                <filter name="draft_state" string="Draft" domain="[('state','=','draft')]" />
+                <filter
+                    name="pending_validation_state"
+                    string="Pending Validation"
+                    domain="[('state','=','pending_validation')]"
+                />
+                <filter name="approved_state" string="Approved" domain="[('state','=','approved')]" />
+                <filter name="cancelled_state" string="Cancelled" domain="[('state','=','cancelled')]" />
+                <filter name="expired_state" string="Exited" domain="[('state','=','expired')]" />
+                <group expand="0" string="Group By">
+                    <filter string="Valid From" name="valid_from" context="{'group_by':'valid_from'}" />
+                    <filter string="Valid Until" name="valid_until" context="{'group_by':'valid_until'}" />
+                    <separator orientation="vertical" />
+                    <filter string="State" name="grp_state" context="{'group_by': 'state'}" />
+                    <filter string="Company" name="grp_company_id" context="{'group_by': 'company_id'}" />
+                </group>
+                <!-- <searchpanel>
+                    <field name="group" icon="fa-users"/>
+                </searchpanel> -->
+            </search>
+        </field>
+    </record>
+
     <record id="action_voucher" model="ir.actions.act_window">
         <field name="name">Vouchers</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">g2p.voucher</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="voucher_filter" />
         <field name="context">{}</field>
         <field name="domain">[]</field>
         <field name="help" type="html">
@@ -165,13 +193,13 @@
         <field name="act_window_id" ref="action_voucher" />
     </record>
 
-    <menuitem
+    <!-- <menuitem
         id="menu_voucher"
         name="Vouchers"
         action="action_voucher"
         parent="g2p_program_voucher_root"
         sequence="50"
         groups="g2p_registrant.group_g2p_admin"
-    />
+    /> -->
 
 </odoo>
