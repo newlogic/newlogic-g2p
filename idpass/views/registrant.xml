@@ -8,7 +8,12 @@
             <field name="arch" type="xml">
 
                 <xpath expr="//div[@name='button_box']" position="inside">
-                  <button type="object" class="oe_stat_button" icon="fa-id-card " name="send_idpass_parameters">
+                  <button
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-id-card "
+                        name="send_idpass_parameters"
+                    >
                           <div class="o_form_field o_stat_info">
                               <span class="o_stat_text">Generate</span>
                               <span class="o_stat_text">ID</span>
@@ -17,8 +22,8 @@
                 </xpath>
 
                 <xpath expr="//field[@name='email']" position="after">
-                  <field name="id_pdf" string="ID Card" filename="id_pdf_filename"/>
-                  <field name="id_pdf_filename" invisible="1"/>
+                  <field name="id_pdf" string="ID Card" filename="id_pdf_filename" />
+                  <field name="id_pdf_filename" invisible="1" />
                 </xpath>
             </field>
         </record>
