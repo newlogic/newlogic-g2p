@@ -14,10 +14,27 @@
                 </xpath>
                 <xpath expr="//field[@name='partner_id']" position="attributes">
                     <attribute name="string">Registrant</attribute>
+                    <attribute
+                        name="options"
+                    >{'no_open':True, 'no_quick_create':True, 'no_edit':True,'no_create_edit':True}</attribute>
+                    <attribute name="class">oe_edit_only</attribute>
                 </xpath>
                 <xpath expr="//field[@name='partner_id']" position="after">
-                    <field name="program_id" string="Program" />
-                    <field name="cycle_id" string="Cycle" />
+                    <field name="partner_id" string="Registrant" class="oe_read_only" readonly="1" />
+                    <field
+                        name="program_id"
+                        string="Program"
+                        class="oe_edit_only"
+                        options="{'no_open':True, 'no_quick_create':True, 'no_edit':True, 'no_create_edit':True}"
+                    />
+                    <field name="program_id" string="Program" class="oe_read_only" readonly="1" />
+                    <field
+                        name="cycle_id"
+                        string="Cycle"
+                        class="oe_edit_only"
+                        options="{'no_open':True, 'no_quick_create':True, 'no_edit':True,'no_create_edit':True}"
+                    />
+                    <field name="cycle_id" string="Cycle" class="oe_read_only" readonly="1" />
                 </xpath>
 
             </field>

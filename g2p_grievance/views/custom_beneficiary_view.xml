@@ -13,6 +13,7 @@
                         icon="fa-ticket"
                         string="Create Ticket"
                         name="open_ticket_form"
+                        attrs="{'invisible':[('state','!=','enrolled')]}"
                     />
                 </xpath>
             </field>

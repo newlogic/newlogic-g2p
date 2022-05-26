@@ -15,7 +15,14 @@
                           </div>
                   </button>
                 </xpath>
+
+                <xpath expr="//page[@name='other']" position="after">
+                    <page string="Tickets">
+                        <field name="ticket_ids" readonly="1" />
+                    </page>
+                </xpath>
             </field>
+
         </record>
         <record id="view_groups_form" model="ir.ui.view">
             <field name="name">view_groups_form</field>
@@ -30,6 +37,12 @@
                               <span class="o_stat_text">Ticket</span>
                           </div>
                   </button>
+                </xpath>
+
+                <xpath expr="//page[@name='other']" position="after">
+                    <page string="Tickets">
+                        <field name="ticket_ids" readonly="1" />
+                    </page>
                 </xpath>
             </field>
         </record>
