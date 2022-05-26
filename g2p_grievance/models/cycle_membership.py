@@ -33,5 +33,6 @@ class G2PCycleMembership(models.Model):
             "context": {
                 "default_partner_id": self.partner_id.id,
                 "default_program_id": self.cycle_id.program_id.id,
-                "default_cycle_id": self.cycle_id.id},
+                "default_cycle_id": self.cycle_id.id,
+            },
         }

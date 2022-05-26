@@ -32,5 +32,6 @@ class G2PProgramMembership(models.Model):
             "target": "current",
             "context": {
                 "default_partner_id": self.partner_id.id,
-                "default_program_id": self.program_id.id},
+                "default_program_id": self.program_id.id,
+            },
         }

@@ -4,10 +4,16 @@
         <record id="view_cycle_membership_tree" model="ir.ui.view">
             <field name="name">view_cycle_membership_tree</field>
             <field name="model">g2p.cycle.membership</field>
-            <field name="inherit_id" ref="g2p_programs.view_cycle_membership_tree"/>
+            <field name="inherit_id" ref="g2p_programs.view_cycle_membership_tree" />
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='state']" position="after">
-                  <button type="object" class="btn btn-primary" icon="fa-ticket" string="Create Ticket" name="open_ticket_form"/>
+                  <button
+                        type="object"
+                        class="btn btn-primary"
+                        icon="fa-ticket"
+                        string="Create Ticket"
+                        name="open_ticket_form"
+                    />
                 </xpath>
             </field>
         </record>
