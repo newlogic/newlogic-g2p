@@ -18,3 +18,6 @@
 #
 
 from . import registrant
+from . import grievance
+from . import program_membership
+from . import cycle_membership

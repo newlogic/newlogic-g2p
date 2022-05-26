@@ -16,24 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from odoo import fields, models
 
 
-{
-    "name": "G2P Grievance System",
-    "category": "G2P",
-    "version": "15.0.0.0.1",
-    "sequence": 3,
-    "author": "Newlogic",
-    "website": "https://newlogic.com/",
-    "license": "Other OSI approved licence",
-    "depends": ["base", "helpdesk_mgmt", "g2p_registrant", "g2p_programs"],
-    "data": [
-        "views/custom_helpdesk_view.xml",
-        "views/custom_registrant_view.xml",
-        "views/custom_beneficiary_view.xml",
-        "views/custom_cycle_membership_view.xml",
-    ],
-    "application": True,
-    "installable": True,
-    "auto_install": False,
-}
+class G2PGrievance(models.Model):
+    _inherit = "helpdesk.ticket"
+
+    program_id = fields.Many2one("g2p.program", "Program", tracking=True)
+    cycle_id = fields.Many2one("g2p.cycle", "Cycle", tracking=True)

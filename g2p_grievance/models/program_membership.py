@@ -16,24 +16,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from odoo import models
 
 
-{
-    "name": "G2P Grievance System",
-    "category": "G2P",
-    "version": "15.0.0.0.1",
-    "sequence": 3,
-    "author": "Newlogic",
-    "website": "https://newlogic.com/",
-    "license": "Other OSI approved licence",
-    "depends": ["base", "helpdesk_mgmt", "g2p_registrant", "g2p_programs"],
-    "data": [
-        "views/custom_helpdesk_view.xml",
-        "views/custom_registrant_view.xml",
-        "views/custom_beneficiary_view.xml",
-        "views/custom_cycle_membership_view.xml",
-    ],
-    "application": True,
-    "installable": True,
-    "auto_install": False,
-}
+class G2PProgramMembership(models.Model):
+    _inherit = "g2p.program_membership"
+
+    def open_ticket_form(self):
+        return {
+            "name": "Create Ticket",
+            "view_mode": "form",
+            "res_model": "helpdesk.ticket",
+            "view_id": self.env.ref("helpdesk_mgmt.ticket_view_form").id,
+            "type": "ir.actions.act_window",
+            "target": "current",
+            "context": {
+                "default_partner_id": self.partner_id.id,
+                "default_program_id": self.program_id.id},
+        }

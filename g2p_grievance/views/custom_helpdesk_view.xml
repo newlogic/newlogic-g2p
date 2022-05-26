@@ -15,6 +15,10 @@
                 <xpath expr="//field[@name='partner_id']" position="attributes">
                     <attribute name="string">Registrant</attribute>
                 </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="program_id" string="Program" />
+                    <field name="cycle_id" string="Cycle" />
+                </xpath>
 
             </field>
         </record>
