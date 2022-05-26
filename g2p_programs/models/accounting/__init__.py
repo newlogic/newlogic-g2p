@@ -18,3 +18,4 @@
 #
 
 from . import account_journal
+from . import fund_management

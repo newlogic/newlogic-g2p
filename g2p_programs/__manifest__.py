@@ -41,7 +41,7 @@
         "views/managers/program_manager_view.xml",
         "views/managers/cycle_manager_view.xml",
         "views/managers/entitlement_manager_view.xml",
-        # "views/accounting/account_move_view.xml",
+        "views/accounting/fund_management_view.xml",
         "views/accounting/account_journal_view.xml",
         "views/accounting/account_journal_config_view.xml",
         "wizard/assign_to_program_wizard.xml",

@@ -9,7 +9,7 @@ Format in CHANGELOG.md
 - [FIX] Accounting integration: set journal_id in programs
 - [ADD] Accounting menu
 - [ADD] Report: Benificiary Accounting Journal
-- [ADD] Fund replenishment journal entries UI
+- [ADD] Program Fund UI
 
 ## Version[0.09] - 2022-05-25
 
