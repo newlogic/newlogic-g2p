@@ -170,6 +170,7 @@
                                             nolabel="1"
                                             widget="many2many_list"
                                             context="{'default_program_id':active_id}"
+                                            domain="[('program_id','=',active_id)]"
                                         >
                                             <tree string="Eligibility Managers" editable="top">
                                                 <button
@@ -211,6 +212,7 @@
                                             nolabel="1"
                                             widget="many2many_list"
                                             context="{'default_program_id':active_id}"
+                                            domain="[('program_id','=',active_id)]"
                                         >
                                             <tree string="Deduplication Managers" editable="top">
                                                 <button
@@ -263,6 +265,7 @@
                                             nolabel="1"
                                             widget="many2many_list"
                                             context="{'default_program_id':active_id}"
+                                            domain="[('program_id','=',active_id)]"
                                         >
                                             <tree string="Notification Managers" editable="top">
                                                 <button
@@ -304,6 +307,7 @@
                                             nolabel="1"
                                             widget="many2many_list"
                                             context="{'default_program_id':active_id}"
+                                            domain="[('program_id','=',active_id)]"
                                         >
                                             <tree string="Program Managers" editable="top">
                                                 <button
@@ -356,6 +360,7 @@
                                             nolabel="1"
                                             widget="many2many_list"
                                             context="{'default_program_id':active_id}"
+                                            domain="[('program_id','=',active_id)]"
                                         >
                                             <tree string="Cycle Managers" editable="top">
                                                 <button
@@ -397,6 +402,7 @@
                                             nolabel="1"
                                             widget="many2many_list"
                                             context="{'default_program_id':active_id}"
+                                            domain="[('program_id','=',active_id)]"
                                         >
                                             <tree string="Entitlement Managers" editable="top">
                                                 <button
