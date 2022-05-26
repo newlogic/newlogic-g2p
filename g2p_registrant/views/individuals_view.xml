@@ -248,7 +248,6 @@
                                     name="related_2_ids"
                                     attrs="{'readonly':[('disabled','!=',False)]}"
                                     nolabel="1"
-                                    context="{'product_id': active_id}"
                                 >
                                     <tree
                                         string="Relationships 2"
