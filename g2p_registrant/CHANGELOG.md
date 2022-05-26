@@ -4,6 +4,7 @@ Format in CHANGELOG.md
 
 - [FIX] Separate Groups and Individuals menu
 - [FIX] Groups and Individuals UI
+- [ADD] context in view button for custom_ield
 
 ## Version[0.10] - 2022-05-13
 
