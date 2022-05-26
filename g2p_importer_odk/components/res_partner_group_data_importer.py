@@ -39,8 +39,8 @@ class G2PResPartnerGroupDataRecordImporter(Component):
 
         return True
 
-    def full_name(self, first, last):
-        name = str(last.upper()) + ", " + str(first.upper())
+    def full_name(self, first, last, addl):
+        name = str(last.upper()) + ", " + str(first.upper()) + " " + str(addl.upper())
 
         return name
 
@@ -51,7 +51,9 @@ class G2PResPartnerGroupDataRecordImporter(Component):
         given_name=None,
         family_name=None,
         gender=None,
-        # group_membership_ids=[],
+        birthdate=None,
+        addl_name=None,
+        membership_type=None,
         is_group=False,
     ):
         if is_group:
@@ -59,18 +61,21 @@ class G2PResPartnerGroupDataRecordImporter(Component):
                 "id": id,
                 "name": name,
                 "is_registrant": "True",
-                # "group_membership_ids": group_membership_ids,
                 "is_group": is_group,
                 "_line_nr": -1,
             }
         else:
-            fullname = self.full_name(given_name, family_name)
+            fullname = self.full_name(given_name, family_name, addl_name)
+            _logger.debug(f"Fullname: {fullname}")
             data = {
                 "id": id,
                 "name": fullname,
                 "given_name": given_name,
                 "family_name": family_name,
                 "gender": gender,
+                "birthdate": birthdate,
+                "addl_name": addl_name,
+                "membership_type": membership_type,
                 "is_registrant": True,
                 "is_group": is_group,
                 "_line_nr": -1,
@@ -102,17 +107,16 @@ class G2PResPartnerGroupDataRecordImporter(Component):
             if member == "principal_recipient":
                 principal_id = f"odk.individual.{odk_id}"
                 is_group = self.is_group(res[member]["__g2p_type__"])
-                fullname = self.full_name(
-                    res[member]["first_name"], res[member]["last_name"]
-                )
                 gender = str(res[member]["sex"]).capitalize()
 
                 data = self.prepare_line_data(
                     id=principal_id,
-                    name=fullname,
                     given_name=res[member]["first_name"],
                     family_name=res[member]["last_name"],
                     gender=gender,
+                    birthdate=res[member]["date_of_birth"],
+                    addl_name=res[member]["patronymic_name"],
+                    membership_type=res[member]["__g2p_membership_type__"],
                     is_group=is_group,
                 )
 
@@ -129,6 +133,8 @@ class G2PResPartnerGroupDataRecordImporter(Component):
                         given_name=adult["first_name"],
                         family_name=adult["last_name"],
                         gender=adult_gender,
+                        birthdate=adult["date_of_birth"],
+                        addl_name=adult["patronymic_name"],
                         is_group=is_group,
                     )
 
@@ -145,6 +151,8 @@ class G2PResPartnerGroupDataRecordImporter(Component):
                         given_name=children["first_name"],
                         family_name=children["last_name"],
                         gender=children_gender,
+                        birthdate=children["date_of_birth"],
+                        addl_name=children["patronymic_name"],
                         is_group=is_group,
                     )
                     members_list.append(data)
@@ -168,11 +176,30 @@ class G2PResPartnerGroupDataRecordImporter(Component):
             _logger.debug(f"Result_lines: {len(lines)}")
 
             for ln in lines:
+                # _logger.debug(f"Odoo_Created: {ln}")
+                membership_type = ln["membership_type"]
+                kinds = []
+                if membership_type:
+                    m_types = membership_type.split(",")
+                    _logger.debug(f"Odoo_Created: {m_types}")
+                    for m_type in m_types:
+                        if m_type == "Head of household":
+                            kinds.append(
+                                self.env.ref(
+                                    "g2p_registrant.group_kind_head_household"
+                                ).id
+                            )
+                        elif m_type == "Principal recipient":
+                            kinds.append(
+                                self.env.ref(
+                                    "g2p_registrant.group_kind_principal_recipient"
+                                ).id
+                            )
+
+                _logger.debug(f"kinds: {kinds}")
                 try:
                     with self.env.cr.savepoint():
                         values = self.mapper.map_record(ln).values(**options)
-                    # logger.debug(values)
-                    # _logger.debug(f"Result_line: {ln}")
 
                 except Exception as err:
                     values = {}
@@ -205,15 +232,14 @@ class G2PResPartnerGroupDataRecordImporter(Component):
                             odoo_record = self.record_handler.odoo_create(values, ln)
                             self.tracker.log_created(values, ln, odoo_record)
 
-                            # add kind get in odk __g2p_membership_type__
                             self.env["g2p.group.membership"].create(
                                 {
                                     "group": group_id,
                                     "individual": odoo_record[0].id,
+                                    "kind": [(4, kind) for kind in kinds],
                                 }
                             )
 
-                            _logger.debug(f"Odoo_Created: {odoo_record}")
                 except Exception as err:
                     self.tracker.log_error(values, ln, odoo_record, message=err)
                     if self._break_on_error:
