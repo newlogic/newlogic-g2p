@@ -1,5 +1,9 @@
 Format in CHANGELOG.md
 
+## Version[0.11] - 2022-05-26
+
+- [ADD] context in view button for custom_ield
+
 ## Version[0.10] - 2022-05-13
 
 - [ADD] Support Phone numbers, date of collection, and other fixes

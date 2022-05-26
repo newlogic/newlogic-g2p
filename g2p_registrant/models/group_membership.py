@@ -85,6 +85,7 @@ class G2PGroupMembership(models.Model):
             "view_id": self.env.ref("g2p_registrant.view_individuals_form").id,
             "type": "ir.actions.act_window",
             "target": "new",
+            "context": {"default_is_group": False},
         }
 
     def open_group_form(self):
@@ -96,6 +97,7 @@ class G2PGroupMembership(models.Model):
             "view_id": self.env.ref("g2p_registrant.view_groups_form").id,
             "type": "ir.actions.act_window",
             "target": "new",
+            "context": {"default_is_group": True},
         }
 
 
