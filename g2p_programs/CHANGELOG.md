@@ -1,5 +1,9 @@
 Format in CHANGELOG.md
 
+## Version[0.11] - 2022-05-27
+
+- [ADD] Program Fund Report
+
 ## Version[0.10] - 2022-05-26
 
 - [ADD] Add to registrant's form views the "Add to Program" wizard

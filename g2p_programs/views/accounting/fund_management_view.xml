@@ -44,8 +44,43 @@
         <field name="arch" type="xml">
             <form string="Program Fund">
                 <header>
+                    <button
+                        type="object"
+                        class="btn-success"
+                        icon="fa-money"
+                        name="post_fund"
+                        states="draft"
+                        string="Post"
+                    />
+                    <button
+                        type="object"
+                        class="btn-danger"
+                        icon="fa-ban"
+                        name="cancel_fund"
+                        states="draft"
+                        string="Cancel"
+                    />
+                    <button
+                        type="object"
+                        class="btn-warning"
+                        icon="fa-undo"
+                        name="reset_draft"
+                        states="cancelled"
+                        string="Reset to Draft"
+                    />
                     <field name="state" widget="statusbar" statusbar_visible="draft,posted,cancelled" />
                 </header>
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    attrs="{'invisible': [('state', '!=', 'cancelled')]}"
+                >
+                    This fund was cancelled on
+                    <bold>
+                        <field name="write_date" readonly="1" />
+                    </bold>
+                </div>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                     </div>
@@ -63,9 +98,7 @@
                             />
                         </h2>
                         <div class="o_row">
-                            <label for="journal_id" string="Journal:" />
-                            <field name="journal_id" options="{'no_open':True}" readonly="1" />
-                            <label for="company_id" string=" | Company: " groups="base.group_multi_company" />
+                            <label for="company_id" string="Company: " groups="base.group_multi_company" />
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"
@@ -76,6 +109,8 @@
                         </div>
                     </div>
                     <group colspan="4" col="4">
+                        <field name="journal_id" options="{'no_open':True}" readonly="1" />
+                        <field name="create_date" string="Date Entered" readonly="1" />
                         <field name="amount" attrs="{'readonly':[('state','!=','draft')]}" />
                         <field
                             name="currency_id"

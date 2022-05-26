@@ -31,3 +31,5 @@ g2p_assign_registrant_program_wizard_admin,Assign Registrant to Program Wizard A
 g2p_assign_registrant_wizard_admin,Assign Registrants to Program Admin Access,g2p_programs.model_g2p_assign_program_registrants,g2p_registrant.group_g2p_admin,1,1,1,1
 
 g2p_program_fund_admin,Program Fund Admin Access,g2p_programs.model_g2p_program_fund,g2p_registrant.group_g2p_admin,1,1,1,1
+
+g2p_program_fund_report_view_admin,Program Fund Report View Admin Access,g2p_programs.model_g2p_program_fund_report_view,g2p_registrant.group_g2p_admin,1,0,0,0

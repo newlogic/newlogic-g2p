@@ -17,7 +17,8 @@
 # limitations under the License.
 #
 
-from odoo import fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError  # , RedirectWarning, ValidationError, AccessError
 
 
 class ProgramFundManagement(models.Model):
@@ -60,3 +61,80 @@ class ProgramFundManagement(models.Model):
         default="draft",
         tracking=True,
     )
+
+    @api.ondelete(at_uninstall=False)
+    def _unlink_fund(self):
+        if self.state == "posted":
+            raise UserError(_("This fund is already posted and cannot be deleted."))
+
+    def post_fund(self):
+        for rec in self:
+            if rec.state == "draft":
+                vals = {"state": "posted", "date_posted": fields.Date.today()}
+                if rec.name in ("Draft", None):
+                    vals.update(
+                        {
+                            "name": self.env["ir.sequence"].next_by_code(
+                                "program.fund.ref.num"
+                            )
+                            or "NONE"
+                        }
+                    )
+                # TODO: Generate journal entry
+                rec.update(vals)
+                return {
+                    "effect": {
+                        "fadeout": "slow",
+                        "message": "This fund is now posted!",
+                        "type": "rainbow_man",
+                    }
+                }
+            else:
+                message = _("Only draft program funds can be posted.")
+                kind = "error"
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Program Fund"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,
+                    },
+                }
+
+    def cancel_fund(self):
+        for rec in self:
+            if rec.state == "draft":
+                rec.update({"state": "cancelled"})
+            else:
+                message = _("Only draft program funds can be cancelled.")
+                kind = "error"
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Program Fund"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,
+                    },
+                }
+
+    def reset_draft(self):
+        for rec in self:
+            if rec.state == "cancelled":
+                rec.update({"state": "draft"})
+            else:
+                message = _("Only cancelled program funds can be reset to draft.")
+                kind = "danger"
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Program Fund"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,  # types: success,warning,danger,info
+                    },
+                }
