@@ -5,6 +5,9 @@ Format in CHANGELOG.md
 - [ADD] Add to registrant's form views the "Add to Program" wizard
 - [FIX] Arrange menus and UIs of programs and cycles
 - [ADD] Beneficiaries, cycles, and vouchers filters
+- [FIX] Accounting integration: set journal_id in programs
+- [ADD] Accounting menu
+- [ADD] Report: Benificiary Accounting Journal
 
 ## Version[0.09] - 2022-05-25
 

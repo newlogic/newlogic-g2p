@@ -45,6 +45,14 @@
         <field name="arch" type="xml">
             <form string="Voucher">
                 <header>
+                    <button
+                        type="object"
+                        class="btn-success"
+                        icon="fa-thumbs-o-up"
+                        name="approve_voucher"
+                        attrs="{'invisible':[('state','not in',('draft','pending_validation'))]}"
+                        string="Approve Voucher"
+                    />
                     <field
                         name="state"
                         widget="statusbar"
@@ -53,18 +61,6 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button
-                            type="object"
-                            class="oe_stat_button"
-                            icon="fa-thumbs-o-up"
-                            name="approve_voucher"
-                            attrs="{'invisible':[('state','not in',('draft','pending_validation'))]}"
-                        >
-                            <div class="o_form_field o_stat_info">
-                                <span class="o_stat_text">Approve</span>
-                                <span class="o_stat_text">Voucher</span>
-                            </div>
-                        </button>
                         <button
                             type="object"
                             class="oe_stat_button"
@@ -113,12 +109,7 @@
                             options="{'no_open':True,'no_quick_create':True,'no_create':True}"
                             attrs="{'readonly':[('state','!=','draft')]}"
                         />
-                        <field
-                            name="journal_id"
-                            string="Journal"
-                            options="{'no_open':True,'no_quick_create':True,'no_create':True}"
-                            attrs="{'readonly':[('state','!=','draft')]}"
-                        />
+                        <field name="journal_id" string="Journal" options="{'no_open':True}" readonly="1" />
                         <field
                             name="disbursement_id"
                             options="{'no_open':True}"

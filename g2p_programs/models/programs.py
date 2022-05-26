@@ -82,6 +82,14 @@ class G2PProgram(models.Model):
     )
     cycle_ids = fields.One2many("g2p.cycle", "program_id", "Cycles")
 
+    # Accounting config
+    journal_id = fields.Many2one(
+        "account.journal",
+        "Disbursement Journal",
+        required=True,
+        domain=[("beneficiary_disb", "=", True), ("type", "in", ("bank", "cash"))],
+    )
+
     # Statistics
     eligible_beneficiaries_count = fields.Integer(
         string="# Eligible Beneficiaries", compute="_compute_eligible_beneficiary_count"

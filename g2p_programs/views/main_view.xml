@@ -17,6 +17,15 @@
     <menuitem id="g2p_program_root" name="Programs" parent="g2p_program_menu_root" sequence="100" />
     <menuitem id="g2p_program_cycle_root" name="Cycles" parent="g2p_program_menu_root" sequence="200" />
     <menuitem id="g2p_program_voucher_root" name="Vouchers" parent="g2p_program_menu_root" sequence="300" />
+
+    <menuitem id="g2p_accounting_root" name="Accounting" parent="g2p_program_menu_root" sequence="400" />
+    <menuitem
+        id="g2p_accounting_reports_menu_root"
+        name="Reports"
+        parent="g2p_accounting_root"
+        sequence="100"
+    />
+
     <menuitem
         id="g2p_program_configuration_menu_root"
         name="Configuration"
