@@ -22,6 +22,7 @@
                 <field name="date_posted" />
                 <field name="partner_id" />
                 <field name="program_id" />
+                <field name="cycle_id" />
                 <field name="journal_id" optional="hidden" />
                 <field name="amount" sum="total_amount" />
                 <field name="currency_id" />
@@ -39,17 +40,20 @@
                 <field name="name" />
                 <field name="partner_id" />
                 <field name="program_id" />
+                <field name="cycle_id" />
                 <separator />
                 <filter name="filter_date_posted" date="date_posted" />
                 <group expand="0" string="Group By">
                     <filter string="Date Posted" name="date_posted" context="{'group_by':'date_posted'}" />
                     <separator orientation="vertical" />
                     <filter string="Program" name="grp_program_id" context="{'group_by': 'program_id'}" />
+                    <filter string="Cycle" name="grp_cycle_id" context="{'group_by': 'cycle_id'}" />
                     <filter string="Journal" name="grp_journal_id" context="{'group_by': 'journal_id'}" />
                     <filter string="Company" name="grp_company_id" context="{'group_by': 'company_id'}" />
                 </group>
                 <searchpanel>
                     <field name="journal_id" icon="fa-book" />
+                    <field name="program_id" icon="fa-file" />
                 </searchpanel>
             </search>
         </field>

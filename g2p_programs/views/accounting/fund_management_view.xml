@@ -115,7 +115,6 @@
                         <field
                             name="currency_id"
                             options="{'no_open':True,'no_quick_create':True,'no_create':True}"
-                            attrs="{'readonly':[('state','!=','draft')]}"
                         />
                         <field name="remarks" colspan="4" attrs="{'readonly':[('state','!=','draft')]}" />
                     </group>

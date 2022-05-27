@@ -69,7 +69,9 @@ class DefaultCashEntitlement(models.Model):
     amount_per_cycle = fields.Monetary(
         currency_field="currency_id", group_operator="sum"
     )
-    currency_id = fields.Many2one("res.currency")
+    currency_id = fields.Many2one(
+        "res.currency", related="program_id.journal_id.currency_id", readonly=True
+    )
 
     # Group able to validate the payment
     # Todo: Create a record rule for payment_validation_group

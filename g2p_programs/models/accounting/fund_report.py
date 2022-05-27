@@ -30,6 +30,7 @@ class ProgramFundReport(models.Model):
     partner_id = fields.Many2one("res.partner", "Beneficiary", readonly=True)
     company_id = fields.Many2one("res.company", readonly=True)
     program_id = fields.Many2one("g2p.program", "Program", readonly=True)
+    cycle_id = fields.Many2one("g2p.cycle", "Cycle", readonly=True)
     journal_id = fields.Many2one("account.journal", "Accounting Journal", readonly=True)
     date_posted = fields.Date("Date", readonly=True)
     amount = fields.Monetary(required=True, currency_field="currency_id", readonly=True)
@@ -38,33 +39,35 @@ class ProgramFundReport(models.Model):
     def _select(self):
         select_str = """
             WITH trans AS (
-                SELECT a.name as name,
+                SELECT a1.name as name,
                     NULL as partner_id,
-                    a.company_id as company_id,
-                    a.program_id as program_id,
-                    a.journal_id as journal_id,
-                    a.date_posted as date_posted,
-                    a.amount as amount,
-                    a.currency_id as currency_id
-                FROM g2p_program_fund a
-                WHERE a.state = 'posted'
+                    a1.company_id as company_id,
+                    a1.program_id as program_id,
+                    NULL as cycle_id,
+                    a1.journal_id as journal_id,
+                    a1.date_posted as date_posted,
+                    a1.amount as amount,
+                    a1.currency_id as currency_id
+                FROM g2p_program_fund a1
+                WHERE a1.state = 'posted'
 
                 UNION ALL
 
-                SELECT b.code as name,
-                    b.partner_id as partner_id,
-                    b.company_id as company_id,
-                    d.id as program_id,
-                    b.journal_id as journal_id,
-                    f.date as date_posted,
-                    e.amount * -1 as amount,
-                    e.currency_id as currency_id
-                FROM g2p_voucher b
-                    LEFT JOIN g2p_cycle c on c.id = b.cycle_id
-                        LEFT JOIN g2p_program d on d.id = c.program_id
-                    LEFT JOIN account_payment e on e.id = b.disbursement_id
-                        LEFT JOIN account_move f on f.id = e.move_id
-                WHERE b.disbursement_id IS NOT NULL and e.payment_type = 'outbound'
+                SELECT b1.code as name,
+                    b1.partner_id as partner_id,
+                    b1.company_id as company_id,
+                    b3.id as program_id,
+                    b2.id as cycle_id,
+                    b1.journal_id as journal_id,
+                    b5.date as date_posted,
+                    b4.amount * -1 as amount,
+                    b4.currency_id as currency_id
+                FROM g2p_voucher b1
+                    LEFT JOIN g2p_cycle b2 on b2.id = b1.cycle_id
+                        LEFT JOIN g2p_program b3 on b3.id = b2.program_id
+                    LEFT JOIN account_payment b4 on b4.id = b1.disbursement_id
+                        LEFT JOIN account_move b5 on b5.id = b4.move_id
+                WHERE b1.disbursement_id IS NOT NULL and b4.payment_type = 'outbound'
             )
 
             SELECT
@@ -74,6 +77,7 @@ class ProgramFundReport(models.Model):
                 partner_id,
                 company_id,
                 program_id,
+                cycle_id,
                 journal_id,
                 date_posted,
                 amount,
