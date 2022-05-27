@@ -44,11 +44,9 @@ class ProgramFundManagement(models.Model):
     amount = fields.Monetary(required=True, currency_field="currency_id", tracking=True)
     currency_id = fields.Many2one(
         "res.currency",
-        required=True,
-        default=lambda self: self.env.user.company_id.currency_id
-        and self.env.user.company_id.currency_id.id
-        or None,
-        tracking=True,
+        readonly=True,
+        related="program_id.journal_id.currency_id",
+        store=True,
     )
     remarks = fields.Text("Remarks", tracking=True)
     date_posted = fields.Date(

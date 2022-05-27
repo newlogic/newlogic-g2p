@@ -7,6 +7,7 @@ Format in CHANGELOG.md
 - [ADD] Cycle approval method
 - [FIX] Assign default journal to program
 - [ADD] Button in programs UI to create a new journal based on the program information
+- [FIX] Refer to project journal_id for all financial transactions currency_id
 
 ## Version[0.10] - 2022-05-26
 

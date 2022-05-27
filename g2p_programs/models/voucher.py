@@ -56,11 +56,7 @@ class G2PVoucher(models.Model):
 
     is_cash_voucher = fields.Boolean("Cash Voucher", default=False)
     currency_id = fields.Many2one(
-        "res.currency",
-        required=True,
-        default=lambda self: self.env.user.company_id.currency_id
-        and self.env.user.company_id.currency_id.id
-        or None,
+        "res.currency", readonly=True, related="journal_id.currency_id"
     )
     initial_amount = fields.Monetary(required=True, currency_field="currency_id")
     balance = fields.Monetary(compute="_compute_balance")  # in company currency
@@ -137,7 +133,7 @@ class G2PVoucher(models.Model):
                     "partner_id": rec.partner_id.id,
                     "payment_type": "outbound",
                     "amount": rec.initial_amount,
-                    "currency_id": rec.currency_id.id,
+                    "currency_id": rec.journal_id.currency_id.id,
                     "journal_id": rec.journal_id.id,
                     "partner_type": "supplier",
                 }

@@ -300,6 +300,9 @@ class G2PProgram(models.Model):
                     "type": "bank",
                     "default_account_id": default_account_id,
                     "code": code,
+                    "currency_id": rec.company_id.currency_id
+                    and rec.company_id.currency_id.id
+                    or None,
                 }
             )
             rec.update({"journal_id": new_journal.id})
