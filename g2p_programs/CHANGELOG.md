@@ -5,6 +5,8 @@ Format in CHANGELOG.md
 - [ADD] Program Fund Report
 - [ADD] Cycle approver group
 - [ADD] Cycle approval method
+- [FIX] Assign default journal to program
+- [ADD] Button in programs UI to create a new journal based on the program information
 
 ## Version[0.10] - 2022-05-26
 
