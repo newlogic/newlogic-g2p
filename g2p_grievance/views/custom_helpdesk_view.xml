@@ -16,25 +16,41 @@
                     <attribute name="string">Registrant</attribute>
                     <attribute
                         name="options"
-                    >{'no_open':True, 'no_quick_create':True, 'no_edit':True,'no_create_edit':True}</attribute>
+                    >{'no_open':True, 'no_quick_create':True, 'no_edit':True,'no_create_edit':True, 'no_create':True}</attribute>
                     <attribute name="class">oe_edit_only</attribute>
                 </xpath>
                 <xpath expr="//field[@name='partner_id']" position="after">
-                    <field name="partner_id" string="Registrant" class="oe_read_only" readonly="1" />
+                    <field name="is_group" invisible="1" />
+                    <field
+                        name="partner_readonly_id"
+                        attrs="{'invisible':[('is_group','=',False)]}"
+                        context="{'form_view_ref': 'g2p_registrant.view_individuals_form'}"
+                        string="Registrant"
+                        class="oe_read_only"
+                        readonly="1"
+                    />
+                    <field
+                        name="partner_readonly_id"
+                        attrs="{'invisible':[('is_group','=',True)]}"
+                        context="{'form_view_ref': 'g2p_registrant.view_groups_form'}"
+                        string="Registrant"
+                        class="oe_read_only"
+                        readonly="1"
+                    />
                     <field
                         name="program_id"
                         string="Program"
                         class="oe_edit_only"
-                        options="{'no_open':True, 'no_quick_create':True, 'no_edit':True, 'no_create_edit':True}"
+                        options="{'no_open':True, 'no_quick_create':True, 'no_edit':True, 'no_create_edit':True, 'no_create':True}"
                     />
-                    <field name="program_id" string="Program" class="oe_read_only" readonly="1" />
+                    <field name="program_readonly_id" string="Program" class="oe_read_only" readonly="1" />
                     <field
                         name="cycle_id"
                         string="Cycle"
                         class="oe_edit_only"
-                        options="{'no_open':True, 'no_quick_create':True, 'no_edit':True,'no_create_edit':True}"
+                        options="{'no_open':True, 'no_quick_create':True, 'no_edit':True,'no_create_edit':True, 'no_create':True}"
                     />
-                    <field name="cycle_id" string="Cycle" class="oe_read_only" readonly="1" />
+                    <field name="cycle_readonly_id" string="Cycle" class="oe_read_only" readonly="1" />
                 </xpath>
 
             </field>
