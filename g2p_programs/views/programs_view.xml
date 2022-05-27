@@ -35,6 +35,24 @@
             <form string="Program">
                 <header>
                 </header>
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    attrs="{'invisible': [('journal_id', '!=', False)]}"
+                >
+                    A journal must be defined for this program. Select a journal in the <bold
+                    >'Accounting'</bold> section of the <bold>'Configuration'</bold> tab.
+                    You can also create a new journal by clicking this
+                    <button
+                        type="object"
+                        class="btn-primary"
+                        icon="fa-plus"
+                        name="create_journal"
+                        string="Create New Journal"
+                    />
+                    button.
+                </div>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button
@@ -443,6 +461,13 @@
                                     name="journal_id"
                                     string="Journal"
                                     options="{'no_open':True,'no_quick_create':True,'no_create':True}"
+                                />
+                                <button
+                                    type="object"
+                                    class="btn-primary"
+                                    icon="fa-plus"
+                                    name="create_journal"
+                                    string="Create New Journal"
                                 />
                             </group>
                         </page>

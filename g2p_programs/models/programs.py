@@ -42,6 +42,16 @@ class G2PProgram(models.Model):
     # TODO: Associate a Wallet to each program using the accounting module
     # TODO: (For later) Associate a Warehouse to each program using the stock module for in-kind programs
 
+    @api.model
+    def _default_journal_id(self):
+        journals = self.env["account.journal"].search(
+            [("beneficiary_disb", "=", True), ("type", "in", ("bank", "cash"))]
+        )
+        if journals:
+            return journals[0].id
+        else:
+            return None
+
     name = fields.Char(required=True, tracking=True)
     company_id = fields.Many2one(
         "res.company", default=lambda self: self.env.company, tracking=True
@@ -86,8 +96,8 @@ class G2PProgram(models.Model):
     journal_id = fields.Many2one(
         "account.journal",
         "Disbursement Journal",
-        required=True,
         domain=[("beneficiary_disb", "=", True), ("type", "in", ("bank", "cash"))],
+        default=_default_journal_id,
     )
 
     # Statistics
@@ -264,6 +274,35 @@ class G2PProgram(models.Model):
                     "type": kind,
                 },
             }
+
+    def create_journal(self):
+        for rec in self:
+            program_name = rec.name.split(" ")
+            code = ""
+            for pn in program_name:
+                if pn:
+                    code += pn[0].upper()
+            if len(code) == 0:
+                code = program_name[3].strip().upper()
+            account_chart = self.env["account.account"].search(
+                [
+                    ("company_id", "=", self.env.company.id),
+                    ("user_type_id.type", "=", "liquidity"),
+                ]
+            )
+            default_account_id = None
+            if account_chart:
+                default_account_id = account_chart[0].id
+            new_journal = self.env["account.journal"].create(
+                {
+                    "name": rec.name,
+                    "beneficiary_disb": True,
+                    "type": "bank",
+                    "default_account_id": default_account_id,
+                    "code": code,
+                }
+            )
+            rec.update({"journal_id": new_journal.id})
 
     def open_eligible_beneficiaries_form(self):
         self.ensure_one()
