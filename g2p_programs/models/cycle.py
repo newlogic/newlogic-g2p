@@ -87,9 +87,7 @@ class G2PCycle(models.Model):
         for rec in self:
             vouchers_count = 0
             if rec.voucher_ids:
-                vouchers_count = len(
-                    rec.voucher_ids.filtered(lambda mb: mb.state == "approved")
-                )
+                vouchers_count = len(rec.voucher_ids)
             rec.update({"vouchers_count": vouchers_count})
 
     @api.onchange("start_date")
@@ -248,9 +246,9 @@ class G2PCycle(models.Model):
             "context": {
                 "create": False,
                 "default_cycle_id": self.id,
-                "search_default_approved_state": 1,
+                # "search_default_approved_state": 1,
             },
             "view_mode": "list,form",
-            "domain": [("cycle_id", "=", self.id), ("state", "=", "approved")],
+            "domain": [("cycle_id", "=", self.id)],
         }
         return action

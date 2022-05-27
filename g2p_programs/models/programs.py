@@ -292,8 +292,8 @@ class G2PProgram(models.Model):
             "context": {
                 "create": False,
                 "default_program_id": self.id,
-                "search_default_approved_state": 1,
-                "search_default_to_approve_state": 1,
+                # "search_default_approved_state": 1,
+                # "search_default_to_approve_state": 1,
             },
             "view_mode": "list,form",
             "domain": [("program_id", "=", self.id)],
