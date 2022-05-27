@@ -86,6 +86,7 @@ class G2PGroupMembership(models.Model):
             "type": "ir.actions.act_window",
             "target": "new",
             "context": {"default_is_group": False},
+            "flags": {"mode": "readonly"},
         }
 
     def open_group_form(self):
@@ -98,6 +99,7 @@ class G2PGroupMembership(models.Model):
             "type": "ir.actions.act_window",
             "target": "new",
             "context": {"default_is_group": True},
+            "flags": {"mode": "readonly"},
         }
 
 
