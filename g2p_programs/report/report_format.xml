@@ -1,5 +1,5 @@
 <odoo>
-    <data noupdate="1">
+    <data noupdate="0">
         <record id="paperformat_voucher_card" model="report.paperformat">
             <field name="name">Voucher Card</field>
             <field name="default" eval="False" />
@@ -17,8 +17,8 @@
         </record>
 
 
-        <record id="action_voucher" model="ir.actions.report">
-            <field name="name">Print Ticket</field>
+        <record id="action_print_voucher" model="ir.actions.report">
+            <field name="name">Print Voucher</field>
             <field name="model">g2p.voucher</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">g2p_programs.print_voucher_card</field>
