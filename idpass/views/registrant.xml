@@ -22,7 +22,7 @@
                 </xpath>
 
                 <xpath expr="//field[@name='email']" position="after">
-                  <field name="id_pdf" string="ID Card" filename="id_pdf_filename" />
+                  <field name="id_pdf" string="ID PASS Card" filename="id_pdf_filename" />
                   <field name="id_pdf_filename" invisible="1" />
                 </xpath>
             </field>

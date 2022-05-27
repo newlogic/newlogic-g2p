@@ -33,13 +33,14 @@ class G2PRegistrant(models.Model):
     _name = "res.partner"
     _inherit = [_name, "mail.thread"]
 
-    id_pdf = fields.Binary("ID")
+    id_pdf = fields.Binary("ID PASS")
     id_pdf_filename = fields.Char("ID File Name")
 
     def send_idpass_parameters(self):
         issue_date = datetime.today().strftime("%Y/%m/%d")
         expiry_date = datetime.today() + relativedelta(years=2)
         expiry_date = expiry_date.strftime("%Y/%m/%d")
+        # TODO: JJ - Find a good way to generate ID document number
         identification_no = f"{self.id:06d}"
         data = {
             "fields": {
@@ -55,7 +56,7 @@ class G2PRegistrant(models.Model):
             }
         }
         data_str = str(data).replace("'", '"')
-        _logger.info("IDPass Data: %s" % data_str)
+        _logger.info("ID PASS Data: %s" % data_str)
 
         headers = {
             "Content-Type": "application/json",
@@ -72,7 +73,7 @@ class G2PRegistrant(models.Model):
             file_pdf = file_pdf[28:]
             self.id_pdf = file_pdf
             self.id_pdf_filename = (
-                "IDPass - "
+                "ID PASS - "
                 + self.name.strip()
                 + " ("
                 + datetime.today().strftime("%Y/%m/%d")
@@ -96,9 +97,12 @@ class G2PRegistrant(models.Model):
             model_id.message_post(body=msg_body, attachment_ids=attachment_id)
         else:
             raise ValidationError(
-                _("IDPass Error: %s Code: %s" % (response.reason, response.status_code))
+                _(
+                    "ID PASS Error: %s Code: %s"
+                    % (response.reason, response.status_code)
+                )
             )  # noqa: C901
         _logger.info(
-            "IDPass Response: %s Code: %s" % (response.reason, response.status_code)
+            "ID PASS Response: %s Code: %s" % (response.reason, response.status_code)
         )
         return
