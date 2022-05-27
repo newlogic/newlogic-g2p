@@ -24,6 +24,14 @@ class G2PGrievance(models.Model):
 
     program_id = fields.Many2one("g2p.program", "Program", tracking=True)
     cycle_id = fields.Many2one("g2p.cycle", "Cycle", tracking=True)
+    partner_readonly_id = fields.Many2one(
+        "res.partner", "Registrant", related="partner_id"
+    )
+    program_readonly_id = fields.Many2one(
+        "g2p.program", "Program", related="program_id"
+    )
+    cycle_readonly_id = fields.Many2one("g2p.cycle", "Cycle", related="cycle_id")
+    is_group = fields.Boolean("Group", related="partner_id.is_group")
 
     @api.onchange("partner_id")
     def _get_programs(self):
@@ -39,6 +47,7 @@ class G2PGrievance(models.Model):
                 vals.append(line.program_id.id)
         res = {}
         res["domain"] = {"program_id": [("id", "in", vals)]}
+
         return res
 
     @api.onchange("program_id")
