@@ -56,7 +56,7 @@
 
     <!-- Display in Programs > Accounting menu -->
     <record id="action_account_journal_prog_benf" model="ir.actions.act_window">
-        <field name="name">Beneficiary Funds Journal</field>
+        <field name="name">Accounting Journal</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">account.move.line</field>
         <field name="view_mode">tree,pivot,graph</field>
@@ -79,7 +79,7 @@
         id="menu_account_journal_prog_benf"
         action="action_account_journal_prog_benf"
         groups="g2p_registrant.group_g2p_admin"
-        sequence="10"
+        sequence="20"
         parent="g2p_accounting_reports_menu_root"
     />
 

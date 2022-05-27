@@ -201,7 +201,7 @@ class G2PProgram(models.Model):
                     kind = "warning"
             else:
                 message = _("No Eligibility Manager defined.")
-                kind = "error"
+                kind = "danger"
 
             return {
                 "type": "ir.actions.client",
@@ -233,10 +233,10 @@ class G2PProgram(models.Model):
             program_manager = rec.get_manager(self.MANAGER_PROGRAM)
             if cycle_manager is None:
                 message = _("No Eligibility Manager defined.")
-                kind = "error"
+                kind = "danger"
             elif program_manager is None:
                 message = _("No Program Manager defined.")
-                kind = "error"
+                kind = "danger"
 
             if message is not None:
                 return {

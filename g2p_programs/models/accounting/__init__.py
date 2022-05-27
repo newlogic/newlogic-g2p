@@ -18,3 +18,5 @@
 #
 
 from . import account_journal
+from . import fund_management
+from . import fund_report

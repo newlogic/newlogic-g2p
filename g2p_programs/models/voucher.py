@@ -145,7 +145,7 @@ class G2PVoucher(models.Model):
                 rec.update({"disbursement_id": new_payment.id, "state": "approved"})
             else:
                 message = _("The voucher must be in 'pending validation' state.")
-                kind = "error"
+                kind = "danger"
                 return {
                     "type": "ir.actions.client",
                     "tag": "display_notification",

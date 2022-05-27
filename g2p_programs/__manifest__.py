@@ -27,6 +27,7 @@
     "depends": ["base", "mail", "sms", "queue_job", "g2p_registrant", "account"],
     "data": [
         "security/ir.model.access.csv",
+        "data/sequences.xml",
         "views/main_view.xml",
         "views/programs_view.xml",
         "views/program_membership_view.xml",
@@ -41,8 +42,9 @@
         "views/managers/program_manager_view.xml",
         "views/managers/cycle_manager_view.xml",
         "views/managers/entitlement_manager_view.xml",
-        # "views/accounting/account_move_view.xml",
+        "views/accounting/fund_management_view.xml",
         "views/accounting/account_journal_view.xml",
+        "views/accounting/fund_report_view.xml",
         "views/accounting/account_journal_config_view.xml",
         "wizard/assign_to_program_wizard.xml",
     ],

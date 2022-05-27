@@ -1,5 +1,9 @@
 Format in CHANGELOG.md
 
+## Version[0.11] - 2022-05-27
+
+- [ADD] Program Fund Report
+
 ## Version[0.10] - 2022-05-26
 
 - [ADD] Add to registrant's form views the "Add to Program" wizard
@@ -9,7 +13,7 @@ Format in CHANGELOG.md
 - [FIX] Accounting integration: set journal_id in programs
 - [ADD] Accounting menu
 - [ADD] Report: Benificiary Accounting Journal
-- [ADD] Fund replenishment journal entries UI
+- [ADD] Program Fund UI
 
 ## Version[0.09] - 2022-05-25
 
