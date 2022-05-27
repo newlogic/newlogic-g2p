@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class G2PGrievance(models.Model):
@@ -24,3 +24,36 @@ class G2PGrievance(models.Model):
 
     program_id = fields.Many2one("g2p.program", "Program", tracking=True)
     cycle_id = fields.Many2one("g2p.cycle", "Cycle", tracking=True)
+
+    @api.onchange("partner_id")
+    def _get_programs(self):
+        programs = self.env["g2p.program_membership"].search(
+            [
+                ("partner_id", "=", self.partner_id.id),
+                ("state", "=", "enrolled"),
+            ]
+        )
+        vals = []
+        if programs:
+            for line in programs:
+                vals.append(line.program_id.id)
+        res = {}
+        res["domain"] = {"program_id": [("id", "in", vals)]}
+        return res
+
+    @api.onchange("program_id")
+    def _get_cycle(self):
+        cycle = self.env["g2p.cycle.membership"].search(
+            [
+                ("partner_id", "=", self.partner_id.id),
+                ("state", "=", "enrolled"),
+            ]
+        )
+        vals = []
+        if cycle:
+            for line in cycle:
+                if line.cycle_id.program_id.id == self.program_id.id:
+                    vals.append(line.cycle_id.id)
+        res = {}
+        res["domain"] = {"cycle_id": [("id", "in", vals)]}
+        return res

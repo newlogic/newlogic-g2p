@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from odoo import models
+from odoo import fields, models
 
 
 class G2PGrievanceRegistrant(models.Model):
@@ -32,3 +32,5 @@ class G2PGrievanceRegistrant(models.Model):
             "target": "current",
             "context": {"default_partner_id": self.id},
         }
+
+    ticket_ids = fields.One2many("helpdesk.ticket", "partner_id", "Tickets")
