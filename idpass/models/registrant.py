@@ -51,6 +51,7 @@ class G2PRegistrant(models.Model):
                 "place_of_birth": self.birth_place or "",
                 "sex": self.gender or "",
                 "surname": self.family_name,
+                "qrcode_svg_1": f"{identification_no};{self.given_name};{self.family_name}",
             }
         }
         data_str = str(data).replace("'", '"')
