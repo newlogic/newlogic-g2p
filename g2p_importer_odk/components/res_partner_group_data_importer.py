@@ -186,13 +186,13 @@ class G2PResPartnerGroupDataRecordImporter(Component):
                         if m_type == "Head of household":
                             kinds.append(
                                 self.env.ref(
-                                    "g2p_registrant.group_kind_head_household"
+                                    "g2p_registrant.group_membership_kind_head_household"
                                 ).id
                             )
                         elif m_type == "Principal recipient":
                             kinds.append(
                                 self.env.ref(
-                                    "g2p_registrant.group_kind_principal_recipient"
+                                    "g2p_registrant.group_membership_kind_principal_recipient"
                                 ).id
                             )
 
