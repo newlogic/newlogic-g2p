@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+    <template id="print_voucher_card">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <table style="width: 250mm; height: 90mm;">
+                    <tr>
+                        <td colspan="2" style="width: 208px;"><h1
+                                        style="margin: 0px 2px 0px 2px;"
+                                    >Voucher Cash</h1></td>
+                        <td style="width: 208px"><center>Company name</center></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="width: 500px; text-align: right;"><span
+                                        style="font-size: 45px; text-align: right;"
+                                    >Php 10,000.00</span></td>
+                        <td rowspan="4" style="width: 250px; vertical-align:middle"><center><br /><img
+                                            alt="barcode"
+                                            t-if="doc.code"
+                                            t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.code, 500, 500)"
+                                            style="height:100pt;width:100pt;margin:1pt;"
+                                            align="center"
+                                        /></center></td>
+                    </tr>
+                    <tr>
+                        <div style="overflow:hidden; ">
+                            <td colspan="2" style="width: 210px;">Name:<h3
+                                            style="margin: 0px 2px 0px 2px;"
+                                        ><span t-field="doc.partner_id.name" /></h3></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div style="overflow:hidden;">
+                            <td colspan="2" style="width: 208px; ">Address: <h5
+                                            style="margin: 0px 2px 0px 2px;"
+                                        ><span t-field="doc.partner_id.address" /></h5></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 0px" />
+                        <td style="padding-top: 0px" />
+
+                    </tr>
+
+                    <tr style="text-align: center">
+                        <td style="padding-top: 10px">Valid From: <span
+                                        t-field="doc.valid_from"
+                                        t-options='{"format": "MMM. dd, yyyy"}'
+                                    /></td>
+                        <td style="padding-top: 10px">Valid To: <span
+                                        t-field="doc.valid_until"
+                                        t-options='{"format": "MMM. dd, yyyy"}'
+                                    /></td>
+
+                    </tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+    </data>
+</odoo>
