@@ -15,8 +15,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" style="width: 500px; text-align: right;"><span
-                                        style="font-size: 45px; text-align: right;"
-                                    >Php 10,000.00</span></td>
+                                        style="font-size: 45px; text-align: right;" t-field="doc.initial_amount"/></td>
                         <td rowspan="4" style="width: 250px; vertical-align:middle"><center><br /><img
                                             alt="barcode"
                                             t-if="doc.code"
