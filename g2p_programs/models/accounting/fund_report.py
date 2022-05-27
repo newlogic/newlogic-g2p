@@ -17,7 +17,8 @@
 # limitations under the License.
 #
 
-from odoo import fields, models, tools, _
+from odoo import fields, models, tools
+
 
 class ProgramFundReport(models.Model):
     _name = "g2p.program.fund.report.view"
@@ -29,10 +30,10 @@ class ProgramFundReport(models.Model):
     partner_id = fields.Many2one("res.partner", "Beneficiary", readonly=True)
     company_id = fields.Many2one("res.company", readonly=True)
     program_id = fields.Many2one("g2p.program", "Program", readonly=True)
-    journal_id = fields.Many2one("account.journal","Accounting Journal",readonly=True)
-    date_posted = fields.Date('Date',readonly=True)
+    journal_id = fields.Many2one("account.journal", "Accounting Journal", readonly=True)
+    date_posted = fields.Date("Date", readonly=True)
     amount = fields.Monetary(required=True, currency_field="currency_id", readonly=True)
-    currency_id = fields.Many2one("res.currency",readonly=True)
+    currency_id = fields.Many2one("res.currency", readonly=True)
 
     def _select(self):
         select_str = """
@@ -65,8 +66,8 @@ class ProgramFundReport(models.Model):
                         LEFT JOIN account_move f on f.id = e.move_id
                 WHERE b.disbursement_id IS NOT NULL and e.payment_type = 'outbound'
             )
-            
-            SELECT 
+
+            SELECT
                 ROW_NUMBER () OVER (
                     ORDER BY date_posted) as id,
                 name,
@@ -84,6 +85,9 @@ class ProgramFundReport(models.Model):
 
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)
-        self.env.cr.execute("""CREATE or REPLACE VIEW %s as (
+        self.env.cr.execute(
+            """CREATE or REPLACE VIEW %s as (
             %s
-            )""" % (self._table, self._select() ))
+            )"""
+            % (self._table, self._select())
+        )

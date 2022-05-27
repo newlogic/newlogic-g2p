@@ -21,9 +21,9 @@
                 <field name="name" />
                 <field name="date_posted" />
                 <field name="partner_id" />
-                <field name="program_id"/>
-                <field name="journal_id" optional="hidden"/>
-                <field name="amount" sum="total_amount"/>
+                <field name="program_id" />
+                <field name="journal_id" optional="hidden" />
+                <field name="amount" sum="total_amount" />
                 <field name="currency_id" />
                 <field name="company_id" groups="base.group_multi_company" />
             </tree>

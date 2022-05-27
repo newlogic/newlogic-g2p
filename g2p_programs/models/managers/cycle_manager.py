@@ -108,6 +108,7 @@ class DefaultCycleManager(models.Model):
         comodel_name="res.groups",
         string="Approver Group",
         copy=True,
+        required=True,
     )
 
     def check_eligibility(self, cycle, beneficiaries=None):
@@ -233,3 +234,13 @@ class DefaultCycleManager(models.Model):
     def _ensure_can_edit_cycle(self, cycle):
         if cycle.state not in [cycle.STATE_DRAFT]:
             raise ValidationError(_("The Cycle is not in Draft Mode"))
+
+    def on_state_change(self, cycle):
+        if cycle.state == cycle.STATE_APPROVED:
+            if not self.approver_group_id:
+                raise ValidationError(_("The cycle approver group is not specified!"))
+            else:
+                if self.env.user.id not in self.approver_group_id.users.ids:
+                    raise ValidationError(
+                        _("You are not allowed to approve this cycle!")
+                    )

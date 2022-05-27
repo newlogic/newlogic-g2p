@@ -94,10 +94,14 @@
                         </h2>
                         <div class="o_row">
                         </div>
-                        <group string="Cycle Settings" colspan="4" col="4">
-                            <field name="cycle_duration" />
-                        </group>
                     </div>
+                    <group string="Cycle Settings" colspan="4" col="4">
+                        <field name="cycle_duration" />
+                        <field
+                            name="approver_group_id"
+                            options="{'no_open':True,'no_create':True,'no_create_edit':True}"
+                        />
+                    </group>
                 </sheet>
             </form>
         </field>

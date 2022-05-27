@@ -27,6 +27,7 @@
     "depends": ["base", "mail", "sms", "queue_job", "g2p_registrant", "account"],
     "data": [
         "security/ir.model.access.csv",
+        "security/program_security.xml",
         "data/sequences.xml",
         "views/main_view.xml",
         "views/programs_view.xml",

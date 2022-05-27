@@ -92,10 +92,14 @@ class G2PCycle(models.Model):
                 )
             rec.update({"vouchers_count": vouchers_count})
 
-    def approve(self):
-        # 1. Make sure the user has the right to do this
-        # 2. Approve the cycle using the cycle manager
-        pass
+    @api.onchange("start_date")
+    def on_start_date_change(self):
+        self.program_id.get_manager(constants.MANAGER_CYCLE).on_start_date_change(self)
+
+    @api.onchange("state")
+    def on_state_change(self):
+        # _logger.info("DEBUG! state change: %s", self.state)
+        self.program_id.get_manager(constants.MANAGER_CYCLE).on_state_change(self)
 
     @api.model
     def get_beneficiaries(self, state):
@@ -121,6 +125,67 @@ class G2PCycle(models.Model):
         self.program_id.get_manager(constants.MANAGER_CYCLE).check_eligibility(
             self, beneficiaries
         )
+
+    def to_approve(self):
+        for rec in self:
+            if rec.state == self.STATE_DRAFT:
+                rec.update({"state": self.STATE_TO_APPROVE})
+            else:
+                message = _("Ony 'draft' cycles can be set for approval.")
+                kind = "danger"
+
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Cycle"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,
+                    },
+                }
+
+    def reset_draft(self):
+        for rec in self:
+            if rec.state == self.STATE_TO_APPROVE:
+                rec.update({"state": self.STATE_DRAFT})
+            else:
+                message = _("Ony 'to approve' cycles can be reset to draft.")
+                kind = "danger"
+
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Cycle"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,
+                    },
+                }
+
+    def approve(self):
+        # 1. Make sure the user has the right to do this
+        # 2. Approve the cycle using the cycle manager
+        for rec in self:
+            if rec.state == self.STATE_TO_APPROVE:
+                rec.update({"state": self.STATE_APPROVED})
+                # Running on_state_change because it is not triggered automatically with rec.update above
+                rec.on_state_change()
+            else:
+                message = _("Ony 'to approve' cycles can be approved.")
+                kind = "danger"
+
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Cycle"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,
+                    },
+                }
 
     def notify_cycle_started(self):
         # 1. Notify the beneficiaries using notification_manager.cycle_started()
@@ -155,14 +220,6 @@ class G2PCycle(models.Model):
             "type": "ir.actions.act_window",
             "target": "new",
         }
-
-    @api.onchange("start_date")
-    def on_start_date_change(self):
-        self.program_id.get_manager(constants.MANAGER_CYCLE).on_start_date_change(self)
-
-    @api.onchange("state")
-    def on_state_change(self):
-        self.program_id.get_manager(constants.MANAGER_CYCLE).on_state_change(self)
 
     def open_members_form(self):
         self.ensure_one()
