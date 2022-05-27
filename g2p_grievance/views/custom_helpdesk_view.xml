@@ -16,7 +16,7 @@
                     <attribute name="string">Registrant</attribute>
                     <attribute
                         name="options"
-                    >{'no_open':True, 'no_quick_create':True, 'no_edit':True,'no_create_edit':True}</attribute>
+                    >{'no_open':True, 'no_quick_create':True, 'no_edit':True,'no_create_edit':True, 'no_create':True}</attribute>
                     <attribute name="class">oe_edit_only</attribute>
                 </xpath>
                 <xpath expr="//field[@name='partner_id']" position="after">
@@ -41,14 +41,14 @@
                         name="program_id"
                         string="Program"
                         class="oe_edit_only"
-                        options="{'no_open':True, 'no_quick_create':True, 'no_edit':True, 'no_create_edit':True}"
+                        options="{'no_open':True, 'no_quick_create':True, 'no_edit':True, 'no_create_edit':True, 'no_create':True}"
                     />
                     <field name="program_readonly_id" string="Program" class="oe_read_only" readonly="1" />
                     <field
                         name="cycle_id"
                         string="Cycle"
                         class="oe_edit_only"
-                        options="{'no_open':True, 'no_quick_create':True, 'no_edit':True,'no_create_edit':True}"
+                        options="{'no_open':True, 'no_quick_create':True, 'no_edit':True,'no_create_edit':True, 'no_create':True}"
                     />
                     <field name="cycle_readonly_id" string="Cycle" class="oe_read_only" readonly="1" />
                 </xpath>
