@@ -47,7 +47,7 @@
                         class="btn-primary"
                         icon="fa-files-o"
                         name="copy_beneficiaries_from_program"
-                        attrs="{'invisible':[('state','!=','draft')]}"
+                        states="draft"
                         string="Copy Beneficiaries from Program"
                     />
                     <button
@@ -55,15 +55,39 @@
                         class="btn-primary"
                         icon="fa-check-square-o"
                         name="check_eligibility"
-                        attrs="{'invisible':[('state','!=','draft')]}"
+                        states="draft"
                         string="Verify Eligibility"
                     />
                     <button
                         type="object"
-                        class="btn-success"
+                        class="btn-primary"
                         icon="fa-file-text-o"
                         name="prepare_entitlement"
                         string="Prepare Entitlement"
+                    />
+                    <button
+                        type="object"
+                        class="btn-success"
+                        icon="fa-play"
+                        name="to_approve"
+                        string="To Approve"
+                        states="draft"
+                    />
+                    <button
+                        type="object"
+                        class="btn-success"
+                        icon="fa-thumbs-o-up"
+                        name="approve"
+                        string="Approve"
+                        states="to_approve"
+                    />
+                    <button
+                        type="object"
+                        class="btn-warning"
+                        icon="fa-undo"
+                        name="reset_draft"
+                        string="Reset to Draft"
+                        states="to_approve"
                     />
                     <field
                         name="state"
@@ -94,7 +118,12 @@
                     <div class="oe_title mb24">
                         <label for="name" string="Cycle:" />
                         <h1>
-                            <field id="name" name="name" placeholder="Enter the cycle name..." />
+                            <field
+                                id="name"
+                                name="name"
+                                placeholder="Enter the cycle name..."
+                                attrs="{'readonly':[('state','!=','draft')]}"
+                            />
                         </h1>
                     </div>
                     <group colspan="4" col="4">
@@ -102,14 +131,16 @@
                             name="program_id"
                             colspan="4"
                             invisible="context.get('default_program_id',False)"
+                            attrs="{'readonly':[('state','!=','draft')]}"
                         />
-                        <field name="start_date" />
-                        <field name="end_date" />
+                        <field name="start_date" attrs="{'readonly':[('state','!=','draft')]}" />
+                        <field name="end_date" attrs="{'readonly':[('state','!=','draft')]}" />
                         <field
                             name="company_id"
                             groups="base.group_multi_company"
                             options="{'no_create': True}"
                             force_save="1"
+                            attrs="{'readonly':[('state','!=','draft')]}"
                         />
                     </group>
                     <notebook>

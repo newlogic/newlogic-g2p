@@ -3,6 +3,8 @@ Format in CHANGELOG.md
 ## Version[0.11] - 2022-05-27
 
 - [ADD] Program Fund Report
+- [ADD] Cycle approver group
+- [ADD] Cycle approval method
 
 ## Version[0.10] - 2022-05-26
 

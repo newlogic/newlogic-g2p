@@ -1,0 +1,8 @@
+<odoo>
+    <data noupdate="0">
+        <record id="g2p_program_cycle_approver" model="res.groups">
+            <field name="name">Program Cycle Approver</field>
+            <field name="category_id" ref="g2p_registrant.newlogic_module" />
+        </record>
+    </data>
+</odoo>
