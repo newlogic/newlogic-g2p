@@ -62,7 +62,7 @@
                 <field name="program_id" />
                 <field name="amount_per_cycle" sum="total_amount_per_cycle" />
                 <field name="currency_id" />
-                <field name="voucher_validation_group_id" />
+<!--                <field name="voucher_validation_group_id" />-->
             </tree>
         </field>
     </record>
@@ -103,10 +103,10 @@
                             name="currency_id"
                             options="{'no_open':True,'no_create':True,'no_create_edit':True}"
                         />
-                        <field
-                            name="voucher_validation_group_id"
-                            options="{'no_open':True,'no_create':True,'no_create_edit':True}"
-                        />
+<!--                        <field-->
+<!--                            name="voucher_validation_group_id"-->
+<!--                            options="{'no_open':True,'no_create':True,'no_create_edit':True}"-->
+<!--                        />-->
                     </group>
                 </sheet>
             </form>

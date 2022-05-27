@@ -18,13 +18,12 @@
 #
 
 from . import constants
-from . import accounting
-from . import job_related_mixin
-from . import managers
-from . import programs
-from . import registrant
-from . import registrant_attribute
-from . import program_membership
-from . import cycle
-from . import cycle_membership
 from . import voucher
+from . import job_related_mixin
+from . import cycle
+from . import programs
+from . import accounting
+from . import managers
+from . import registrant
+from . import program_membership
+from . import cycle_membership

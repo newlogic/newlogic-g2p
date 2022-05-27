@@ -24,7 +24,7 @@
     </record>
 
     <record id="action_group_kind" model="ir.actions.act_window">
-        <field name="name">Group Membership Kinds</field>
+        <field name="name">Group Types</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">g2p.group.kind</field>
         <field name="view_mode">tree</field>
@@ -32,9 +32,9 @@
         <field name="domain">[]</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Add an Group Membership Kind!
+                Add a group type!
             </p><p>
-                Click the create button to enter a new group membership kind.
+                Click the create button to enter a new group type.
             </p>
         </field>
     </record>
@@ -48,7 +48,7 @@
 
     <menuitem
         id="menu_group_kind"
-        name="Group Membership Kinds"
+        name="Group types"
         action="action_group_kind"
         parent="g2p_configuration_menu_root"
         sequence="30"

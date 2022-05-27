@@ -102,7 +102,7 @@ class DefaultCycleManager(models.Model):
     _inherit = ["g2p.base.cycle.manager", "g2p.manager.source.mixin"]
     _description = "Default Cycle Manager"
 
-    cycle_duration = fields.Integer("Cycle Duration", required=True)
+    cycle_duration = fields.Integer("Cycle Duration", default=30, required=True)
 
     approver_group_id = fields.Many2one(
         comodel_name="res.groups",

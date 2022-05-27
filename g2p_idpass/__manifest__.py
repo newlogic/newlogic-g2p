@@ -17,9 +17,23 @@
 # limitations under the License.
 #
 
-from . import registrant
-from . import photo_category
-from . import image
-from . import datasource
-from . import programs
-from . import cycle
+
+{
+    "name": "ID PASS Module",
+    "category": "G2P",
+    "version": "15.0.0.0.1",
+    "sequence": 1,
+    "author": "Newlogic",
+    "website": "https://newlogic.com/",
+    "license": "Other OSI approved licence",
+    "depends": ["base", "g2p_registrant"],
+    "data": [
+        "views/registrant.xml",
+    ],
+    "assets": {},
+    "demo": [],
+    "images": [],
+    "application": True,
+    "installable": True,
+    "auto_install": False,
+}

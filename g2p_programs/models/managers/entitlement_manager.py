@@ -75,9 +75,9 @@ class DefaultCashEntitlement(models.Model):
 
     # Group able to validate the payment
     # Todo: Create a record rule for payment_validation_group
-    voucher_validation_group_id = fields.Many2one(
-        "res.groups", string="Payment Validation Group"
-    )
+    # voucher_validation_group_id = fields.Many2one(
+    #     "res.groups", string="Payment Validation Group"
+    # )
 
     def prepare_vouchers(self, cycle, beneficiaries):
         # TODO: create a Voucher of `amount_per_cycle` for each member that do not have one yet for the cycle and
