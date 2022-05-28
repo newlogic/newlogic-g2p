@@ -37,6 +37,8 @@
         "security/ir.model.access.csv",
         "security/program_security.xml",
         "data/sequences.xml",
+        "report/voucher_card.xml",
+        "report/report_format.xml",
         "views/main_view.xml",
         "views/programs_view.xml",
         "views/program_membership_view.xml",
