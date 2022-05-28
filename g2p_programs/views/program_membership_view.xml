@@ -19,6 +19,7 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Program Membership">
+              <button name="open_registrant_form" type="object" icon="fa-external-link" class="btn-success" />
                 <field name="partner_id" />
                 <field name="program_id" />
                 <field name="enrollment_date" />
