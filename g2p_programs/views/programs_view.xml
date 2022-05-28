@@ -535,7 +535,7 @@
         id="menu_program_list"
         name="Programs"
         action="action_program_list"
-        parent="g2p_program_root"
+        parent="g2p_program_menu_root"
         sequence="10"
         groups="g2p_registrant.group_g2p_admin"
     />

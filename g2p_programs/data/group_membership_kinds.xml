@@ -1,0 +1,12 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Group Membership Kinds -->
+        <record id="group_membership_kind_principal_recipient" model="g2p.group.membership.kind">
+            <field name="name">Principal recipient</field>
+            <field name="is_unique">1</field>
+        </record>
+        <record id="group_membership_kind_alternative_recipient" model="g2p.group.membership.kind">
+            <field name="name">Alternative recipient</field>
+        </record>
+    </data>
+</odoo>

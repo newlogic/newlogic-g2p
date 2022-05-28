@@ -183,7 +183,7 @@ class G2PResPartnerGroupDataRecordImporter(Component):
                     m_types = membership_type.split(",")
                     _logger.debug(f"Odoo_Created: {m_types}")
                     for m_type in m_types:
-                        if m_type == "Head of household":
+                        if m_type == "Head":
                             kinds.append(
                                 self.env.ref(
                                     "g2p_registrant.group_membership_kind_head_household"

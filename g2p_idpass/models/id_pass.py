@@ -27,7 +27,7 @@ class G2PIDPass(models.Model):
     api_username = fields.Char("API Username")
     api_password = fields.Char("API Password")
     filename_prefix = fields.Char("File Name Prefix")
-    expiry_length = fields.Float("ID Expiry Length")
+    expiry_length = fields.Integer("ID Expiry Length", default=1)
     expiry_length_type = fields.Selection(
         [("years", "Years"), ("months", "Months"), ("days", "Days")],
         "Length Type",

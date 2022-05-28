@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
+import json
 import logging
 from datetime import datetime
 
@@ -45,7 +45,6 @@ class G2PRegistrant(models.Model):
             birth_place = self.birth_place or ""
             gender = self.gender or ""
             surname = self.family_name
-            full_name = self.name
             if self.is_group:
                 head_id = 0
                 for group_member in self.group_membership_ids:
@@ -60,11 +59,10 @@ class G2PRegistrant(models.Model):
                         [("id", "=", head_id)]
                     )
                     given_name = head_registrant.given_name
-                    identification_no = f"{head_registrant.id:06d}"
+                    identification_no = f"{head_registrant.id:09d}"
                     birth_place = head_registrant.birth_place or ""
                     gender = head_registrant.gender or ""
                     surname = head_registrant.family_name
-                    full_name = head_registrant.name
                 else:
                     raise ValidationError(
                         _(
@@ -105,8 +103,6 @@ class G2PRegistrant(models.Model):
                     "qrcode_svg_1": f"{identification_no};{given_name};{surname}",
                 }
             }
-            data_str = str(data).replace("'", '"')
-            _logger.info("ID PASS Data: %s" % data_str)
 
             headers = {
                 "Content-Type": "application/json",
@@ -114,20 +110,18 @@ class G2PRegistrant(models.Model):
             }
             response = requests.post(
                 id_pass_param[0].api_url,
+                data=json.dumps(data),
                 headers=headers,
-                data=data_str,
             )
             if response.status_code == 200:
                 pdf_vals = response.json()
                 file_pdf = pdf_vals["files"]["pdf"]
                 file_pdf = file_pdf[28:]
                 self.id_pdf = file_pdf
-                self.id_pdf_filename = (
-                    id_pass_param[0].filename_prefix
-                    + full_name.strip()
-                    + " ("
-                    + datetime.today().strftime("%Y/%m/%d")
-                    + ").pdf"
+                self.id_pdf_filename = "{}_{}_{}.pdf".format(
+                    id_pass_param[0].filename_prefix,
+                    identification_no,
+                    datetime.today().strftime("%Y-%m-%d"),
                 )
 
                 attachment = self.env["ir.attachment"].create(
@@ -140,6 +134,8 @@ class G2PRegistrant(models.Model):
                         "mimetype": "application/x-pdf",
                     }
                 )
+
+                # TODO: Add the identification_no to the ID of the registrant
 
                 attachment_id = {attachment.id}
                 model_id = self.env["res.partner"].search([("id", "=", self.id)])
