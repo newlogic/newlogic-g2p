@@ -146,3 +146,29 @@ class G2PProgramMembership(models.Model):
                     "default_program_id": rec.program_id.id,
                 },
             }
+
+    def open_registrant_form(self):
+        if self.partner_id.is_group:
+            return {
+                "name": "Group Member",
+                "view_mode": "form",
+                "res_model": "res.partner",
+                "res_id": self.partner_id.id,
+                "view_id": self.env.ref("g2p_registrant.view_groups_form").id,
+                "type": "ir.actions.act_window",
+                "target": "new",
+                "context": {"default_is_group": True},
+                "flags": {"mode": "readonly"},
+            }
+        else:
+            return {
+                "name": "Individual Member",
+                "view_mode": "form",
+                "res_model": "res.partner",
+                "res_id": self.partner_id.id,
+                "view_id": self.env.ref("g2p_registrant.view_individuals_form").id,
+                "type": "ir.actions.act_window",
+                "target": "new",
+                "context": {"default_is_group": False},
+                "flags": {"mode": "readonly"},
+            }

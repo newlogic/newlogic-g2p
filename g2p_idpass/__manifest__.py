@@ -29,6 +29,8 @@
     "depends": ["base", "g2p_registrant"],
     "data": [
         "views/registrant.xml",
+        "security/ir.model.access.csv",
+        "views/id_pass_view.xml",
     ],
     "assets": {},
     "demo": [],

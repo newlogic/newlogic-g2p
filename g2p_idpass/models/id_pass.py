@@ -17,5 +17,20 @@
 # limitations under the License.
 #
 
-from . import id_pass
-from . import registrant
+from odoo import fields, models
+
+
+class G2PIDPass(models.Model):
+    _name = "g2p.id.pass"
+
+    api_url = fields.Text("API URL")
+    api_username = fields.Char("API Username")
+    api_password = fields.Char("API Password")
+    filename_prefix = fields.Char("File Name Prefix")
+    expiry_length = fields.Float("ID Expiry Length")
+    expiry_length_type = fields.Selection(
+        [("years", "Years"), ("months", "Months"), ("days", "Days")],
+        "Length Type",
+        default="years",
+    )
+    is_active = fields.Boolean("Active")

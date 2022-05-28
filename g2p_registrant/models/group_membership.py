@@ -17,8 +17,12 @@
 # limitations under the License.
 #
 
+import logging
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class G2PGroupMembership(models.Model):
@@ -48,6 +52,29 @@ class G2PGroupMembership(models.Model):
     end_date = fields.Datetime(
         "End Date", tracking=True
     )  # TODO: Should rename `ended_date` add a check that the date is in the past
+
+    @api.onchange("kind")
+    def _kind_onchange(self):
+        unique_kinds = self.env["g2p.group.membership.kind"].search(
+            [("is_unique", "=", True)]
+        )
+        for unique_kind_id in unique_kinds:
+            unique_count = 0
+            for line in self.group.group_membership_ids:
+                for rec_line in line.kind:
+                    kind_id = str(rec_line.id)
+                    kind_str = ""
+                    for m in kind_id:
+                        if m.isdigit():
+                            kind_str = kind_str + m
+                    if rec_line.id == unique_kind_id.id or kind_str == str(
+                        unique_kind_id.id
+                    ):
+                        unique_count += 1
+            if unique_count > 1:
+                raise ValidationError(
+                    _("Only one %s is allowed per group" % unique_kind_id.name)
+                )
 
     @api.constrains("individual")
     def _check_group_members(self):
@@ -109,3 +136,4 @@ class G2PGroupMembershipKind(models.Model):
     _order = "id desc"
 
     name = fields.Char("Kind")
+    is_unique = fields.Boolean("Unique")
