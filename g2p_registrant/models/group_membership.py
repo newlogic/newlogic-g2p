@@ -17,8 +17,12 @@
 # limitations under the License.
 #
 
+import logging
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class G2PGroupMembership(models.Model):
@@ -48,6 +52,29 @@ class G2PGroupMembership(models.Model):
     end_date = fields.Datetime(
         "End Date", tracking=True
     )  # TODO: Should rename `ended_date` add a check that the date is in the past
+
+    @api.onchange("kind")
+    def _kind_onchange(self):
+        head_count = 0
+        principal_count = 0
+        for line in self.group.group_membership_ids:
+            for rec_line in line.kind:
+                kind_id = str(rec_line.id)
+                kind_str = ""
+                for m in kind_id:
+                    if m.isdigit():
+                        kind_str = kind_str + m
+                _logger.info("Kind ID: %s" % kind_str)
+                if rec_line.id == 1 or kind_str == "1":
+                    head_count += 1
+                if rec_line.id == 2 or kind_str == "2":
+                    principal_count += 1
+        if head_count > 1 and principal_count > 1:
+            raise ValidationError(_("Only one head or principal is allowed per group"))
+        elif head_count > 1:
+            raise ValidationError(_("Only one head is allowed per group"))
+        elif principal_count > 1:
+            raise ValidationError(_("Only one principal is allowed per group"))
 
     @api.constrains("individual")
     def _check_group_members(self):
