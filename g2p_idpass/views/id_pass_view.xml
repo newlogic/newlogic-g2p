@@ -1,0 +1,50 @@
+<odoo>
+    <record id="view_g2p_idpass_tree" model="ir.ui.view">
+        <field name="name">view_g2p_idpass_tree</field>
+        <field name="model">g2p.id.pass</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree string="ID Pass Configuration" editable="bottom">
+                <field name="api_url" />
+                <field name="api_username" />
+                <field name="api_password" />
+                <field name="filename_prefix" />
+                <field name="expiry_length" />
+                <field name="expiry_length_type" />
+                <field name="is_active" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_g2p_idpass" model="ir.actions.act_window">
+        <field name="name">ID Pass Configuration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">g2p.id.pass</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{}</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new ID Pass Configuration!
+            </p><p>
+                Click the create button to enter the configuration of the IP Pass.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_g2p_idpass_tree_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_g2p_idpass_tree" />
+        <field name="act_window_id" ref="action_g2p_idpass" />
+    </record>
+
+    <menuitem
+        id="menu_g2p_idpass"
+        name="ID Pass"
+        action="action_g2p_idpass"
+        parent="g2p_registrant.g2p_configuration_menu_root"
+        sequence="32"
+        groups="g2p_registrant.group_g2p_admin"
+    />
+</odoo>
