@@ -18,7 +18,7 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <tree string="Group Memberships" editable="bottom">
-                <field name="name" required="1"/>
+                <field name="name" required="1" />
                 <field name="is_unique" />
             </tree>
         </field>
@@ -48,12 +48,12 @@
     </record>
 
     <menuitem
-      id="menu_group_membership_kind"
-      name="Group Membership Kind"
-      action="action_group_membership_kind"
-      parent="g2p_configuration_menu_root"
-      sequence="31"
-      groups="g2p_registrant.group_g2p_admin"
+        id="menu_group_membership_kind"
+        name="Group Membership Kind"
+        action="action_group_membership_kind"
+        parent="g2p_configuration_menu_root"
+        sequence="31"
+        groups="g2p_registrant.group_g2p_admin"
     />
 
 </odoo>
