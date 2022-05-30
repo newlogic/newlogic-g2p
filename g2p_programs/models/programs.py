@@ -314,7 +314,7 @@ class G2PProgram(models.Model):
             )
             rec.update({"journal_id": new_journal.id})
 
-    def end_project(self):
+    def end_program(self):
         for rec in self:
             if rec.state == "active":
                 rec.update({"state": "ended"})
@@ -333,7 +333,7 @@ class G2PProgram(models.Model):
                     },
                 }
 
-    def reactivate_project(self):
+    def reactivate_program(self):
         for rec in self:
             if rec.state == "ended":
                 rec.update({"state": "active"})
@@ -352,7 +352,7 @@ class G2PProgram(models.Model):
                     },
                 }
 
-    def archive_project(self):
+    def archive_program(self):
         for rec in self:
             if rec.state in ("ended", "active"):
                 rec.update({"state": "archived"})
