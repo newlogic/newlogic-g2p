@@ -148,10 +148,10 @@ class G2PGroupMembershipKind(models.Model):
             external_identifier = self.env["ir.model.data"].search(
                 [("res_id", "=", rec.id), ("model", "=", "g2p.group.membership.kind")]
             )
-            if (
-                external_identifier.name == "group_membership_kind_head"
-                or external_identifier.name == "group_membership_kind_principal"
-                or external_identifier.name == "group_membership_kind_alternative"
+            if external_identifier.name in (
+                "group_membership_kind_head",
+                "group_membership_kind_principal",
+                "group_membership_kind_alternative",
             ):
                 raise ValidationError(_("Can't delete default kinds"))
             else:
@@ -161,10 +161,10 @@ class G2PGroupMembershipKind(models.Model):
         external_identifier = self.env["ir.model.data"].search(
             [("res_id", "=", self.id), ("model", "=", "g2p.group.membership.kind")]
         )
-        if (
-            external_identifier.name == "group_membership_kind_head"
-            or external_identifier.name == "group_membership_kind_principal"
-            or external_identifier.name == "group_membership_kind_alternative"
+        if external_identifier.name in (
+            "group_membership_kind_head",
+            "group_membership_kind_principal",
+            "group_membership_kind_alternative",
         ):
             raise ValidationError(_("Can't edit default kinds"))
         else:
