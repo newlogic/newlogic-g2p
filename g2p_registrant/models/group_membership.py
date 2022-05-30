@@ -142,3 +142,30 @@ class G2PGroupMembershipKind(models.Model):
 
     name = fields.Char("Kind")
     is_unique = fields.Boolean("Unique")
+
+    def unlink(self):
+        for rec in self:
+            external_identifier = self.env["ir.model.data"].search(
+                [("res_id", "=", rec.id), ("model", "=", "g2p.group.membership.kind")]
+            )
+            if (
+                external_identifier.name == "group_membership_kind_head"
+                or external_identifier.name == "group_membership_kind_principal"
+                or external_identifier.name == "group_membership_kind_alternative"
+            ):
+                raise ValidationError(_("Can't delete default kinds"))
+            else:
+                return super(G2PGroupMembershipKind, self).unlink()
+
+    def write(self, vals):
+        external_identifier = self.env["ir.model.data"].search(
+            [("res_id", "=", self.id), ("model", "=", "g2p.group.membership.kind")]
+        )
+        if (
+            external_identifier.name == "group_membership_kind_head"
+            or external_identifier.name == "group_membership_kind_principal"
+            or external_identifier.name == "group_membership_kind_alternative"
+        ):
+            raise ValidationError(_("Can't edit default kinds"))
+        else:
+            return super(G2PGroupMembershipKind, self).write(vals)
