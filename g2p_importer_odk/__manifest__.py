@@ -28,7 +28,7 @@
     "depends": [
         "base",
         "g2p_additional_data",
-        "g2p_location",
+        # "g2p_location",
         "g2p_registrant",
         # oca
         "connector_importer",
