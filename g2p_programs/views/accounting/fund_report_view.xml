@@ -17,7 +17,15 @@
         <field name="model">g2p.program.fund.report.view</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
-            <tree string="Program Fund Report" sample="1" create="0" edit="0" delete="0">
+            <tree
+                string="Program Fund Report"
+                sample="1"
+                create="0"
+                edit="0"
+                delete="0"
+                decoration-bf="amount &gt; 0.0"
+                decoration-primary="amount &gt; 0.0"
+            >
                 <field name="name" />
                 <field name="date_posted" />
                 <field name="partner_id" />
