@@ -23,14 +23,14 @@
                 <field name="eligible_beneficiaries_count" string="# Beneficiaries" />
                 <field name="cycles_count" string="# Cycles" />
                 <field name="company_id" groups="base.group_multi_company" />
-                <field
+                <!-- <field
                     name="state"
                     decoration-success="state=='active'"
                     decoration-warning="state=='ended'"
                     decoration-danger="state=='archived'"
                     widget="badge"
                     string="State"
-                />
+                /> -->
             </tree>
         </field>
     </record>
