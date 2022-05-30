@@ -24,6 +24,10 @@
                 <xpath expr="//field[@name='email']" position="after">
                   <field name="id_pdf" string="ID PASS Card" filename="id_pdf_filename" />
                   <field name="id_pdf_filename" invisible="1" />
+                  <field name="image_1920_filename" invisible="1" />
+                </xpath>
+                <xpath expr="//field[@name='image_1920']" position="attributes">
+                  <attribute name="filename">image_1920_filename</attribute>
                 </xpath>
             </field>
         </record>

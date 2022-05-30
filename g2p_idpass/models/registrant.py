@@ -35,6 +35,7 @@ class G2PRegistrant(models.Model):
 
     id_pdf = fields.Binary("ID PASS")
     id_pdf_filename = fields.Char("ID File Name")
+    image_1920_filename = fields.Char("Image 1920 FileName")
 
     def send_idpass_parameters(self):  # noqa: C901
         id_pass_param = self.env["g2p.id.pass"].search([("is_active", "=", True)])
@@ -45,6 +46,8 @@ class G2PRegistrant(models.Model):
             birth_place = self.birth_place or ""
             gender = self.gender or ""
             surname = self.family_name
+            profile_pic = self.image_1920 or False
+            profile_pic_filename = self.image_1920_filename or False
             if self.is_group:
                 head_id = 0
                 for group_member in self.group_membership_ids:
@@ -63,6 +66,8 @@ class G2PRegistrant(models.Model):
                     birth_place = head_registrant.birth_place or ""
                     gender = head_registrant.gender or ""
                     surname = head_registrant.family_name
+                    profile_pic = head_registrant.image_1920 or False
+                    profile_pic_filename = head_registrant.image_1920_filename or False
                 else:
                     raise ValidationError(
                         _(
@@ -86,9 +91,23 @@ class G2PRegistrant(models.Model):
                 expiry_date = datetime.today() + relativedelta(
                     days=id_pass_param[0].expiry_length
                 )
-
             expiry_date = expiry_date.strftime("%Y/%m/%d")
             # TODO: JJ - Find a good way to generate ID document number
+            profile_pic = str(profile_pic)
+            profile_pic = profile_pic[2:]
+            file_type = ""
+            if profile_pic_filename:
+                file_type = profile_pic_filename.partition(".")[2]
+                if file_type == "jpg":
+                    file_type = "jpeg"
+            else:
+                if profile_pic:
+                    raise ValidationError(
+                        _("ID PASS Error: Please try reuploading the ID Picture")
+                    )  # noqa: C901
+            profile_pic_url = ""
+            if profile_pic and file_type in ("jpeg", "png"):
+                profile_pic_url = "data:image/" + file_type + ";base64," + profile_pic
 
             data = {
                 "fields": {
@@ -101,6 +120,7 @@ class G2PRegistrant(models.Model):
                     "sex": gender,
                     "surname": surname,
                     "qrcode_svg_1": f"{identification_no};{given_name};{surname}",
+                    "profile_svg_6": profile_pic_url,
                 }
             }
 
@@ -141,6 +161,25 @@ class G2PRegistrant(models.Model):
                 model_id = self.env["res.partner"].search([("id", "=", self.id)])
                 msg_body = "Generated ID: " + self.id_pdf_filename
                 model_id.message_post(body=msg_body, attachment_ids=attachment_id)
+
+                external_identifier = self.env["ir.model.data"].search(
+                    [("name", "=", "id_type_idpass"), ("model", "=", "g2p.id.type")]
+                )
+                _logger.info("External Identifier: %s" % external_identifier.res_id)
+                self.write(
+                    {
+                        "reg_ids": [
+                            (
+                                0,
+                                0,
+                                {
+                                    "id_type": external_identifier.res_id,
+                                    "value": identification_no,
+                                },
+                            )
+                        ]
+                    }
+                )
             else:
                 raise ValidationError(
                     _(

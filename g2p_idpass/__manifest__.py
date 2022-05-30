@@ -28,6 +28,7 @@
     "license": "Other OSI approved licence",
     "depends": ["base", "g2p_registrant"],
     "data": [
+        "data/id_pass.xml",
         "views/registrant.xml",
         "security/ir.model.access.csv",
         "views/id_pass_view.xml",
