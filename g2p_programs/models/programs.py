@@ -92,6 +92,13 @@ class G2PProgram(models.Model):
     )
     cycle_ids = fields.One2many("g2p.cycle", "program_id", "Cycles")
 
+    state = fields.Selection(
+        [("active", "Active"), ("ended", "Ended"), ("archived", "Archived")],
+        "Status",
+        default="active",
+        readonly=True,
+    )
+
     # Accounting config
     journal_id = fields.Many2one(
         "account.journal",
@@ -306,6 +313,63 @@ class G2PProgram(models.Model):
                 }
             )
             rec.update({"journal_id": new_journal.id})
+
+    def end_project(self):
+        for rec in self:
+            if rec.state == "active":
+                rec.update({"state": "ended"})
+            else:
+                message = _("Ony 'active' projects can be ended.")
+                kind = "danger"
+
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Project"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,
+                    },
+                }
+
+    def reactivate_project(self):
+        for rec in self:
+            if rec.state == "ended":
+                rec.update({"state": "active"})
+            else:
+                message = _("Ony 'ended' projects can be re-activated.")
+                kind = "danger"
+
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Project"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,
+                    },
+                }
+
+    def archive_project(self):
+        for rec in self:
+            if rec.state in ("ended", "active"):
+                rec.update({"state": "archived"})
+            else:
+                message = _("Ony 'active' and 'ended' projects can be archived.")
+                kind = "danger"
+
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Project"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,
+                    },
+                }
 
     def open_eligible_beneficiaries_form(self):
         self.ensure_one()

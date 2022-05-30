@@ -1,5 +1,9 @@
 Format in CHANGELOG.md
 
+## Version[0.12] - 2022-05-30
+
+- [ADD] Program status
+
 ## Version[0.11] - 2022-05-27
 
 - [ADD] Program Fund Report
