@@ -92,11 +92,10 @@ class G2PRegistrant(models.Model):
                     days=id_pass_param[0].expiry_length
                 )
             expiry_date = expiry_date.strftime("%Y/%m/%d")
-            # TODO: JJ - Find a good way to generate ID document number
-            profile_pic = str(profile_pic)
-            profile_pic = profile_pic[2:]
+
             file_type = ""
             if profile_pic_filename:
+
                 file_type = profile_pic_filename.partition(".")[2]
                 if file_type == "jpg":
                     file_type = "jpeg"
@@ -106,8 +105,6 @@ class G2PRegistrant(models.Model):
                         _("ID PASS Error: Please try reuploading the ID Picture")
                     )  # noqa: C901
             profile_pic_url = ""
-            if profile_pic and file_type in ("jpeg", "png"):
-                profile_pic_url = "data:image/" + file_type + ";base64," + profile_pic
 
             data = {
                 "fields": {
@@ -120,9 +117,19 @@ class G2PRegistrant(models.Model):
                     "sex": gender,
                     "surname": surname,
                     "qrcode_svg_1": f"{identification_no};{given_name};{surname}",
-                    "profile_svg_6": profile_pic_url,
                 }
             }
+
+            if profile_pic and file_type in ("jpeg", "png"):
+                profile_pic = str(profile_pic)
+                profile_pic = profile_pic[2:]
+                profile_pic_url = "data:image/" + file_type + ";base64," + profile_pic
+
+                data["fields"].update(
+                    {
+                        "profile_svg_6": profile_pic_url,
+                    }
+                )
 
             headers = {
                 "Content-Type": "application/json",
