@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-g2p_location_admin,Location Admin Access,g2p_location.model_g2p_location,g2p_registrant.group_g2p_admin,1,1,1,1
-g2p_location_import_admin,Location Import Admin Access,g2p_location.model_g2p_location_import,g2p_registrant.group_g2p_admin,1,1,1,1
-g2p_location_import_raw_admin,Location Import Raw Admin Access,g2p_location.model_g2p_location_import_raw,g2p_registrant.group_g2p_admin,1,1,1,1
-g2p_location_import_raw_lang_admin,Location Import Raw Languages Admin Access,g2p_location.model_g2p_location_import_lang,g2p_registrant.group_g2p_admin,1,1,1,1

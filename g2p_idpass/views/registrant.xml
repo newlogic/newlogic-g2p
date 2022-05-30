@@ -15,8 +15,8 @@
                         name="send_idpass_parameters"
                     >
                           <div class="o_form_field o_stat_info">
-                              <span class="o_stat_text">Generate</span>
-                              <span class="o_stat_text">ID</span>
+                              <span class="o_stat_text">Issue</span>
+                              <span class="o_stat_text">ID PASS</span>
                           </div>
                   </button>
                 </xpath>
@@ -46,8 +46,8 @@
                         name="send_idpass_parameters"
                     >
                           <div class="o_form_field o_stat_info">
-                              <span class="o_stat_text">Generate</span>
-                              <span class="o_stat_text">ID</span>
+                              <span class="o_stat_text">Issue</span>
+                              <span class="o_stat_text">ID PASS</span>
                           </div>
                   </button>
                 </xpath>

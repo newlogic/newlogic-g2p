@@ -49,7 +49,6 @@ class ImportSourceODK(models.Model):
 
     source_id = fields.Many2one("g2p.datasource", "Source")
     tags = fields.Many2many("g2p.additional.data.tags", string="Tags")
-    location_id = fields.Many2one("g2p.location", "Location")
 
     # TODO: Do we need company_id?
 
@@ -67,22 +66,17 @@ class ImportSourceODK(models.Model):
     def _inject_config(self, results):
         """Inject config to data."""
         source_id = None
-        location_id = None
         tag_ids = []
 
         # force external IDs
-        # self.export_data(['source_id', 'location_id', 'tags'])
+        # self.export_data(['source_id', 'tags'])
 
         if self.source_id:
             self.source_id.export_data(["id"])
             source_id = list(self.source_id.get_external_id().values())[0]
-        if self.location_id:
-            self.location_id.export_data(["id"])
-            location_id = list(self.location_id.get_external_id().values())[0]
 
         for result in results["value"]:
             result["source_id"] = source_id
-            result["location_id"] = location_id
             result["tag_ids"] = tag_ids
 
     def get_lines(self):

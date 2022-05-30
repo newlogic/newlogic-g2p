@@ -44,13 +44,6 @@ limitations under the License.  -->
                         string="Tag"
                     />
 
-                    <field
-                        id="location_id"
-                        name="location_id"
-                        placeholder="Select a location to assign..."
-                        options="{'no_open':True,'no_create_edit':True,'no_create':True}"
-                    />
-
                 </group>
             </group>
         </field>
