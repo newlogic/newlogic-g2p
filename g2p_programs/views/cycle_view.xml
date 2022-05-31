@@ -144,7 +144,7 @@
                         />
                     </group>
                     <notebook>
-                        <page string="Dashboard">
+                        <page string="Dashboard" name="dashboard">
                         </page>
                         <!-- <page string="Beneficiaries">
                           <field name="cycle_membership_ids" nolabel="1">

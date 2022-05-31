@@ -89,7 +89,7 @@ class ProgramFundManagement(models.Model):
                 }
             else:
                 message = _("Only draft program funds can be posted.")
-                kind = "error"
+                kind = "danger"
                 return {
                     "type": "ir.actions.client",
                     "tag": "display_notification",
@@ -107,7 +107,7 @@ class ProgramFundManagement(models.Model):
                 rec.update({"state": "cancelled"})
             else:
                 message = _("Only draft program funds can be cancelled.")
-                kind = "error"
+                kind = "danger"
                 return {
                     "type": "ir.actions.client",
                     "tag": "display_notification",

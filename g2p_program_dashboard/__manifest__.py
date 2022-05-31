@@ -31,13 +31,13 @@
     "assets": {
         "web.assets_backend": [
             "g2p_program_dashboard/static/src/scss/style.scss",
-            "g2p_program_dashboard/static/lib/bootstrap-toggle-master/css/bootstrap-toggle.min.css",
+            "g2p_program_dashboard/static/libs/bootstrap-toggle-master/css/bootstrap-toggle.min.css",
             "g2p_program_dashboard/static/src/js/program_dashboard.js",
-            "g2p_program_dashboard/static/lib/Chart.bundle.js",
-            "g2p_program_dashboard/static/lib/Chart.bundle.min.js",
-            "g2p_program_dashboard/static/lib/Chart.min.js",
-            "g2p_program_dashboard/static/lib/Chart.js",
-            "g2p_program_dashboard/static/lib/bootstrap-toggle-master/js/bootstrap-toggle.min.js",
+            "g2p_program_dashboard/static/libs/Chart.bundle.js",
+            "g2p_program_dashboard/static/libs/Chart.bundle.min.js",
+            "g2p_program_dashboard/static/libs/Chart.min.js",
+            "g2p_program_dashboard/static/libs/Chart.js",
+            "g2p_program_dashboard/static/libs/bootstrap-toggle-master/js/bootstrap-toggle.min.js",
         ],
         "web.assets_qweb": [
             "g2p_program_dashboard/static/src/xml/dashboard_template.xml",

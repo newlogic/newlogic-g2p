@@ -17,9 +17,12 @@
 # limitations under the License.
 #
 import calendar
+import logging
 from datetime import datetime
 
 from odoo import api, models
+
+_logger = logging.getLogger(__name__)
 
 # from odoo.http import request
 
@@ -74,34 +77,29 @@ class ProgramDashBoard(models.Model):
         for x in range(1, day + 1):
             day_list.append(x)
 
+        # _logger.info("DEBUG! company_id: %s", company_id)
+
         # TODO: Add date_created in g2p.program
-        self._cr.execute(
-            (
-                """select count(id) as programs_count ,cast(to_char(create_date::DATE, 'DD')as int)
-                            as date from g2p_program
-                            where  Extract(month FROM create_date::DATE) = Extract(month FROM DATE(NOW()))
-                            AND Extract(YEAR FROM create_date::DATE) = Extract(YEAR FROM DATE(NOW()))
-                            AND company_id = %s
-                            group by date
-                        """,
-                (company_id),
-            )
-        )
+        sql = """select count(id) as programs_count ,cast(to_char(create_date::DATE, 'DD')as int)
+                    as date from g2p_program
+                    where  Extract(month FROM create_date::DATE) = Extract(month FROM DATE(NOW()))
+                    AND Extract(YEAR FROM create_date::DATE) = Extract(YEAR FROM DATE(NOW()))
+                    AND company_id = %s and state != 'archived'
+                    group by date
+        """
+        params = (company_id,)
+        self._cr.execute(sql, params)
         programs_count_rec = self._cr.dictfetchall()
 
         # TODO: Add date_approved in g2p.program
-        self._cr.execute(
-            (
-                """select count(id) as approved_programs_count ,cast(to_char(write_date::DATE, 'DD')as int)
-                            as date from g2p_program
-                            where  Extract(month FROM write_date::DATE) = Extract(month FROM DATE(NOW()))
-                            AND Extract(YEAR FROM write_date::DATE) = Extract(YEAR FROM DATE(NOW()))
-                            AND company_id = %s and state = 'approved'
-                            group by date
-                        """,
-                (company_id),
-            )
-        )
+        sql = """select count(id) as approved_programs_count ,cast(to_char(write_date::DATE, 'DD')as int) \
+                   as date from g2p_program \
+                   where  Extract(month FROM write_date::DATE) = Extract(month FROM DATE(NOW())) \
+                   AND Extract(YEAR FROM write_date::DATE) = Extract(YEAR FROM DATE(NOW())) \
+                   AND company_id = %s and state = 'approved' \
+                   group by date
+        """
+        self._cr.execute(sql, params)
         approved_programs_count_rec = self._cr.dictfetchall()
 
         records = []

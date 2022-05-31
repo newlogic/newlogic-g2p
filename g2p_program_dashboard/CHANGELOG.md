@@ -3,6 +3,7 @@ Format in CHANGELOG.md
 ## Version[0.03] - 2022-05-31
 
 - [ADD] Cycle Statistics
+- [ADD] Voucher Statistics
 - [ADD] Program Graphs
 
 ## Version[0.02] - 2022-05-27
