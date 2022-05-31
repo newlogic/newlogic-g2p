@@ -55,6 +55,73 @@ class G2PRegistrantRelationship(models.Model):
                     _("Registrant 1 and Registrant 2 cannot be the same.")
                 )
 
+    @api.constrains("start_date", "end_date")
+    def _check_dates(self):
+        for record in self:
+            if (
+                record.start_date
+                and record.end_date
+                and record.start_date > record.end_date
+            ):
+                raise ValidationError(
+                    _("The starting date cannot be after the ending date.")
+                )
+
+    @api.constrains("registrant1", "relation", "registrant2", "start_date", "end_date")
+    def _check_relation_uniqueness(self):
+        """Forbid multiple active relations of the same type between the same
+        partners
+        :raises ValidationError: When constraint is violated
+        """
+        # pylint: disable=no-member
+        # pylint: disable=no-value-for-parameter
+        for record in self:
+            domain = [
+                ("relation", "=", record.relation.id),
+                ("id", "!=", record.id),
+                ("registrant1", "=", record.registrant1.id),
+                ("registrant2", "=", record.registrant2.id),
+            ]
+            if record.start_date:
+                domain += [
+                    "|",
+                    ("end_date", "=", False),
+                    ("end_date", ">=", record.start_date),
+                ]
+            if record.end_date:
+                domain += [
+                    "|",
+                    ("start_date", "=", False),
+                    ("start_date", "<=", record.end_date),
+                ]
+            if record.search(domain):
+                raise ValidationError(
+                    _("There is already a similar relation with " "overlapping dates")
+                )
+
+    @api.constrains("registrant1", "relation")
+    def _check_registrant1(self):
+        self._check_partner("1")
+
+    @api.constrains("registrant2", "relation")
+    def _check_registrant2(self):
+        self._check_partner("2")
+
+    def _check_partner(self, side):
+        for record in self:
+            assert side in ["1", "2"]
+            ptype = getattr(record.relation, "registrant_type_%s" % side)
+            partner = getattr(record, "registrant%s" % side)
+            if (
+                not partner.is_registrant
+                or (ptype == "i" and partner.is_group)
+                or (ptype == "g" and not partner.is_group)
+            ):
+                raise ValidationError(
+                    _("The %s partner is not applicable for this " "relation type.")
+                    % side
+                )
+
     def name_get(self):
         res = super(G2PRegistrantRelationship, self).name_get()
         for rec in self:
@@ -149,6 +216,18 @@ class G2PRelationship(models.Model):
     _description = "Relationship"
     _order = "id desc"
 
-    name = fields.Char("Name")
-    bidirectional = fields.Boolean("Bi-directional")
-    reverse_name = fields.Char("Reverse Name")
+    name = fields.Char("Name", translate=True)
+    name_inverse = fields.Char(string="Inverse name", required=True, translate=True)
+    bidirectional = fields.Boolean("Bi-directional", default=False)
+    registrant_type_1 = fields.Selection(
+        selection="get_partner_types", string="Registrant 1 partner type"
+    )
+    registrant_type_2 = fields.Selection(
+        selection="get_partner_types", string="Registrant 2 partner type"
+    )
+
+    @api.model
+    def get_partner_types(self):
+        """A partner can be an organisation or an individual."""
+        # pylint: disable=no-self-use
+        return [("g", _("Group")), ("i", _("Individual"))]

@@ -56,6 +56,12 @@
                                 <span class="o_stat_text">Registrant</span>
                             </div>
                         </button>
+<!--                        <button type="object" name="generate_sample_data">-->
+<!--                            <div class="o_form_field o_stat_info">-->
+<!--                                <span class="o_stat_text">Generate</span>-->
+<!--                                <span class="o_stat_text">sample</span>-->
+<!--                            </div>-->
+<!--                        </button>-->
                         <button
                             type="object"
                             class="oe_stat_button"
