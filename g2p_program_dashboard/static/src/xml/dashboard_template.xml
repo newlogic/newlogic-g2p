@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template id="template" xml:space="preserve">
+    <t t-name="ProgramDashBoard">
+        <div class="programs-dashboard-wrap">
+            <div
+                class="o_dashboards col-xs-12 col-sm-12 col-lg-12 col-md-12"
+                style="background-color: #e1e1e1;overflow: scroll; !important; "
+            >
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-12">
+                                <div class="dash-header">
+                                    <h1 class="custom-h1 dashboard-h1">Dashboard </h1>
+                                    <!-- <input type="checkbox" style="display:none" data-toggle="toggle" data-on="" data-off="">
+                                        <input type="checkbox" id="toggle-two"/>
+                                    </input> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin:0px">
+                <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                    <div class="">
+                        <div class="row program-details" style="margin:0px">
+                            <div class="col-md-3">
+                                <!--Total Number of Programs-->
+                                <div class="tile wide program box-1">
+                                    <div class="headers">
+                                        <div class="main-title">Number of Programs</div>
+                                        <div id="program_statistics">
+                                            <div class="left">
+                                                <div class="count">
+                                                    <span id="total_number_active_programs" />
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="count">
+                                                    <span id="total_number_ended_programs" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <!--Total Number of Cycles-->
+                                <div class="tile wide program box-2">
+                                    <div class="headers">
+                                        <div class="main-title">Number of Cycles</div>
+                                        <div id="program_statistics">
+                                            <div class="left">
+                                                <div class="count">
+                                                    <span id="total_number_new_cycles" />
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="count">
+                                                    <span id="total_number_approved_cycles" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <!--Total Number of Vouchers-->
+                                <div class="tile wide program box-3">
+                                    <div class="headers">
+                                        <div class="main-title">Number of Vouchers</div>
+                                        <div id="program_statistics">
+                                            <div class="left">
+                                                <div class="count">
+                                                    <span id="total_number_new_vouchers" />
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="count">
+                                                    <span id="total_number_approved_vouchers" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <!-- Beneficiaries -->
+                                <div class="tile wide program box-4">
+                                    <div class="headers">
+                                        <div class="main-title">Beneficiaries</div>
+                                        <div id="program_statistics">
+                                            <div class="left">
+                                                <div class="count">
+                                                    <!-- <span id="total_number_new_vouchers"/> -->
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="count">
+                                                    <!-- <span id="total_number_approved_vouchers"/> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <div class="row" style="margin:0px">
+                    <div class="col-md-4" id="col-graph">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <b>
+                                        <h3 class="custom-h3">Programs</h3>
+                                    </b>
+                                </div>
+                                <div class="card-tools">
+                                    <!--
+                                    <select id="income_expense_values" class="btn btn-primary">
+                                        <option id="income_this_year" value="income_this_year">This Year</option>
+                                        <option id="income_this_month" value="income_this_month" selected="">
+                                            This Month</option>
+                                        <div role="separator" class="dropdown-divider"/>
+                                        <option id="income_last_month" value="income_last_month">Last Month</option>
+                                        <option id="income_last_year" value="income_last_year">Last Year</option>
+                                    </select>
+                                    -->
+                                </div>
+                            </div>
+                            <div class="card-body mt-3" id="in_ex_body_hide">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p id="myelement1"> </p>
+                                        <div class="chart">
+                                            <canvas id="canvas" width="300" height="200" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid o_in_dashboard">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" id="program_grapg" />
+                <div class="dashboard-header-filter">
+                    <div class="manager_filter_class" />
+                </div>
+            </div>
+            <div id="chart-container" />
+        </div>
+    </t>
+</template>
