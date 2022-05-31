@@ -50,13 +50,13 @@
         <field name="act_window_id" ref="action_relationship" />
     </record>
 
-<!--    <menuitem-->
-<!--        id="menu_relationship"-->
-<!--        name="Relationships"-->
-<!--        action="action_relationship"-->
-<!--        parent="g2p_configuration_menu_root"-->
-<!--        sequence="20"-->
-<!--        groups="g2p_registrant.group_g2p_admin"-->
-<!--    />-->
+   <menuitem
+        id="menu_relationship"
+        name="Relationships"
+        action="action_relationship"
+        parent="g2p_configuration_menu_root"
+        sequence="20"
+        groups="g2p_registrant.group_g2p_admin"
+    />
 
 </odoo>
