@@ -309,7 +309,8 @@
                                         name="id_type"
                                         options="{'no_open':True,'no_create_edit':True,'no_create':True}"
                                     />
-                                    <field name="value" />
+                                    <field name="value" string="ID Number" />
+                                    <field name="expiry_date" />
                                 </tree>
                             </field>
                         </page>
