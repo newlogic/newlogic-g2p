@@ -118,8 +118,7 @@ class G2PRegistrantRelationship(models.Model):
                 or (ptype == "g" and not partner.is_group)
             ):
                 raise ValidationError(
-                    _("The %s partner is not applicable for this " "relation type.")
-                    % side
+                    _("This registrant is not applicable for this " "relation type.")
                 )
 
     def name_get(self):
