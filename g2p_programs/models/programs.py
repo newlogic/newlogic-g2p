@@ -234,8 +234,34 @@ class G2PProgram(models.Model):
             }
 
     def deduplicate_beneficiaries(self):
-        # 1. Deduplicate the beneficiaries using deduplication_manager.check_duplicates()
-        pass
+        for rec in self:
+            deduplication_managers = rec.get_managers(self.MANAGER_DEDUPLICATION)
+            message = None
+            kind = "success"
+            if len(deduplication_managers):
+                states = ["draft", "enrolled", "eligible", "paused", "duplicated"]
+                duplicates = 0
+                for el in deduplication_managers:
+                    duplicates += el.deduplicate_beneficiaries(states)
+
+                if duplicates > 0:
+                    message = _("%s Beneficiaries duplicate." % duplicates)
+                    kind = "warning"
+            else:
+                message = _("No Deduplication Manager defined.")
+                kind = "danger"
+
+            if message:
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": _("Deduplication"),
+                        "message": message,
+                        "sticky": True,
+                        "type": kind,
+                    },
+                }
 
     def notify_eligible_beneficiaries(self):
         # 1. Notify the beneficiaries using notification_manager.enrolled_in_program()
