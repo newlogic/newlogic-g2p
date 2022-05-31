@@ -173,20 +173,49 @@ class G2PRegistrant(models.Model):
                     [("name", "=", "id_type_idpass"), ("model", "=", "g2p.id.type")]
                 )
                 _logger.info("External Identifier: %s" % external_identifier.res_id)
-                self.write(
-                    {
-                        "reg_ids": [
-                            (
-                                0,
-                                0,
-                                {
-                                    "id_type": external_identifier.res_id,
-                                    "value": identification_no,
-                                },
-                            )
-                        ]
-                    }
+                has_existing_idpass = self.env["g2p.reg.id"].search(
+                    [
+                        ("registrant", "=", self.id),
+                        ("id_type", "=", external_identifier.res_id),
+                    ]
                 )
+                if has_existing_idpass:
+                    self.update(
+                        {
+                            "reg_ids": [
+                                (
+                                    1,
+                                    has_existing_idpass[0].id,
+                                    {
+                                        "id_type": external_identifier.res_id,
+                                        "value": identification_no,
+                                    },
+                                )
+                            ]
+                        }
+                    )
+                else:
+                    self.write(
+                        {
+                            "reg_ids": [
+                                (
+                                    0,
+                                    0,
+                                    {
+                                        "id_type": external_identifier.res_id,
+                                        "value": identification_no,
+                                    },
+                                )
+                            ]
+                        }
+                    )
+                return {
+                    "effect": {
+                        "fadeout": "slow",
+                        "message": "ID Pass has been generated!",
+                        "type": "rainbow_man",
+                    }
+                }
             else:
                 raise ValidationError(
                     _(
