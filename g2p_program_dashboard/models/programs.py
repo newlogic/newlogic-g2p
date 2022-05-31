@@ -79,26 +79,35 @@ class ProgramDashBoard(models.Model):
 
         # _logger.info("DEBUG! company_id: %s", company_id)
 
-        # TODO: Add date_created in g2p.program
+        params = (company_id,)
         sql = """select count(id) as programs_count ,cast(to_char(create_date::DATE, 'DD')as int)
                     as date from g2p_program
-                    where  Extract(month FROM create_date::DATE) = Extract(month FROM DATE(NOW()))
+                    where company_id = %s and state != 'archived'
+                    AND Extract(month FROM create_date::DATE) = Extract(month FROM DATE(NOW()))
                     AND Extract(YEAR FROM create_date::DATE) = Extract(YEAR FROM DATE(NOW()))
-                    AND company_id = %s and state != 'archived'
                     group by date
-        """
-        params = (company_id,)
+            """
         self._cr.execute(sql, params)
         programs_count_rec = self._cr.dictfetchall()
 
         # TODO: Add date_ended in g2p.program
-        sql = """select count(id) as ended_programs_count ,cast(to_char(write_date::DATE, 'DD')as int) \
-                   as date from g2p_program \
-                   where  Extract(month FROM write_date::DATE) = Extract(month FROM DATE(NOW())) \
-                   AND Extract(YEAR FROM write_date::DATE) = Extract(YEAR FROM DATE(NOW())) \
-                   AND company_id = %s and state = 'ended' \
-                   group by date
-        """
+        sql = """select count(id) as ended_programs_count ,cast(to_char(date_ended, 'DD')as int)
+                    as date from g2p_program
+                    where company_id = %s and state = 'ended'
+                    AND Extract(month FROM
+                        case when date_ended is not null then
+                            date_ended
+                        else
+                            write_date::DATE
+                        end) = Extract(month FROM DATE(NOW()))
+                    AND Extract(YEAR FROM
+                        case when date_ended is not null then
+                            date_ended
+                        else
+                            write_date::DATE
+                        end) = Extract(YEAR FROM DATE(NOW()))
+                    group by date
+            """
         self._cr.execute(sql, params)
         ended_programs_count_rec = self._cr.dictfetchall()
 

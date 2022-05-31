@@ -872,14 +872,14 @@ body {
 }
 
 // The unordered list
-.programs-dashboard-wrap .skill-list {
+.programs-dashboard-wrap .item-list {
     list-style: none;
     margin: 0;
     padding: 1em;
 }
 
 // The list item
-.programs-dashboard-wrap .skill {
+.programs-dashboard-wrap .item {
     margin-bottom: 1em;
     position: relative;
 
@@ -898,11 +898,11 @@ body {
 }
 
 // Style the bar colors
-.programs-dashboard-wrap .skill-1::-webkit-progress-value {
+.programs-dashboard-wrap .item-1::-webkit-progress-value {
     background: #c767dc;
 }
 
-.programs-dashboard-wrap .skill-1::-moz-progress-bar {
+.programs-dashboard-wrap .item-1::-moz-progress-bar {
     background: #c767dc;
 }
 

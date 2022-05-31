@@ -302,6 +302,61 @@ odoo.define("g2p_program_dashboard.ProgramDashBoard", function (require) {
                         },
                     });
                 });
+
+                //Vouchers and Funds Charts
+                rpc.query({
+                    model: "g2p.voucher",
+                    method: "get_vouchers_month",
+                    args: [],
+                }).then(function (result) {
+                    $("#total_voucher").hide();
+                    $("#total_voucher_paid").hide();
+                    $("#tot_voucher").hide();
+
+                    $("#total_voucher_paid_current_month").empty();
+                    $("#total_voucher_current_month").empty();
+                    $("#tot_voucher_current_month").empty();
+
+                    $("#total_voucher_paid_current_year").hide();
+                    $("#total_voucher_current_year").hide();
+                    $("#tot_voucher_current_year").hide();
+
+                    $("#total_voucher_paid_current_month").show();
+                    $("#total_voucher_current_month").show();
+                    $("#tot_voucher_current_month").show();
+
+                    var tot_voucher_current_month = result[0][0];
+                    var tot_paid_voucher_current_month = result[1][0];
+                    var total_voucher_current_month = tot_voucher_current_month.toFixed(2);
+                    var total_voucher_paid_current_month = tot_paid_voucher_current_month.toFixed(2);
+                    var voucher_percentage_current_month = (
+                        (total_voucher_current_month / total_voucher_paid_current_month) *
+                        100
+                    ).toFixed(2);
+
+                    $("#tot_voucher_current_month").attr("value", total_voucher_paid_current_month);
+                    $("#tot_voucher_current_month").attr("max", total_voucher_current_month);
+
+                    currency = result[2];
+                    total_voucher_paid_current_month = self.format_currency(
+                        currency,
+                        total_voucher_paid_current_month
+                    );
+                    total_voucher_current_month = self.format_currency(currency, total_voucher_current_month);
+
+                    $("#total_voucher_paid_current_month").append(
+                        '<div class="logo">' +
+                            "<span>" +
+                            total_voucher_paid_current_month +
+                            "</span><span> Total Paid<span></div>"
+                    );
+                    $("#total_voucher_current_month").append(
+                        '<div" class="logo">' +
+                            "<span>" +
+                            total_voucher_current_month +
+                            "</span><span> Total Vouchers<span></div>"
+                    );
+                });
             });
         },
 

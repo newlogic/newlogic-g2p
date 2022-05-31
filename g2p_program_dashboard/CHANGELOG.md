@@ -5,6 +5,7 @@ Format in CHANGELOG.md
 - [ADD] Cycle Statistics
 - [ADD] Voucher Statistics
 - [ADD] Program Graphs
+- [ADD] Voucher Charts
 
 ## Version[0.02] - 2022-05-27
 
