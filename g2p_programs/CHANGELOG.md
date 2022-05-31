@@ -1,5 +1,9 @@
 Format in CHANGELOG.md
 
+## Version[0.13] - 2022-05-31
+
+- [ADD] date_ended and date_archived in g2p.program
+
 ## Version[0.12] - 2022-05-30
 
 - [ADD] Program status

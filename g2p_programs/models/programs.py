@@ -92,6 +92,8 @@ class G2PProgram(models.Model):
     )
     cycle_ids = fields.One2many("g2p.cycle", "program_id", "Cycles")
 
+    date_ended = fields.Date("Date Ended")
+    date_archived = fields.Date("Date Archived")
     state = fields.Selection(
         [("active", "Active"), ("ended", "Ended"), ("archived", "Archived")],
         "Status",
@@ -317,16 +319,16 @@ class G2PProgram(models.Model):
     def end_program(self):
         for rec in self:
             if rec.state == "active":
-                rec.update({"state": "ended"})
+                rec.update({"state": "ended", "date_ended": fields.Date.today()})
             else:
-                message = _("Ony 'active' projects can be ended.")
+                message = _("Ony 'active' programs can be ended.")
                 kind = "danger"
 
                 return {
                     "type": "ir.actions.client",
                     "tag": "display_notification",
                     "params": {
-                        "title": _("Project"),
+                        "title": _("Program"),
                         "message": message,
                         "sticky": True,
                         "type": kind,
@@ -336,9 +338,9 @@ class G2PProgram(models.Model):
     def reactivate_program(self):
         for rec in self:
             if rec.state == "ended":
-                rec.update({"state": "active"})
+                rec.update({"state": "active", "date_ended": None})
             else:
-                message = _("Ony 'ended' projects can be re-activated.")
+                message = _("Ony 'ended' programs can be re-activated.")
                 kind = "danger"
 
                 return {
@@ -355,16 +357,16 @@ class G2PProgram(models.Model):
     def archive_program(self):
         for rec in self:
             if rec.state in ("ended", "active"):
-                rec.update({"state": "archived"})
+                rec.update({"state": "archived", "date_archived": fields.Date.today()})
             else:
-                message = _("Ony 'active' and 'ended' projects can be archived.")
+                message = _("Ony 'active' and 'ended' programs can be archived.")
                 kind = "danger"
 
                 return {
                     "type": "ir.actions.client",
                     "tag": "display_notification",
                     "params": {
-                        "title": _("Project"),
+                        "title": _("Program"),
                         "message": message,
                         "sticky": True,
                         "type": kind,
