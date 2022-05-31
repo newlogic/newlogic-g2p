@@ -70,6 +70,7 @@ class G2PVoucher(models.Model):
     )
     disbursement_id = fields.Many2one("account.payment", "Disbursement Journal Entry")
 
+    date_approved = fields.Date("Date Approved")
     state = fields.Selection(
         [
             ("draft", "Draft"),
@@ -138,7 +139,13 @@ class G2PVoucher(models.Model):
                     "partner_type": "supplier",
                 }
                 new_payment = self.env["account.payment"].create(payment)
-                rec.update({"disbursement_id": new_payment.id, "state": "approved"})
+                rec.update(
+                    {
+                        "disbursement_id": new_payment.id,
+                        "state": "approved",
+                        "date_approved": fields.Date.today(),
+                    }
+                )
             else:
                 message = _("The voucher must be in 'pending validation' state.")
                 kind = "danger"

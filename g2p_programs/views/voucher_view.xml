@@ -99,6 +99,7 @@
                         <group>
                             <field name="valid_from" attrs="{'readonly':[('state','!=','draft')]}" />
                             <field name="valid_until" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field name="date_approved" readonly="1" />
                         </group>
                     </group>
                     <group string="Disbursement" colspan="4" col="4">
