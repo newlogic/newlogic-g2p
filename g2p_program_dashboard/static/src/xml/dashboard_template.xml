@@ -155,6 +155,100 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-4" id="col-graph">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <b>
+                                        <h3 class="custom-h3">VOUCHERS and PROGRAM FUNDS</h3>
+                                    </b>
+                                </div>
+                                <div class="card-tools">
+                                    <select id="voucher_values" class="btn btn-primary">
+                                        <option id="voucher_this_month" value="this_month">This Month</option>
+                                        <option id="voucher_this_year" value="this_year">This Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--card-header-->
+                            <div class="card-body" id="">
+                                <div class="row">
+                                    <div class="col-md-12 mt-3">
+                                        <h1 class="custom-h1" style="margin-bottom: 0;">Vouchers</h1>
+                                        <ul class="item-list">
+                                            <li
+                                                class="item"
+                                                style="display: flex;justify-content: space-between;color: #000;"
+                                            >
+                                                <p id="total_voucher_paid" />
+                                                <p id="total_voucher" />
+                                                <p id="total_voucher_paid_current_year" />
+                                                <p id="total_voucher_current_year" />
+                                                <p id="total_voucher_paid_current_month" />
+                                                <p id="total_voucher_current_month" />
+                                            </li>
+                                            <li>
+                                                <progress id="tot_voucher" class="item-1" max="" value="">
+                                                    <strong>Level: 50%</strong>
+                                                </progress>
+                                            </li>
+                                            <li>
+                                                <progress
+                                                    id="tot_voucher_current_year"
+                                                    class="item-1"
+                                                    max=""
+                                                    value=""
+                                                >
+                                                    <strong>Level: 50%</strong>
+                                                </progress>
+                                            </li>
+                                            <li>
+                                                <progress
+                                                    id="tot_voucher_current_month"
+                                                    class="item-1"
+                                                    max=""
+                                                    value=""
+                                                >
+                                                    <strong>Level: 50%</strong>
+                                                </progress>
+                                            </li>
+                                        </ul>
+                                        <div role="separator" class="dropdown-divider" />
+                                        <h1 class="custom-h1" style="margin-bottom: 0;">Program Funds</h1>
+                                        <ul class="item-list">
+                                            <li
+                                                class="item"
+                                                style="display: flex;justify-content: space-between;color: #000;"
+                                            >
+                                                <p id="total_funds_received" />
+                                                <p id="total_funds" />
+                                                <p id="total_funds_received_current_year" />
+                                                <p id="total_funds_current_year" />
+                                                <p id="total_funds_received_current_month" />
+                                                <p id="total_funds_current_month" />
+                                            </li>
+                                            <li>
+                                                <progress id="tot_funds_rcv" class="item-1" max="" value="">
+                                                    <strong>Level: 50%</strong>
+                                                </progress>
+                                            </li>
+                                            <!-- <li>
+                                                <progress id="tot_funds_rcv_current_year" class="item-1" max="" value="">
+                                                    <strong>Level: 50%</strong>
+                                                </progress>
+                                            </li>
+                                            <li>
+                                                <progress id="tot_funds_rcv_current_month" class="item-1" max="" value="">
+                                                    <strong>Level: 50%</strong>
+                                                </progress>
+                                            </li> -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

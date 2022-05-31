@@ -31,12 +31,9 @@ class CycleDashBoard(models.Model):
         """
         Get total cycles per status
         """
-        domain = []
+        domain = [("company_id", "=", self.env.user.company_id.id)]
         if state is not None:
-            domain = [
-                ("state", "in", state),
-                ("company_id", "=", self.env.user.company_id.id),
-            ]
+            domain += [("state", "in", state)]
 
         total = self.search_count(domain)
         return {"value": total}
@@ -46,7 +43,7 @@ class CycleDashBoard(models.Model):
         """
         Get ids of all cycles by state
         """
-        domain = []
+        domain = [("company_id", "=", self.env.user.company_id.id)]
         if state:
-            domain = [("state", "in", state)]
+            domain += [("state", "in", state)]
         return self.search(domain).ids or None
