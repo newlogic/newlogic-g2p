@@ -261,7 +261,7 @@ odoo.define("g2p_program_dashboard.ProgramDashBoard", function (require) {
                     var ctx = document.getElementById("canvas").getContext("2d");
                     // Define the data
                     var programs = result.programs; // Add data values to array
-                    var approved = result.approved;
+                    var ended = result.ended;
 
                     var labels = result.date; // Add labels to array
                     // End Defining data
@@ -285,8 +285,8 @@ odoo.define("g2p_program_dashboard.ProgramDashBoard", function (require) {
                                     fill: false,
                                 },
                                 {
-                                    label: "Approved Programs", // Name the series
-                                    data: approved, // Specify the data values array
+                                    label: "Ended Programs", // Name the series
+                                    data: ended, // Specify the data values array
                                     backgroundColor: "#6993d6",
                                     borderColor: "#6993d6",
 

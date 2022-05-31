@@ -120,16 +120,27 @@
                                     </b>
                                 </div>
                                 <div class="card-tools">
-                                    <!--
-                                    <select id="income_expense_values" class="btn btn-primary">
-                                        <option id="income_this_year" value="income_this_year">This Year</option>
-                                        <option id="income_this_month" value="income_this_month" selected="">
+                                    <select id="program_values" class="btn btn-primary">
+                                        <option
+                                            id="programs_this_year"
+                                            value="programs_this_year"
+                                        >This Year</option>
+                                        <option
+                                            id="programs_this_month"
+                                            value="programs_this_month"
+                                            selected=""
+                                        >
                                             This Month</option>
-                                        <div role="separator" class="dropdown-divider"/>
-                                        <option id="income_last_month" value="income_last_month">Last Month</option>
-                                        <option id="income_last_year" value="income_last_year">Last Year</option>
+                                        <div role="separator" class="dropdown-divider" />
+                                        <option
+                                            id="programs_last_month"
+                                            value="programs_last_month"
+                                        >Last Month</option>
+                                        <option
+                                            id="programs_last_year"
+                                            value="programs_last_year"
+                                        >Last Year</option>
                                     </select>
-                                    -->
                                 </div>
                             </div>
                             <div class="card-body mt-3" id="in_ex_body_hide">

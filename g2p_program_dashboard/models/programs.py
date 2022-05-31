@@ -91,74 +91,47 @@ class ProgramDashBoard(models.Model):
         self._cr.execute(sql, params)
         programs_count_rec = self._cr.dictfetchall()
 
-        # TODO: Add date_approved in g2p.program
-        sql = """select count(id) as approved_programs_count ,cast(to_char(write_date::DATE, 'DD')as int) \
+        # TODO: Add date_ended in g2p.program
+        sql = """select count(id) as ended_programs_count ,cast(to_char(write_date::DATE, 'DD')as int) \
                    as date from g2p_program \
                    where  Extract(month FROM write_date::DATE) = Extract(month FROM DATE(NOW())) \
                    AND Extract(YEAR FROM write_date::DATE) = Extract(YEAR FROM DATE(NOW())) \
-                   AND company_id = %s and state = 'approved' \
+                   AND company_id = %s and state = 'ended' \
                    group by date
         """
         self._cr.execute(sql, params)
-        approved_programs_count_rec = self._cr.dictfetchall()
+        ended_programs_count_rec = self._cr.dictfetchall()
 
         records = []
         for date in day_list:
             last_month_prog = list(
                 filter(lambda m: m["date"] == date, programs_count_rec)
             )
-            last_month_appr = list(
-                filter(lambda m: m["date"] == date, approved_programs_count_rec)
+            last_month_endd = list(
+                filter(lambda m: m["date"] == date, ended_programs_count_rec)
             )
-            if not last_month_prog and not last_month_appr:
-                records.append(
-                    {
-                        "date": date,
-                        "programs": 0,
-                        "approved": 0,
-                    }
-                )
-            elif (not last_month_prog) and last_month_appr:
-                last_month_appr[0].update(
-                    {
-                        "programs": 0,
-                        "approved": -1 * last_month_appr[0]["approved_programs_count"]
-                        if last_month_appr[0]["approved_programs_count"] < 1
-                        else last_month_appr[0]["approved_programs_count"],
-                    }
-                )
-                records.append(last_month_appr[0])
-            elif (not last_month_appr) and last_month_prog:
-                last_month_prog[0].update(
-                    {
-                        "approved": 0,
-                        "programs": -1 * last_month_prog[0]["programs_count"]
-                        if last_month_prog[0]["programs_count"] < 1
-                        else last_month_prog[0]["programs_count"],
-                    }
-                )
-                records.append(last_month_prog[0])
-            else:
-                last_month_prog[0].update(
-                    {
-                        "programs": -1 * last_month_prog[0]["programs_count"]
-                        if last_month_prog[0]["programs_count"] < 1
-                        else last_month_prog[0]["programs_count"],
-                        "approved": -1 * last_month_appr[0]["approved_programs_count"]
-                        if last_month_appr[0]["approved_programs_count"] < 1
-                        else last_month_appr[0]["approved_programs_count"],
-                    }
-                )
-                records.append(last_month_appr[0])
+
+            records.append(
+                {
+                    "date": date,
+                    "programs": 0
+                    if not last_month_prog
+                    else last_month_prog[0]["programs_count"],
+                    "ended": 0
+                    if not last_month_endd
+                    else last_month_endd[0]["ended_programs_count"],
+                }
+            )
+
         programs = []
-        approved = []
+        ended = []
         date = []
         for rec in records:
             programs.append(rec["programs"])
-            approved.append(rec["approved"])
+            ended.append(rec["ended"])
             date.append(rec["date"])
         return {
             "programs": programs,
-            "approved": approved,
+            "ended": ended,
             "date": date,
         }
