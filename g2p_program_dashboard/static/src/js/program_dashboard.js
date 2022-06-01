@@ -326,7 +326,13 @@ odoo.define("g2p_program_dashboard.ProgramDashBoard", function (require) {
                     $("#tot_voucher_current_month").show();
 
                     var tot_voucher_current_month = result[0][0];
+                    if (!tot_voucher_current_month) {
+                        tot_voucher_current_month = 0.0;
+                    }
                     var tot_paid_voucher_current_month = result[1][0];
+                    if (!tot_paid_voucher_current_month) {
+                        tot_paid_voucher_current_month = 0.0;
+                    }
                     var total_voucher_current_month = tot_voucher_current_month.toFixed(2);
                     var total_voucher_paid_current_month = tot_paid_voucher_current_month.toFixed(2);
                     var voucher_percentage_current_month = (
