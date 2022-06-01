@@ -93,12 +93,12 @@
                                         <div id="program_statistics">
                                             <div class="left">
                                                 <div class="count">
-                                                    <!-- <span id="total_number_new_vouchers"/> -->
+                                                    <span id="total_beneficiaries" />
                                                 </div>
                                             </div>
                                             <div class="right">
                                                 <div class="count">
-                                                    <!-- <span id="total_number_approved_vouchers"/> -->
+                                                    <span id="total_approved_beneficiaries" />
                                                 </div>
                                             </div>
                                         </div>

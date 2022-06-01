@@ -43,17 +43,22 @@ class ProgramDashBoard(models.Model):
         return {"value": total}
 
     @api.model
-    def count_beneficiaries(self, state=None):
+    def count_program_beneficiaries(self, state=None, res_id=None):
         """
-        Get total Beneficiaries
+        Get total Beneficiaries by program
         """
-        domain = []
-        if state is not None:
-            domain = [("state", "in", state)]
-
         total = 0
-        for rec in self.search([("company_id", "=", self.env.user.company_id.id)]):
-            total += rec.program_membership_ids.search_count(domain)
+        if res_id:
+            domain = [("id", "=", res_id)]
+
+            for rec in self.search(domain):
+                if state:
+                    program_membership_ids = rec.program_membership_ids.filtered(
+                        lambda a: a.state in state
+                    )
+                else:
+                    program_membership_ids = rec.program_membership_ids
+                total += len(program_membership_ids)
         return {"value": total}
 
     @api.model
