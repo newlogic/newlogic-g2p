@@ -23,14 +23,13 @@
                 <field name="eligible_beneficiaries_count" string="# Beneficiaries" />
                 <field name="cycles_count" string="# Cycles" />
                 <field name="company_id" groups="base.group_multi_company" />
-                <!-- <field
+                <field
                     name="state"
                     decoration-success="state=='active'"
                     decoration-warning="state=='ended'"
-                    decoration-danger="state=='archived'"
                     widget="badge"
                     string="State"
-                /> -->
+                />
             </tree>
         </field>
     </record>
@@ -60,15 +59,6 @@
                         states="ended"
                     />
                     <button
-                        type="object"
-                        class="btn-danger"
-                        icon="fa-archive"
-                        name="archive_program"
-                        string="Archive Program"
-                        confirm="Are you sure you would like to archive this program?"
-                        states="active,ended"
-                    />
-                    <button
                         name="enroll_eligible_registrants"
                         type="object"
                         string="Enroll Eligible Registrants"
@@ -89,7 +79,7 @@
                         icon="fa-undo"
                         class="btn-primary"
                     />
-                    <field name="state" widget="statusbar" statusbar_visible="active,ended,archived" />
+                    <field name="state" widget="statusbar" statusbar_visible="active,ended" />
                 </header>
                 <div
                     class="alert alert-danger"
@@ -504,7 +494,6 @@
                             </group>
                         </page>
                         <field name="date_ended" invisible="1" />
-                        <field name="date_archived" invisible="1" />
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">

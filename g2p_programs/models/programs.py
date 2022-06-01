@@ -93,9 +93,8 @@ class G2PProgram(models.Model):
     cycle_ids = fields.One2many("g2p.cycle", "program_id", "Cycles")
 
     date_ended = fields.Date("Date Ended")
-    date_archived = fields.Date("Date Archived")
     state = fields.Selection(
-        [("active", "Active"), ("ended", "Ended"), ("archived", "Archived")],
+        [("active", "Active"), ("ended", "Ended")],
         "Status",
         default="active",
         readonly=True,
@@ -374,25 +373,6 @@ class G2PProgram(models.Model):
                     "tag": "display_notification",
                     "params": {
                         "title": _("Project"),
-                        "message": message,
-                        "sticky": True,
-                        "type": kind,
-                    },
-                }
-
-    def archive_program(self):
-        for rec in self:
-            if rec.state in ("ended", "active"):
-                rec.update({"state": "archived", "date_archived": fields.Date.today()})
-            else:
-                message = _("Ony 'active' and 'ended' programs can be archived.")
-                kind = "danger"
-
-                return {
-                    "type": "ir.actions.client",
-                    "tag": "display_notification",
-                    "params": {
-                        "title": _("Program"),
                         "message": message,
                         "sticky": True,
                         "type": kind,
