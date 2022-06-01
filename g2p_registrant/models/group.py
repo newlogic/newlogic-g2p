@@ -56,7 +56,8 @@ class G2PGroup(models.Model):
 
         # Finally filter the res.partner that match the criteria and are related to the group
         domain = [("individual_membership_ids", "in", group_membership_ids)]
-        domain.extend(criteria)
+        if criteria is not None:
+            domain.extend(criteria)
         return self.env["res.partner"].search_count(domain)
 
 

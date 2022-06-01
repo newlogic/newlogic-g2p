@@ -67,17 +67,32 @@ class DefaultCashEntitlement(models.Model):
     _description = "Default Entitlement Manager"
 
     amount_per_cycle = fields.Monetary(
-        currency_field="currency_id", group_operator="sum"
+        currency_field="currency_id",
+        group_operator="sum",
+        default=0.0,
+        string="Amount per cycle",
     )
+    amount_per_individual_in_group = fields.Monetary(
+        currency_field="currency_id",
+        group_operator="sum",
+        default=0.0,
+        string="Amount per individual in group",
+    )
+    max_individual_in_group = fields.Integer(
+        default=0,
+        string="Maximum number of individual in group",
+        help="0 means no limit",
+    )
+
     currency_id = fields.Many2one(
         "res.currency", related="program_id.journal_id.currency_id", readonly=True
     )
 
     # Group able to validate the payment
     # Todo: Create a record rule for payment_validation_group
-    # voucher_validation_group_id = fields.Many2one(
-    #     "res.groups", string="Payment Validation Group"
-    # )
+    voucher_validation_group_id = fields.Many2one(
+        "res.groups", string="Payment Validation Group"
+    )
 
     def prepare_vouchers(self, cycle, beneficiaries):
         # TODO: create a Voucher of `amount_per_cycle` for each member that do not have one yet for the cycle and
@@ -99,12 +114,16 @@ class DefaultCashEntitlement(models.Model):
         voucher_end_validity = cycle.end_date
         voucher_currency = self.currency_id.id
 
-        for beneficiary_id in vouchers_to_create:
+        beneficiaries_with_vouchers_to_create = self.env["res.partner"].browse(
+            vouchers_to_create
+        )
+
+        for beneficiary_id in beneficiaries_with_vouchers_to_create:
             self.env["g2p.voucher"].create(
                 {
                     "cycle_id": cycle.id,
-                    "partner_id": beneficiary_id,
-                    "initial_amount": self.amount_per_cycle,
+                    "partner_id": beneficiary_id.id,
+                    "initial_amount": self._calculate_amount(beneficiary_id),
                     "currency_id": voucher_currency,
                     "state": "draft",
                     "is_cash_voucher": True,
@@ -112,6 +131,18 @@ class DefaultCashEntitlement(models.Model):
                     "valid_until": voucher_end_validity,
                 }
             )
+
+    def _calculate_amount(self, beneficiary):
+        total = self.amount_per_cycle
+        if beneficiary.is_group:
+            num_individuals = beneficiary.count_individuals()
+            if (
+                self.max_individual_in_group
+                and num_individuals > self.max_individual_in_group
+            ):
+                num_individuals = self.max_individual_in_group
+            total += self.amount_per_individual_in_group * num_individuals
+        return total
 
     def validate_vouchers(self, cycle, cycle_memberships):
         # TODO: Change the status of the vouchers to `validated` for this members.
