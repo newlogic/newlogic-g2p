@@ -58,7 +58,6 @@
         "views/accounting/account_journal_config_view.xml",
         "wizard/assign_to_program_wizard.xml",
     ],
-    "css": ["static/src/css/custom_tree.css"],
     "assets": {},
     "demo": [],
     "images": [],
