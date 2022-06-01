@@ -17,7 +17,7 @@
         <field name="model">g2p.cycle.membership</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
-            <tree string="Cycle Membership" class="custom_tree_column">
+            <tree string="Cycle Membership">
                 <button
                     name="open_registrant_form"
                     type="object"
