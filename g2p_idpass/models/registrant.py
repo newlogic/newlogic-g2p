@@ -135,10 +135,12 @@ class G2PRegistrant(models.Model):
                 "Content-Type": "application/json",
                 "Accept": "application/json",
             }
+
             response = requests.post(
                 id_pass_param[0].api_url,
                 data=json.dumps(data),
                 headers=headers,
+                auth=(id_pass_param[0].api_username, id_pass_param[0].api_password),
             )
             if response.status_code == 200:
                 pdf_vals = response.json()
