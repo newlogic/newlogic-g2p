@@ -221,7 +221,6 @@
                                         <field
                                             name="eligibility_managers"
                                             nolabel="1"
-                                            widget="many2many_list"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
                                         >
@@ -263,7 +262,6 @@
                                         <field
                                             name="deduplication_managers"
                                             nolabel="1"
-                                            widget="many2many_list"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
                                         >
@@ -316,7 +314,6 @@
                                         <field
                                             name="notification_managers"
                                             nolabel="1"
-                                            widget="many2many_list"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
                                         >
@@ -358,7 +355,6 @@
                                         <field
                                             name="program_managers"
                                             nolabel="1"
-                                            widget="many2many_list"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
                                         >
@@ -411,7 +407,6 @@
                                         <field
                                             name="cycle_managers"
                                             nolabel="1"
-                                            widget="many2many_list"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
                                         >
@@ -453,7 +448,6 @@
                                         <field
                                             name="entitlement_managers"
                                             nolabel="1"
-                                            widget="many2many_list"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
                                         >
