@@ -39,6 +39,9 @@ class G2PProgramMembership(models.Model):
     program_id = fields.Many2one(
         "g2p.program", "", help="A program", required=True, tracking=True
     )
+
+    # TODO: When the state is changed from "exited", "not_eligible" or "duplicate" to something else
+    #      then reset the deduplication date.
     state = fields.Selection(
         selection=[
             ("draft", "Draft"),
@@ -46,6 +49,7 @@ class G2PProgramMembership(models.Model):
             ("paused", "Paused"),
             ("exited", "Exited"),
             ("not_eligible", "Not Eligible"),
+            ("duplicated", "Duplicated"),
         ],
         default="draft",
         copy=False,
@@ -55,6 +59,7 @@ class G2PProgramMembership(models.Model):
     enrollment_date = fields.Date(
         "Enrollment Date", tracking=True, default=lambda self: fields.Datetime.now()
     )
+    last_deduplication = fields.Date("Last Deduplication Date", tracking=True)
     exit_date = fields.Date("Exit Date", tracking=True)
 
     _sql_constraints = [
@@ -84,7 +89,7 @@ class G2PProgramMembership(models.Model):
             ("new", "New"),
             ("processing", "Processing"),
             ("verified", "Verified"),
-            ("duplicate", "duplicate"),
+            ("duplicated", "duplicated"),
         ],
         default="new",
         copy=False,

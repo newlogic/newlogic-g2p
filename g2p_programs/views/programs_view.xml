@@ -259,6 +259,15 @@
                                     </group>
                                 </group>
                                 <group colspan="2" string="Deduplication Managers">
+                                    <header colspan="2">
+                                        <button
+                                            name="deduplicate_beneficiaries"
+                                            type="object"
+                                            string="Deduplicate"
+                                            icon="fa-download"
+                                            class="btn-primary"
+                                        />
+                                    </header>
                                     <group colspan="2">
                                         <field
                                             name="deduplication_managers"

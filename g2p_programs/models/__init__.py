@@ -20,6 +20,7 @@
 from . import constants
 from . import voucher
 from . import job_related_mixin
+from . import duplicate
 from . import cycle
 from . import programs
 from . import accounting
