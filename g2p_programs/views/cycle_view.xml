@@ -26,8 +26,8 @@
                 <field
                     name="state"
                     decoration-primary="state=='to_approve'"
-                    decoration-success="state in ('approved','active')"
-                    decoration-danger="state=='ended'"
+                    decoration-success="state in ('approved','distributed')"
+                    decoration-danger="state in ('ended', 'cancelled')"
                     widget="badge"
                     string="State"
                 />
@@ -92,7 +92,7 @@
                     <field
                         name="state"
                         widget="statusbar"
-                        statusbar_visible="draft,to_approve,approved,active,ended"
+                        statusbar_visible="draft,to_approve,approved,distributed,ended,cancelled"
                     />
                 </header>
                 <sheet>
@@ -213,8 +213,13 @@
                 <filter name="draft_state" string="Draft" domain="[('state','=','draft')]" />
                 <filter name="to_approve_state" string="To Approve" domain="[('state','=','to_approve')]" />
                 <filter name="approved_state" string="Approved" domain="[('state','=','approved')]" />
-                <filter name="active_state" string="Active" domain="[('state','=','active')]" />
+                <filter
+                    name="distributed_state"
+                    string="Distributed"
+                    domain="[('state','=','distributed')]"
+                />
                 <filter name="ended_state" string="Ended" domain="[('state','=','ended')]" />
+                <filter name="cancelled_state" string="Cancelled" domain="[('state','=','cancelled')]" />
                 <group expand="0" string="Group By">
                     <filter string="Start Date" name="start_date" context="{'group_by':'start_date'}" />
                     <filter string="End Date" name="end_date" context="{'group_by':'end_date'}" />

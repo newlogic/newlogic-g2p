@@ -36,7 +36,8 @@ class G2PCycle(models.Model):
     STATE_DRAFT = constants.STATE_DRAFT
     STATE_TO_APPROVE = constants.STATE_TO_APPROVE
     STATE_APPROVED = constants.STATE_APPROVED
-    STATE_ACTIVE = constants.STATE_ACTIVE
+    STATE_CANCELED = constants.STATE_CANCELLED
+    STATE_DISTRIBUTED = constants.STATE_DISTRIBUTED
     STATE_ENDED = constants.STATE_ENDED
 
     name = fields.Char(required=True, tracking=True)
@@ -52,7 +53,8 @@ class G2PCycle(models.Model):
             (STATE_DRAFT, "Draft"),
             (STATE_TO_APPROVE, "To Approve"),
             (STATE_APPROVED, "Approved"),
-            (STATE_ACTIVE, "Active"),
+            (STATE_DISTRIBUTED, "Distributed"),
+            (STATE_CANCELED, "Canceled"),
             (STATE_ENDED, "Ended"),
         ],
         default="draft",
