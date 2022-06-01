@@ -232,16 +232,26 @@
                                                     <strong>Level: 50%</strong>
                                                 </progress>
                                             </li>
-                                            <!-- <li>
-                                                <progress id="tot_funds_rcv_current_year" class="item-1" max="" value="">
+                                            <li>
+                                                <progress
+                                                    id="tot_funds_rcv_current_year"
+                                                    class="item-1"
+                                                    max=""
+                                                    value=""
+                                                >
                                                     <strong>Level: 50%</strong>
                                                 </progress>
                                             </li>
                                             <li>
-                                                <progress id="tot_funds_rcv_current_month" class="item-1" max="" value="">
+                                                <progress
+                                                    id="tot_funds_rcv_current_month"
+                                                    class="item-1"
+                                                    max=""
+                                                    value=""
+                                                >
                                                     <strong>Level: 50%</strong>
                                                 </progress>
-                                            </li> -->
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

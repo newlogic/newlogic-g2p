@@ -47,12 +47,12 @@ class ProgramDashBoard(models.Model):
         """
         Get total Beneficiaries
         """
-        domain = [("company_id", "=", self.env.user.company_id.id)]
+        domain = []
         if state is not None:
-            domain += [("state", "in", state)]
+            domain = [("state", "in", state)]
 
         total = 0
-        for rec in self.search([]):
+        for rec in self.search([("company_id", "=", self.env.user.company_id.id)]):
             total += rec.program_membership_ids.search_count(domain)
         return {"value": total}
 

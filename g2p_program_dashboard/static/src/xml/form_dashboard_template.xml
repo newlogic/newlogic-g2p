@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template id="template" xml:space="preserve">
+    <t t-name="G2PProgramDashboardWidget">
+        <div class="programs-dashboard-wrap">
+            <div class="row" style="margin:0px">
+                <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                    <div class="">
+                        <div class="row program-details" style="margin:0px">
+                            <div class="col-md-4">
+                                <!--Total Number of Beneficiaries-->
+                                <div class="tile wide program box-1">
+                                    <div class="headers">
+                                        <div class="main-title">Beneficiaries</div>
+                                        <div id="program_statistics">
+                                            <div class="left">
+                                                <div class="count">
+                                                    <span id="total_beneficiaries" />
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="count">
+                                                    <span id="total_enrolled_beneficiaries" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <!--Total Number of Cycles-->
+                                <div class="tile wide program box-2">
+                                    <div class="headers">
+                                        <div class="main-title">Cycles</div>
+                                        <div id="program_statistics">
+                                            <div class="left">
+                                                <div class="count">
+                                                    <!-- <span id="total_number_new_cycles" /> -->
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="count">
+                                                    <!-- <span id="total_number_approved_cycles" /> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <!--Total Number of Vouchers-->
+                                <div class="tile wide program box-3">
+                                    <div class="headers">
+                                        <div class="main-title">Vouchers</div>
+                                        <div id="program_statistics">
+                                            <div class="left">
+                                                <div class="count">
+                                                    <!-- <span id="total_number_new_cycles" /> -->
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="count">
+                                                    <!-- <span id="total_number_approved_cycles" /> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </t>
+</template>

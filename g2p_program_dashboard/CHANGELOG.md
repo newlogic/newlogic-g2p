@@ -2,6 +2,11 @@ Format in CHANGELOG.md
 
 ## Version[0.03] - 2022-05-31
 
+- [ADD] Dashboard form widget
+- [ADD] Program form UI dashboard
+
+## Version[0.03] - 2022-05-31
+
 - [ADD] Cycle Statistics
 - [ADD] Voucher Statistics
 - [ADD] Program Graphs
