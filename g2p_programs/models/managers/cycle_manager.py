@@ -75,6 +75,24 @@ class BaseCycleManager(models.AbstractModel):
         """
         raise NotImplementedError()
 
+    def mark_distributed(self, cycle):
+        """
+        Mark the cycle as distributed
+        """
+        raise NotImplementedError()
+
+    def mark_ended(self, cycle):
+        """
+        Mark the cycle as ended
+        """
+        raise NotImplementedError()
+
+    def mark_cancelled(self, cycle):
+        """
+        Mark the cycle as cancelled
+        """
+        raise NotImplementedError()
+
     def add_beneficiaries(self, cycle, beneficiaries, state="draft"):
         """
         Add beneficiaries to the cycle
@@ -166,6 +184,15 @@ class DefaultCycleManager(models.Model):
             rec.program_id.get_manager(constants.MANAGER_ENTITLEMENT).prepare_vouchers(
                 cycle, beneficiaries
             )
+
+    def mark_distributed(self, cycle):
+        cycle.update({"state": constants.STATE_DISTRIBUTED})
+
+    def mark_ended(self, cycle):
+        cycle.update({"state": constants.STATE_ENDED})
+
+    def mark_cancelled(self, cycle):
+        cycle.update({"state": constants.STATE_CANCELLED})
 
     def validate_vouchers(self, cycle, cycle_memberships):
         # TODO: call the program's entitlement manager and validate the entitlements

@@ -195,6 +195,18 @@ class G2PCycle(models.Model):
         # 1. Prepare the entitlement of the beneficiaries using entitlement_manager.prepare_vouchers()
         self.program_id.get_manager(constants.MANAGER_CYCLE).prepare_vouchers(self)
 
+    def mark_distributed(self):
+        # 1. Mark the cycle as distributed using the cycle manager
+        self.program_id.get_manager(constants.MANAGER_CYCLE).mark_distributed(self)
+
+    def mark_ended(self):
+        # 1. Mark the cycle as ended using the cycle manager
+        self.program_id.get_manager(constants.MANAGER_CYCLE).mark_ended(self)
+
+    def mark_cancelled(self):
+        # 1. Mark the cycle as cancelled using the cycle manager
+        self.program_id.get_manager(constants.MANAGER_CYCLE).mark_cancelled(self)
+
     def validate_entitlement(self):
         # 1. Make sure the user has the right to do this
         # 2. Validate the entitlement of the beneficiaries using entitlement_manager.validate_vouchers()

@@ -63,7 +63,24 @@
                         class="btn-primary"
                         icon="fa-file-text-o"
                         name="prepare_entitlement"
+                        states="draft"
                         string="Prepare Entitlement"
+                    />
+                    <button
+                        type="object"
+                        class="btn-primary"
+                        icon="fa-file-text-o"
+                        name="mark_distributed"
+                        states="approved"
+                        string="Set as Distributed"
+                    />
+                    <button
+                        type="object"
+                        class="btn-primary"
+                        icon="fa-file-text-o"
+                        name="mark_ended"
+                        states="distributed"
+                        string="Set as Ended"
                     />
                     <button
                         type="object"
