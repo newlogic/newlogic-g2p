@@ -427,23 +427,13 @@ body {
     margin-bottom: 1rem;
 }
 
-.programs-dashboard-wrap span#total_number_new_cycles span,
-.programs-dashboard-wrap span#total_number_approved_cycles span,
-.programs-dashboard-wrap span#total_number_new_vouchers span,
-.programs-dashboard-wrap span#total_number_approved_vouchers span,
-.programs-dashboard-wrap span#total_number_ended_programs span,
-.programs-dashboard-wrap span#total_number_active_programs span {
+.programs-dashboard-wrap span.count_val span {
     padding-right: 8px;
     font-size: 16px;
     font-weight: 600;
 }
 
-.programs-dashboard-wrap span#total_number_new_cycles,
-.programs-dashboard-wrap span#total_number_approved_cycles,
-.programs-dashboard-wrap span#total_number_new_vouchers,
-.programs-dashboard-wrap span#total_number_approved_vouchers,
-.programs-dashboard-wrap span#total_number_ended_programs,
-.programs-dashboard-wrap span#total_number_active_programs {
+.programs-dashboard-wrap span.count_val {
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;

@@ -14,12 +14,15 @@
                                         <div id="program_statistics">
                                             <div class="left">
                                                 <div class="count">
-                                                    <span id="total_beneficiaries" />
+                                                    <span id="total_beneficiaries" class="count_val" />
                                                 </div>
                                             </div>
                                             <div class="right">
                                                 <div class="count">
-                                                    <span id="total_enrolled_beneficiaries" />
+                                                    <span
+                                                        id="total_enrolled_beneficiaries"
+                                                        class="count_val"
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
@@ -34,12 +37,12 @@
                                         <div id="program_statistics">
                                             <div class="left">
                                                 <div class="count">
-                                                    <!-- <span id="total_number_new_cycles" /> -->
+                                                    <!-- <span id="total_number_new_cycles" class="count_val"/> -->
                                                 </div>
                                             </div>
                                             <div class="right">
                                                 <div class="count">
-                                                    <!-- <span id="total_number_approved_cycles" /> -->
+                                                    <!-- <span id="total_number_approved_cycles" class="count_val"/> -->
                                                 </div>
                                             </div>
                                         </div>

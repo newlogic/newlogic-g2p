@@ -33,12 +33,18 @@
                                         <div id="program_statistics">
                                             <div class="left">
                                                 <div class="count">
-                                                    <span id="total_number_active_programs" />
+                                                    <span
+                                                        id="total_number_active_programs"
+                                                        class="count_val"
+                                                    />
                                                 </div>
                                             </div>
                                             <div class="right">
                                                 <div class="count">
-                                                    <span id="total_number_ended_programs" />
+                                                    <span
+                                                        id="total_number_ended_programs"
+                                                        class="count_val"
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
@@ -53,12 +59,15 @@
                                         <div id="program_statistics">
                                             <div class="left">
                                                 <div class="count">
-                                                    <span id="total_number_new_cycles" />
+                                                    <span id="total_number_new_cycles" class="count_val" />
                                                 </div>
                                             </div>
                                             <div class="right">
                                                 <div class="count">
-                                                    <span id="total_number_approved_cycles" />
+                                                    <span
+                                                        id="total_number_approved_cycles"
+                                                        class="count_val"
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
@@ -73,12 +82,15 @@
                                         <div id="program_statistics">
                                             <div class="left">
                                                 <div class="count">
-                                                    <span id="total_number_new_vouchers" />
+                                                    <span id="total_number_new_vouchers" class="count_val" />
                                                 </div>
                                             </div>
                                             <div class="right">
                                                 <div class="count">
-                                                    <span id="total_number_approved_vouchers" />
+                                                    <span
+                                                        id="total_number_approved_vouchers"
+                                                        class="count_val"
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
@@ -93,12 +105,15 @@
                                         <div id="program_statistics">
                                             <div class="left">
                                                 <div class="count">
-                                                    <span id="total_beneficiaries" />
+                                                    <span id="total_beneficiaries" class="count_val" />
                                                 </div>
                                             </div>
                                             <div class="right">
                                                 <div class="count">
-                                                    <span id="total_approved_beneficiaries" />
+                                                    <span
+                                                        id="total_approved_beneficiaries"
+                                                        class="count_val"
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
