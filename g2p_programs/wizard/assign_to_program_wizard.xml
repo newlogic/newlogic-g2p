@@ -29,6 +29,7 @@
                             <div class="o_row">
                             </div>
                         </div>
+                        <field name="target_type" readonly="1" invisible="1" />
                         <field name="registrant_ids" nolabel="1">
                           <tree string="Registrants" editable="bottom">
                               <field name="partner_id" />
