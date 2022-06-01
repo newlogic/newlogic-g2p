@@ -16,8 +16,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import logging
 
-from . import programs
-from . import cycles
-from . import vouchers
-from . import program_membership
+from odoo import api, models
+
+_logger = logging.getLogger(__name__)
+
+# from odoo.http import request
+
+
+class ProgramMembershipDashBoard(models.Model):
+    _inherit = "g2p.program_membership"
+
+    @api.model
+    def count_beneficiaries(self, state=None):
+        """
+        Get total Beneficiaries
+        """
+        domain = [("program_id.company_id", "=", self.env.user.company_id.id)]
+        if state is not None:
+            domain += [("state", "in", state)]
+
+        total = self.search_count(domain)
+        return {"value": total}

@@ -251,6 +251,38 @@ odoo.define("g2p_program_dashboard.ProgramDashBoard", function (require) {
                         "<span>" + total_count + '</span> <div class="title">Approved</div>'
                     );
                 });
+                //Benificiaries Counts
+                //Total Beneficiaries
+                rpc.query({
+                    model: "g2p.program_membership",
+                    method: "count_beneficiaries",
+                    args: [],
+                }).then(function (result) {
+                    if (result["value"] == undefined) {
+                        result["value"] = 0;
+                    }
+                    var total_count = result["value"];
+                    $("#total_beneficiaries").empty();
+                    $("#total_beneficiaries").append(
+                        "<span>" + total_count + '</span> <div class="title">Beneficiaries</div>'
+                    );
+                });
+                //Total Enrolled Beneficiaries
+                var state = ["enrolled"];
+                rpc.query({
+                    model: "g2p.program_membership",
+                    method: "count_beneficiaries",
+                    args: [state],
+                }).then(function (result) {
+                    if (result["value"] == undefined) {
+                        result["value"] = 0;
+                    }
+                    var total_count = result["value"];
+                    $("#total_approved_beneficiaries").empty();
+                    $("#total_approved_beneficiaries").append(
+                        "<span>" + total_count + '</span> <div class="title">Enrolled</div>'
+                    );
+                });
 
                 //Programs Graph
                 rpc.query({
