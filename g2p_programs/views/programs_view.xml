@@ -68,6 +68,27 @@
                         confirm="Are you sure you would like to archive this program?"
                         states="active,ended"
                     />
+                    <button
+                        name="enroll_eligible_registrants"
+                        type="object"
+                        string="Enroll Eligible Registrants"
+                        icon="fa-download"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="notify_eligible_beneficiaries"
+                        type="object"
+                        string="Notify Registrants"
+                        icon="fa-envelope-o"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="create_new_cycle"
+                        type="object"
+                        string="Create New Cycle"
+                        icon="fa-undo"
+                        class="btn-primary"
+                    />
                     <field name="state" widget="statusbar" statusbar_visible="active,ended,archived" />
                 </header>
                 <div
@@ -208,20 +229,10 @@
                         <page string="Configuration">
                             <group colspan="4" col="4">
                                 <group colspan="2" string="Eligibility Managers">
-                                    <header colspan="2">
-                                        <button
-                                            name="enroll_eligible_registrants"
-                                            type="object"
-                                            string="Enroll Eligible Registrants"
-                                            icon="fa-download"
-                                            class="btn-primary"
-                                        />
-                                    </header>
                                     <group colspan="2">
                                         <field
                                             name="eligibility_managers"
                                             nolabel="1"
-                                            widget="many2many_list"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
                                         >
@@ -272,7 +283,6 @@
                                         <field
                                             name="deduplication_managers"
                                             nolabel="1"
-                                            widget="many2many_list"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
                                         >
@@ -312,20 +322,10 @@
                             </group>
                             <group colspan="4" col="4">
                                 <group colspan="2" string="Notification Managers">
-                                    <header colspan="2">
-                                        <button
-                                            name="notify_eligible_beneficiaries"
-                                            type="object"
-                                            string="Notify Registrants"
-                                            icon="fa-envelope-o"
-                                            class="btn-primary"
-                                        />
-                                    </header>
                                     <group colspan="2">
                                         <field
                                             name="notification_managers"
                                             nolabel="1"
-                                            widget="many2many_list"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
                                         >
@@ -367,7 +367,6 @@
                                         <field
                                             name="program_managers"
                                             nolabel="1"
-                                            widget="many2many_list"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
                                         >
@@ -407,20 +406,10 @@
                             </group>
                             <group colspan="4" col="4">
                                 <group colspan="2" string="Cycle Managers">
-                                    <header colspan="2">
-                                        <button
-                                            name="create_new_cycle"
-                                            type="object"
-                                            string="Create New Cycle"
-                                            icon="fa-undo"
-                                            class="btn-primary"
-                                        />
-                                    </header>
                                     <group colspan="2">
                                         <field
                                             name="cycle_managers"
                                             nolabel="1"
-                                            widget="many2many_list"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
                                         >
@@ -462,7 +451,6 @@
                                         <field
                                             name="entitlement_managers"
                                             nolabel="1"
-                                            widget="many2many_list"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
                                         >
