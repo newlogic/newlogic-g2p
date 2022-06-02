@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+  <t t-name="OrderLineVoucher" owl="1">
+    <button class="control-button" t-on-click="display_popup_voucher">
+            <i class="fa fa-gift" />
+            <span>Voucher
+        </span>
+    </button>
+  </t>
+</templates>
