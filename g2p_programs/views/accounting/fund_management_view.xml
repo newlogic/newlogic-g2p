@@ -197,7 +197,7 @@
     <menuitem
         id="menu_program_fund"
         action="action_program_fund"
-        groups="g2p_registrant.group_g2p_admin,g2p_programs.g2p_program_manager"
+        groups="g2p_registrant.group_g2p_admin,g2p_programs.g2p_program_manager,g2p_programs.g2p_finance_validator"
         sequence="10"
         parent="g2p_accounting_root"
     />
