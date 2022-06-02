@@ -18,6 +18,13 @@
     </record>
 
 
+<!-- Access to Create Registrant -->
+    <record id="group_g2p_registrar" model="res.groups">
+        <field name="name">Registrar</field>
+        <field name="category_id" ref="g2p_registrant.newlogic_module" />
+    </record>
+
+
 <!-- Record Rules
     <record model="ir.rule" id="club_filter_rule">
         <field name="name">XXX</field>
