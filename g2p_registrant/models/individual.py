@@ -16,11 +16,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import logging
 from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class G2PIndividual(models.Model):
@@ -72,3 +75,34 @@ class G2PIndividual(models.Model):
         else:
             years_months_days = "No Birthdate!"
         return years_months_days
+
+    def _recompute_parent_groups(self, records):
+        fields = self._get_calculated_group_fields()
+        _logger.info(fields)
+        for line in records:
+            if line.is_registrant and not line.is_group:
+                groups = line.individual_membership_ids.mapped("group")
+
+                for field in fields:
+                    self.env.add_to_compute(field, groups)
+
+    def _get_calculated_group_fields(self):
+        model_fields_id = self._fields
+        fields = []
+        for field_name, field in model_fields_id.items():
+            els = field_name.split("_")
+            if field.compute and len(els) >= 3 and els[2] == "grp" and els[1] == "crt":
+                fields.append(field)
+        return fields
+
+    def write(self, vals):
+        res = super(G2PIndividual, self).write(vals)
+        self._recompute_parent_groups(self)
+        return res
+
+    @api.model_create_multi
+    @api.returns("self", lambda value: value.id)
+    def create(self, vals_list):
+        res = super(G2PIndividual, self).create(vals_list)
+        self._recompute_parent_groups(res)
+        return res

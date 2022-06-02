@@ -83,12 +83,13 @@ class G2PGroupMembership(models.Model):
 
     @api.constrains("individual")
     def _check_group_members(self):
-        rec_count = 0
-        for rec in self.group.group_membership_ids:
-            if self.individual.id == rec.individual.id:
-                rec_count += 1
-        if rec_count > 1:
-            raise ValidationError(_("Duplication of Member is not allowed "))
+        for rec in self:
+            rec_count = 0
+            for group_membership_id in rec.group.group_membership_ids:
+                if rec.individual.id == group_membership_id.individual.id:
+                    rec_count += 1
+            if rec_count > 1:
+                raise ValidationError(_("Duplication of Member is not allowed "))
 
     def name_get(self):
         res = super(G2PGroupMembership, self).name_get()
@@ -107,6 +108,43 @@ class G2PGroupMembership(models.Model):
         if name:
             args = [("group", operator, name)] + args
         return self._search(args, limit=limit, access_rights_uid=name_get_uid)
+
+    def _recompute_parent_groups(self, records):
+        fields = self._get_calculated_group_fields()
+        _logger.info(fields)
+        for line in records:
+            for field in fields:
+                self.env.add_to_compute(field, line.group)
+
+    def _get_calculated_group_fields(self):
+        model_fields_id = self.env["res.partner"]._fields
+        fields = []
+        for field_name, field in model_fields_id.items():
+            els = field_name.split("_")
+            if field.compute and len(els) >= 3 and els[2] == "grp" and els[1] == "crt":
+                fields.append(field)
+        return fields
+
+    def write(self, vals):
+        res = super(G2PGroupMembership, self).write(vals)
+        self._recompute_parent_groups(self)
+        return res
+
+    @api.model_create_multi
+    @api.returns("self", lambda value: value.id)
+    def create(self, vals_list):
+        res = super(G2PGroupMembership, self).create(vals_list)
+        self._recompute_parent_groups(res)
+        return res
+
+    def unlink(self):
+        groups = self.mapped("group")
+        res = super(G2PGroupMembership, self).unlink()
+        fields = self._get_calculated_group_fields()
+        for group in groups:
+            for field in fields:
+                self.env.add_to_compute(field, group)
+        return res
 
     def open_individual_form(self):
         return {
