@@ -68,7 +68,6 @@
                     >
                           <div class="o_form_field o_stat_info">
                               <span class="o_stat_text">Issue</span>
-                              <span class="o_stat_text">ID PASS</span>
                           </div>
                   </button>
                 </xpath>
