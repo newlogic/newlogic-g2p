@@ -314,7 +314,7 @@
                                 </tree>
                             </field>
                         </page>
-                        <page name="other" string="Metadata">
+                        <page name="other" string="Other Information">
                             <group col="4" colspan="4">
                                 <field name="create_date" />
                                 <field name="create_uid" />

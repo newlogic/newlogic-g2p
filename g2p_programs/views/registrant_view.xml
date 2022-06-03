@@ -32,7 +32,7 @@
         <field name="inherit_id" ref="g2p_registrant.view_individuals_form" />
         <field name="arch" type="xml">
             <xpath expr="//page[@name='other']" position="before">
-                <page string="Program">
+                <page string="Programs">
                     <field name="program_membership_ids" readonly="1" nolabel="1">
                       <tree>
                           <button
@@ -58,7 +58,7 @@
                       </tree>
                     </field>
                 </page>
-                <page string="Voucher">
+                <page string="Vouchers">
                     <field name="voucher_ids" readonly="1" nolabel="1">
                       <tree>
                           <button
@@ -69,7 +69,6 @@
                             />
                           <field name="name" />
                           <field name="code" />
-                          <field name="partner_id" />
                           <field name="cycle_id" />
                           <field name="valid_from" />
                           <field name="valid_until" />
@@ -129,7 +128,7 @@
                     </tree>
                   </field>
                 </page>
-                <page string="Voucher">
+                <page string="Vouchers">
                   <field name="voucher_ids" readonly="1" nolabel="1">
                     <tree>
                         <button
@@ -140,7 +139,6 @@
                             />
                         <field name="name" />
                         <field name="code" />
-                        <field name="partner_id" />
                         <field name="cycle_id" />
                         <field name="valid_from" />
                         <field name="valid_until" />
