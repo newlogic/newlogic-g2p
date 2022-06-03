@@ -29,19 +29,18 @@ _logger = logging.getLogger(__name__)
 class G2PIndividual(models.Model):
     _inherit = "res.partner"
 
-    family_name = fields.Char("Family Name", translate=True, tracking=True)
-    given_name = fields.Char("Given Name", translate=True, tracking=True)
-    addl_name = fields.Char("Additional Name", translate=True, tracking=True)
-    birth_place = fields.Char("Birth Place", tracking=True)
+    family_name = fields.Char("Family Name", translate=True)
+    given_name = fields.Char("Given Name", translate=True)
+    addl_name = fields.Char("Additional Name", translate=True)
+    birth_place = fields.Char("Birth Place")
     birthdate_not_exact = fields.Boolean("Birthdate not exact")
-    birthdate = fields.Date("Date of Birth", tracking=True)
+    birthdate = fields.Date("Date of Birth")
     age = fields.Char(compute="_compute_calc_age", string="Age", size=50, readonly=True)
     gender = fields.Selection(
         [("Female", "Female"), ("Male", "Male"), ("Other", "Other")],
         "Gender",
-        tracking=True,
     )
-    registration_date = fields.Date("Registration Date", tracking=True)
+    registration_date = fields.Date("Registration Date")
     individual_membership_ids = fields.One2many(
         "g2p.group.membership", "individual", "Membership to Groups"
     )

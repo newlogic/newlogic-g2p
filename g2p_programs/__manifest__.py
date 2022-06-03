@@ -34,8 +34,8 @@
         "l10n_generic_coa",
     ],
     "data": [
-        "security/ir.model.access.csv",
         "security/program_security.xml",
+        "security/ir.model.access.csv",
         "data/sequences.xml",
         "report/voucher_card.xml",
         "report/report_format.xml",

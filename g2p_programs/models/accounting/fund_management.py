@@ -27,13 +27,9 @@ class ProgramFundManagement(models.Model):
     _inherit = ["mail.thread"]
     _order = "id desc"
 
-    name = fields.Char(
-        "Reference Number", required=True, default="Draft", tracking=True
-    )
-    company_id = fields.Many2one(
-        "res.company", default=lambda self: self.env.company, tracking=True
-    )
-    program_id = fields.Many2one("g2p.program", "Program", required=True, tracking=True)
+    name = fields.Char("Reference Number", required=True, default="Draft")
+    company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
+    program_id = fields.Many2one("g2p.program", "Program", required=True)
     journal_id = fields.Many2one(
         "account.journal",
         "Disbursement Journal",
@@ -41,23 +37,20 @@ class ProgramFundManagement(models.Model):
         store=True,
     )
     account_move_id = fields.Many2one("account.move", "Journal Entry")
-    amount = fields.Monetary(required=True, currency_field="currency_id", tracking=True)
+    amount = fields.Monetary(required=True, currency_field="currency_id")
     currency_id = fields.Many2one(
         "res.currency",
         readonly=True,
         related="program_id.journal_id.currency_id",
         store=True,
     )
-    remarks = fields.Text("Remarks", tracking=True)
-    date_posted = fields.Date(
-        "Date Posted", required=True, default=fields.Date.today, tracking=True
-    )
+    remarks = fields.Text("Remarks")
+    date_posted = fields.Date("Date Posted", required=True, default=fields.Date.today)
     state = fields.Selection(
         [("draft", "Draft"), ("posted", "Posted"), ("cancelled", "Cancelled")],
         "Status",
         readonly=True,
         default="draft",
-        tracking=True,
     )
 
     @api.ondelete(at_uninstall=False)

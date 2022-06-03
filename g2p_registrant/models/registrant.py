@@ -24,10 +24,10 @@ class G2PRegistrant(models.Model):
     _inherit = "res.partner"
 
     # Custom Fields
-    address = fields.Text("Address", tracking=True)
-    disabled = fields.Datetime("Date Disabled", tracking=True)
-    disabled_reason = fields.Text("Reason for disabling", tracking=True)
-    disabled_by = fields.Many2one("res.users", "Disabled by", tracking=True)
+    address = fields.Text("Address")
+    disabled = fields.Datetime("Date Disabled")
+    disabled_reason = fields.Text("Reason for disabling")
+    disabled_by = fields.Many2one("res.users", "Disabled by")
     # Tag (exist in res.partner: category_id)
 
     reg_ids = fields.One2many("g2p.reg.id", "registrant", "Registrant IDs")

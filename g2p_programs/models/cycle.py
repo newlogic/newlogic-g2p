@@ -40,14 +40,12 @@ class G2PCycle(models.Model):
     STATE_DISTRIBUTED = constants.STATE_DISTRIBUTED
     STATE_ENDED = constants.STATE_ENDED
 
-    name = fields.Char(required=True, tracking=True)
-    company_id = fields.Many2one(
-        "res.company", default=lambda self: self.env.company, tracking=True
-    )
-    program_id = fields.Many2one("g2p.program", "Program", required=True, tracking=True)
-    sequence = fields.Integer(required=True, tracking=True, readonly=True, default=1)
-    start_date = fields.Date(required=True, tracking=True)
-    end_date = fields.Date(required=True, tracking=True)
+    name = fields.Char(required=True)
+    company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
+    program_id = fields.Many2one("g2p.program", "Program", required=True)
+    sequence = fields.Integer(required=True, readonly=True, default=1)
+    start_date = fields.Date(required=True)
+    end_date = fields.Date(required=True)
     state = fields.Selection(
         [
             (STATE_DRAFT, "Draft"),
@@ -58,7 +56,6 @@ class G2PCycle(models.Model):
             (STATE_ENDED, "Ended"),
         ],
         default="draft",
-        tracking=True,
     )
 
     cycle_membership_ids = fields.One2many(

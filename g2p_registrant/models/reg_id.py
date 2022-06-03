@@ -35,7 +35,7 @@ class G2PRegistrantID(models.Model):
     id_type = fields.Many2one("g2p.id.type", "ID Type", required=True)
     value = fields.Char("Value", size=100)
 
-    expiry_date = fields.Date("Expiry Date", tracking=True)
+    expiry_date = fields.Date("Expiry Date")
 
     def name_get(self):
         res = super(G2PRegistrantID, self).name_get()

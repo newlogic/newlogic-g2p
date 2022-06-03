@@ -11,6 +11,7 @@ class JobRelatedMixin(models.AbstractModel):
     """
 
     _name = "g2p.job.mixin"
+    _description = "Job Mixin"
 
     job_id = fields.Many2one("queue.job", string="Job", readonly=True)
     job_state = fields.Selection(index=True, related="job_id.state")

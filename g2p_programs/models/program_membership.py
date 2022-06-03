@@ -33,12 +33,9 @@ class G2PProgramMembership(models.Model):
         "Registrant",
         help="A beneficiary",
         required=True,
-        tracking=True,
         domain=[("is_registrant", "=", True)],
     )
-    program_id = fields.Many2one(
-        "g2p.program", "", help="A program", required=True, tracking=True
-    )
+    program_id = fields.Many2one("g2p.program", "", help="A program", required=True)
 
     # TODO: When the state is changed from "exited", "not_eligible" or "duplicate" to something else
     #      then reset the deduplication date.
@@ -53,14 +50,13 @@ class G2PProgramMembership(models.Model):
         ],
         default="draft",
         copy=False,
-        tracking=True,
     )
 
     enrollment_date = fields.Date(
-        "Enrollment Date", tracking=True, default=lambda self: fields.Datetime.now()
+        "Enrollment Date", default=lambda self: fields.Datetime.now()
     )
-    last_deduplication = fields.Date("Last Deduplication Date", tracking=True)
-    exit_date = fields.Date("Exit Date", tracking=True)
+    last_deduplication = fields.Date("Last Deduplication Date")
+    exit_date = fields.Date("Exit Date")
 
     _sql_constraints = [
         (
@@ -71,16 +67,16 @@ class G2PProgramMembership(models.Model):
     ]
 
     # TODO: Implement exit reasons
-    # exit_reason_id = fields.Many2one("Exit Reason", tracking=True) Default: Completed, Opt-Out, Other
+    # exit_reason_id = fields.Many2one("Exit Reason") Default: Completed, Opt-Out, Other
 
     # TODO: Implement not eligible reasons
     # Default: "Missing data", "Does not match the criterias", "Duplicate", "Other"
-    # not_eligible_reason_id = fields.Many2one("Not Eligible Reason", tracking=True)
+    # not_eligible_reason_id = fields.Many2one("Not Eligible Reason")
 
     # TODO: Add a field delivery_mechanism_id
     # delivery_mechanism_id = fields.Many2one("Delivery mechanism type", help="Delivery mechanism")
     # the phone number, bank account, etc.
-    delivery_mechanism_value = fields.Char("Delivery Mechanism Value", tracking=True)
+    delivery_mechanism_value = fields.Char("Delivery Mechanism Value")
 
     # TODO: JJ - Add a field for the preferred notification method
 
@@ -93,7 +89,6 @@ class G2PProgramMembership(models.Model):
         ],
         default="new",
         copy=False,
-        tracking=True,
     )
 
     def fields_view_get(

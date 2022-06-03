@@ -50,6 +50,7 @@ class ManagerMixin(models.AbstractModel):
                         "res_id": res_id,
                         "target": "new",
                         "context": self.env.context,
+                        "flags": {"mode": "readonly"},
                     }
                 )
                 return action
