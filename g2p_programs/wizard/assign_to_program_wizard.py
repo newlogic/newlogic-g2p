@@ -25,14 +25,13 @@ _logger = logging.getLogger(__name__)
 
 class G2PAssignToProgramWizard(models.TransientModel):
     _name = "g2p.assign.program.wizard"
-    _description = "Registrant Assign to Program Wizard"
+    _description = "Registrant Add to Program Wizard"
 
     @api.model
     def default_get(self, fields):
         res = super(G2PAssignToProgramWizard, self).default_get(fields)
         _logger.info(
-            "Assigning to Program Wizard with IDs: %s"
-            % self.env.context.get("active_ids")
+            "Adding to Program Wizard with IDs: %s" % self.env.context.get("active_ids")
         )
         if self.env.context.get("active_ids"):
             reg_ids = []
@@ -85,14 +84,14 @@ class G2PAssignToProgramWizard(models.TransientModel):
                     "partner_id": rec.partner_id.id,
                     "program_id": self.program_id.id,
                 }
-                _logger.info("Assigning to Program Membership: %s" % main_vals)
+                _logger.info("Adding to Program Membership: %s" % main_vals)
                 self.env["g2p.program_membership"].create(main_vals)
 
     def open_wizard(self):
 
         _logger.info("Registrant IDs: %s" % self.env.context.get("active_ids"))
         return {
-            "name": "Assign to Program",
+            "name": "Add to Program",
             "view_mode": "form",
             "res_model": "g2p.assign.program.wizard",
             "view_id": self.env.ref(
