@@ -53,7 +53,6 @@
                         >
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Disable</span>
-                                <span class="o_stat_text">Registrant</span>
                             </div>
                         </button>
 <!--                        <button type="object" name="generate_sample_data">-->
@@ -71,7 +70,6 @@
                         >
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Enable</span>
-                                <span class="o_stat_text">Registrant</span>
                             </div>
                         </button>
                     </div>
@@ -170,6 +168,58 @@
                                 </group>
                             </group>
                         </page>
+                        <page string="Members">
+                            <group col="4" colspan="4">
+                                <field
+                                    name="kind"
+                                    colspan="2"
+                                    options="{'no_open':True, 'no_create_edit':True,'no_create':True}"
+                                    attrs="{'readonly':[('disabled','!=',False)]}"
+                                />
+                                <newline />
+                                <field
+                                    name="group_membership_ids"
+                                    attrs="{'readonly':[('disabled','!=',False)], 'required': False}"
+                                    nolabel="1"
+                                    colspan="4"
+                                >
+                                    <tree string="Members" editable="top">
+                                        <button
+                                            name="open_individual_form"
+                                            type="object"
+                                            icon="fa-external-link"
+                                            class="btn-success"
+                                        />
+                                        <field
+                                            name="individual"
+                                            domain="[('is_registrant','=',True),('is_group','=',False)]"
+                                            options="{'no_create':True}"
+                                            string="Member Name"
+                                            context="{'form_view_ref':'g2p_registrant.view_individuals_form'}"
+                                        />
+                                        <field
+                                            name="kind"
+                                            widget="many2many_tags"
+                                            options="{'no_open':True, 'no_create_edit':True, 'no_create':True, 'no_quick_create':True}"
+                                        />
+                                        <field name="start_date" />
+                                        <field name="end_date" />
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="IDs">
+                            <field name="reg_ids" attrs="{'readonly':[('disabled','!=',False)]}" nolabel="1">
+                                <tree string="Registrant IDs" editable="top">
+                                    <field
+                                        name="id_type"
+                                        options="{'no_open':True,'no_create_edit':True,'no_create':True}"
+                                    />
+                                    <field name="value" string="ID Number" />
+                                    <field name="expiry_date" />
+                                </tree>
+                            </field>
+                        </page>
                         <page string="Relationships">
                             <group colspan="4" col="4" string="Registrant is related to:">
                                 <field
@@ -241,58 +291,6 @@
                                     </tree>
                                 </field>
                             </group>
-                        </page>
-                        <page string="Members">
-                            <group col="4" colspan="4">
-                                <field
-                                    name="kind"
-                                    colspan="2"
-                                    options="{'no_open':True, 'no_create_edit':True,'no_create':True}"
-                                    attrs="{'readonly':[('disabled','!=',False)]}"
-                                />
-                                <newline />
-                                <field
-                                    name="group_membership_ids"
-                                    attrs="{'readonly':[('disabled','!=',False)], 'required': False}"
-                                    nolabel="1"
-                                    colspan="4"
-                                >
-                                    <tree string="Members" editable="top">
-                                        <button
-                                            name="open_individual_form"
-                                            type="object"
-                                            icon="fa-external-link"
-                                            class="btn-success"
-                                        />
-                                        <field
-                                            name="individual"
-                                            domain="[('is_registrant','=',True),('is_group','=',False)]"
-                                            options="{'no_create':True}"
-                                            string="Member Name"
-                                            context="{'form_view_ref':'g2p_registrant.view_individuals_form'}"
-                                        />
-                                        <field
-                                            name="kind"
-                                            widget="many2many_tags"
-                                            options="{'no_open':True, 'no_create_edit':True, 'no_create':True, 'no_quick_create':True}"
-                                        />
-                                        <field name="start_date" />
-                                        <field name="end_date" />
-                                    </tree>
-                                </field>
-                            </group>
-                        </page>
-                        <page string="IDs">
-                            <field name="reg_ids" attrs="{'readonly':[('disabled','!=',False)]}" nolabel="1">
-                                <tree string="Registrant IDs" editable="top">
-                                    <field
-                                        name="id_type"
-                                        options="{'no_open':True,'no_create_edit':True,'no_create':True}"
-                                    />
-                                    <field name="value" string="ID Number" />
-                                    <field name="expiry_date" />
-                                </tree>
-                            </field>
                         </page>
                         <page name="other" string="Other Information">
                             <group col="4" colspan="4">
