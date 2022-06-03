@@ -78,7 +78,7 @@
     <menuitem
         id="menu_account_journal_prog_benf"
         action="action_account_journal_prog_benf"
-        groups="g2p_registrant.group_g2p_admin"
+        groups="g2p_registrant.group_g2p_admin,g2p_programs.g2p_program_manager,g2p_programs.g2p_finance_validator"
         sequence="20"
         parent="g2p_accounting_reports_menu_root"
     />

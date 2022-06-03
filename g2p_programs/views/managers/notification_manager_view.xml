@@ -182,7 +182,7 @@
         action="action_notification_manager_sms"
         parent="g2p_programs.g2p_manager_menu_root"
         sequence="300"
-        groups="g2p_registrant.group_g2p_admin"
+        groups="g2p_registrant.group_g2p_admin,g2p_programs.g2p_program_manager"
     />
 
 </odoo>

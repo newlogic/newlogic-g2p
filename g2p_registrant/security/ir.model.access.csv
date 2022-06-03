@@ -8,3 +8,12 @@ g2p_group_kind_admin,Group Kind Admin Access,g2p_registrant.model_g2p_group_kind
 g2p_group_membership_kind_admin,Group Membership Kind Admin Access,g2p_registrant.model_g2p_group_membership_kind,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_phone_number_admin,Phone Number Admin Access,g2p_registrant.model_g2p_phone_number,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_disable_registrant_wizard_admin,Disable Registrant Wizard Admin Access,g2p_registrant.model_g2p_disable_registrant_wizard,g2p_registrant.group_g2p_admin,1,1,1,1
+
+g2p_res_partner_registrar,Registrant Registrar Access,g2p_registrant.model_res_partner,g2p_registrant.group_g2p_registrar,1,1,1,0
+g2p_reg_rel_registrar,Registrant Relationship Registrar Access,g2p_registrant.model_g2p_reg_rel,g2p_registrant.group_g2p_registrar,1,1,1,0
+g2p_group_membership_registrar,Group Membership Registrar Access,g2p_registrant.model_g2p_group_membership,g2p_registrant.group_g2p_registrar,1,1,1,0
+g2p_phone_number_registrar,Phone Number Registrar Access,g2p_registrant.model_g2p_phone_number,g2p_registrant.group_g2p_registrar,1,1,1,0
+g2p_reg_id_registrar,Registrant ID Registrar Access,g2p_registrant.model_g2p_reg_id,g2p_registrant.group_g2p_registrar,1,1,1,0
+g2p_id_type_registrar,ID Type Registrar Access,g2p_registrant.model_g2p_id_type,g2p_registrant.group_g2p_registrar,1,1,1,0
+g2p_group_membership_kind_registrar,Group Membership Kind Registrar Access,g2p_registrant.model_g2p_group_membership_kind,g2p_registrant.group_g2p_registrar,1,1,1,0
+g2p_group_kind_registrar,Group Kind Registrar Access,g2p_registrant.model_g2p_group_kind,g2p_registrant.group_g2p_registrar,1,1,1,0

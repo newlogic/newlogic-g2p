@@ -4,5 +4,21 @@
             <field name="name">Program Cycle Approver</field>
             <field name="category_id" ref="g2p_registrant.newlogic_module" />
         </record>
+
+        <record id="g2p_program_manager" model="res.groups">
+            <field name="name">Program Manager</field>
+            <field name="category_id" ref="g2p_registrant.newlogic_module" />
+        </record>
+
+        <record id="g2p_program_validator" model="res.groups">
+            <field name="name">Program Validator</field>
+            <field name="category_id" ref="g2p_registrant.newlogic_module" />
+        </record>
+
+        <record id="g2p_finance_validator" model="res.groups">
+            <field name="name">Finance Validator</field>
+            <field name="category_id" ref="g2p_registrant.newlogic_module" />
+        </record>
+
     </data>
 </odoo>
