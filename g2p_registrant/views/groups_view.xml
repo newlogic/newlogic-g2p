@@ -127,7 +127,7 @@
                         <field name="is_partial_group" attrs="{'readonly':[('disabled','!=',False)]}" />
                     </group>
                     <notebook>
-                        <page string="Contact Details">
+                        <page name="basic_info" string="Contact Details">
                             <group colspan="4" col="4">
                                 <group colspan="2">
                                     <span class="o_form_label o_td_label" name="address_name">
@@ -242,7 +242,7 @@
                                 </field>
                             </group>
                         </page>
-                        <page string="Individuals">
+                        <page string="Members">
                             <group col="4" colspan="4">
                                 <field
                                     name="kind"

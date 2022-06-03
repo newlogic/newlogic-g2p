@@ -40,17 +40,17 @@ class G2PResPartner(models.Model):
 
         if view_type == "form":
             doc = etree.XML(res["arch"])
-            other_page = doc.xpath("//page[@name='other']")
+            basic_info_page = doc.xpath("//page[@name='basic_info']")
 
             model_fields_id = self.env["ir.model.fields"].search(
                 [("model_id", "=", "res.partner")],
                 order="ttype, field_description",
             )
 
-            if other_page:
+            if basic_info_page:
                 is_group = self._context.get("default_is_group", False)
-                custom_page = etree.Element("page", {"string": "Custom Fields"})
-                criteria_page = etree.Element("page", {"string": "Criteria Fields"})
+                custom_page = etree.Element("page", {"string": "Addtional Details"})
+                criteria_page = etree.Element("page", {"string": "Criteria"})
 
                 custom_group = etree.SubElement(
                     custom_page, "group", {"col": "4", "colspan": "4"}
@@ -82,9 +82,9 @@ class G2PResPartner(models.Model):
                         new_field.set("modifiers", json.dumps(modifiers))
 
                 if custom_group.getchildren():
-                    other_page[0].addprevious(custom_page)
+                    basic_info_page[0].addnext(custom_page)
                 if criteria_group.getchildren():
-                    other_page[0].addprevious(criteria_page)
+                    basic_info_page[0].addnext(criteria_page)
 
                 res["arch"] = etree.tostring(doc, encoding="unicode")
 
