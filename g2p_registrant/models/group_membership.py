@@ -36,21 +36,19 @@ class G2PGroupMembership(models.Model):
         "Group",
         required=True,
         domain=[("is_group", "=", True), ("is_registrant", "=", True)],
-        tracking=True,
     )
     individual = fields.Many2one(
         "res.partner",
         "Individual",
         required=True,
         domain=[("is_group", "=", False), ("is_registrant", "=", True)],
-        tracking=True,
     )
-    kind = fields.Many2many("g2p.group.membership.kind", string="Kind", tracking=True)
+    kind = fields.Many2many("g2p.group.membership.kind", string="Kind")
     start_date = fields.Datetime(
-        "Start Date", tracking=True, default=lambda self: fields.Datetime.now()
+        "Start Date", default=lambda self: fields.Datetime.now()
     )
     end_date = fields.Datetime(
-        "End Date", tracking=True
+        "End Date"
     )  # TODO: Should rename `ended_date` add a check that the date is in the past
 
     @api.onchange("kind")

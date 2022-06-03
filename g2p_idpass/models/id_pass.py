@@ -22,6 +22,7 @@ from odoo import fields, models
 
 class G2PIDPass(models.Model):
     _name = "g2p.id.pass"
+    _description = "ID Pass"
 
     api_url = fields.Text("API URL")
     api_username = fields.Char("API Username")

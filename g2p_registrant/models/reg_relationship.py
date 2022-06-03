@@ -32,20 +32,18 @@ class G2PRegistrantRelationship(models.Model):
         "Registrant 1",
         required=True,
         domain=[("is_registrant", "=", True)],
-        tracking=True,
     )
     registrant2 = fields.Many2one(
         "res.partner",
         "Registrant 2",
         required=True,
         domain=[("is_registrant", "=", True)],
-        tracking=True,
     )
-    relation = fields.Many2one("g2p.relationship", "Relation", tracking=True)
-    disabled = fields.Datetime("Date Disabled", tracking=True)
-    disabled_by = fields.Many2one("res.users", "Disabled by", tracking=True)
-    start_date = fields.Datetime("Start Date", tracking=True)
-    end_date = fields.Datetime("End Date", tracking=True)
+    relation = fields.Many2one("g2p.relationship", "Relation")
+    disabled = fields.Datetime("Date Disabled")
+    disabled_by = fields.Many2one("res.users", "Disabled by")
+    start_date = fields.Datetime("Start Date")
+    end_date = fields.Datetime("End Date")
 
     @api.constrains("registrant1", "registrant2")
     def _check_registrants(self):

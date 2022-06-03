@@ -26,7 +26,7 @@ _logger = logging.getLogger(__name__)
 class G2PGroup(models.Model):
     _inherit = "res.partner"
 
-    kind = fields.Many2one("g2p.group.kind", "Kind", tracking=True)
+    kind = fields.Many2one("g2p.group.kind", "Kind")
     group_membership_ids = fields.One2many(
         "g2p.group.membership", "group", "Group Members"
     )

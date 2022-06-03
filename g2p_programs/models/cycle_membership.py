@@ -27,13 +27,11 @@ class G2PCycleMembership(models.Model):
     _order = "id desc"
 
     partner_id = fields.Many2one(
-        "res.partner", "Registrant", help="A beneficiary", required=True, tracking=True
+        "res.partner", "Registrant", help="A beneficiary", required=True
     )
-    cycle_id = fields.Many2one(
-        "g2p.cycle", "Cycle", help="A cycle", required=True, tracking=True
-    )
+    cycle_id = fields.Many2one("g2p.cycle", "Cycle", help="A cycle", required=True)
     enrollment_date = fields.Date(
-        "Enrollment Date", tracking=True, default=lambda self: fields.Datetime.now()
+        "Enrollment Date", default=lambda self: fields.Datetime.now()
     )
     state = fields.Selection(
         selection=[
@@ -45,7 +43,6 @@ class G2PCycleMembership(models.Model):
         ],
         default="draft",
         copy=False,
-        tracking=True,
     )
 
     _sql_constraints = [

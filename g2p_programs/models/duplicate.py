@@ -6,9 +6,7 @@ class G2PDuplicateProgramMembership(models.Model):
     _description = "Program Membership duplicate"
     _order = "id desc"
 
-    beneficiary_ids = fields.Many2many(
-        "g2p.program_membership", string="Beneficiaries", tracking=True
-    )
+    beneficiary_ids = fields.Many2many("g2p.program_membership", string="Beneficiaries")
     state = fields.Selection(
         selection=[("duplicate", "Duplicate"), ("not_duplicate", "Not Duplicate")]
     )

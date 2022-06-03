@@ -52,10 +52,8 @@ class G2PProgram(models.Model):
         else:
             return None
 
-    name = fields.Char(required=True, tracking=True)
-    company_id = fields.Many2one(
-        "res.company", default=lambda self: self.env.company, tracking=True
-    )
+    name = fields.Char(required=True)
+    company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
     target_type = fields.Selection(
         selection=[("group", "Group"), ("individual", "Individual")], default="group"
     )
