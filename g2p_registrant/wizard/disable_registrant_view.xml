@@ -44,7 +44,7 @@
         </record>
 
         <record id="action_disable_registrant_wizard" model="ir.actions.act_window">
-            <field name="name">Disable Registrant</field>
+            <field name="name">Disable</field>
             <field name="res_model">g2p.disable.registrant.wizard</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>

@@ -78,7 +78,6 @@ class G2PIndividual(models.Model):
 
     def _recompute_parent_groups(self, records):
         fields = self._get_calculated_group_fields()
-        _logger.info(fields)
         for line in records:
             if line.is_registrant and not line.is_group:
                 groups = line.individual_membership_ids.mapped("group")
