@@ -79,6 +79,13 @@
                         icon="fa-undo"
                         class="btn-primary"
                     />
+                    <button
+                        name="deduplicate_beneficiaries"
+                        type="object"
+                        string="Deduplicate"
+                        icon="fa-download"
+                        class="btn-primary"
+                    />
                     <field name="state" widget="statusbar" statusbar_visible="active,ended" />
                 </header>
                 <div
@@ -233,7 +240,7 @@
                                                     icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
-                                                    context="{'default_program_id':active_id}"
+                                                    context="{'default_program_id':active_id, 'create': False}"
                                                 />
                                                 <field
                                                     name="manager_ref_id"
@@ -260,15 +267,6 @@
                                     </group>
                                 </group>
                                 <group colspan="2" string="Deduplication Managers">
-                                    <header colspan="2">
-                                        <button
-                                            name="deduplicate_beneficiaries"
-                                            type="object"
-                                            string="Deduplicate"
-                                            icon="fa-download"
-                                            class="btn-primary"
-                                        />
-                                    </header>
                                     <group colspan="2">
                                         <field
                                             name="deduplication_managers"
@@ -283,7 +281,7 @@
                                                     icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
-                                                    context="{'default_program_id':active_id}"
+                                                    context="{'default_program_id':active_id, 'create': False}"
                                                 />
                                                 <field
                                                     name="manager_ref_id"
@@ -326,7 +324,7 @@
                                                     icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
-                                                    context="{'default_program_id':active_id}"
+                                                    context="{'default_program_id':active_id, 'create': False}"
                                                 />
                                                 <field
                                                     name="manager_ref_id"
@@ -367,7 +365,7 @@
                                                     icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
-                                                    context="{'default_program_id':active_id}"
+                                                    context="{'default_program_id':active_id, 'create': False}"
                                                 />
                                                 <field
                                                     name="manager_ref_id"
@@ -410,7 +408,7 @@
                                                     icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
-                                                    context="{'default_program_id':active_id}"
+                                                    context="{'default_program_id':active_id, 'create': False}"
                                                 />
                                                 <field
                                                     name="manager_ref_id"
@@ -451,7 +449,7 @@
                                                     icon="fa-external-link"
                                                     class="btn-success"
                                                     attrs="{'invisible':[('manager_ref_id','=',False)]}"
-                                                    context="{'default_program_id':active_id}"
+                                                    context="{'default_program_id':active_id, 'create': False}"
                                                 />
                                                 <field
                                                     name="manager_ref_id"
