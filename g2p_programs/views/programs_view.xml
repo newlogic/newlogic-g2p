@@ -478,7 +478,7 @@
                                     </group>
                                 </group>
                             </group>
-                            <group string="Accounting" colspan="4" col="4">
+                            <group string="Accounting" name="accounting" colspan="4" col="4">
                                 <field
                                     name="journal_id"
                                     string="Journal"
