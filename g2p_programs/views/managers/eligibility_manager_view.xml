@@ -60,8 +60,6 @@
             <tree string="Default Eligibility Managers" sample="1">
                 <field name="name" />
                 <field name="program_id" />
-                <field name="support_individual" />
-                <field name="support_group" />
             </tree>
         </field>
     </record>
@@ -97,8 +95,6 @@
                         </div>
                     </div>
                     <group colspan="4" col="4">
-                        <field name="support_individual" />
-                        <field name="support_group" />
                         <field
                             name="eligibility_domain"
                             colspan="4"

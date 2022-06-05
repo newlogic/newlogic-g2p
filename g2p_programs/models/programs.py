@@ -176,9 +176,9 @@ class G2PProgram(models.Model):
     def enroll_eligible_registrants(self):
         # TODO: JJ - Think about how can we make it asynchronous.
         for rec in self:
-            members = rec.program_membership_ids
+            members = rec.get_beneficiaries(state=["draft"])
             _logger.info("members: %s", members)
-            eligibility_managers = self.get_managers(self.MANAGER_ELIGIBILITY)
+            eligibility_managers = rec.get_managers(self.MANAGER_ELIGIBILITY)
             if len(eligibility_managers):
                 for el in eligibility_managers:
                     members = el.enroll_eligible_registrants(members)

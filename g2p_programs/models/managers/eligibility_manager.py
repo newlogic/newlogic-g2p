@@ -67,8 +67,8 @@ class DefaultEligibility(models.Model):
     _description = "Simple Eligibility"
 
     # TODO: rename to allow_
-    support_individual = fields.Boolean(string="Support Individual", default=False)
-    support_group = fields.Boolean(string="Support Group", default=False)
+    # support_individual = fields.Boolean(string="Support Individual", default=False)
+    # support_group = fields.Boolean(string="Support Group", default=False)
 
     # TODO: cache the parsed domain
     eligibility_domain = fields.Text(string="Domain", default="[]")
@@ -77,9 +77,9 @@ class DefaultEligibility(models.Model):
         ids = membership.mapped("partner_id.id")
         domain = [("id", "in", ids)]
         # TODO: use the config of the program
-        if self.support_group and not self.support_individual:
+        if self.program_id.target_type == "group":
             domain += [("is_group", "=", True)]
-        if self.support_individual and not self.support_group:
+        if self.program_id.target_type == "individual":
             domain += [("is_group", "=", False)]
         domain += self._safe_eval(self.eligibility_domain)
         return domain
