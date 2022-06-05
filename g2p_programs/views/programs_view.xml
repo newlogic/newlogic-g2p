@@ -144,9 +144,9 @@
                         </div>
                     </div>
                     <notebook>
-                        <page string="Dashboard" name="dashboard">
+                        <!-- <page string="Dashboard" name="dashboard">
                         </page>
-                        <!-- <page string="Beneficiaries">
+                        <page string="Beneficiaries">
                             <header>
                                 <button
                                     name="enroll_eligible_registrants"
@@ -181,9 +181,10 @@
                                     <field name="enrollment_date" />
                                 </tree>
                             </field>
-                        </page>
+                        </page> -->
+
                         <page string="Cycles">
-                            <header>
+                            <!-- <header>
                                 <button
                                     name="create_new_cycle"
                                     type="object"
@@ -191,7 +192,7 @@
                                     icon="fa-undo"
                                     class="btn-primary"
                                 />
-                            </header>
+                            </header> -->
                             <field name="cycle_ids" nolabel="1" context="{'default_program_id':active_id}">
                                 <tree string="Program Cycles">
                                     <button
@@ -221,7 +222,7 @@
                                     />
                                 </tree>
                             </field>
-                        </page> -->
+                        </page>
 
                         <page string="Configuration">
                             <group colspan="4" col="4">
