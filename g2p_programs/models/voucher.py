@@ -80,6 +80,8 @@ class G2PVoucher(models.Model):
             name = _("Voucher")
             if record.is_cash_voucher:
                 name += " Cash [" + str(record.initial_amount) + "]"
+            else:
+                name += " (" + str(record.code) + ")"
             record.name = name
 
     @api.depends("initial_amount")
