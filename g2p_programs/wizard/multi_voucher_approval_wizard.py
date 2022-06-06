@@ -1,7 +1,8 @@
 # Part of Newlogic G2P. See LICENSE file for full copyright and licensing details.
 import logging
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -31,7 +32,20 @@ class G2PMultiVoucherApprovalWiz(models.TransientModel):
 
                 cycle_id = voucher.cycle_id.id
 
-            res["cycle_id"] = cycle_id
+            cycle = self.env["g2p.cycle"].search(
+                [
+                    ("id", "=", cycle_id),
+                ]
+            )
+            if cycle:
+                if cycle.state == "approved":
+                    res["cycle_id"] = cycle_id
+                else:
+                    raise ValidationError(
+                        _(
+                            "Only approved Cycle are allowed to multiple voucher approval"
+                        )
+                    )
             res["voucher_ids"] = voucher_ids
 
         return res
