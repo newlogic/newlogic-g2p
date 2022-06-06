@@ -33,10 +33,40 @@
                             </div>
                         </div>
                         <field name="target_type" readonly="1" invisible="1" />
-                        <field name="registrant_ids" nolabel="1">
+                        <field
+                            name="group_ids"
+                            nolabel="1"
+                            attrs="{'invisible': [('target_type', '=', 'individual')]}"
+                        >
+                          <tree string="Groups" editable="bottom">
+                              <field
+                                    name="partner_id"
+                                    domain="[('is_group', '=', True)]"
+                                    string="Group"
+                                    options="{'no_create_edit':True,'no_open':True,'no_create':True}"
+                                />
+                              <field
+                                    name="state"
+                                    decoration-secondary="state=='New'"
+                                    decoration-primary="state=='Okay'"
+                                    decoration-success="state=='Posted'"
+                                    decoration-danger="state=='Assigned'"
+                                    widget="badge"
+                                    readonly="1"
+                                />
+                          </tree>
+                        </field>
+
+                        <field
+                            name="registrant_ids"
+                            nolabel="1"
+                            attrs="{'invisible': [('target_type', '=', 'group')]}"
+                        >
                           <tree string="Registrants" editable="bottom">
                               <field
                                     name="partner_id"
+                                    domain="[('is_group', '=', False)]"
+                                    string="Individual"
                                     options="{'no_create_edit':True,'no_open':True,'no_create':True}"
                                 />
                               <field
