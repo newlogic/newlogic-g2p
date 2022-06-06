@@ -40,6 +40,7 @@
         "views/accounting/fund_report_view.xml",
         "views/accounting/account_journal_config_view.xml",
         "wizard/assign_to_program_wizard.xml",
+        "wizard/multi_voucher_approval_wizard.xml",
     ],
     "assets": {},
     "demo": [],

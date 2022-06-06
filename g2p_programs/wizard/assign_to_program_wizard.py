@@ -28,9 +28,10 @@ class G2PAssignToProgramWizard(models.TransientModel):
                 )
                 if registrant.is_group:
                     target_type = "group"
+                    res["group_ids"] = reg_ids
                 else:
                     target_type = "individual"
-            res["registrant_ids"] = reg_ids
+                    res["registrant_ids"] = reg_ids
             res["target_type"] = target_type
         return res
 
@@ -38,7 +39,11 @@ class G2PAssignToProgramWizard(models.TransientModel):
         "g2p.assign.program.registrants",
         "program_id",
         string="Registrant",
-        required=True,
+    )
+    group_ids = fields.One2many(
+        "g2p.assign.program.registrants",
+        "program_id",
+        string="Group",
     )
     target_type = fields.Selection(
         selection=[("group", "Group"), ("individual", "Individual")], default="group"
@@ -52,7 +57,11 @@ class G2PAssignToProgramWizard(models.TransientModel):
     )
 
     def assign_registrant(self):
-        for rec in self.registrant_ids:
+        registrants = self.registrant_ids
+        if self.target_type == "group":
+            registrants = self.group_ids
+
+        for rec in registrants:
             curr_registrant = self.env["g2p.program_membership"].search(
                 [
                     ("partner_id", "=", rec.partner_id.id),
@@ -94,8 +103,8 @@ class G2PAssignToProgramRegistrants(models.TransientModel):
         "res.partner",
         "Registrant",
         help="A beneficiary",
-        required=True,
         domain=[("is_registrant", "=", True)],
+        required=True,
     )
     program_id = fields.Many2one(
         "g2p.assign.program.wizard",

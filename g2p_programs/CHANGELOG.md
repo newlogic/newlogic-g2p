@@ -1,5 +1,10 @@
 Format in CHANGELOG.md
 
+## Version[0.14] - 2022-06-06
+
+- [FIX] Remove dashboard menus and tabs in UI
+- [FIX] Restored Cycles tab in programs UI
+
 ## Version[0.13] - 2022-05-31
 
 - [ADD] date_ended and date_archived in g2p.program
