@@ -17,6 +17,7 @@
     ],
     "data": [
         "views/source_views.xml",
+        "views/menuitems.xml",
         "security/ir.model.access.csv",
         "data/import_backend.xml",
         "data/import_type.xml",
