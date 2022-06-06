@@ -210,7 +210,8 @@ class G2PCycle(models.Model):
             "res_id": self.id,
             "view_id": self.env.ref("g2p_programs.view_cycle_form").id,
             "type": "ir.actions.act_window",
-            "target": "new",
+            "target": "current",
+            "flags": {"mode": "readonly"},
         }
 
     def open_members_form(self):

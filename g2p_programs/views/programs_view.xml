@@ -42,28 +42,12 @@
             <form string="Program">
                 <header>
                     <button
-                        type="object"
-                        class="btn-warning"
-                        icon="fa-stop"
-                        name="end_program"
-                        string="End Program"
-                        confirm="Are you sure you would like to end this program?"
-                        states="active"
-                    />
-                    <button
-                        type="object"
-                        class="btn-success"
-                        icon="fa-undo"
-                        name="reactivate_program"
-                        string="Re-activate Program"
-                        states="ended"
-                    />
-                    <button
                         name="enroll_eligible_registrants"
                         type="object"
                         string="Enroll Eligible Registrants"
                         icon="fa-download"
                         class="btn-primary"
+                        states="active"
                     />
                     <button
                         name="notify_eligible_beneficiaries"
@@ -71,6 +55,7 @@
                         string="Notify Registrants"
                         icon="fa-envelope-o"
                         class="btn-primary"
+                        states="active"
                     />
                     <button
                         name="create_new_cycle"
@@ -78,6 +63,7 @@
                         string="Create New Cycle"
                         icon="fa-undo"
                         class="btn-primary"
+                        states="active"
                     />
                     <button
                         name="deduplicate_beneficiaries"
@@ -85,6 +71,7 @@
                         string="Deduplicate"
                         icon="fa-download"
                         class="btn-primary"
+                        states="active"
                     />
                     <field name="state" widget="statusbar" statusbar_visible="active,ended" />
                 </header>
@@ -129,17 +116,27 @@
                     <div class="oe_title mb24">
                         <label for="name" string="Program:" />
                         <h1>
-                            <field id="name" name="name" placeholder="Enter the program name..." />
+                            <field
+                                id="name"
+                                name="name"
+                                placeholder="Enter the program name..."
+                                attrs="{'readonly':[('state','=','ended')]}"
+                            />
                         </h1>
                         <div class="o_row">
                             <label for="target_type" string="Target Type:" />
-                            <field name="target_type" widget="radio" />
+                            <field
+                                name="target_type"
+                                attrs="{'readonly':[('state','=','ended')]}"
+                                widget="radio"
+                            />
                             <label for="company_id" string=" | Company: " groups="base.group_multi_company" />
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"
                                 options="{'no_create': True}"
                                 force_save="1"
+                                attrs="{'readonly':[('state','=','ended')]}"
                             />
                         </div>
                     </div>
@@ -193,7 +190,12 @@
                                     class="btn-primary"
                                 />
                             </header> -->
-                            <field name="cycle_ids" nolabel="1" context="{'default_program_id':active_id}">
+                            <field
+                                name="cycle_ids"
+                                nolabel="1"
+                                attrs="{'readonly':[('state','=','ended')]}"
+                                context="{'default_program_id':active_id}"
+                            >
                                 <tree string="Program Cycles">
                                     <button
                                         name="open_cycle_form"
@@ -233,6 +235,7 @@
                                             nolabel="1"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
+                                            attrs="{'readonly':[('state','=','ended')]}"
                                         >
                                             <tree string="Eligibility Managers" editable="top">
                                                 <button
@@ -274,6 +277,7 @@
                                             nolabel="1"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
+                                            attrs="{'readonly':[('state','=','ended')]}"
                                         >
                                             <tree string="Deduplication Managers" editable="top">
                                                 <button
@@ -317,6 +321,7 @@
                                             nolabel="1"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
+                                            attrs="{'readonly':[('state','=','ended')]}"
                                         >
                                             <tree string="Notification Managers" editable="top">
                                                 <button
@@ -358,6 +363,7 @@
                                             nolabel="1"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
+                                            attrs="{'readonly':[('state','=','ended')]}"
                                         >
                                             <tree string="Program Managers" editable="top">
                                                 <button
@@ -401,6 +407,7 @@
                                             nolabel="1"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
+                                            attrs="{'readonly':[('state','=','ended')]}"
                                         >
                                             <tree string="Cycle Managers" editable="top">
                                                 <button
@@ -442,6 +449,7 @@
                                             nolabel="1"
                                             context="{'default_program_id':active_id}"
                                             domain="[('program_id','=',active_id)]"
+                                            attrs="{'readonly':[('state','=','ended')]}"
                                         >
                                             <tree string="Entitlement Managers" editable="top">
                                                 <button
@@ -482,6 +490,7 @@
                                     name="journal_id"
                                     string="Journal"
                                     options="{'no_open':True,'no_quick_create':True,'no_create':True}"
+                                    attrs="{'readonly':[('state','=','ended')]}"
                                 />
                                 <button
                                     type="object"
@@ -489,6 +498,7 @@
                                     icon="fa-plus"
                                     name="create_journal"
                                     string="Create New Journal"
+                                    states="active"
                                 />
                             </group>
                         </page>
@@ -561,5 +571,23 @@
         sequence="10"
         groups="g2p_registrant.group_g2p_admin,g2p_programs.g2p_program_manager,g2p_programs.g2p_program_validator"
     />
+
+    <record model="ir.actions.server" id="end_program">
+      <field name="name">End Program</field>
+      <field name="model_id" ref="g2p_programs.model_g2p_program" />
+      <field name="binding_model_id" ref="g2p_programs.model_g2p_program" />
+      <field name="binding_view_types">form</field>
+      <field name="state">code</field>
+      <field name="code">action = model.end_program()</field>
+    </record>
+
+    <record model="ir.actions.server" id="reactivate_program">
+      <field name="name">Re-activate Program</field>
+      <field name="model_id" ref="g2p_programs.model_g2p_program" />
+      <field name="binding_model_id" ref="g2p_programs.model_g2p_program" />
+      <field name="binding_view_types">form</field>
+      <field name="state">code</field>
+      <field name="code">action = model.reactivate_program()</field>
+    </record>
 
 </odoo>

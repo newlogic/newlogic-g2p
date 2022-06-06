@@ -18,7 +18,7 @@
         <field name="inherit_id" ref="g2p_programs.view_program_list_form" />
         <field name="arch" type="xml">
             <xpath expr="//page[@name='dashboard']" position="inside">
-                <widget name="program_form_dashboard" />
+                <widget name="program_form_dashboard" attrs="{'readonly':[('state','=','ended')]}" />
             </xpath>
         </field>
     </record>

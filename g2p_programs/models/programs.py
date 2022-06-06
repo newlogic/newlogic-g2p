@@ -136,9 +136,10 @@ class G2PProgram(models.Model):
                 managers = rec.entitlement_managers
             else:
                 raise NotImplementedError("Manager not supported")
-            managers.ensure_one()
-            for el in managers:
-                return el.manager_ref_id
+            if managers:
+                managers.ensure_one()
+                for el in managers:
+                    return el.manager_ref_id
 
     @api.model
     def get_managers(self, kind):
@@ -323,9 +324,14 @@ class G2PProgram(models.Model):
             rec.update({"journal_id": new_journal.id})
 
     def end_program(self):
-        for rec in self:
-            if rec.state == "active":
-                rec.update({"state": "ended", "date_ended": fields.Date.today()})
+        for rec in self.env.context.get("active_ids"):
+            program = self.env["g2p.program"].search(
+                [
+                    ("id", "=", rec),
+                ]
+            )
+            if program.state == "active":
+                program.update({"state": "ended", "date_ended": fields.Date.today()})
             else:
                 message = _("Ony 'active' programs can be ended.")
                 kind = "danger"
@@ -342,9 +348,14 @@ class G2PProgram(models.Model):
                 }
 
     def reactivate_program(self):
-        for rec in self:
-            if rec.state == "ended":
-                rec.update({"state": "active", "date_ended": None})
+        for rec in self.env.context.get("active_ids"):
+            program = self.env["g2p.program"].search(
+                [
+                    ("id", "=", rec),
+                ]
+            )
+            if program.state == "ended":
+                program.update({"state": "active", "date_ended": None})
             else:
                 message = _("Ony 'ended' programs can be re-activated.")
                 kind = "danger"
