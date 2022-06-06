@@ -77,3 +77,6 @@ g2p_program_fund_finance_validator,Program Fund Finance Validator Access,g2p_pro
 g2p_program_fund_report_view_finance_validator,Program Fund Report View Finance Validator Access,g2p_programs.model_g2p_program_fund_report_view,g2p_programs.g2p_finance_validator,1,1,1,0
 g2p_account_journal_finance_validator,Account Journal Finance Validator Access,account.model_account_journal,g2p_programs.g2p_finance_validator,1,1,1,0
 g2p_account_move_line_finance_validator,Account Move Line Finance Validator Access,account.model_account_move_line,g2p_programs.g2p_finance_validator,1,1,1,0
+
+g2p_multi_voucher_approval_wizard_admin,Multi Voucher Approval Wizard Admin Access,g2p_programs.model_g2p_multi_voucher_approval_wizard,g2p_registrant.group_g2p_admin,1,1,1,1
+g2p_multi_voucher_approval_admin,Multi Voucher Approval Admin Access,g2p_programs.model_g2p_multi_voucher_approval,g2p_registrant.group_g2p_admin,1,1,1,1

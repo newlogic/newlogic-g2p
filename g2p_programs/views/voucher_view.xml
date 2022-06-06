@@ -194,6 +194,15 @@
         <field name="act_window_id" ref="action_voucher" />
     </record>
 
+    <record model="ir.actions.server" id="multiple_voucher_approval">
+      <field name="name">Approve</field>
+      <field name="model_id" ref="g2p_programs.model_g2p_multi_voucher_approval_wizard" />
+      <field name="binding_model_id" ref="g2p_programs.model_g2p_voucher" />
+      <field name="binding_view_types">list,form</field>
+      <field name="state">code</field>
+      <field name="code">action = model.open_wizard()</field>
+    </record>
+
     <!-- <menuitem
         id="menu_voucher"
         name="Vouchers"

@@ -13,38 +13,36 @@
 -->
 <odoo>
     <data>
-        <record id="assign_to_program_wizard_form_view" model="ir.ui.view">
-            <field name="name">assign_to_program_wizard_form_view</field>
-            <field name="model">g2p.assign.program.wizard</field>
+        <record id="multi_voucher_approval_wizard_form_view" model="ir.ui.view">
+            <field name="name">multi_voucher_approval_wizard_form_view</field>
+            <field name="model">g2p.multi.voucher.approval.wizard</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
                         <div class="oe_title">
                             <h1>
-                                <label for="program_id" string="Program" />
+                                <label for="cycle_id" string="Cycle" />
                             </h1>
                             <h1>
-                                <field
-                                    name="program_id"
-                                    options="{'no_create_edit':True,'no_open':True,'no_create':True}"
-                                />
+                                <field name="cycle_id" readonly="1" />
                             </h1>
                             <div class="o_row">
                             </div>
                         </div>
-                        <field name="target_type" readonly="1" invisible="1" />
-                        <field name="registrant_ids" nolabel="1">
-                          <tree string="Registrants" editable="bottom">
+                        <field name="voucher_ids" nolabel="1" context="{'default_cycle_id': cycle_id}">
+                          <tree string="Vouchers" editable="bottom">
+                              <field name="cycle_id" invisible="1" />
                               <field
-                                    name="partner_id"
+                                    name="voucher_id"
+                                    domain="[('cycle_id', '=', cycle_id)]"
                                     options="{'no_create_edit':True,'no_open':True,'no_create':True}"
                                 />
                               <field
                                     name="state"
                                     decoration-secondary="state=='New'"
                                     decoration-primary="state=='Okay'"
-                                    decoration-success="state=='Posted'"
-                                    decoration-danger="state=='Assigned'"
+                                    decoration-success="state=='Approved'"
+                                    decoration-danger="state=='Conflict'"
                                     widget="badge"
                                     readonly="1"
                                 />
@@ -52,7 +50,7 @@
                         </field>
                     </sheet>
                     <footer>
-                        <button name="assign_registrant" string="Assign" type="object" class="oe_highlight" />
+                        <button name="approve_vouchers" string="Approve" type="object" class="oe_highlight" />
                         <button string="Cancel" class="btn-secondary" special="cancel" />
                     </footer>
                 </form>
