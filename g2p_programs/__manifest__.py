@@ -39,6 +39,7 @@
         "views/accounting/account_journal_view.xml",
         "views/accounting/fund_report_view.xml",
         "views/accounting/account_journal_config_view.xml",
+        "views/duplicate_view.xml",
         "wizard/assign_to_program_wizard.xml",
         "wizard/multi_entitlement_approval_wizard.xml",
     ],

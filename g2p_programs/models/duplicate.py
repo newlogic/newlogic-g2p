@@ -2,6 +2,7 @@ from odoo import fields, models
 
 
 class G2PDuplicateProgramMembership(models.Model):
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _name = "g2p.program.membership.duplicate"
     _description = "Program Membership duplicate"
     _order = "id desc"
