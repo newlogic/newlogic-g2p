@@ -148,12 +148,7 @@ class G2PCycle(models.Model):
         # 1. Make sure the user has the right to do this
         # 2. Approve the cycle using the cycle manager
         for rec in self:
-
-            cycle_managers = self.env["g2p.cycle.manager"].search(
-                [
-                    ("program_id", "=", rec.program_id.id),
-                ]
-            )
+            cycle_managers = self.program_id.get_manager(constants.MANAGER_CYCLE)
             auto_approve = False
             for cm in cycle_managers:
                 if cm.auto_approve_entitlements:
@@ -164,7 +159,7 @@ class G2PCycle(models.Model):
                 entitlements = self.env["g2p.entitlement"].search(
                     [
                         ("cycle_id", "=", rec.id),
-                        ("state", "in", ["draft", "pending_validation"]),
+                        ("state", "=", "draft"),
                     ]
                 )
                 if entitlements:

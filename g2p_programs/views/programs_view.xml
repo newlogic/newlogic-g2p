@@ -425,7 +425,6 @@
                                                     string="Managers"
                                                     context="{'default_program_id':active_id}"
                                                 />
-                                                <field name="auto_approve_entitlements" />
                                                 <field name="manager_id" invisible="1" />
                                             </tree>
                                             <form string="Cycle Manager">

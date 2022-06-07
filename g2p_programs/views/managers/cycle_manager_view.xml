@@ -21,7 +21,6 @@
             <tree string="Cycle Managers">
                 <field name="manager_ref_id" />
                 <field name="program_id" />
-                <field name="auto_approve_entitlements" />
                 <field name="manager_id" invisible="1" />
             </tree>
         </field>
@@ -47,7 +46,7 @@
                             options="{'no_open':True,'no_create':True,'no_create_edit':True}"
                         />
 
-                        <field name="auto_approve_entitlements" />
+
                     </group>
                 </sheet>
             </form>
@@ -64,6 +63,7 @@
                 <field name="name" />
                 <field name="program_id" />
                 <field name="cycle_duration" />
+                <field name="auto_approve_entitlements" />
             </tree>
         </field>
     </record>
@@ -99,6 +99,7 @@
                         </div>
                     </div>
                     <group string="Cycle Settings" colspan="4" col="4">
+                        <field name="auto_approve_entitlements" />
                         <field name="cycle_duration" />
                         <field
                             name="approver_group_id"
