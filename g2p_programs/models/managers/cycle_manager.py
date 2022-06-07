@@ -32,6 +32,10 @@ class BaseCycleManager(models.AbstractModel):
 
     name = fields.Char("Manager Name", required=True)
     program_id = fields.Many2one("g2p.program", string="Program", required=True)
+
+    auto_approve_entitlements = fields.Boolean(
+        string="Auto-approve Entitlements", default=False
+    )
     # cycle_id = fields.Many2one("g2p.cycle", string="Cycle", required=True)
 
     def check_eligibility(self, cycle, beneficiaries=None):
@@ -104,9 +108,6 @@ class DefaultCycleManager(models.Model):
     _description = "Default Cycle Manager"
 
     cycle_duration = fields.Integer("Cycle Duration", default=30, required=True)
-    auto_approve_entitlements = fields.Boolean(
-        string="Auto-approve Entitlements", default=False
-    )
     approver_group_id = fields.Many2one(
         comodel_name="res.groups",
         string="Approver Group",
