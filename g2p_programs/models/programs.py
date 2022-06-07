@@ -73,6 +73,12 @@ class G2PProgram(models.Model):
     program_membership_ids = fields.One2many(
         "g2p.program_membership", "program_id", "Program Memberships"
     )
+    have_members = fields.Boolean(
+        string="Have Beneficiaries",
+        compute="_compute_have_members",
+        default=False,
+        store=True,
+    )
     cycle_ids = fields.One2many("g2p.cycle", "program_id", "Cycles")
 
     date_ended = fields.Date("Date Ended")
@@ -100,6 +106,11 @@ class G2PProgram(models.Model):
     )
 
     cycles_count = fields.Integer(string="# Cycles", compute="_compute_cycle_count")
+
+    @api.depends("program_membership_ids")
+    def _compute_have_members(self):
+        if len(self.program_membership_ids) > 0:
+            self.have_members = True
 
     @api.model
     def create(self, vals):

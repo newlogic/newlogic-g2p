@@ -124,10 +124,11 @@
                             />
                         </h1>
                         <div class="o_row">
+                            <field name="have_members" invisible="1" />
                             <label for="target_type" string="Target Type:" />
                             <field
                                 name="target_type"
-                                attrs="{'readonly':[('state','=','ended')]}"
+                                attrs="{'readonly':['|', ('state','=','ended'), ('have_members', '=', True)]}"
                                 widget="radio"
                             />
                             <label for="company_id" string=" | Company: " groups="base.group_multi_company" />

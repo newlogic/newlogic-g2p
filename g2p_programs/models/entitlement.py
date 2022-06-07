@@ -2,6 +2,7 @@
 from uuid import uuid4
 
 from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class G2PEntitlement(models.Model):
@@ -113,6 +114,14 @@ class G2PEntitlement(models.Model):
     def can_be_used(self):
         # expired state are computed once a day, so can be not synchro
         return self.state == "approved" and self.valid_until >= fields.Date.today()
+
+    def unlink(self):
+        if self.state == "draft":
+            return super(G2PEntitlement, self).unlink()
+        else:
+            raise ValidationError(
+                _("Only draft entitlements are allowed to be deleted")
+            )
 
     def approve_entitlement(self):
         for rec in self:
