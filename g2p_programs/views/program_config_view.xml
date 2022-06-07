@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+   Copyright 2022 Newlogic
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+       http://www.apache.org/licenses/LICENSE-2.0
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<odoo>
+
+<!-- Dashboard Settings Views -->
+    <record id="program_settings_view" model="ir.ui.view">
+        <field name="name">Program Settings</field>
+        <field name="model">g2p.program.settings</field>
+        <field name="arch" type="xml">
+            <form string="Program Settings" class="oe_form_configuration">
+                <header>
+                    <button string="Apply" type="object" name="execute" class="oe_highlight" />
+                    <button string="Cancel" type="object" name="cancel" class="oe_link" special="cancel" />
+                </header>
+                <group string="Program Settings">
+                    <label for="id" string="Defaults" />
+                    <div>
+                        <div>
+                            <label for="default_eligibility_managers" />
+                            <field
+                                name="default_eligibility_managers"
+                                class="oe_inline"
+                                options="{'no_open':true,'no_quick_create':true,'no_create':true}"
+                            />
+                        </div>
+                    </div>
+                </group>
+                <field name="id" invisible="1" />
+            </form>
+        </field>
+    </record>
+
+    <record id="action_program_settings" model="ir.actions.act_window">
+        <field name="name">Program Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">g2p.program.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+
+    <menuitem
+        id="program_settings_menu_root"
+        sequence="900"
+        parent="g2p_programs.g2p_program_configuration_menu_root"
+        name="Program"
+    />
+
+    <menuitem
+        id="program_settings_menu"
+        action="action_program_settings"
+        sequence="1"
+        parent="program_settings_menu_root"
+        name="Settings"
+        groups="g2p_registrant.group_g2p_admin"
+    />
+
+</odoo>
