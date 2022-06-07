@@ -52,6 +52,7 @@
                         name="approve_voucher"
                         attrs="{'invisible':[('state','not in',('draft','pending_validation'))]}"
                         string="Approve Voucher"
+                        groups="g2p_programs.g2p_finance_validator"
                     />
                     <field
                         name="state"
