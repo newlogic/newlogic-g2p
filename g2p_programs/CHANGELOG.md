@@ -1,5 +1,9 @@
 Format in CHANGELOG.md
 
+## Version[0.15] - 2022-06-07
+
+- [ADD] Automatically create default managers in program creation
+
 ## Version[0.14] - 2022-06-06
 
 - [FIX] Remove dashboard menus and tabs in UI

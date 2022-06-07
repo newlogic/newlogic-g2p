@@ -22,6 +22,8 @@ class G2PProgram(models.Model):
     MANAGER_DEDUPLICATION = constants.MANAGER_DEDUPLICATION
     MANAGER_NOTIFICATION = constants.MANAGER_NOTIFICATION
 
+    MANAGER_MODELS = constants.MANAGER_MODELS
+
     # TODO: Associate a Wallet to each program using the accounting module
     # TODO: (For later) Associate a Warehouse to each program using the stock module for in-kind programs
 
@@ -98,6 +100,39 @@ class G2PProgram(models.Model):
     )
 
     cycles_count = fields.Integer(string="# Cycles", compute="_compute_cycle_count")
+
+    @api.model
+    def create(self, vals):
+        res = super(G2PProgram, self).create(vals)
+        program_id = res.id
+        man_ids = self.create_default_managers(program_id)
+        for man in man_ids:
+            res.update({man: [(4, man_ids[man])]})
+        return res
+
+    @api.model
+    def create_default_managers(self, program_id):
+        ret_vals = {}
+        for mgr_fld in self.MANAGER_MODELS:
+            for mgr_obj in self.MANAGER_MODELS[mgr_fld]:
+                # Add a new record to default manager models
+                def_mgr_obj = self.MANAGER_MODELS[mgr_fld][mgr_obj]
+                def_mgr = self.env[def_mgr_obj].create(
+                    {
+                        "name": "Default",
+                        "program_id": program_id,
+                    }
+                )
+                # Add a new record to manager parent models
+                man_obj = self.env[mgr_obj]
+                mgr = man_obj.create(
+                    {
+                        "program_id": program_id,
+                        "manager_ref_id": "%s,%s" % (def_mgr_obj, str(def_mgr.id)),
+                    }
+                )
+                ret_vals.update({mgr_fld: mgr.id})
+        return ret_vals
 
     @api.depends("program_membership_ids")
     def _compute_eligible_beneficiary_count(self):

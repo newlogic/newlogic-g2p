@@ -109,7 +109,6 @@ class DefaultCycleManager(models.Model):
         comodel_name="res.groups",
         string="Approver Group",
         copy=True,
-        required=True,
     )
 
     def check_eligibility(self, cycle, beneficiaries=None):
