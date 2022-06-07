@@ -42,9 +42,7 @@ class G2PMultiVoucherApprovalWiz(models.TransientModel):
                     res["cycle_id"] = cycle_id
                 else:
                     raise ValidationError(
-                        _(
-                            "Only approved Cycle are allowed to multiple voucher approval"
-                        )
+                        _("You can approve only vouchers from approved cycles.")
                     )
             res["voucher_ids"] = voucher_ids
 
