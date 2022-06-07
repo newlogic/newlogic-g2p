@@ -16,6 +16,9 @@ class CycleManager(models.Model):
     _inherit = "g2p.manager.mixin"
 
     program_id = fields.Many2one("g2p.program", "Program")
+    auto_approve_entitlements = fields.Boolean(
+        string="Auto-approve Entitlements", default=False
+    )
 
     @api.model
     def _selection_manager_ref_id(self):

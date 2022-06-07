@@ -148,6 +148,29 @@ class G2PCycle(models.Model):
         # 1. Make sure the user has the right to do this
         # 2. Approve the cycle using the cycle manager
         for rec in self:
+
+            cycle_managers = self.env["g2p.cycle.manager"].search(
+                [
+                    ("program_id", "=", rec.program_id.id),
+                ]
+            )
+            auto_approve = False
+            for cm in cycle_managers:
+                if cm.auto_approve_entitlements:
+                    auto_approve = True
+                    break
+
+            if auto_approve:
+                entitlements = self.env["g2p.entitlement"].search(
+                    [
+                        ("cycle_id", "=", rec.id),
+                        ("state", "in", ["draft", "pending_validation"]),
+                    ]
+                )
+                if entitlements:
+                    for e in entitlements:
+                        e.approve_entitlement()
+
             if rec.state == self.STATE_TO_APPROVE:
                 rec.update({"state": self.STATE_APPROVED})
                 # Running on_state_change because it is not triggered automatically with rec.update above
