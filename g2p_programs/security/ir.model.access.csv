@@ -4,7 +4,7 @@ g2p_program_admin,Program Admin Access,g2p_programs.model_g2p_program,g2p_regist
 g2p_program_membership_admin,Program Membership Admin Access,g2p_programs.model_g2p_program_membership,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_cycle_admin,Cycle Admin Access,g2p_programs.model_g2p_cycle,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_cycle_membership_admin,Cycle Membership Admin Access,g2p_programs.model_g2p_cycle_membership,g2p_registrant.group_g2p_admin,1,1,1,1
-g2p_voucher_admin,Voucher Admin Access,g2p_programs.model_g2p_voucher,g2p_registrant.group_g2p_admin,1,1,1,1
+g2p_entitlement_admin,Entitlement Admin Access,g2p_programs.model_g2p_entitlement,g2p_registrant.group_g2p_admin,1,1,1,1
 
 g2p_program_membership_duplicate_admin,Program Membership Duplicate Admin Access,g2p_programs.model_g2p_program_membership_duplicate,g2p_registrant.group_g2p_admin,1,1,1,1
 
@@ -42,7 +42,7 @@ g2p_account_type_admin,Account Type Admin Access,account.model_account_account_t
 
 g2p_program_membership_registrar,Program Membership Registrar Access,g2p_programs.model_g2p_program_membership,g2p_registrant.group_g2p_registrar,1,1,1,0
 g2p_cycle_membership_registrar,Cycle Membership Registrar Access,g2p_programs.model_g2p_cycle_membership,g2p_registrant.group_g2p_registrar,1,1,1,0
-g2p_voucher_registrar,Voucher Registrar Access,g2p_programs.model_g2p_voucher,g2p_registrant.group_g2p_registrar,1,1,1,0
+g2p_entitlement_registrar,Entitlement Registrar Access,g2p_programs.model_g2p_entitlement,g2p_registrant.group_g2p_registrar,1,1,1,0
 g2p_account_move_line_admin,Account Move Line Admin Access,account.model_account_move_line,g2p_registrant.group_g2p_registrar,1,1,1,0
 
 g2p_ui_view_program_manager,UI View Program Manager Access,base.model_ir_ui_view,g2p_programs.g2p_program_manager,1,1,0,0
@@ -69,7 +69,7 @@ g2p_default_cycle_manager_program_manager,Default Cycle Manager Program Manager 
 g2p_program_entitlement_manager_program_manager,Program Entitlement Manager Program Manager Access,g2p_programs.model_g2p_program_entitlement_manager,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_program_entitlement_manager_default_program_manager,Program Entitlement Manager Default Program Manager Access,g2p_programs.model_g2p_program_entitlement_manager_default,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_cycle_membership_program_manager,Cycle Membership Program Manager Access,g2p_programs.model_g2p_cycle_membership,g2p_programs.g2p_program_manager,1,1,1,0
-g2p_voucher_program_manager,Voucher Program Manager Access,g2p_programs.model_g2p_voucher,g2p_programs.g2p_program_manager,1,1,1,0
+g2p_entitlement_program_manager,Entitlement Program Manager Access,g2p_programs.model_g2p_entitlement,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_program_fund_program_manager,Program Fund Program Manager Access,g2p_programs.model_g2p_program_fund,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_program_fund_report_view_program_manager,Program Fund Report View Program Manager Access,g2p_programs.model_g2p_program_fund_report_view,g2p_programs.g2p_program_manager,1,1,1,0
 
@@ -82,5 +82,5 @@ g2p_program_fund_report_view_finance_validator,Program Fund Report View Finance 
 g2p_account_journal_finance_validator,Account Journal Finance Validator Access,account.model_account_journal,g2p_programs.g2p_finance_validator,1,1,1,0
 g2p_account_move_line_finance_validator,Account Move Line Finance Validator Access,account.model_account_move_line,g2p_programs.g2p_finance_validator,1,1,1,0
 
-g2p_multi_voucher_approval_wizard_admin,Multi Voucher Approval Wizard Admin Access,g2p_programs.model_g2p_multi_voucher_approval_wizard,g2p_registrant.group_g2p_admin,1,1,1,1
-g2p_multi_voucher_approval_admin,Multi Voucher Approval Admin Access,g2p_programs.model_g2p_multi_voucher_approval,g2p_registrant.group_g2p_admin,1,1,1,1
+g2p_multi_entitlement_approval_wizard_admin,Multi Entitlement Approval Wizard Admin Access,g2p_programs.model_g2p_multi_entitlement_approval_wizard,g2p_registrant.group_g2p_admin,1,1,1,1
+g2p_multi_entitlement_approval_admin,Multi Entitlement Approval Admin Access,g2p_programs.model_g2p_multi_entitlement_approval,g2p_registrant.group_g2p_admin,1,1,1,1

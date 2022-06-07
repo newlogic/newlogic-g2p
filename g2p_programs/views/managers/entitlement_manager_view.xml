@@ -64,7 +64,7 @@
                 <field name="amount_per_individual_in_group" sum="total_amount_per_individual_in_group" />
                 <field name="currency_id" />
                 <field name="max_individual_in_group" />
-                <field name="voucher_validation_group_id" />
+                <field name="entitlement_validation_group_id" />
             </tree>
         </field>
     </record>
@@ -108,7 +108,7 @@
                         />
                         <field name="max_individual_in_group" />
                         <field
-                            name="voucher_validation_group_id"
+                            name="entitlement_validation_group_id"
                             options="{'no_open':True,'no_create':True,'no_create_edit':True}"
                         />
                     </group>

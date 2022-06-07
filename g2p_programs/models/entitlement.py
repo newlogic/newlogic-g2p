@@ -4,10 +4,10 @@ from uuid import uuid4
 from odoo import _, api, fields, models
 
 
-class G2PVoucher(models.Model):
+class G2PEntitlement(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _name = "g2p.voucher"
-    _description = "Voucher"
+    _name = "g2p.entitlement"
+    _description = "Entitlement"
     _order = "id desc"
     _check_company_auto = True
 
@@ -36,13 +36,13 @@ class G2PVoucher(models.Model):
         default=lambda self: fields.Date.add(fields.Date.today(), years=1)
     )
 
-    is_cash_voucher = fields.Boolean("Cash Voucher", default=False)
+    is_cash_entitlement = fields.Boolean("Cash Entitlement", default=False)
     currency_id = fields.Many2one(
         "res.currency", readonly=True, related="journal_id.currency_id"
     )
     initial_amount = fields.Monetary(required=True, currency_field="currency_id")
     balance = fields.Monetary(compute="_compute_balance")  # in company currency
-    # TODO: implement transactions against this voucher
+    # TODO: implement transactions against this entitlement
 
     journal_id = fields.Many2one(
         "account.journal",
@@ -60,7 +60,7 @@ class G2PVoucher(models.Model):
             ("approved", "Approved"),
             ("trans2FSP", "Transferred to FSP"),
             ("rdpd2ben", "Redeemed/Paid to Beneficiary"),
-            ("rejected1", "Rejected: Beneficiary didn't want the voucher"),
+            ("rejected1", "Rejected: Beneficiary didn't want the entitlement"),
             ("rejected2", "Rejected: Beneficiary account does not exist"),
             ("rejected3", "Rejected: Other reason"),
             ("cancelled", "Cancelled"),
@@ -72,13 +72,17 @@ class G2PVoucher(models.Model):
     )
 
     _sql_constraints = [
-        ("unique_voucher_code", "UNIQUE(code)", "The voucher code must be unique."),
+        (
+            "unique_entitlement_code",
+            "UNIQUE(code)",
+            "The entitlement code must be unique.",
+        ),
     ]
 
     def _compute_name(self):
         for record in self:
-            name = _("Voucher")
-            if record.is_cash_voucher:
+            name = _("Entitlement")
+            if record.is_cash_entitlement:
                 name += " Cash [" + str(record.initial_amount) + "]"
             else:
                 name += " (" + str(record.code) + ")"
@@ -101,8 +105,8 @@ class G2PVoucher(models.Model):
             )
 
     @api.autovacuum
-    def _gc_mark_expired_voucher(self):
-        self.env["g2p.voucher"].search(
+    def _gc_mark_expired_entitlement(self):
+        self.env["g2p.entitlement"].search(
             ["&", ("state", "=", "approved"), ("valid_until", "<", fields.Date.today())]
         ).write({"state": "expired"})
 
@@ -110,7 +114,7 @@ class G2PVoucher(models.Model):
         # expired state are computed once a day, so can be not synchro
         return self.state == "approved" and self.valid_until >= fields.Date.today()
 
-    def approve_voucher(self):
+    def approve_entitlement(self):
         for rec in self:
             if rec.state in ("draft", "pending_validation"):
                 # Prepare journal entry (account.move) via account.payment
@@ -131,26 +135,26 @@ class G2PVoucher(models.Model):
                     }
                 )
             else:
-                message = _("The voucher must be in 'pending validation' state.")
+                message = _("The entitlement must be in 'pending validation' state.")
                 kind = "danger"
                 return {
                     "type": "ir.actions.client",
                     "tag": "display_notification",
                     "params": {
-                        "title": _("Voucher"),
+                        "title": _("Entitlement"),
                         "message": message,
                         "sticky": True,
                         "type": kind,
                     },
                 }
 
-    def open_voucher_form(self):
+    def open_entitlement_form(self):
         return {
-            "name": "Voucher",
+            "name": "Entitlement",
             "view_mode": "form",
-            "res_model": "g2p.voucher",
+            "res_model": "g2p.entitlement",
             "res_id": self.id,
-            "view_id": self.env.ref("g2p_programs.view_voucher_form").id,
+            "view_id": self.env.ref("g2p_programs.view_entitlement_form").id,
             "type": "ir.actions.act_window",
             "target": "new",
         }

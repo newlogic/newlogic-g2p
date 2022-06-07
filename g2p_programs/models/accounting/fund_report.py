@@ -45,7 +45,7 @@ class ProgramFundReport(models.Model):
                     b5.date as date_posted,
                     b4.amount * -1 as amount,
                     b4.currency_id as currency_id
-                FROM g2p_voucher b1
+                FROM g2p_entitlement b1
                     LEFT JOIN g2p_cycle b2 on b2.id = b1.cycle_id
                         LEFT JOIN g2p_program b3 on b3.id = b2.program_id
                     LEFT JOIN account_payment b4 on b4.id = b1.disbursement_id

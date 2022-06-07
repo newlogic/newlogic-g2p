@@ -21,7 +21,7 @@
                 <field name="name" />
                 <field name="program_id" />
                 <field name="members_count" string="# Beneficiaries" />
-                <field name="vouchers_count" string="# Vouchers" />
+                <field name="entitlements_count" string="# Entitlements" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field
                     name="state"
@@ -124,11 +124,11 @@
                             type="object"
                             class="oe_stat_button"
                             icon="fa-folder-open-o"
-                            name="open_vouchers_form"
+                            name="open_entitlements_form"
                         >
                             <div class="o_form_field o_stat_info">
-                                <field name="vouchers_count" class="o_stat_value" />
-                                <span class="o_stat_text">Vouchers</span>
+                                <field name="entitlements_count" class="o_stat_value" />
+                                <span class="o_stat_text">Entitlements</span>
                             </div>
                         </button>
                     </div>
@@ -185,11 +185,11 @@
                             </tree>
                           </field>
                         </page>
-                        <page string="Voucher">
-                          <field name="voucher_ids" nolabel="1">
+                        <page string="Entitlement">
+                          <field name="entitlement_ids" nolabel="1">
                             <tree>
                                 <button
-                                        name="open_voucher_form"
+                                        name="open_entitlement_form"
                                         type="object"
                                         icon="fa-external-link"
                                         class="btn-success"

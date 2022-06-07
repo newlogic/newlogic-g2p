@@ -41,7 +41,7 @@
             <p class="o_view_nocontent_smiling_face">
                 There are no Beneficiary Fund Journal Entries Entered!
             </p><p>
-                Process vouchers to automatically post the journal entries here.
+                Process entitlements to automatically post the journal entries here.
             </p>
         </field>
     </record>
@@ -70,7 +70,7 @@
             <p class="o_view_nocontent_smiling_face">
                 There are no Program Beneficiary Fund Journal Entries Entered!
             </p><p>
-                Process vouchers to automatically post the journal entries here.
+                Process entitlements to automatically post the journal entries here.
             </p>
         </field>
     </record>

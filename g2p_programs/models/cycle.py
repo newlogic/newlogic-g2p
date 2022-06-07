@@ -44,14 +44,14 @@ class G2PCycle(models.Model):
     cycle_membership_ids = fields.One2many(
         "g2p.cycle.membership", "cycle_id", "Cycle Memberships"
     )
-    voucher_ids = fields.One2many("g2p.voucher", "cycle_id", "Vouchers")
+    entitlement_ids = fields.One2many("g2p.entitlement", "cycle_id", "Entitlements")
 
     # Statistics
     members_count = fields.Integer(
         string="# Beneficiaries", compute="_compute_members_count"
     )
-    vouchers_count = fields.Integer(
-        string="# Vouchers", compute="_compute_vouchers_count"
+    entitlements_count = fields.Integer(
+        string="# Entitlements", compute="_compute_entitlements_count"
     )
 
     @api.depends("cycle_membership_ids")
@@ -64,13 +64,13 @@ class G2PCycle(models.Model):
                 )
             rec.update({"members_count": members_count})
 
-    @api.depends("voucher_ids")
-    def _compute_vouchers_count(self):
+    @api.depends("entitlement_ids")
+    def _compute_entitlements_count(self):
         for rec in self:
-            vouchers_count = 0
-            if rec.voucher_ids:
-                vouchers_count = len(rec.voucher_ids)
-            rec.update({"vouchers_count": vouchers_count})
+            entitlements_count = 0
+            if rec.entitlement_ids:
+                entitlements_count = len(rec.entitlement_ids)
+            rec.update({"entitlements_count": entitlements_count})
 
     @api.onchange("start_date")
     def on_start_date_change(self):
@@ -172,8 +172,8 @@ class G2PCycle(models.Model):
         pass
 
     def prepare_entitlement(self):
-        # 1. Prepare the entitlement of the beneficiaries using entitlement_manager.prepare_vouchers()
-        self.program_id.get_manager(constants.MANAGER_CYCLE).prepare_vouchers(self)
+        # 1. Prepare the entitlement of the beneficiaries using entitlement_manager.prepare_entitlements()
+        self.program_id.get_manager(constants.MANAGER_CYCLE).prepare_entitlements(self)
 
     def mark_distributed(self):
         # 1. Mark the cycle as distributed using the cycle manager
@@ -189,7 +189,7 @@ class G2PCycle(models.Model):
 
     def validate_entitlement(self):
         # 1. Make sure the user has the right to do this
-        # 2. Validate the entitlement of the beneficiaries using entitlement_manager.validate_vouchers()
+        # 2. Validate the entitlement of the beneficiaries using entitlement_manager.validate_entitlements()
         pass
 
     def export_distribution_list(self):
@@ -231,13 +231,13 @@ class G2PCycle(models.Model):
         }
         return action
 
-    def open_vouchers_form(self):
+    def open_entitlements_form(self):
         self.ensure_one()
 
         action = {
-            "name": _("Cycle Vouchers"),
+            "name": _("Cycle Entitlements"),
             "type": "ir.actions.act_window",
-            "res_model": "g2p.voucher",
+            "res_model": "g2p.entitlement",
             "context": {
                 "create": False,
                 "default_cycle_id": self.id,

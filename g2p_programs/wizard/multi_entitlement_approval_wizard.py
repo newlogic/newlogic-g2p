@@ -7,30 +7,30 @@ from odoo.exceptions import ValidationError
 _logger = logging.getLogger(__name__)
 
 
-class G2PMultiVoucherApprovalWiz(models.TransientModel):
-    _name = "g2p.multi.voucher.approval.wizard"
-    _description = "Multi Voucher Approval Wizard"
+class G2PMultiEntitlementApprovalWiz(models.TransientModel):
+    _name = "g2p.multi.entitlement.approval.wizard"
+    _description = "Multi Entitlement Approval Wizard"
 
     @api.model
     def default_get(self, fields):
-        res = super(G2PMultiVoucherApprovalWiz, self).default_get(fields)
+        res = super(G2PMultiEntitlementApprovalWiz, self).default_get(fields)
         _logger.info(
-            "Adding to Multi Voucher Approval Wizard with IDs: %s"
+            "Adding to Multi Entitlement Approval Wizard with IDs: %s"
             % self.env.context.get("active_ids")
         )
         if self.env.context.get("active_ids"):
-            voucher_ids = []
+            entitlement_ids = []
             cycle_id = 0
             for rec in self.env.context.get("active_ids"):
-                voucher = self.env["g2p.voucher"].search(
+                entitlement = self.env["g2p.entitlement"].search(
                     [
                         ("id", "=", rec),
                     ]
                 )
-                if voucher.state in ("draft", "pending_validation"):
-                    voucher_ids.append([0, 0, {"voucher_id": rec}])
+                if entitlement.state in ("draft", "pending_validation"):
+                    entitlement_ids.append([0, 0, {"entitlement_id": rec}])
 
-                cycle_id = voucher.cycle_id.id
+                cycle_id = entitlement.cycle_id.id
 
             cycle = self.env["g2p.cycle"].search(
                 [
@@ -42,16 +42,16 @@ class G2PMultiVoucherApprovalWiz(models.TransientModel):
                     res["cycle_id"] = cycle_id
                 else:
                     raise ValidationError(
-                        _("You can approve only vouchers from approved cycles.")
+                        _("You can approve only entitlements from approved cycles.")
                     )
-            res["voucher_ids"] = voucher_ids
+            res["entitlement_ids"] = entitlement_ids
 
         return res
 
-    voucher_ids = fields.One2many(
-        "g2p.multi.voucher.approval",
+    entitlement_ids = fields.One2many(
+        "g2p.multi.entitlement.approval",
         "wizard_id",
-        string="Vouchers",
+        string="Entitlements",
         required=True,
     )
     cycle_id = fields.Many2one(
@@ -60,21 +60,21 @@ class G2PMultiVoucherApprovalWiz(models.TransientModel):
         help="A Cycle",
     )
 
-    def approve_vouchers(self):
-        for rec in self.voucher_ids:
+    def approve_entitlements(self):
+        for rec in self.entitlement_ids:
 
-            if rec.voucher_id.state in ("draft", "pending_validation"):
+            if rec.entitlement_id.state in ("draft", "pending_validation"):
                 # Prepare journal entry (account.move) via account.payment
                 payment = {
-                    "partner_id": rec.voucher_id.partner_id.id,
+                    "partner_id": rec.entitlement_id.partner_id.id,
                     "payment_type": "outbound",
-                    "amount": rec.voucher_id.initial_amount,
-                    "currency_id": rec.voucher_id.journal_id.currency_id.id,
-                    "journal_id": rec.voucher_id.journal_id.id,
+                    "amount": rec.entitlement_id.initial_amount,
+                    "currency_id": rec.entitlement_id.journal_id.currency_id.id,
+                    "journal_id": rec.entitlement_id.journal_id.id,
                     "partner_type": "supplier",
                 }
                 new_payment = self.env["account.payment"].create(payment)
-                rec.voucher_id.update(
+                rec.entitlement_id.update(
                     {
                         "disbursement_id": new_payment.id,
                         "state": "approved",
@@ -84,13 +84,13 @@ class G2PMultiVoucherApprovalWiz(models.TransientModel):
 
     def open_wizard(self):
 
-        _logger.info("Voucher IDs: %s" % self.env.context.get("active_ids"))
+        _logger.info("Entitlement IDs: %s" % self.env.context.get("active_ids"))
         return {
-            "name": "Multiple Vouchers Approval",
+            "name": "Multiple Entitlements Approval",
             "view_mode": "form",
-            "res_model": "g2p.multi.voucher.approval.wizard",
+            "res_model": "g2p.multi.entitlement.approval.wizard",
             "view_id": self.env.ref(
-                "g2p_programs.multi_voucher_approval_wizard_form_view"
+                "g2p_programs.multi_entitlement_approval_wizard_form_view"
             ).id,
             "type": "ir.actions.act_window",
             "target": "new",
@@ -98,19 +98,19 @@ class G2PMultiVoucherApprovalWiz(models.TransientModel):
         }
 
 
-class G2PMultiVoucherApproval(models.TransientModel):
-    _name = "g2p.multi.voucher.approval"
-    _description = "Multi Voucher Approval"
+class G2PMultiEntitlementApproval(models.TransientModel):
+    _name = "g2p.multi.entitlement.approval"
+    _description = "Multi Entitlement Approval"
 
-    voucher_id = fields.Many2one(
-        "g2p.voucher",
-        "Voucher",
-        help="A Voucher",
+    entitlement_id = fields.Many2one(
+        "g2p.entitlement",
+        "Entitlement",
+        help="A Entitlement",
         required=True,
     )
     wizard_id = fields.Many2one(
-        "g2p.multi.voucher.approval.wizard",
-        "Multi Voucher Approval Wizard",
+        "g2p.multi.entitlement.approval.wizard",
+        "Multi Entitlement Approval Wizard",
         help="A Wizard",
         required=True,
     )

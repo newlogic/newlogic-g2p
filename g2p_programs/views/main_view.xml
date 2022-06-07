@@ -14,7 +14,12 @@
 
     <menuitem id="g2p_program_menu_root" name="Programs" sequence="0" />
     <menuitem id="g2p_program_cycle_root" name="Cycles" parent="g2p_program_menu_root" sequence="200" />
-    <menuitem id="g2p_program_voucher_root" name="Vouchers" parent="g2p_program_menu_root" sequence="300" />
+    <menuitem
+        id="g2p_program_entitlement_root"
+        name="Entitlements"
+        parent="g2p_program_menu_root"
+        sequence="300"
+    />
 
     <menuitem id="g2p_accounting_root" name="Accounting" parent="g2p_program_menu_root" sequence="400" />
     <menuitem

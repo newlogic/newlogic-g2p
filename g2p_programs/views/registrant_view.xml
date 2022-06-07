@@ -21,7 +21,7 @@
             <xpath expr="//field[@name='category_id']" position="after">
                 <field name="program_membership_ids" />
                 <field name="cycle_ids" />
-                <field name="voucher_ids" />
+                <field name="entitlement_ids" />
             </xpath>
         </field>
     </record>
@@ -58,11 +58,11 @@
                       </tree>
                     </field>
                 </page>
-                <page string="Vouchers">
-                    <field name="voucher_ids" readonly="1" nolabel="1">
+                <page string="Entitlements">
+                    <field name="entitlement_ids" readonly="1" nolabel="1">
                       <tree>
                           <button
-                                name="open_voucher_form"
+                                name="open_entitlement_form"
                                 type="object"
                                 icon="fa-external-link"
                                 class="btn-success"
@@ -91,7 +91,7 @@
             <xpath expr="//field[@name='category_id']" position="after">
                 <field name="program_membership_ids" />
                 <field name="cycle_ids" />
-                <field name="voucher_ids" />
+                <field name="entitlement_ids" />
             </xpath>
         </field>
     </record>
@@ -128,11 +128,11 @@
                     </tree>
                   </field>
                 </page>
-                <page string="Vouchers">
-                  <field name="voucher_ids" readonly="1" nolabel="1">
+                <page string="Entitlements">
+                  <field name="entitlement_ids" readonly="1" nolabel="1">
                     <tree>
                         <button
-                                name="open_voucher_form"
+                                name="open_entitlement_form"
                                 type="object"
                                 icon="fa-external-link"
                                 class="btn-success"

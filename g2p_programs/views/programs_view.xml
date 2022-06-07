@@ -213,7 +213,7 @@
                                         optional="show"
                                     />
                                     <field name="cycle_membership_ids" string="Beneficiaries" />
-                                    <field name="voucher_ids" string="Vouchers" />
+                                    <field name="entitlement_ids" string="Entitlements" />
                                     <button
                                         name="copy_beneficiaries_from_program"
                                         type="object"

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
-    <template id="print_voucher_card">
+    <template id="print_entitlement_card">
         <t t-call="web.basic_layout">
             <t t-foreach="docs" t-as="doc">
                 <div class="page">
                     <table style="width: 215mm; height: 109mm; margin: 4.5mm;">
                     <tr>
                         <td colspan="3" style="padding-left: 20px;">
-                            <h1>Voucher Cash</h1>
+                            <h1>Entitlement Cash</h1>
                         </td>
                         <!-- style="height: 50mm" -->
                         <td rowspan="3" style="min-width: 50mm; max-width: 50mm; overflow: hidden;">

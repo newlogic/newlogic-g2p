@@ -12,4 +12,4 @@ class G2PRegistrant(models.Model):
     cycle_ids = fields.One2many(
         "g2p.cycle.membership", "partner_id", "Cycle Memberships"
     )
-    voucher_ids = fields.One2many("g2p.voucher", "partner_id", "Vouchers")
+    entitlement_ids = fields.One2many("g2p.entitlement", "partner_id", "Entitlements")

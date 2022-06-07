@@ -25,7 +25,7 @@ class BaseEntitlementManager(models.AbstractModel):
     name = fields.Char("Manager Name", required=True)
     program_id = fields.Many2one("g2p.program", string="Program", required=True)
 
-    def prepare_vouchers(self, cycle, cycle_memberships):
+    def prepare_entitlements(self, cycle, cycle_memberships):
         """
         This method is used to prepare the entitlement list of the beneficiaries.
         :param cycle: The cycle.
@@ -34,7 +34,7 @@ class BaseEntitlementManager(models.AbstractModel):
         """
         raise NotImplementedError()
 
-    def validate_vouchers(self, cycle, cycle_memberships):
+    def validate_entitlements(self, cycle, cycle_memberships):
         """
         This method is used to validate the entitlement list of the beneficiaries.
         :param cycle: The cycle.
@@ -73,45 +73,45 @@ class DefaultCashEntitlement(models.Model):
 
     # Group able to validate the payment
     # Todo: Create a record rule for payment_validation_group
-    voucher_validation_group_id = fields.Many2one(
+    entitlement_validation_group_id = fields.Many2one(
         "res.groups", string="Payment Validation Group"
     )
 
-    def prepare_vouchers(self, cycle, beneficiaries):
-        # TODO: create a Voucher of `amount_per_cycle` for each member that do not have one yet for the cycle and
+    def prepare_entitlements(self, cycle, beneficiaries):
+        # TODO: create a Entitlement of `amount_per_cycle` for each member that do not have one yet for the cycle and
         benecifiaries_ids = beneficiaries.mapped("partner_id.id")
-        benecifiaries_with_vouchers = (
-            self.env["g2p.voucher"]
+        benecifiaries_with_entitlements = (
+            self.env["g2p.entitlement"]
             .search(
                 [("cycle_id", "=", cycle.id), ("partner_id", "in", benecifiaries_ids)]
             )
             .mapped("partner_id.id")
         )
-        vouchers_to_create = [
+        entitlements_to_create = [
             benecifiaries_id
             for benecifiaries_id in benecifiaries_ids
-            if benecifiaries_id not in benecifiaries_with_vouchers
+            if benecifiaries_id not in benecifiaries_with_entitlements
         ]
 
-        voucher_start_validity = cycle.start_date
-        voucher_end_validity = cycle.end_date
-        voucher_currency = self.currency_id.id
+        entitlement_start_validity = cycle.start_date
+        entitlement_end_validity = cycle.end_date
+        entitlement_currency = self.currency_id.id
 
-        beneficiaries_with_vouchers_to_create = self.env["res.partner"].browse(
-            vouchers_to_create
+        beneficiaries_with_entitlements_to_create = self.env["res.partner"].browse(
+            entitlements_to_create
         )
 
-        for beneficiary_id in beneficiaries_with_vouchers_to_create:
-            self.env["g2p.voucher"].create(
+        for beneficiary_id in beneficiaries_with_entitlements_to_create:
+            self.env["g2p.entitlement"].create(
                 {
                     "cycle_id": cycle.id,
                     "partner_id": beneficiary_id.id,
                     "initial_amount": self._calculate_amount(beneficiary_id),
-                    "currency_id": voucher_currency,
+                    "currency_id": entitlement_currency,
                     "state": "draft",
-                    "is_cash_voucher": True,
-                    "valid_from": voucher_start_validity,
-                    "valid_until": voucher_end_validity,
+                    "is_cash_entitlement": True,
+                    "valid_from": entitlement_start_validity,
+                    "valid_until": entitlement_end_validity,
                 }
             )
 
@@ -127,7 +127,7 @@ class DefaultCashEntitlement(models.Model):
             total += self.amount_per_individual_in_group * num_individuals
         return total
 
-    def validate_vouchers(self, cycle, cycle_memberships):
-        # TODO: Change the status of the vouchers to `validated` for this members.
+    def validate_entitlements(self, cycle, cycle_memberships):
+        # TODO: Change the status of the entitlements to `validated` for this members.
         # move the funds from the program's wallet to the wallet of each Beneficiary that are validated
         pass

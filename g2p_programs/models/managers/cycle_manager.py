@@ -40,13 +40,13 @@ class BaseCycleManager(models.AbstractModel):
         """
         raise NotImplementedError()
 
-    def prepare_vouchers(self, cycle):
+    def prepare_entitlements(self, cycle):
         """
         Prepare the entitlements for the cycle
         """
         raise NotImplementedError()
 
-    def validate_vouchers(self, cycle, cycle_memberships):
+    def validate_entitlements(self, cycle, cycle_memberships):
         """
         Validate the entitlements for the cycle
         """
@@ -112,7 +112,7 @@ class DefaultCycleManager(models.Model):
     )
 
     def check_eligibility(self, cycle, beneficiaries=None):
-        # TODO: disable beneficiaries not valid anymore and disable their voucher if they
+        # TODO: disable beneficiaries not valid anymore and disable their entitlement if they
         #  have been created.
         for rec in self:
             rec._ensure_can_edit_cycle(cycle)
@@ -146,26 +146,26 @@ class DefaultCycleManager(models.Model):
             )
             memberships_to_remove.write({"state": "not_eligible"})
 
-            # Disable the vouchers of the beneficiaries
-            vouchers = self.env["g2p.voucher"].search(
+            # Disable the entitlements of the beneficiaries
+            entitlements = self.env["g2p.entitlement"].search(
                 [
                     ("cycle_id", "=", cycle.id),
                     ("partner_id", "in", memberships_to_remove.mapped("partner_id.id")),
                 ]
             )
-            vouchers.write({"state": "cancelled"})
+            entitlements.write({"state": "cancelled"})
 
             return filtered_beneficiaries
 
-    def prepare_vouchers(self, cycle):
+    def prepare_entitlements(self, cycle):
         for rec in self:
             rec._ensure_can_edit_cycle(cycle)
             # Get all the enrolled beneficiaries
             beneficiaries = cycle.get_beneficiaries(["enrolled"])
 
-            rec.program_id.get_manager(constants.MANAGER_ENTITLEMENT).prepare_vouchers(
-                cycle, beneficiaries
-            )
+            rec.program_id.get_manager(
+                constants.MANAGER_ENTITLEMENT
+            ).prepare_entitlements(cycle, beneficiaries)
 
     def mark_distributed(self, cycle):
         cycle.update({"state": constants.STATE_DISTRIBUTED})
@@ -176,14 +176,14 @@ class DefaultCycleManager(models.Model):
     def mark_cancelled(self, cycle):
         cycle.update({"state": constants.STATE_CANCELLED})
 
-    def validate_vouchers(self, cycle, cycle_memberships):
+    def validate_entitlements(self, cycle, cycle_memberships):
         # TODO: call the program's entitlement manager and validate the entitlements
         # TODO: Use a Job attached to the cycle
         # TODO: Implement validation workflow
         for rec in self:
-            rec.program_id.get_manager(constants.MANAGER_ENTITLEMENT).validate_vouchers(
-                cycle_memberships
-            )
+            rec.program_id.get_manager(
+                constants.MANAGER_ENTITLEMENT
+            ).validate_entitlements(cycle_memberships)
 
     def new_cycle(self, name, new_start_date, sequence):
         _logger.info("Creating new cycle for program %s", self.program_id.name)

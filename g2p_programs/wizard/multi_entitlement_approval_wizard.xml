@@ -13,9 +13,9 @@
 -->
 <odoo>
     <data>
-        <record id="multi_voucher_approval_wizard_form_view" model="ir.ui.view">
-            <field name="name">multi_voucher_approval_wizard_form_view</field>
-            <field name="model">g2p.multi.voucher.approval.wizard</field>
+        <record id="multi_entitlement_approval_wizard_form_view" model="ir.ui.view">
+            <field name="name">multi_entitlement_approval_wizard_form_view</field>
+            <field name="model">g2p.multi.entitlement.approval.wizard</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -29,11 +29,11 @@
                             <div class="o_row">
                             </div>
                         </div>
-                        <field name="voucher_ids" nolabel="1" context="{'default_cycle_id': cycle_id}">
-                          <tree string="Vouchers" editable="bottom">
+                        <field name="entitlement_ids" nolabel="1" context="{'default_cycle_id': cycle_id}">
+                          <tree string="Entitlements" editable="bottom">
                               <field name="cycle_id" invisible="1" />
                               <field
-                                    name="voucher_id"
+                                    name="entitlement_id"
                                     domain="[('cycle_id', '=', cycle_id)]"
                                     options="{'no_create_edit':True,'no_open':True,'no_create':True}"
                                 />
@@ -50,7 +50,12 @@
                         </field>
                     </sheet>
                     <footer>
-                        <button name="approve_vouchers" string="Approve" type="object" class="oe_highlight" />
+                        <button
+                            name="approve_entitlements"
+                            string="Approve"
+                            type="object"
+                            class="oe_highlight"
+                        />
                         <button string="Cancel" class="btn-secondary" special="cancel" />
                     </footer>
                 </form>

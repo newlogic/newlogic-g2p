@@ -1,7 +1,7 @@
 # Part of Newlogic G2P. See LICENSE file for full copyright and licensing details.
 
 from . import constants
-from . import voucher
+from . import entitlement
 from . import job_related_mixin
 from . import duplicate
 from . import cycle

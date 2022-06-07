@@ -1,7 +1,7 @@
 <odoo>
     <data noupdate="0">
-        <record id="paperformat_voucher_card_a4" model="report.paperformat">
-            <field name="name">Voucher Card</field>
+        <record id="paperformat_entitlement_card_a4" model="report.paperformat">
+            <field name="name">Entitlement Card</field>
             <field name="default" eval="False" />
             <field name="format">A4</field>
             <field name="orientation">Portrait</field>
@@ -13,15 +13,15 @@
             <field name="dpi">90</field>
         </record>
 
-        <record id="action_print_voucher" model="ir.actions.report">
-            <field name="name">Print Voucher</field>
-            <field name="model">g2p.voucher</field>
+        <record id="action_print_entitlement" model="ir.actions.report">
+            <field name="name">Print Vouchers</field>
+            <field name="model">g2p.entitlement</field>
             <field name="report_type">qweb-pdf</field>
-            <field name="report_name">g2p_programs.print_voucher_card</field>
-            <field name="report_file">g2p_programs.print_voucher_card</field>
-            <field name="print_report_name">'Voucher Card'</field>
-            <field name="binding_model_id" ref="model_g2p_voucher" />
-            <field name="paperformat_id" ref="g2p_programs.paperformat_voucher_card_a4" />
+            <field name="report_name">g2p_programs.print_entitlement_card</field>
+            <field name="report_file">g2p_programs.print_entitlement_card</field>
+            <field name="print_report_name">'Entitlement Card'</field>
+            <field name="binding_model_id" ref="model_g2p_entitlement" />
+            <field name="paperformat_id" ref="g2p_programs.paperformat_entitlement_card_a4" />
             <field name="binding_type">report</field>
         </record>
 
