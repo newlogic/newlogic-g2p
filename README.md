@@ -10,8 +10,7 @@ in a social protection environment.
 
 ## Community & support
 
-- Discuss on the [Github Discussions](https://github.com/newlogic/newlogic-g2p/discussions) for your
-  questions.
+- Ask your questions in [Github Discussions](https://github.com/newlogic/newlogic-g2p/discussions).
 - Tweet at [@newlogic](https://twitter.com/newlogic) on Twitter.
 - Create [GitHub Issues](https://github.com/newlogic/newlogic-g2p/issues) for bug reports and feature
   requests.
