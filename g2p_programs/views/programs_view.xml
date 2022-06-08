@@ -194,7 +194,6 @@
                             <field
                                 name="cycle_ids"
                                 nolabel="1"
-                                attrs="{'readonly':[('state','=','ended')]}"
                                 context="{'default_program_id':active_id}"
                                 readonly="1"
                             >

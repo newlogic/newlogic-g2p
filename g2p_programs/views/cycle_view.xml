@@ -161,9 +161,9 @@
                         />
                     </group>
                     <notebook>
-                        <page string="Dashboard" name="dashboard">
+                        <!-- <page string="Dashboard" name="dashboard">
                         </page>
-                        <!-- <page string="Beneficiaries">
+                        <page string="Beneficiaries">
                           <field name="cycle_membership_ids" nolabel="1">
                             <tree>
                                 <button
@@ -184,9 +184,9 @@
                                 <field name="enrollment_date" />
                             </tree>
                           </field>
-                        </page>
+                        </page> -->
                         <page string="Entitlement">
-                          <field name="entitlement_ids" nolabel="1">
+                          <field name="entitlement_ids" nolabel="1" readonly="1">
                             <tree>
                                 <button
                                         name="open_entitlement_form"
@@ -204,7 +204,7 @@
                                 <field name="company_id" groups="base.group_multi_company" />
                             </tree>
                           </field>
-                        </page> -->
+                        </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
