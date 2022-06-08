@@ -1,5 +1,9 @@
 Format in CHANGELOG.md
 
+## Version[0.16] - 2022-06-08
+
+- [ADD] Warning on voucher fund availability upon approval of the voucher
+
 ## Version[0.15] - 2022-06-07
 
 - [ADD] Automatically create default managers in program creation
