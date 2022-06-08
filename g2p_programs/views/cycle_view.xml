@@ -205,6 +205,8 @@
                             </tree>
                           </field>
                         </page>
+                        <page string="Configuration" name="configuration">
+                        </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
