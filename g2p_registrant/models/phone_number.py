@@ -1,5 +1,12 @@
 # Part of Newlogic G2P. See LICENSE file for full copyright and licensing details.
-from odoo import fields, models
+
+import logging
+
+from odoo import api, fields, models
+
+from odoo.addons.phone_validation.tools import phone_validation
+
+_logger = logging.getLogger(__name__)
 
 
 class G2PPhoneNumber(models.Model):
@@ -18,6 +25,25 @@ class G2PPhoneNumber(models.Model):
     date_collected = fields.Date("Date Collected", default=fields.Date.today)
     disabled = fields.Datetime("Date Disabled")
     disabled_by = fields.Many2one("res.users", "Disabled by")
+    country_id = fields.Many2one("res.country", "Country")
+
+    @api.onchange("phone_no", "country_id")
+    def _onchange_phone_validation(self):
+        if self.phone_no:
+            self.phone_no = self._phone_format(self.phone_no)
+            _logger.debug(f"phone_no: {self.phone_no}")
+
+    def _phone_format(self, number, country=None):
+        country = country or self.country_id or self.env.company.country_id
+        if not country:
+            return number
+        return phone_validation.phone_format(
+            number,
+            country.code if country else None,
+            country.phone_code if country else None,
+            force_format="INTERNATIONAL",
+            raise_exception=False,
+        )
 
     def disable_phone(self):
         for rec in self:

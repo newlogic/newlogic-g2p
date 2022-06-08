@@ -147,8 +147,13 @@
                                         colspan="2"
                                     >
                                         <tree string="Phone Numbers" decoration-danger="disabled != False">
-                                            <field name="phone_no" string="Phone Numbers" />
-                                            <field name="date_collected" />
+                                             <field
+                                                name="phone_no"
+                                                string="Phone Numbers"
+                                                widget="phone"
+                                                options="{'enable_sms': false}"
+                                            />
+                                            <field name="country_id" />
                                             <field name="disabled" invisible="1" />
                                         </tree>
                                     </field>
