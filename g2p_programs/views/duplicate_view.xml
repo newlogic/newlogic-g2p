@@ -39,11 +39,12 @@
         <field name="priority">1</field>
         <field name="arch" type="xml">
             <form string="Program Membership Duplicate">
-                <header>
-                    <field name="state" widget="statusbar" statusbar_visible="duplicate,not_duplicate" />
-                </header>
                 <sheet>
                     <div class="oe_title mb24">
+                        <label for="state" string="Status:" />
+                        <h2>
+                            <field name="state" />
+                        </h2>
                         <label for="reason" string="Reason:" />
                         <h1>
                             <field name="reason" placeholder="Enter the reason..." />
@@ -56,23 +57,16 @@
                     <notebook>
                         <page string="Beneficiaries">
                             <field name="beneficiary_ids" nolabel="1">
-                                <tree string="Beneficiaries">
+                                <tree string="Beneficiaries" delete="0" editable="bottom">
                                     <button
-                                        name="open_beneficiaries_form"
+                                        name="open_registrant_form"
                                         type="object"
                                         icon="fa-external-link"
                                         class="btn-success"
                                     />
                                     <field name="partner_id" />
                                     <field name="program_id" />
-                                    <field
-                                        name="deduplication_status"
-                                        decoration-primary="deduplication_status=='new'"
-                                        decoration-success="deduplication_status=='verified'"
-                                        decoration-danger="deduplication_status=='duplicated'"
-                                        widget="badge"
-                                        optional="show"
-                                    />
+                                    <field name="state" />
                                 </tree>
                             </field>
                         </page>

@@ -149,6 +149,8 @@ class G2PCycle(models.Model):
         # 2. Approve the cycle using the cycle manager
         for rec in self:
             cycle_managers = self.program_id.get_manager(constants.MANAGER_CYCLE)
+
+            auto_approve = False
             if cycle_managers.auto_approve_entitlements:
                 auto_approve = True
 

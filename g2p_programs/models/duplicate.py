@@ -1,4 +1,5 @@
-from odoo import fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class G2PDuplicateProgramMembership(models.Model):
@@ -14,3 +15,10 @@ class G2PDuplicateProgramMembership(models.Model):
     deduplication_manager_id = fields.Integer("Deduplication Manager")
     reason = fields.Char("Deduplication Reason")
     comment = fields.Text("Deduplication Comment")
+
+    @api.onchange("beneficiary_ids")
+    def on_beneficiaries_change(self):
+        origin_length = len(self._origin.beneficiary_ids.ids)
+        new_length = len(self.beneficiary_ids.ids)
+        if new_length < origin_length:
+            raise ValidationError(_("Can't delete duplicated membership"))
