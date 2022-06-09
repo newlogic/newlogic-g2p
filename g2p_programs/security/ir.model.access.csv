@@ -1,5 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 g2p_ui_view_admin,UI View Admin Access,base.model_ir_ui_view,g2p_registrant.group_g2p_admin,1,1,1,1
+g2p_actions_client_admin,Actions Client Admin Access,base.model_ir_actions_client,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_program_admin,Program Admin Access,g2p_programs.model_g2p_program,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_program_membership_admin,Program Membership Admin Access,g2p_programs.model_g2p_program_membership,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_cycle_admin,Cycle Admin Access,g2p_programs.model_g2p_cycle,g2p_registrant.group_g2p_admin,1,1,1,1
@@ -46,6 +47,7 @@ g2p_entitlement_registrar,Entitlement Registrar Access,g2p_programs.model_g2p_en
 g2p_account_move_line_admin,Account Move Line Admin Access,account.model_account_move_line,g2p_registrant.group_g2p_registrar,1,1,1,0
 
 g2p_ui_view_program_manager,UI View Program Manager Access,base.model_ir_ui_view,g2p_programs.g2p_program_manager,1,1,0,0
+g2p_actions_client_program_manager,Actions Client Program Manager Access,base.model_ir_actions_client,g2p_programs.g2p_program_manager,1,1,0,0
 g2p_program_manager,Program Manager Access,g2p_programs.model_g2p_program,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_account_journal_program_manager,Account Journal Program Manager Access,account.model_account_journal,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_account_type_program_manager,Account Type Program Manager Access,account.model_account_account_type,g2p_programs.g2p_program_manager,1,1,1,0
@@ -70,13 +72,30 @@ g2p_default_cycle_manager_program_manager,Default Cycle Manager Program Manager 
 g2p_program_entitlement_manager_program_manager,Program Entitlement Manager Program Manager Access,g2p_programs.model_g2p_program_entitlement_manager,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_program_entitlement_manager_default_program_manager,Program Entitlement Manager Default Program Manager Access,g2p_programs.model_g2p_program_entitlement_manager_default,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_cycle_membership_program_manager,Cycle Membership Program Manager Access,g2p_programs.model_g2p_cycle_membership,g2p_programs.g2p_program_manager,1,1,1,0
+g2p_group_membership_program_manager,Group Membership Program Manager Access,g2p_registrant.model_g2p_group_membership,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_entitlement_program_manager,Entitlement Program Manager Access,g2p_programs.model_g2p_entitlement,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_program_fund_program_manager,Program Fund Program Manager Access,g2p_programs.model_g2p_program_fund,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_program_fund_report_view_program_manager,Program Fund Report View Program Manager Access,g2p_programs.model_g2p_program_fund_report_view,g2p_programs.g2p_program_manager,1,1,1,0
 
+g2p_actions_client_validator,Actions Client Validator Access,base.model_ir_actions_client,g2p_programs.g2p_program_validator,1,0,0,0
 g2p_program_validator,Program Validator Access,g2p_programs.model_g2p_program,g2p_programs.g2p_program_validator,1,1,1,0
 g2p_program_membership_program_validator,Program Membership Program Validator Access,g2p_programs.model_g2p_program_membership,g2p_programs.g2p_program_validator,1,1,1,0
 g2p_cycle_program_validator,Cycle Program Validator Access,g2p_programs.model_g2p_cycle,g2p_programs.g2p_program_validator,1,1,1,0
+g2p_program_entitlement_manager_program_validator,Program Entitlement Manager Program Validator Access,g2p_programs.model_g2p_program_entitlement_manager,g2p_programs.g2p_program_validator,1,0,0,0
+g2p_cycle_manager_program_validator,Cycle Manager Program Validator Access,g2p_programs.model_g2p_cycle_manager,g2p_programs.g2p_program_validator,1,0,0,0
+g2p_cycle_membership_program_validator,Cycle Membership Program Validator Access,g2p_programs.model_g2p_cycle_membership,g2p_programs.g2p_program_validator,1,0,0,0
+g2p_eligibility_manager_program_validator,Eligibility Manager Program Validator Access,g2p_programs.model_g2p_eligibility_manager,g2p_programs.g2p_program_validator,1,0,0,0
+g2p_prog_notif_manager_program_validator,Program Notification Manager Program Validator Access,g2p_programs.model_g2p_program_notification_manager,g2p_programs.g2p_program_validator,1,0,0,0
+g2p_deduplication_manager_program_validator,Deduplication Manager Program Validator Access,g2p_programs.model_g2p_deduplication_manager,g2p_programs.g2p_program_validator,1,0,0,0
+g2p_deduplication_manager_default_program_validator,Deduplication Manager Default Program Validator Access,g2p_programs.model_g2p_deduplication_manager_default,g2p_programs.g2p_program_validator,1,0,0,0
+g2p_program_manager_program_validator,Program Manager Program Validator Access,g2p_programs.model_g2p_program_manager,g2p_programs.g2p_program_validator,1,0,0,0
+g2p_program_manager_default_program_validator,Program Manager Default Program Validator Access,g2p_programs.model_g2p_program_manager_default,g2p_programs.g2p_program_validator,1,0,0,0
+g2p_cycle_manager_default_program_validator,Cycle Manager Default Program Validator Access,g2p_programs.model_g2p_cycle_manager_default,g2p_programs.g2p_program_validator,1,0,0,0
+g2p_prog_mem_manager_default_program_validator,Program Membership Manager Default Program Validator Access,g2p_programs.model_g2p_program_membership_manager_default,g2p_programs.g2p_program_validator,1,1,1,0
+g2p_prog_entitle_manager_default_program_validator,Program Entitlement Manager Default Program Validator Access,g2p_programs.model_g2p_program_entitlement_manager_default,g2p_programs.g2p_program_validator,1,0,0,0
+g2p_prog_noti_manager_sms_program_validator,Program Notification Manager SMS Program Validator Access,g2p_programs.model_g2p_program_notification_manager_sms,g2p_programs.g2p_program_validator,1,0,0,0
+g2p_entitlement_program_validator,Entitlement Program Validator Access,g2p_programs.model_g2p_entitlement,g2p_programs.g2p_program_validator,1,0,0,0
+g2p_account_journal_program_validator,Account Journal Program Validator Access,g2p_programs.model_account_journal,g2p_programs.g2p_program_validator,1,0,0,0
 
 g2p_program_fund_finance_validator,Program Fund Finance Validator Access,g2p_programs.model_g2p_program_fund,g2p_programs.g2p_finance_validator,1,1,1,0
 g2p_program_fund_report_view_finance_validator,Program Fund Report View Finance Validator Access,g2p_programs.model_g2p_program_fund_report_view,g2p_programs.g2p_finance_validator,1,1,1,0
