@@ -22,10 +22,29 @@ class G2PPhoneNumber(models.Model):
         domain=[("is_registrant", "=", True)],
     )
     phone_no = fields.Char("Phone Number", required=True)
+    phone_sanitized = fields.Char("Phone Sanitized", compute="_compute_phone_sanitized")
     date_collected = fields.Date("Date Collected", default=fields.Date.today)
     disabled = fields.Datetime("Date Disabled")
     disabled_by = fields.Many2one("res.users", "Disabled by")
     country_id = fields.Many2one("res.country", "Country")
+
+    @api.depends("phone_no", "country_id")
+    def _compute_phone_sanitized(self):
+        self.ensure_one()
+        self.phone_sanitized = ""
+        if self.phone_no:
+            country_fname = "country_id"
+            number = self["phone_no"]
+            sanitized = str(
+                phone_validation.phone_sanitize_numbers_w_record(
+                    [number],
+                    self,
+                    record_country_fname=country_fname,
+                    force_format="E164",
+                )[number]["sanitized"]
+            )
+            _logger.debug(f"sanitized {sanitized}")
+            self.phone_sanitized = sanitized
 
     @api.onchange("phone_no", "country_id")
     def _onchange_phone_validation(self):
