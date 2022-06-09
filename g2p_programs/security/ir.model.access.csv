@@ -104,5 +104,3 @@ g2p_account_move_line_finance_validator,Account Move Line Finance Validator Acce
 
 g2p_multi_entitlement_approval_wizard_admin,Multi Entitlement Approval Wizard Admin Access,g2p_programs.model_g2p_multi_entitlement_approval_wizard,g2p_registrant.group_g2p_admin,1,1,1,1
 g2p_multi_entitlement_approval_admin,Multi Entitlement Approval Admin Access,g2p_programs.model_g2p_multi_entitlement_approval,g2p_registrant.group_g2p_admin,1,1,1,1
-
-ir_model_fields
