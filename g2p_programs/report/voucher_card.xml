@@ -3,8 +3,10 @@
     <data>
     <template id="print_entitlement_card">
         <t t-call="web.basic_layout">
+            <t t-set="i" t-value="0" />
             <t t-foreach="docs" t-as="doc">
               <t t-if="doc.state=='approved'">
+                <t t-set="i" t-value="i+1" />
                 <div class="page">
                     <table style="width: 215mm; height: 109mm; margin: 4.5mm;">
                     <tr>
@@ -64,6 +66,11 @@
                     </table>
                 </div>
               </t>
+            </t>
+            <t t-if="i==0">
+              <div class="page">
+                <h1>No Approved Entitlements Selected</h1>
+              </div>
             </t>
         </t>
     </template>
