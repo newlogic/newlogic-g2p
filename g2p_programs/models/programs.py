@@ -106,6 +106,9 @@ class G2PProgram(models.Model):
     )
 
     cycles_count = fields.Integer(string="# Cycles", compute="_compute_cycle_count")
+    duplicate_membership_count = fields.Integer(
+        string="# Membership Duplicates", compute="_compute_duplicate_membership_count"
+    )
 
     @api.depends("program_membership_ids")
     def _compute_have_members(self):
@@ -144,6 +147,18 @@ class G2PProgram(models.Model):
                 )
                 ret_vals.update({mgr_fld: mgr.id})
         return ret_vals
+
+    @api.depends("program_membership_ids")
+    def _compute_duplicate_membership_count(self):
+        for rec in self:
+            duplicate_membership_count = 0
+            if rec.program_membership_ids:
+                duplicate_membership_count = len(
+                    rec.program_membership_ids.filtered(
+                        lambda bn: bn.state == "duplicated"
+                    )
+                )
+            rec.update({"duplicate_membership_count": duplicate_membership_count})
 
     @api.depends("program_membership_ids")
     def _compute_eligible_beneficiary_count(self):
@@ -431,6 +446,23 @@ class G2PProgram(models.Model):
             },
             "view_mode": "list,form",
             "domain": [("program_id", "=", self.id)],
+        }
+        return action
+
+    def open_duplicate_membership_form(self):
+        self.ensure_one()
+
+        action = {
+            "name": _("Beneficiaries Duplicates"),
+            "type": "ir.actions.act_window",
+            "res_model": "g2p.program_membership",
+            "context": {
+                "create": False,
+                "default_program_id": self.id,
+                # "search_default_enrolled_state": 1,
+            },
+            "view_mode": "list,form",
+            "domain": [("program_id", "=", self.id), ("state", "=", "duplicated")],
         }
         return action
 

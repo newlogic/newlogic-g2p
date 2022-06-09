@@ -14,7 +14,7 @@
         </record>
 
         <record id="action_print_entitlement" model="ir.actions.report">
-            <field name="name">Print Entitlements</field>
+            <field name="name">Print Vouchers</field>
             <field name="model">g2p.entitlement</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">g2p_programs.print_entitlement_card</field>
