@@ -45,6 +45,8 @@
                             placeholder="Select a program..."
                             options="{'no_open':True,'no_create':True,'no_create_edit':True}"
                         />
+
+
                     </group>
                 </sheet>
             </form>
@@ -61,6 +63,7 @@
                 <field name="name" />
                 <field name="program_id" />
                 <field name="cycle_duration" />
+                <field name="auto_approve_entitlements" />
             </tree>
         </field>
     </record>
@@ -96,6 +99,7 @@
                         </div>
                     </div>
                     <group string="Cycle Settings" colspan="4" col="4">
+                        <field name="auto_approve_entitlements" />
                         <field name="cycle_duration" />
                         <field
                             name="approver_group_id"

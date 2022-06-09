@@ -2,6 +2,7 @@
 from uuid import uuid4
 
 from odoo import _, api, fields, models
+from odoo.exceptions import UserError, ValidationError
 
 
 class G2PEntitlement(models.Model):
@@ -114,26 +115,45 @@ class G2PEntitlement(models.Model):
         # expired state are computed once a day, so can be not synchro
         return self.state == "approved" and self.valid_until >= fields.Date.today()
 
+    def unlink(self):
+        if self.state == "draft":
+            return super(G2PEntitlement, self).unlink()
+        else:
+            raise ValidationError(
+                _("Only draft entitlements are allowed to be deleted")
+            )
+
     def approve_entitlement(self):
         for rec in self:
             if rec.state in ("draft", "pending_validation"):
-                # Prepare journal entry (account.move) via account.payment
-                payment = {
-                    "partner_id": rec.partner_id.id,
-                    "payment_type": "outbound",
-                    "amount": rec.initial_amount,
-                    "currency_id": rec.journal_id.currency_id.id,
-                    "journal_id": rec.journal_id.id,
-                    "partner_type": "supplier",
-                }
-                new_payment = self.env["account.payment"].create(payment)
-                rec.update(
-                    {
-                        "disbursement_id": new_payment.id,
-                        "state": "approved",
-                        "date_approved": fields.Date.today(),
+                if (
+                    self.check_fund_balance(rec.cycle_id.program_id.id)
+                    >= rec.initial_amount
+                ):
+                    # Prepare journal entry (account.move) via account.payment
+                    payment = {
+                        "partner_id": rec.partner_id.id,
+                        "payment_type": "outbound",
+                        "amount": rec.initial_amount,
+                        "currency_id": rec.journal_id.currency_id.id,
+                        "journal_id": rec.journal_id.id,
+                        "partner_type": "supplier",
                     }
-                )
+                    new_payment = self.env["account.payment"].create(payment)
+                    rec.update(
+                        {
+                            "disbursement_id": new_payment.id,
+                            "state": "approved",
+                            "date_approved": fields.Date.today(),
+                        }
+                    )
+                else:
+                    raise UserError(
+                        _(
+                            "The fund for the program: %s is insufficient for the entitlement: %s"
+                        )
+                        % (rec.cycle_id.program_id.name, rec.code)
+                    )
             else:
                 message = _("The entitlement must be in 'pending validation' state.")
                 kind = "danger"
@@ -147,6 +167,45 @@ class G2PEntitlement(models.Model):
                         "type": kind,
                     },
                 }
+
+    def check_fund_balance(self, program_id):
+        company_id = self.env.user.company_id and self.env.user.company_id.id or None
+        retval = 0.0
+        if company_id:
+            params = (
+                company_id,
+                program_id,
+            )
+
+            # Get the current fund balance
+            fund_bal = 0.0
+            sql = """
+                select sum(amount) as total_fund
+                from g2p_program_fund
+                where company_id = %s
+                    AND program_id = %s
+                    AND state = 'posted'
+                """
+            self._cr.execute(sql, params)
+            program_funds = self._cr.dictfetchall()
+            fund_bal = program_funds[0]["total_fund"] or 0.0
+
+            # Get the current entitlement totals
+            total_entitlements = 0.0
+            sql = """
+                select sum(a.initial_amount) as total_entitlement
+                from g2p_entitlement a
+                    left join g2p_cycle b on b.id = a.cycle_id
+                where a.company_id = %s
+                    AND b.program_id = %s
+                    AND a.state = 'approved'
+                """
+            self._cr.execute(sql, params)
+            entitlements = self._cr.dictfetchall()
+            total_entitlements = entitlements[0]["total_entitlement"] or 0.0
+
+            retval = fund_bal - total_entitlements
+        return retval
 
     def open_entitlement_form(self):
         return {
