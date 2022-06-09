@@ -215,14 +215,14 @@
                                     />
                                     <field name="cycle_membership_ids" string="Beneficiaries" />
                                     <field name="entitlement_ids" string="Entitlements" />
-                                    <button
-                                        name="copy_beneficiaries_from_program"
-                                        type="object"
-                                        string="Add Beneficiaries"
-                                        icon="fa-plus-square"
-                                        class="btn-success"
-                                        attrs="{'invisible':[('state','!=','draft')]}"
-                                    />
+<!--                                    <button-->
+<!--                                        name="copy_beneficiaries_from_program"-->
+<!--                                        type="object"-->
+<!--                                        string="Add Beneficiaries"-->
+<!--                                        icon="fa-plus-square"-->
+<!--                                        class="btn-success"-->
+<!--                                        attrs="{'invisible':[('state','!=','draft')]}"-->
+<!--                                    />-->
                                 </tree>
                             </field>
                         </page>

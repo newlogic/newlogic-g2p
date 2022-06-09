@@ -92,7 +92,6 @@ class G2PGroupMembership(models.Model):
 
     def _recompute_parent_groups(self, records):
         fields = self._get_calculated_group_fields()
-        _logger.info(fields)
         for line in records:
             for field in fields:
                 self.env.add_to_compute(field, line.group)
