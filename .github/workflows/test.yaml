@@ -3,11 +3,10 @@ name: tests
 on:
   pull_request:
     branches:
-      - "15.0*"
+      - "main"
   push:
     branches:
-      - "15.0"
-      - "15.0-ocabot-*"
+      - "main"
 
 jobs:
   unreleased-deps:
