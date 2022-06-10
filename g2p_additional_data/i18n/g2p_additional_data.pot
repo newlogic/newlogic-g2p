@@ -1,0 +1,296 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* g2p_additional_data
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_res_partner__additional_data_ids
+#: model:ir.model.fields,field_description:g2p_additional_data.field_res_users__additional_data_ids
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_additional_data_form
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_additional_data_tree
+msgid "Additional Data"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.actions.act_window,name:g2p_additional_data.action_additional_data
+#: model:ir.model,name:g2p_additional_data.model_g2p_additional_data
+msgid "Additional Data Object"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.actions.act_window,name:g2p_additional_data.action_additional_data_tags
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_additional_data_tags_tree
+msgid "Additional Data Tags"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_datasource__batch
+msgid "Batch"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_g2p_datasource_form
+msgid "Batch:"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.actions.act_window,help:g2p_additional_data.action_additional_data_tags
+msgid ""
+"Click the create button to enter the information of the Additional Data "
+"Tags."
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.actions.act_window,help:g2p_additional_data.action_additional_data
+msgid ""
+"Click the create button to enter the information of the Additional Data."
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.actions.act_window,help:g2p_additional_data.action_g2p_datasource
+msgid "Click the create button to enter the information of the Datasource."
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.actions.act_window,help:g2p_additional_data.action_registrant_additional_data
+msgid ""
+"Click the create button to enter the information of the Registrant "
+"Additional Data."
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data_tags__color
+msgid "Color"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model,name:g2p_additional_data.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.actions.act_window,help:g2p_additional_data.action_additional_data_tags
+msgid "Create a new Additional Data Tags!"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.actions.act_window,help:g2p_additional_data.action_additional_data
+msgid "Create a new Additional Data!"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.actions.act_window,help:g2p_additional_data.action_g2p_datasource
+msgid "Create a new Datasource!"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.actions.act_window,help:g2p_additional_data.action_registrant_additional_data
+msgid "Create a new Registrant Additional Data!"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data__create_uid
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data_tags__create_uid
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_datasource__create_uid
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_registrant_additional_data__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data__create_date
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data_tags__create_date
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_datasource__create_date
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_registrant_additional_data__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_registrant_additional_data__data_id
+msgid "Data"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model,name:g2p_additional_data.model_g2p_datasource
+msgid "Data Source"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_registrant_additional_data_form
+msgid "Data:"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.actions.act_window,name:g2p_additional_data.action_g2p_datasource
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_g2p_datasource_form
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_g2p_datasource_tree
+msgid "Datasource"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data__display_name
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data_tags__display_name
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_datasource__display_name
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_registrant_additional_data__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data__editurl
+msgid "Edit URL"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data__id
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data_tags__id
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_datasource__id
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_registrant_additional_data__id
+msgid "ID"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data__json
+msgid "JSON"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_registrant_additional_data__json_path
+msgid "JSON Path"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_registrant_additional_data_form
+msgid "JSON Path:"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data____last_update
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data_tags____last_update
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_datasource____last_update
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_registrant_additional_data____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data__write_uid
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data_tags__write_uid
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_datasource__write_uid
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_registrant_additional_data__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data__write_date
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data_tags__write_date
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_datasource__write_date
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_registrant_additional_data__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data__name
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data_tags__name
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_datasource__name
+msgid "Name"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_additional_data_form
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_g2p_datasource_form
+msgid "Name..."
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_additional_data_form
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_g2p_datasource_form
+msgid "Name:"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_datasource__parent_id
+msgid "Parent"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_g2p_datasource_form
+msgid "Parent:"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_registrant_additional_data__registrant_id
+msgid "Registrant"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.actions.act_window,name:g2p_additional_data.action_registrant_additional_data
+#: model:ir.model,name:g2p_additional_data.model_g2p_registrant_additional_data
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_registrant_additional_data_form
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_registrant_additional_data_tree
+msgid "Registrant Additional Data"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_registrant_additional_data_form
+msgid "Registrant:"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_res_partner__registration_source_id
+#: model:ir.model.fields,field_description:g2p_additional_data.field_res_users__registration_source_id
+msgid "Registration Source"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_registrant_additional_data_form
+msgid "Select a Datasource..."
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_g2p_datasource_form
+msgid "Select a Parent..."
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_registrant_additional_data_form
+msgid "Select a Registrant..."
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_additional_data_form
+msgid "Select a Source..."
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data__source_id
+msgid "Source"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model_terms:ir.ui.view,arch_db:g2p_additional_data.view_additional_data_form
+msgid "Source:"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.constraint,message:g2p_additional_data.constraint_g2p_additional_data_tags_name_uniq
+msgid "Tag name already exists!"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model,name:g2p_additional_data.model_g2p_additional_data_tags
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data__tag_ids
+msgid "Tags"
+msgstr ""
+
+#. module: g2p_additional_data
+#: model:ir.model.fields,field_description:g2p_additional_data.field_g2p_additional_data__viewurl
+msgid "View URL"
+msgstr ""
