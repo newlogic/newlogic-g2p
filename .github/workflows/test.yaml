@@ -34,11 +34,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - container: ghcr.io/oca/oca-ci/py3.8-odoo15.0:latest
+#          - container: ghcr.io/oca/oca-ci/py3.8-odoo15.0:latest
+#            makepot: "true"
+#            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.8-ocb15.0:latest
             makepot: "true"
-            name: test with Odoo
-#          - container: ghcr.io/oca/oca-ci/py3.8-ocb15.0:latest
-#            name: test with OCB
+            name: test with OCB
     services:
       postgres:
         image: postgres:9.6
@@ -60,8 +61,8 @@ jobs:
 #        run: manifestoo -d . check-dev-status --default-dev-status=Beta
       - name: Initialize test db
         run: oca_init_test_database
-      - name: Run tests
-        run: oca_run_tests
+#      - name: Run tests
+#        run: oca_run_tests
 #      - uses: codecov/codecov-action@v1
       - name: Update .pot files
         run: oca_export_and_push_pot https://x-access-token:${{ secrets.GIT_PUSH_TOKEN }}@github.com/${{ github.repository }}
