@@ -1,8 +1,11 @@
 # Part of Newlogic G2P. See LICENSE file for full copyright and licensing details.
+import logging
 from uuid import uuid4
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class G2PEntitlement(models.Model):
@@ -124,12 +127,14 @@ class G2PEntitlement(models.Model):
             )
 
     def approve_entitlement(self):
+        amt = 0.0
+        state_err = 0
+        sw = 0
         for rec in self:
             if rec.state in ("draft", "pending_validation"):
-                if (
-                    self.check_fund_balance(rec.cycle_id.program_id.id)
-                    >= rec.initial_amount
-                ):
+                fund_balance = self.check_fund_balance(rec.cycle_id.program_id.id) - amt
+                if fund_balance >= rec.initial_amount:
+                    amt += rec.initial_amount
                     # Prepare journal entry (account.move) via account.payment
                     payment = {
                         "partner_id": rec.partner_id.id,
@@ -150,23 +155,34 @@ class G2PEntitlement(models.Model):
                 else:
                     raise UserError(
                         _(
-                            "The fund for the program: %s is insufficient for the entitlement: %s"
+                            "The fund for the program: %s[%.2f] is insufficient for the entitlement: %s"
                         )
-                        % (rec.cycle_id.program_id.name, rec.code)
+                        % (rec.cycle_id.program_id.name, fund_balance, rec.code)
                     )
             else:
-                message = _("The entitlement must be in 'pending validation' state.")
-                kind = "danger"
-                return {
-                    "type": "ir.actions.client",
-                    "tag": "display_notification",
-                    "params": {
-                        "title": _("Entitlement"),
-                        "message": message,
-                        "sticky": True,
-                        "type": kind,
-                    },
-                }
+                state_err += 1
+                if sw == 0:
+                    sw = 1
+                    message = _(
+                        "<b>Entitle State Error! Entitlements not in 'pending validation' state:</b>\n"
+                    )
+                message += _(
+                    "Program: %s, Beneficiary: %s.\n"
+                    % (rec.cycle_id.program_id.name, rec.partner_id.name)
+                )
+
+        if state_err > 0:
+            kind = "danger"
+            return {
+                "type": "ir.actions.client",
+                "tag": "display_notification",
+                "params": {
+                    "title": _("Entitlement"),
+                    "message": message,
+                    "sticky": True,
+                    "type": kind,
+                },
+            }
 
     def check_fund_balance(self, program_id):
         company_id = self.env.user.company_id and self.env.user.company_id.id or None

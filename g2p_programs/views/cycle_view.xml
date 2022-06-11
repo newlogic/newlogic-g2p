@@ -205,7 +205,11 @@
                             </tree>
                           </field>
                         </page>
-                        <page string="Configuration" name="configuration">
+                        <page
+                            string="Configuration"
+                            name="configuration"
+                            groups="g2p_registrant.group_g2p_admin"
+                        >
                         </page>
                     </notebook>
                 </sheet>

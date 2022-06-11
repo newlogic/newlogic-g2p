@@ -29,15 +29,15 @@
                             <div class="o_row">
                             </div>
                         </div>
-                        <field name="entitlement_ids" nolabel="1" context="{'default_cycle_id': cycle_id}">
-                          <tree string="Entitlements" editable="bottom">
-                              <field name="cycle_id" invisible="1" />
-                              <field
-                                    name="entitlement_id"
-                                    domain="[('cycle_id', '=', cycle_id)]"
-                                    options="{'no_create_edit':True,'no_open':True,'no_create':True}"
-                                />
-                              <field
+                        <field name="entitlement_ids" nolabel="1">
+                            <tree string="Entitlements" create="0" editable="bottom">
+                                <field name="cycle_id" invisible="1" />
+                                <field name="entitlement_id" invisible="1" />
+                                <field name="partner_id" readonly="1" />
+                                <field name="code" readonly="1" />
+                                <field name="initial_amount" string="Amount" />
+                                <field name="currency_id" readonly="1" />
+                                <field
                                     name="state"
                                     decoration-secondary="state=='New'"
                                     decoration-primary="state=='Okay'"
@@ -46,7 +46,7 @@
                                     widget="badge"
                                     readonly="1"
                                 />
-                          </tree>
+                            </tree>
                         </field>
                     </sheet>
                     <footer>
@@ -56,7 +56,8 @@
                             type="object"
                             class="oe_highlight"
                         />
-                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                        <button name="close_wizard" string="Cancel" type="object" class="btn-secondary" />
+                        <!-- <button string="Cancel" class="btn-secondary" special="cancel" /> -->
                     </footer>
                 </form>
             </field>

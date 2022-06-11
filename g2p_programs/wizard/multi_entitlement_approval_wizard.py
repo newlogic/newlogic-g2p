@@ -13,11 +13,11 @@ class G2PMultiEntitlementApprovalWiz(models.TransientModel):
 
     @api.model
     def default_get(self, fields):
-        res = super(G2PMultiEntitlementApprovalWiz, self).default_get(fields)
         _logger.info(
             "Adding to Multi Entitlement Approval Wizard with IDs: %s"
             % self.env.context.get("active_ids")
         )
+        res = super(G2PMultiEntitlementApprovalWiz, self).default_get(fields)
         if self.env.context.get("active_ids"):
             entitlement_ids = []
             cycle_id = 0
@@ -61,26 +61,8 @@ class G2PMultiEntitlementApprovalWiz(models.TransientModel):
     )
 
     def approve_entitlements(self):
-        for rec in self.entitlement_ids:
-
-            if rec.entitlement_id.state in ("draft", "pending_validation"):
-                # Prepare journal entry (account.move) via account.payment
-                payment = {
-                    "partner_id": rec.entitlement_id.partner_id.id,
-                    "payment_type": "outbound",
-                    "amount": rec.entitlement_id.initial_amount,
-                    "currency_id": rec.entitlement_id.journal_id.currency_id.id,
-                    "journal_id": rec.entitlement_id.journal_id.id,
-                    "partner_type": "supplier",
-                }
-                new_payment = self.env["account.payment"].create(payment)
-                rec.entitlement_id.update(
-                    {
-                        "disbursement_id": new_payment.id,
-                        "state": "approved",
-                        "date_approved": fields.Date.today(),
-                    }
-                )
+        # for rec in self.entitlement_ids:
+        self.entitlement_ids.entitlement_id.approve_entitlement()
 
     def open_wizard(self):
 
@@ -94,8 +76,12 @@ class G2PMultiEntitlementApprovalWiz(models.TransientModel):
             ).id,
             "type": "ir.actions.act_window",
             "target": "new",
+            "nodestroy": True,
             "context": self.env.context,
         }
+
+    def close_wizard(self):
+        return {"type": "ir.actions.act_window_close"}
 
 
 class G2PMultiEntitlementApproval(models.TransientModel):
@@ -118,6 +104,22 @@ class G2PMultiEntitlementApproval(models.TransientModel):
         "g2p.cycle",
         "Cycle",
         help="A Cycle",
+    )
+    partner_id = fields.Many2one(
+        "res.partner",
+        "Registrant",
+        help="A beneficiary",
+        related="entitlement_id.partner_id",
+    )
+    code = fields.Char(related="entitlement_id.code")
+    currency_id = fields.Many2one(
+        "res.currency", readonly=True, related="entitlement_id.journal_id.currency_id"
+    )
+    initial_amount = fields.Monetary(
+        required=True,
+        currency_field="currency_id",
+        related="entitlement_id.initial_amount",
+        readonly=False,
     )
     state = fields.Selection(
         [
