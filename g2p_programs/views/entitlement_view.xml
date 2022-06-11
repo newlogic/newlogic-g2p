@@ -204,13 +204,13 @@
       <field name="code">action = model.open_wizard()</field>
     </record>
 
-    <!-- <menuitem
+    <menuitem
         id="menu_entitlement"
         name="Entitlements"
         action="action_entitlement"
-        parent="g2p_program_entitlement_root"
-        sequence="50"
-        groups="g2p_registrant.group_g2p_admin"
-    /> -->
+        parent="g2p_accounting_root"
+        sequence="20"
+        groups="g2p_registrant.group_g2p_admin,g2p_programs.g2p_program_manager,g2p_programs.g2p_finance_validator"
+    />
 
 </odoo>

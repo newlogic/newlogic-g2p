@@ -1,5 +1,15 @@
 Format in CHANGELOG.md
 
+## Version[0.18] - 2022-06-11
+
+- [ADD] Wizard for the custom "Create Program" button
+- [FIX] Approve entitlement wizard: check if fund is enough for the entitlements
+- [ADD] Entitlement menu for "Finance Validator" group
+
+## Version[0.17] - 2022-06-09
+
+- [ADD] Custom "Create Program" button to require currency for the journal before creating the program
+
 ## Version[0.16] - 2022-06-08
 
 - [ADD] Warning on voucher fund availability upon approval of the voucher
