@@ -42,8 +42,16 @@
         "views/duplicate_view.xml",
         "wizard/assign_to_program_wizard.xml",
         "wizard/multi_entitlement_approval_wizard.xml",
+        "wizard/create_program_wizard.xml",
     ],
-    "assets": {},
+    "assets": {
+        "web.assets_backend": [
+            "/g2p_programs/static/src/js/create_program.js",
+        ],
+        "web.assets_qweb": [
+            "/g2p_programs/static/src/xml/create_program_template.xml",
+        ],
+    },
     "demo": [],
     "images": [],
     "application": True,

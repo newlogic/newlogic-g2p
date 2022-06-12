@@ -14,9 +14,9 @@ MANAGER_DEDUPLICATION = 5
 MANAGER_NOTIFICATION = 6
 
 MANAGER_MODELS = {
-    "eligibility_managers": {
-        "g2p.eligibility.manager": "g2p.program_membership.manager.default",
-    },
+    # "eligibility_managers": {
+    #    "g2p.eligibility.manager": "g2p.program_membership.manager.default",
+    # },
     "deduplication_managers": {
         "g2p.deduplication.manager": "g2p.deduplication.manager.default",
     },
@@ -26,10 +26,10 @@ MANAGER_MODELS = {
     "program_managers": {
         "g2p.program.manager": "g2p.program.manager.default",
     },
-    "cycle_managers": {
-        "g2p.cycle.manager": "g2p.cycle.manager.default",
-    },
-    "entitlement_managers": {
-        "g2p.program.entitlement.manager": "g2p.program.entitlement.manager.default",
-    },
+    # "cycle_managers": {
+    #    "g2p.cycle.manager": "g2p.cycle.manager.default",
+    # },
+    # "entitlement_managers": {
+    #    "g2p.program.entitlement.manager": "g2p.program.entitlement.manager.default",
+    # },
 }

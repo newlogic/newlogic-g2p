@@ -17,7 +17,7 @@
         <field name="model">g2p.entitlement</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
-            <tree string="Entitlement">
+            <tree string="Entitlement" create="0">
                 <field name="name" />
                 <field name="code" />
                 <field name="partner_id" />
