@@ -4,6 +4,7 @@ Format in CHANGELOG.md
 
 - [FIX] Create program wizard will generate a journal for every program.
 - [FIX] Beneficiaries tree view default sort order by state desc.
+- [ADD] program_id in the entitlement model.
 
 ## Version[0.19] - 2022-06-12
 

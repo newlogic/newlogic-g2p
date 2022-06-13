@@ -21,6 +21,7 @@
                 <field name="name" />
                 <field name="code" />
                 <field name="partner_id" />
+                <field name="program_id" />
                 <field name="cycle_id" />
                 <field name="valid_from" />
                 <field name="valid_until" />
@@ -87,8 +88,20 @@
                     </div>
                     <group>
                         <group>
-                            <field name="partner_id" attrs="{'readonly':[('state','!=','draft')]}" />
-                            <field name="cycle_id" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field
+                                name="partner_id"
+                                attrs="{'readonly':[('state','!=','draft')]}"
+                                options="{'no_open':True,'no_quick_create':True,'no_create':True}"
+                            />
+                            <field
+                                name="program_id"
+                                options="{'no_open':True,'no_quick_create':True,'no_create':True}"
+                            />
+                            <field
+                                name="cycle_id"
+                                attrs="{'readonly':[('state','!=','draft')]}"
+                                options="{'no_open':True,'no_quick_create':True,'no_create':True}"
+                            />
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"

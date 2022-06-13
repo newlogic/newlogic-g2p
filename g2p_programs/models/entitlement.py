@@ -34,6 +34,7 @@ class G2PEntitlement(models.Model):
     company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
 
     cycle_id = fields.Many2one("g2p.cycle", required=True)
+    program_id = fields.Many2one("g2p.program", related="cycle_id.program_id")
 
     valid_from = fields.Date(required=False)
     valid_until = fields.Date(
