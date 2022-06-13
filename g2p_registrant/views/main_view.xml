@@ -34,7 +34,7 @@
     />
 
     <record id="contacts.res_partner_menu_contacts" model="ir.ui.menu">
-        <field name="groups_id" eval="[(4,ref('g2p_registrant.group_g2p_admin'))]" />
+        <field name="groups_id" eval="[(4,ref('base.group_system'))]" />
     </record>
 
 </odoo>
