@@ -48,7 +48,7 @@ g2p_account_move_line_admin,Account Move Line Admin Access,account.model_account
 
 g2p_ui_view_program_manager,UI View Program Manager Access,base.model_ir_ui_view,g2p_programs.g2p_program_manager,1,1,0,0
 g2p_actions_client_program_manager,Actions Client Program Manager Access,base.model_ir_actions_client,g2p_programs.g2p_program_manager,1,1,0,0
-g2p_program_manager,Program Manager Access,g2p_programs.model_g2p_program,g2p_programs.g2p_program_manager,1,1,1,0
+g2p_program_manager_access,Program Manager Access,g2p_programs.model_g2p_program,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_account_journal_program_manager,Account Journal Program Manager Access,account.model_account_journal,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_account_type_program_manager,Account Type Program Manager Access,account.model_account_account_type,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_account_move_program_manager,Account Move Program Manager Access,account.model_account_move,g2p_programs.g2p_program_manager,1,1,1,0
@@ -76,9 +76,14 @@ g2p_group_membership_program_manager,Group Membership Program Manager Access,g2p
 g2p_entitlement_program_manager,Entitlement Program Manager Access,g2p_programs.model_g2p_entitlement,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_program_fund_program_manager,Program Fund Program Manager Access,g2p_programs.model_g2p_program_fund,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_program_fund_report_view_program_manager,Program Fund Report View Program Manager Access,g2p_programs.model_g2p_program_fund_report_view,g2p_programs.g2p_program_manager,1,1,1,0
+g2p_assign_program_wiz_program_manager,Assign Program Wiz Program Manager Access,g2p_programs.model_g2p_assign_program_wizard,g2p_programs.g2p_program_manager,1,1,1,0
+g2p_assign_program_registrant_program_manager,Assign Program Registrant Program Manager Access,g2p_programs.model_g2p_assign_program_registrants,g2p_programs.g2p_program_manager,1,1,1,0
+g2p_assign_reg_id_program_manager,Reg ID Program Manager Access,g2p_registrant.model_g2p_reg_id,g2p_programs.g2p_program_manager,1,1,1,0
+g2p_phone_number_program_manager,Phone Number Program Manager Access,g2p_registrant.model_g2p_phone_number,g2p_programs.g2p_program_manager,1,1,1,0
+g2p_reg_rel_program_manager,Registrant Relation Program Manager Access,g2p_registrant.model_g2p_reg_rel,g2p_programs.g2p_program_manager,1,1,1,0
 
 g2p_actions_client_validator,Actions Client Validator Access,base.model_ir_actions_client,g2p_programs.g2p_program_validator,1,0,0,0
-g2p_program_validator,Program Validator Access,g2p_programs.model_g2p_program,g2p_programs.g2p_program_validator,1,1,1,0
+g2p_program_validator_access,Program Validator Access,g2p_programs.model_g2p_program,g2p_programs.g2p_program_validator,1,1,1,0
 g2p_program_membership_program_validator,Program Membership Program Validator Access,g2p_programs.model_g2p_program_membership,g2p_programs.g2p_program_validator,1,1,1,0
 g2p_cycle_program_validator,Cycle Program Validator Access,g2p_programs.model_g2p_cycle,g2p_programs.g2p_program_validator,1,1,1,0
 g2p_program_entitlement_manager_program_validator,Program Entitlement Manager Program Validator Access,g2p_programs.model_g2p_program_entitlement_manager,g2p_programs.g2p_program_validator,1,0,0,0

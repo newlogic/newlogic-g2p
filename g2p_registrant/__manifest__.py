@@ -7,7 +7,7 @@
     "author": "Newlogic",
     "website": "https://newlogic.com/",
     "license": "LGPL-3",
-    "depends": ["base", "mail"],
+    "depends": ["base", "mail", "contacts"],
     "data": [
         "security/newlogic_security.xml",
         "security/ir.model.access.csv",
