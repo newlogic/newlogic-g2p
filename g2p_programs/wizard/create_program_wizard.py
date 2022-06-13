@@ -66,15 +66,15 @@ class G2PCreateNewProgramWiz(models.TransientModel):
 
     def create_program(self):
         # Set default program journal
-        journals = self.env["account.journal"].search(
-            [("beneficiary_disb", "=", True), ("type", "in", ("bank", "cash"))]
-        )
+        # journals = self.env["account.journal"].search(
+        #    [("beneficiary_disb", "=", True), ("type", "in", ("bank", "cash"))]
+        # )
         for rec in self:
-            if journals:
-                journal_id = journals[0].id
-            else:
-                # There are no default journals defined, create a new one
-                journal_id = self.create_journal(rec.name, rec.currency_id.id)
+            # if journals:
+            #    journal_id = journals[0].id
+            # else:
+            # There are no default journals defined, create a new one
+            journal_id = self.create_journal(rec.name, rec.currency_id.id)
 
             program = self.env["g2p.program"].create(
                 {

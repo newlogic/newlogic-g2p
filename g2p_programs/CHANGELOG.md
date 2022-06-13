@@ -1,5 +1,10 @@
 Format in CHANGELOG.md
 
+## Version[0.20] - 2022-06-13
+
+- [FIX] Create program wizard will generate a journal for every program.
+- [FIX] Beneficiaries tree view default sort order by state desc.
+
 ## Version[0.19] - 2022-06-12
 
 - [ADD] Create new program wizard called by the custom "Create Program" button in the toolbar to require
