@@ -48,7 +48,7 @@ g2p_account_move_line_admin,Account Move Line Admin Access,account.model_account
 
 g2p_ui_view_program_manager,UI View Program Manager Access,base.model_ir_ui_view,g2p_programs.g2p_program_manager,1,1,0,0
 g2p_actions_client_program_manager,Actions Client Program Manager Access,base.model_ir_actions_client,g2p_programs.g2p_program_manager,1,1,0,0
-g2p_program_manager,Program Manager Access,g2p_programs.model_g2p_program,g2p_programs.g2p_program_manager,1,1,1,0
+g2p_program_manager_access,Program Manager Access,g2p_programs.model_g2p_program,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_account_journal_program_manager,Account Journal Program Manager Access,account.model_account_journal,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_account_type_program_manager,Account Type Program Manager Access,account.model_account_account_type,g2p_programs.g2p_program_manager,1,1,1,0
 g2p_account_move_program_manager,Account Move Program Manager Access,account.model_account_move,g2p_programs.g2p_program_manager,1,1,1,0
@@ -78,7 +78,7 @@ g2p_program_fund_program_manager,Program Fund Program Manager Access,g2p_program
 g2p_program_fund_report_view_program_manager,Program Fund Report View Program Manager Access,g2p_programs.model_g2p_program_fund_report_view,g2p_programs.g2p_program_manager,1,1,1,0
 
 g2p_actions_client_validator,Actions Client Validator Access,base.model_ir_actions_client,g2p_programs.g2p_program_validator,1,0,0,0
-g2p_program_validator,Program Validator Access,g2p_programs.model_g2p_program,g2p_programs.g2p_program_validator,1,1,1,0
+g2p_program_validator_access,Program Validator Access,g2p_programs.model_g2p_program,g2p_programs.g2p_program_validator,1,1,1,0
 g2p_program_membership_program_validator,Program Membership Program Validator Access,g2p_programs.model_g2p_program_membership,g2p_programs.g2p_program_validator,1,1,1,0
 g2p_cycle_program_validator,Cycle Program Validator Access,g2p_programs.model_g2p_cycle,g2p_programs.g2p_program_validator,1,1,1,0
 g2p_program_entitlement_manager_program_validator,Program Entitlement Manager Program Validator Access,g2p_programs.model_g2p_program_entitlement_manager,g2p_programs.g2p_program_validator,1,0,0,0
@@ -96,6 +96,7 @@ g2p_prog_entitle_manager_default_program_validator,Program Entitlement Manager D
 g2p_prog_noti_manager_sms_program_validator,Program Notification Manager SMS Program Validator Access,g2p_programs.model_g2p_program_notification_manager_sms,g2p_programs.g2p_program_validator,1,0,0,0
 g2p_entitlement_program_validator,Entitlement Program Validator Access,g2p_programs.model_g2p_entitlement,g2p_programs.g2p_program_validator,1,0,0,0
 g2p_account_journal_program_validator,Account Journal Program Validator Access,g2p_programs.model_account_journal,g2p_programs.g2p_program_validator,1,0,0,0
+g2p_entitlement_finance_validator,Entitlement Finance Validator Access,g2p_programs.model_g2p_entitlement,g2p_programs.g2p_finance_validator,1,1,1,0
 
 g2p_program_fund_finance_validator,Program Fund Finance Validator Access,g2p_programs.model_g2p_program_fund,g2p_programs.g2p_finance_validator,1,1,1,0
 g2p_program_fund_report_view_finance_validator,Program Fund Report View Finance Validator Access,g2p_programs.model_g2p_program_fund_report_view,g2p_programs.g2p_finance_validator,1,1,1,0
