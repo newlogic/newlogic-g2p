@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+   Copyright 2022 Newlogic
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+       http://www.apache.org/licenses/LICENSE-2.0
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<odoo>
+    <record id="create_program_wizard_form_view" model="ir.ui.view">
+        <field name="name">create_program_wizard_form_view</field>
+        <field name="model">g2p.program.create.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Configure the new program's default settings" colspan="4" col="4">
+                        <field name="name" />
+                        <field
+                            name="currency_id"
+                            options="{'no_open':True,'no_quick_create':True,'no_create':True}"
+                        />
+                    </group>
+                    <group string="Configure the Default Eligibility Criteria" colspan="4">
+                        <label for="eligibility_domain" string="FILTER:" />
+                        <field
+                            name="eligibility_domain"
+                            colspan="4"
+                            widget="domain"
+                            options="{'model': 'res.partner'}"
+                            nolabel="1"
+                        />
+                    </group>
+                    <group colspan="4" col="4">
+                        <group string="Configure the Cycle Manager" colspan="2">
+                            <field name="auto_approve_entitlements" />
+                            <field name="cycle_duration" />
+                            <field
+                                name="approver_group_id"
+                                options="{'no_open':True,'no_create':True,'no_create_edit':True}"
+                                domain="[('category_id','=',%(g2p_registrant.newlogic_module)d)]"
+                            />
+                        </group>
+                        <group string="Configure the Entitlement Manager" colspan="2">
+                            <field name="amount_per_cycle" />
+                            <field name="amount_per_individual_in_group" />
+                            <field name="max_individual_in_group" />
+                            <field
+                                name="entitlement_validation_group_id"
+                                options="{'no_open':True,'no_create':True,'no_create_edit':True}"
+                                domain="[('category_id','=',%(g2p_registrant.newlogic_module)d)]"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="create_program" string="Create" type="object" class="oe_highlight" />
+                    <!-- <button name="close_wizard" string="Cancel" type="object" class="btn-secondary" /> -->
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

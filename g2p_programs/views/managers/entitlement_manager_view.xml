@@ -110,6 +110,7 @@
                         <field
                             name="entitlement_validation_group_id"
                             options="{'no_open':True,'no_create':True,'no_create_edit':True}"
+                            domain="[('category_id','=',%(g2p_registrant.newlogic_module)d)]"
                         />
                     </group>
                 </sheet>

@@ -58,8 +58,8 @@ class ProgramFundManagement(models.Model):
                 rec.update(vals)
                 return {
                     "effect": {
-                        "fadeout": "slow",
-                        "message": "This fund is now posted!",
+                        "fadeout": "fast",
+                        "message": _("This fund is now posted!"),
                         "type": "rainbow_man",
                     }
                 }

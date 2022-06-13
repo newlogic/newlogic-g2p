@@ -1,5 +1,10 @@
 Format in CHANGELOG.md
 
+## Version[0.19] - 2022-06-12
+
+- [ADD] Create new program wizard called by the custom "Create Program" button in the toolbar to require
+  setting the currency, eligibility criterias, number of cycles, and entitlement.
+
 ## Version[0.18] - 2022-06-11
 
 - [ADD] Wizard for the custom "Create Program" button
