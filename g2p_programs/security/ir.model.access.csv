@@ -103,6 +103,7 @@ g2p_prog_entitle_manager_default_program_validator,Program Entitlement Manager D
 g2p_prog_noti_manager_sms_program_validator,Program Notification Manager SMS Program Validator Access,g2p_programs.model_g2p_program_notification_manager_sms,g2p_programs.g2p_program_validator,1,0,0,0
 g2p_entitlement_program_validator,Entitlement Program Validator Access,g2p_programs.model_g2p_entitlement,g2p_programs.g2p_program_validator,1,0,0,0
 g2p_account_journal_program_validator,Account Journal Program Validator Access,g2p_programs.model_account_journal,g2p_programs.g2p_program_validator,1,0,0,0
+g2p_entitlement_finance_validator,Entitlement Finance Validator Access,g2p_programs.model_g2p_entitlement,g2p_programs.g2p_finance_validator,1,1,1,0
 
 g2p_program_fund_finance_validator,Program Fund Finance Validator Access,g2p_programs.model_g2p_program_fund,g2p_programs.g2p_finance_validator,1,1,1,0
 g2p_program_fund_report_view_finance_validator,Program Fund Report View Finance Validator Access,g2p_programs.model_g2p_program_fund_report_view,g2p_programs.g2p_finance_validator,1,1,1,0
