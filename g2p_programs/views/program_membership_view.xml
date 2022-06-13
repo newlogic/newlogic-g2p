@@ -18,7 +18,7 @@
         <field name="model">g2p.program_membership</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
-            <tree string="Program Membership">
+            <tree string="Program Membership" default_order='state desc'>
                 <button
                     name="open_registrant_form"
                     type="object"
