@@ -14,11 +14,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     # Standard drop-in approach that should work for most people.
-    - uses: ammaraskar/sphinx-action@master
+    - uses: newlogic/sphinx-action@master
       with:
         docs-folder: "docs/"
     # Grabbing custom dependencies and building as a pdf.
-    - uses: ammaraskar/sphinx-action@master
+    - uses: newlogic/sphinx-action@master
       with:
         pre-build-command: "apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended"
         build-command: "make latexpdf"
@@ -27,7 +27,7 @@ jobs:
     - uses: actions/upload-artifact@v1
       with:
         name: Documentation
-        path: docs2/_build/latex/newlogic-g2p.pdf
+        path: docs/_build/latex/newlogic-g2p.pdf
     # Publish built docs to gh-pages branch.
     # ===============================
     - name: Commit documentation changes
