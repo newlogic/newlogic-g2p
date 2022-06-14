@@ -4,7 +4,6 @@
 [![License: MIT](https://img.shields.io/badge/License-LGPL_3.0-blue.svg)](https://opensource.org/licenses/LGPL-3.0)
 [![Documentation](https://img.shields.io/badge/Docs-passing-green)](https://newlogic.github.io/newlogic-g2p/)
 
-
 Newlogic G2P is an open source project that provides beneficiary management and distribution management for
 Social Protection projects.
 
