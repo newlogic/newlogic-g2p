@@ -4,5 +4,3 @@ Configuration
 
 First run
 =========
-
-

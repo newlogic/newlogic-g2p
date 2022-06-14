@@ -10,5 +10,5 @@ TODO
 
 **Note:**
 
-> If you activate audit logs for view, it will create a lot of entries in the database as each
-> object viewed will be stored individually including for list view.
+> If you activate audit logs for view, it will create a lot of entries in the database as each object viewed
+> will be stored individually including for list view.

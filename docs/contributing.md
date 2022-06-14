@@ -1,9 +1,7 @@
 # Contributing
 
-This project follows the Newlogic G2P [Code of Conduct](code_of_conduct). If you are not
-familiar with our code of conduct policy, take a minute to read the policy
-before starting with your first contribution.
-
+This project follows the Newlogic G2P [Code of Conduct](code_of_conduct). If you are not familiar with our
+code of conduct policy, take a minute to read the policy before starting with your first contribution.
 
 Bug reports and code and documentation patches are welcome. You can help this project also by using the
 development version and by reporting any bugs you might encounter.
@@ -34,4 +32,3 @@ development version and by reporting any bugs you might encounter.
   [Discussions](https://github.com/newlogic/newlogic-g2p/discussions).
 
 Thanks!
-
