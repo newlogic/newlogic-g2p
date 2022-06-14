@@ -1,0 +1,35 @@
+name: Doc
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    # Standard drop-in approach that should work for most people.
+    - uses: newlogic/sphinx-action@master
+      with:
+        docs-folder: "docs/"
+#    # Grabbing custom dependencies and building as a pdf.
+#    - uses: newlogic/sphinx-action@master
+#      with:
+#        build-command: "make latexpdf"
+#        docs-folder: "docs/"
+#    # Create an artifact out of the previously built pdf.
+#    - uses: actions/upload-artifact@v1
+#      with:
+#        name: Documentation
+#        path: docs/build/latex/newlogic-g2p.pdf
+    # Publish built docs to gh-pages branch.
+    # ===============================
+    - name: Commit documentation changes
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: docs/build/html
