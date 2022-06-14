@@ -33,7 +33,7 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs/_build/html
+        publish_dir: docs/_build/html
 #      run: |
 #        git clone https://x-access-token:${{ secrets.GIT_PUSH_TOKEN }}@github.com/${{ github.repository }}.git --branch gh-pages --single-branch gh-pages
 #        cp -r docs/_build/html/* gh-pages/
