@@ -74,7 +74,7 @@ html_theme_options = {
 html_context = {
     "display_github": True,
     "github_user": "newlogic",  # Username
-    "github_repo": "newlogic_g2p",  # Repo name
+    "github_repo": "newlogic-g2p",  # Repo name
     "github_version": "main",  # Version
     "conf_py_path": "/docs/",  # Path in the checkout to the docs root
 }
