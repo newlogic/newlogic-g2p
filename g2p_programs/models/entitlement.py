@@ -91,8 +91,16 @@ class G2PEntitlement(models.Model):
             view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
         )
         if view_type != "search" and self.env.uid != SUPERUSER_ID:
-            has_my_group = self.env.user.has_group("g2p_registrant.group_g2p_registrar")
-            if has_my_group:
+            group_g2p_registrar = self.env.user.has_group(
+                "g2p_registrant.group_g2p_registrar"
+            )
+            g2p_program_validator = self.env.user.has_group(
+                "g2p_programs.g2p_program_validator"
+            )
+
+            if group_g2p_registrar:
+                raise ValidationError(_("You have no access in Entitlement List View"))
+            if g2p_program_validator:
                 raise ValidationError(_("You have no access in Entitlement List View"))
 
         return res
