@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Managing Programs &mdash; Newlogic G2P Docs</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/debug.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Managing Users" href="managing_users.html" />
+    <link rel="prev" title="Managing Registrants" href="managing_registrants.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Newlogic G2P
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installing.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuring.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="managing_registrants.html">Managing Registrants</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Managing Programs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#concepts">Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#programs">Programs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cycle">Cycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#beneficiary">Beneficiary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#managers">Managers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eligibility-manager">Eligibility Manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#entitlement-manager">Entitlement Manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deduplication-manager">Deduplication Manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notification-manager">Notification Manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#program-manager">Program Manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cycle-manager">Cycle Manager</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#type-of-payment-instruments">Type of payment instruments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cash-transfer">Cash Transfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mobile-money">Mobile money</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#voucher-program">Voucher program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#voucher-for-restricted-cash-programs">Voucher for restricted cash programs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="managing_users.html">Managing Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audit_logs.html">Audit Logs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Newlogic G2P</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Managing Programs</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/newlogic/newlogic_g2p/blob/main/docs/using/managing_programs.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="managing-programs">
+<h1>Managing Programs<a class="headerlink" href="#managing-programs" title="Permalink to this headline"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">Programs</span></code> and <code class="docutils literal notranslate"><span class="pre">Cycles</span></code> are at the heart of Newlogic G2P.</p>
+<p><img alt="Newlogic G2P Overview" src="https://github.com/newlogic/newlogic-g2p/raw/main/newlogic_g2p_overview.png" /></p>
+<section id="concepts">
+<h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline"></a></h2>
+<section id="programs">
+<h3>Programs<a class="headerlink" href="#programs" title="Permalink to this headline"></a></h3>
+<p>Programs, sometimes also called a campaign, define a social program. A program is organizing when, what and
+how beneficiaries receive as entitlements. In itself, a program does not do much, but use various managers to
+define the journey of beneficiaries in a program.</p>
+<p>Currently, few types of programs are supported:</p>
+<ul class="simple">
+<li><p>Cash transfer</p></li>
+<li><p>Mobile money</p></li>
+<li><p>Voucher</p></li>
+<li><p>Voucher for restricted cash</p></li>
+</ul>
+</section>
+<section id="cycle">
+<h3>Cycle<a class="headerlink" href="#cycle" title="Permalink to this headline"></a></h3>
+<p>Cycles represent a distribution cycle.</p>
+</section>
+<section id="beneficiary">
+<h3>Beneficiary<a class="headerlink" href="#beneficiary" title="Permalink to this headline"></a></h3>
+<p>A beneficiary is a registrant that is part of a program/cycle.</p>
+</section>
+<section id="managers">
+<h3>Managers<a class="headerlink" href="#managers" title="Permalink to this headline"></a></h3>
+<p>There are different types of managers that define how programs and cycles work. Each manager type has a
+defined programming API that needs to be implemented in order to define how the system will work.</p>
+<p>For all the managers, a default implementation is designed to support the most common use cases. You can
+easily add your managers if those do not fit your needs.</p>
+<section id="eligibility-manager">
+<h4>Eligibility Manager<a class="headerlink" href="#eligibility-manager" title="Permalink to this headline"></a></h4>
+<p>The eligibility manager verifies if a beneficiary is eligible for a given program. The eligibility
+determination can be based on data stored in Newlogic G2P or on an external system using API calls.</p>
+</section>
+<section id="entitlement-manager">
+<h4>Entitlement Manager<a class="headerlink" href="#entitlement-manager" title="Permalink to this headline"></a></h4>
+<p>The entitlement manager determines what a beneficiary is entitled to for a given cycle.</p>
+<p>Currently, entitlement managers only support monetary value. It is planned to add support for in-kind
+distribution in the near future.</p>
+</section>
+<section id="deduplication-manager">
+<h4>Deduplication Manager<a class="headerlink" href="#deduplication-manager" title="Permalink to this headline"></a></h4>
+<p>The deduplication manager allows to define how beneficiaries are deduplicated within a program.</p>
+</section>
+<section id="notification-manager">
+<h4>Notification Manager<a class="headerlink" href="#notification-manager" title="Permalink to this headline"></a></h4>
+<p>The notification managers allow notifying beneficiaries of some events hapening in the programs or cycles.</p>
+</section>
+<section id="program-manager">
+<h4>Program Manager<a class="headerlink" href="#program-manager" title="Permalink to this headline"></a></h4>
+</section>
+<section id="cycle-manager">
+<h4>Cycle Manager<a class="headerlink" href="#cycle-manager" title="Permalink to this headline"></a></h4>
+</section>
+</section>
+</section>
+<section id="type-of-payment-instruments">
+<h2>Type of payment instruments<a class="headerlink" href="#type-of-payment-instruments" title="Permalink to this headline"></a></h2>
+<section id="cash-transfer">
+<h3>Cash Transfer<a class="headerlink" href="#cash-transfer" title="Permalink to this headline"></a></h3>
+<p><strong>STATUS</strong>: Work In Progress.</p>
+<p>Newlogic G2P can generate payment lists that can be shared with a bank to verify or execute transfers.</p>
+</section>
+<section id="mobile-money">
+<h3>Mobile money<a class="headerlink" href="#mobile-money" title="Permalink to this headline"></a></h3>
+</section>
+<section id="voucher-program">
+<h3>Voucher program<a class="headerlink" href="#voucher-program" title="Permalink to this headline"></a></h3>
+<p>Newlogic G2P can generate nominative vouchers in batches ready to be printed.</p>
+<p>The design of the vouchers can be customized by updating the voucher template.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If you plan to accept vouchers and do not plan to verify them with the server at the time of accepting then
+you should think about what security features you need to implement to avoid having them being duplicated.</p>
+<p>We recommend the use of online verification when the voucher is received or the use of secure paper.</p>
+</div>
+</section>
+<section id="voucher-for-restricted-cash-programs">
+<h3>Voucher for restricted cash programs<a class="headerlink" href="#voucher-for-restricted-cash-programs" title="Permalink to this headline"></a></h3>
+<p>Vouchers can be used in conjunction with Odoo POS to provide restricted cash solutions. Merchant can use the
+Odoo POS to record what is distributed against a given voucher.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="managing_registrants.html" class="btn btn-neutral float-left" title="Managing Registrants" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="managing_users.html" class="btn btn-neutral float-right" title="Managing Users" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 Newlogic Pte. Ltd. Licensed under CC BY 4.0.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Newlogic G2P</span>
+    v: latest
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <!--    <dl>-->
+    <!--      <dt>Versions</dt>-->
+    <!---->
+    <!--      <dd><a href="#">latest</a></dd>-->
+    <!--      <dd><a href="#">1.0</a></dd>-->
+    <!--      <dd><a href="#">1.1</a></dd>-->
+    <!---->
+    <!--    </dl>-->
+    <!--    <dl>-->
+    <!--      <dt>Downloads</dt>-->
+    <!--      <dd><a href="#">PDF</a></dd>-->
+    <!--      <dd><a href="#">ePub</a></dd>-->
+    <!--      <dd><a href="#">HTML</a></dd>-->
+    <!--    </dl>-->
+    <dl>
+      <dt>Newlogic G2P</dt>
+      <dd>
+        <a href="https://github.com/newlogic/newlogic-g2p/">Project Home</a>
+      </dd>
+      <dd>
+        <a href="https://github.com/newlogic/newlogic-g2p/releases">Releases</a>
+      </dd>
+    </dl>
+    <!--    <dl>-->
+    <!--      <dt>Debug</dt>-->
+    <!--      <dd><a href="#" data-toggle="rst-debug-badge">Swap badge position</a></dd>-->
+    <!--    </dl>-->
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; Newlogic G2P Docs</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/debug.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Configuration" href="configuring.html" />
+    <link rel="prev" title="Newlogic G2P - Social Protection Solution" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Newlogic G2P
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing-using-docker-for-development">Installing using Docker for development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#quick-start">Quick start</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-for-production">Installing for production</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-newlogic-cloud-recommended">Using Newlogic Cloud (recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-docker">Using Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-on-amazon-ec2">Installing on Amazon EC2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuring.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="using/managing_registrants.html">Managing Registrants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using/managing_programs.html">Managing Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using/managing_users.html">Managing Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using/audit_logs.html">Audit Logs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Newlogic G2P</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Installation</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/newlogic/newlogic_g2p/blob/main/docs/installing.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
+<section id="installing-using-docker-for-development">
+<h2>Installing using Docker for development<a class="headerlink" href="#installing-using-docker-for-development" title="Permalink to this headline"></a></h2>
+<section id="quick-start">
+<h3>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline"></a></h3>
+<p>You need to have Docker and docker-compose installed on your system.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone git@github.com:newlogic/newlogic-g2p-docker.git
+$ git submodule init
+$ git submodule update
+$ docker-compose -f docker-compose.yml  -f dev-standalone.yml up
+</pre></div>
+</div>
+<p>Then open <code class="docutils literal notranslate"><span class="pre">http://localhost:8069/</span></code> in your browser.</p>
+</section>
+</section>
+<section id="installing-for-production">
+<h2>Installing for production<a class="headerlink" href="#installing-for-production" title="Permalink to this headline"></a></h2>
+<section id="using-newlogic-cloud-recommended">
+<h3>Using Newlogic Cloud (recommended)<a class="headerlink" href="#using-newlogic-cloud-recommended" title="Permalink to this headline"></a></h3>
+<p>The easiest way to get a Newlogic G2P server is by using Newlogic’s Cloud.</p>
+<p>Newlogic Cloud provides fast G2P servers with regular feature updates, automatic security patches, daily
+backups, uptime management, enterprise security, and guaranteed support on any issues.</p>
+<p>By choosing Newlogic Cloud, you are also directly supporting future development on Newlogic G2P and helping
+make it better for everyone.</p>
+</section>
+<section id="using-docker">
+<h3>Using Docker<a class="headerlink" href="#using-docker" title="Permalink to this headline"></a></h3>
+<p>TODO</p>
+</section>
+<section id="installing-on-amazon-ec2">
+<h3>Installing on Amazon EC2<a class="headerlink" href="#installing-on-amazon-ec2" title="Permalink to this headline"></a></h3>
+<p>Amazon Web Services (AWS) is one of the many other options for installing Newlogic G2P. It’s a good idea to
+read through the docker, as many of the steps remain the same or similar.</p>
+<p>To obtain a server you will need to first <code class="docutils literal notranslate"><span class="pre">create</span> <span class="pre">an</span> <span class="pre">AWS</span> <span class="pre">account</span> <span class="pre">&lt;https://aws.amazon.com/&gt;</span></code>_. When launching
+your instance, select the Ubuntu Server 20.04 LTS AMI in step 1. The <code class="docutils literal notranslate"><span class="pre">t2.micro</span></code> instance type has the 1GB of
+memory recommended for if you don’t expect many registrants and you don’t expect many large activity.</p>
+<p>When adjusting the security settings open up the ports for SSH, HTTP, and HTTPS. Once you have launched your
+instance, go to the Elastic IPs menu option under Network &amp; Security, then allocate a new address and
+associate it with your server in order to keep the IP address for your server consistent.</p>
+<p>Before installing Newlogic G2P on your server, you need to install Docker and Docker Compose. Follow the
+instructions below.</p>
+<ol class="arabic simple">
+<li><p>`Install Docker Engine on <a class="reference external" href="https://docs.docker.com/engine/install/ubuntu/">Ubuntu</a>.</p></li>
+<li><p>`Install <a class="reference external" href="https://docs.docker.com/compose/install/">Docker Compose</a>.</p></li>
+</ol>
+<p>After installing Docker and Docker Compose you can follow our DigitalOcean instructions from running:</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/newlogic/newlogic-g2p-docker</span></code></p>
+<p>Continue with the docker instructions.</p>
+<p>Finally, configure an e-mail service such as
+<a class="reference external" href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-smtp.html">Amazon SES</a> because Amazon
+restricts emails sent from EC2.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Newlogic G2P - Social Protection Solution" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="configuring.html" class="btn btn-neutral float-right" title="Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 Newlogic Pte. Ltd. Licensed under CC BY 4.0.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Newlogic G2P</span>
+    v: latest
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <!--    <dl>-->
+    <!--      <dt>Versions</dt>-->
+    <!---->
+    <!--      <dd><a href="#">latest</a></dd>-->
+    <!--      <dd><a href="#">1.0</a></dd>-->
+    <!--      <dd><a href="#">1.1</a></dd>-->
+    <!---->
+    <!--    </dl>-->
+    <!--    <dl>-->
+    <!--      <dt>Downloads</dt>-->
+    <!--      <dd><a href="#">PDF</a></dd>-->
+    <!--      <dd><a href="#">ePub</a></dd>-->
+    <!--      <dd><a href="#">HTML</a></dd>-->
+    <!--    </dl>-->
+    <dl>
+      <dt>Newlogic G2P</dt>
+      <dd>
+        <a href="https://github.com/newlogic/newlogic-g2p/">Project Home</a>
+      </dd>
+      <dd>
+        <a href="https://github.com/newlogic/newlogic-g2p/releases">Releases</a>
+      </dd>
+    </dl>
+    <!--    <dl>-->
+    <!--      <dt>Debug</dt>-->
+    <!--      <dd><a href="#" data-toggle="rst-debug-badge">Swap badge position</a></dd>-->
+    <!--    </dl>-->
+  </div>
+</div>
+
+</body>
+</html>

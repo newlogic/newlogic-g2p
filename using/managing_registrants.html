@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Managing Registrants &mdash; Newlogic G2P Docs</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/debug.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Managing Programs" href="managing_programs.html" />
+    <link rel="prev" title="Changelog" href="../changelog.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Newlogic G2P
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installing.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuring.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Managing Registrants</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#concepts">Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#individual">Individual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#group">Group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#group-membership">Group membership</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#registrants-relations">Registrants relations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id-documents">ID Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#importing-registrants">Importing Registrants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#import-fron-csv-excel">Import fron CSV/Excel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#import-from-odk-central">Import from ODK Central</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#exporting-registrants">Exporting Registrants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#export-to-excel">Export to Excel</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="managing_programs.html">Managing Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="managing_users.html">Managing Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audit_logs.html">Audit Logs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Newlogic G2P</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Managing Registrants</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/newlogic/newlogic_g2p/blob/main/docs/using/managing_registrants.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="managing-registrants">
+<h1>Managing Registrants<a class="headerlink" href="#managing-registrants" title="Permalink to this headline"></a></h1>
+<p>Registrants are at the heart of Newlogic G2P.</p>
+<p>A registrant can be:</p>
+<ul class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">group</span></code></p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">individual</span></code></p></li>
+</ul>
+<p>Depending on the project’s requirements, a registrant can simply contain a <code class="docutils literal notranslate"><span class="pre">name</span></code> or full biographic
+information, ID document numbers, pictures, bank account numbers, phone numbers and more.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Consider only collecting the data you really need when conducting a project.</p>
+<p>See:
+<a class="reference external" href="https://digitalprinciples.org/principle/address-privacy-security/">Principles for Digital Development - Address Privacy &amp; Security</a>.</p>
+</div>
+<section id="concepts">
+<h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline"></a></h2>
+<section id="individual">
+<h3>Individual<a class="headerlink" href="#individual" title="Permalink to this headline"></a></h3>
+<p>An <code class="docutils literal notranslate"><span class="pre">individual</span></code> is a registrant that represents a person. It will have all the fields of a <code class="docutils literal notranslate"><span class="pre">registrant</span></code> plus
+some additional ones.</p>
+</section>
+<section id="group">
+<h3>Group<a class="headerlink" href="#group" title="Permalink to this headline"></a></h3>
+<p>A group is a <code class="docutils literal notranslate"><span class="pre">registrant</span></code> that represents a set of individuals. It will have all the fields of a <code class="docutils literal notranslate"><span class="pre">registrant</span></code>
+plus some additional ones.</p>
+<p>Groups could represent:</p>
+<ul class="simple">
+<li><p>A household</p></li>
+<li><p>A family</p></li>
+<li><p>A school</p></li>
+<li><p>…</p></li>
+</ul>
+<p>Groups do not need to contain individuals registrants. They can just contain their number of members.</p>
+<p>For example:</p>
+<ul class="simple">
+<li><p>Adults: 2</p></li>
+<li><p>Children: 3</p></li>
+<li><p>Elderly: 2</p></li>
+</ul>
+</section>
+<section id="group-membership">
+<h3>Group membership<a class="headerlink" href="#group-membership" title="Permalink to this headline"></a></h3>
+<p>Individuals can be part of one or more groups. They can have specific roles in a group.</p>
+<p>By default, the following roles exist:</p>
+<ul class="simple">
+<li><p>Head (There can be only one per group)</p></li>
+<li><p>Principal recipient (There can be only one per group)</p></li>
+<li><p>Alternative recipient</p></li>
+</ul>
+<p>An <code class="docutils literal notranslate"><span class="pre">admin</span></code> has the right to add other roles using the configuration menu.</p>
+<p>An individual can be the head of a group but have another or no role in another group.</p>
+</section>
+<section id="registrants-relations">
+<h3>Registrants relations<a class="headerlink" href="#registrants-relations" title="Permalink to this headline"></a></h3>
+<p>When you need to store the relationship between registrants those relations can be uselful.</p>
+<p>You can define relationship type between different entities:</p>
+<ul class="simple">
+<li><p>Group - Group</p></li>
+<li><p>Individual - Individual</p></li>
+<li><p>Individual - Group</p></li>
+</ul>
+<p>For exemple:</p>
+<ul class="simple">
+<li><p>Sibling (Individual - Individual)</p></li>
+<li><p>Parent/Child (Individual - Individual)</p></li>
+<li><p>Caretaker (Individual - Group)</p></li>
+<li><p>Neighboor (Group - Group)</p></li>
+</ul>
+</section>
+<section id="id-documents">
+<h3>ID Documents<a class="headerlink" href="#id-documents" title="Permalink to this headline"></a></h3>
+<p>Registrants can have one or more ID Document.</p>
+<p>The system does not enforce uniqueness of Document ID by default. If uniqueness is required, deduplication
+should be performed.</p>
+<p>ID Document types can be configured by an admin.</p>
+</section>
+</section>
+<section id="importing-registrants">
+<h2>Importing Registrants<a class="headerlink" href="#importing-registrants" title="Permalink to this headline"></a></h2>
+<section id="import-fron-csv-excel">
+<h3>Import fron CSV/Excel<a class="headerlink" href="#import-fron-csv-excel" title="Permalink to this headline"></a></h3>
+</section>
+<section id="import-from-odk-central">
+<h3>Import from ODK Central<a class="headerlink" href="#import-from-odk-central" title="Permalink to this headline"></a></h3>
+</section>
+</section>
+<section id="exporting-registrants">
+<h2>Exporting Registrants<a class="headerlink" href="#exporting-registrants" title="Permalink to this headline"></a></h2>
+<section id="export-to-excel">
+<h3>Export to Excel<a class="headerlink" href="#export-to-excel" title="Permalink to this headline"></a></h3>
+</section>
+</section>
+<section id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../changelog.html" class="btn btn-neutral float-left" title="Changelog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="managing_programs.html" class="btn btn-neutral float-right" title="Managing Programs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 Newlogic Pte. Ltd. Licensed under CC BY 4.0.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Newlogic G2P</span>
+    v: latest
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <!--    <dl>-->
+    <!--      <dt>Versions</dt>-->
+    <!---->
+    <!--      <dd><a href="#">latest</a></dd>-->
+    <!--      <dd><a href="#">1.0</a></dd>-->
+    <!--      <dd><a href="#">1.1</a></dd>-->
+    <!---->
+    <!--    </dl>-->
+    <!--    <dl>-->
+    <!--      <dt>Downloads</dt>-->
+    <!--      <dd><a href="#">PDF</a></dd>-->
+    <!--      <dd><a href="#">ePub</a></dd>-->
+    <!--      <dd><a href="#">HTML</a></dd>-->
+    <!--    </dl>-->
+    <dl>
+      <dt>Newlogic G2P</dt>
+      <dd>
+        <a href="https://github.com/newlogic/newlogic-g2p/">Project Home</a>
+      </dd>
+      <dd>
+        <a href="https://github.com/newlogic/newlogic-g2p/releases">Releases</a>
+      </dd>
+    </dl>
+    <!--    <dl>-->
+    <!--      <dt>Debug</dt>-->
+    <!--      <dd><a href="#" data-toggle="rst-debug-badge">Swap badge position</a></dd>-->
+    <!--    </dl>-->
+  </div>
+</div>
+
+</body>
+</html>
