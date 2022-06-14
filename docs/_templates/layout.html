@@ -3,41 +3,41 @@ what the theme normally renders the menu on local builds and on builds on Read t
 testing purposes only. #} {%- block footer %} {%- if not READTHEDOCS %}
 <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="{{ _('Versions') }}">
   <span class="rst-current-version" data-toggle="rst-current-version">
-    <span class="fa fa-book"> Read the Docs</span>
+    <span class="fa fa-book"> Newlogic G2P</span>
     v: latest
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
+    <!--    <dl>-->
+    <!--      <dt>{{ _('Versions') }}</dt>-->
+    <!--      {%- if test_versions %} {%- for version in test_versions %}-->
+    <!--      <dd><a href="#">{{ version }}</a></dd>-->
+    <!--      {%- endfor %} {%- else %}-->
+    <!--      <dd><a href="#">latest</a></dd>-->
+    <!--      <dd><a href="#">1.0</a></dd>-->
+    <!--      <dd><a href="#">1.1</a></dd>-->
+    <!--      {%- endif %}-->
+    <!--    </dl>-->
+    <!--    <dl>-->
+    <!--      <dt>{{ _('Downloads') }}</dt>-->
+    <!--      <dd><a href="#">PDF</a></dd>-->
+    <!--      <dd><a href="#">ePub</a></dd>-->
+    <!--      <dd><a href="#">HTML</a></dd>-->
+    <!--    </dl>-->
     <dl>
-      <dt>{{ _('Versions') }}</dt>
-      {%- if test_versions %} {%- for version in test_versions %}
-      <dd><a href="#">{{ version }}</a></dd>
-      {%- endfor %} {%- else %}
-      <dd><a href="#">latest</a></dd>
-      <dd><a href="#">1.0</a></dd>
-      <dd><a href="#">1.1</a></dd>
-      {%- endif %}
-    </dl>
-    <dl>
-      <dt>{{ _('Downloads') }}</dt>
-      <dd><a href="#">PDF</a></dd>
-      <dd><a href="#">ePub</a></dd>
-      <dd><a href="#">HTML</a></dd>
-    </dl>
-    <dl>
-      {#- Translators: The phrase "Read the Docs" is not translated #}
-      <dt>{{ _('On Read the Docs') }}</dt>
+      {#- Translators: The phrase "Newlogic G2P" is not translated #}
+      <dt>{{ _('Newlogic G2P') }}</dt>
       <dd>
-        <a href="#">{{ _('Project Home') }}</a>
+        <a href="https://github.com/newlogic/newlogic-g2p/">{{ _('Project Home') }}</a>
       </dd>
       <dd>
-        <a href="#">{{ _('Builds') }}</a>
+        <a href="https://github.com/newlogic/newlogic-g2p/releases">{{ _('Releases') }}</a>
       </dd>
     </dl>
-    <dl>
-      <dt>Debug</dt>
-      <dd><a href="#" data-toggle="rst-debug-badge">Swap badge position</a></dd>
-    </dl>
+    <!--    <dl>-->
+    <!--      <dt>Debug</dt>-->
+    <!--      <dd><a href="#" data-toggle="rst-debug-badge">Swap badge position</a></dd>-->
+    <!--    </dl>-->
   </div>
 </div>
 {%- endif %} {%- endblock %}
