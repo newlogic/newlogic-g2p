@@ -44,7 +44,7 @@ g2p_account_type_admin,Account Type Admin Access,account.model_account_account_t
 
 g2p_program_membership_registrar,Program Membership Registrar Access,g2p_programs.model_g2p_program_membership,g2p_registrant.group_g2p_registrar,1,1,1,0
 g2p_cycle_membership_registrar,Cycle Membership Registrar Access,g2p_programs.model_g2p_cycle_membership,g2p_registrant.group_g2p_registrar,1,1,1,0
-g2p_entitlement_registrar,Entitlement Registrar Access,g2p_programs.model_g2p_entitlement,g2p_registrant.group_g2p_registrar,1,1,1,0
+g2p_entitlement_registrar,Entitlement Registrar Access,g2p_programs.model_g2p_entitlement,g2p_registrant.group_g2p_registrar,1,0,0,0
 g2p_account_move_line_admin,Account Move Line Admin Access,account.model_account_move_line,g2p_registrant.group_g2p_registrar,1,1,1,0
 
 g2p_ui_view_program_manager,UI View Program Manager Access,base.model_ir_ui_view,g2p_programs.g2p_program_manager,1,1,0,0
