@@ -1,35 +1,35 @@
 Newlogic G2P - Social Protection Solution
-==========================
+=========================================
 
-`Newlogic G2P` is an open source project that provides beneficiary management and distribution management for
-Social Protection projects. It can be used as a standalone solution or integrated with other services.
 
-`Newlogic G2P` is based on an open source ERP: Odoo 15.0 https://odoo.com/documentation/15.0/ .
+`Newlogic G2P` is an open-source project that aims to streamline the management of social protection programs.
+It can be used on its own or in conjunction with other services.
 
-`Newlogic G2P` is in active development and everything is evolving rapidly based on our users feedback,
-if you have any question or requirements do not hesitate to contact the team through Github Discussion
-or Github Issues (see :doc:`contributing`).
+`Newlogic G2P` is based on an open-source ERP called `Odoo 15.0 <https://odoo.com/documentation/15.0/>`_. It allows
+the project to take advantage of a vast ecosystem of existing integrations and modules.
+
+`Newlogic G2P` is currently in development, and everything is evolving rapidly as a result of our users' comments.
+If you have any questions or needs, please do not hesitate to contact the team through Github discussion, Github
+issues or through our `Website <https://newlogic.com/contact/>`_.
+
 
 Getting started with Newlogic G2P
-------------------
+---------------------------------
 
 :doc:`installing`
-    How to install this theme on your Sphinx project.
+    How to install this project on your server.
 
 :doc:`configuring`
-    Theme configuration and customization options.
+    Project configuration and customization options.
 
 Development
 -----------
 
 :doc:`contributing`
-    How to contribute changes to the theme.
+    How to contribute changes to the project.
 
 :doc:`changelog`
-    The theme development changelog.
-
-.. _Read the Docs contributor guide: https://docs.readthedocs.io/en/stable/contribute.html
-
+    The project development changelog.
 
 .. Hidden TOCs
 

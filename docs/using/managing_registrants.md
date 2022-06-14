@@ -8,13 +8,16 @@ A registrant can be:
 - An `individual`
 
 Depending on the project's requirements, a registrant can simply contain a `name` or full biographic
-information, ID document numbers, pictures, bank account number, phone number and more.
+information, ID document numbers, pictures, bank account numbers, phone numbers and more.
 
-**Important**:
+::::{important}
 
-> When implementing a project consider only collecting the information you need.
->
-> See: Data minization
+Consider only collecting the data you really need when conducting a project.
+
+See:
+[Principles for Digital Development - Address Privacy & Security](https://digitalprinciples.org/principle/address-privacy-security/).
+
+::::
 
 ## Concepts
 

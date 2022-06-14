@@ -40,6 +40,22 @@ exclude_patterns = []
 locale_dirs = ["locale/"]
 gettext_compact = False
 
+myst_enable_extensions = [
+    "amsmath",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "html_admonition",
+    "html_image",
+    # "linkify",
+    "replacements",
+    "smartquotes",
+    "strikethrough",
+    "substitution",
+    "tasklist",
+]
+
 master_doc = "index"
 suppress_warnings = ["image.nonlocal_uri"]
 pygments_style = "default"

@@ -2,7 +2,18 @@
 
 ## Installing using Docker for development
 
-TODO
+### Quick start
+
+You need to have Docker and docker-compose installed on your system.
+
+```bash
+$ git clone git@github.com:newlogic/newlogic-g2p-docker.git
+$ git submodule init
+$ git submodule update
+$ docker-compose -f docker-compose.yml  -f dev-standalone.yml up
+```
+
+Then open `http://localhost:8069/` in your browser.
 
 ## Installing for production
 
