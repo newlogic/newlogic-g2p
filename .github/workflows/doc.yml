@@ -20,7 +20,6 @@ jobs:
     # Grabbing custom dependencies and building as a pdf.
     - uses: newlogic/sphinx-action@master
       with:
-        pre-build-command: "apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended"
         build-command: "make latexpdf"
         docs-folder: "docs/"
     # Create an artifact out of the previously built pdf.
@@ -32,7 +31,7 @@ jobs:
     # ===============================
     - name: Commit documentation changes
       run: |
-        git clone https://github.com/${{ github.repository }} --branch gh-pages --single-branch gh-pages
+        git clone https://x-access-token:${{ secrets.GIT_PUSH_TOKEN }}@github.com/${{ github.repository }}.git --branch gh-pages --single-branch gh-pages
         cp -r docs/_build/html/* gh-pages/
         cd gh-pages
         touch .nojekyll
