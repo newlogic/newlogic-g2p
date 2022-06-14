@@ -27,7 +27,7 @@ jobs:
     - uses: actions/upload-artifact@v1
       with:
         name: Documentation
-        path: docs/_build/latex/newlogic-g2p.pdf
+        path: docs/build/latex/newlogic-g2p.pdf
     # Publish built docs to gh-pages branch.
     # ===============================
     - name: Commit documentation changes
