@@ -40,6 +40,7 @@ Development
 
    installing
    configuring
+   features
    contributing
 
 .. toctree::
@@ -50,10 +51,34 @@ Development
 
 .. toctree::
     :maxdepth: 2
+    :caption: Registrants
+    :hidden:
+
+    registrants/concepts
+    registrants/exporting
+    registrants/importing
+    registrants/api
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Programs
+    :hidden:
+
+    programs/concepts
+    programs/dashboards
+    programs/program_manager
+    programs/cycle_manager
+    programs/eligibility_manager
+    programs/entitlement_manager
+    programs/deduplication_manager
+    programs/notification_manager
+
+
+
+.. toctree::
+    :maxdepth: 2
     :caption: Using
     :hidden:
 
-    using/managing_registrants
-    using/managing_programs
     using/managing_users
     using/audit_logs
