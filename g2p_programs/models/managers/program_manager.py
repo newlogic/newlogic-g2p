@@ -50,24 +50,6 @@ class BaseProgramManager(models.AbstractModel):
         """
         raise NotImplementedError()
 
-    def active_cycle(self):
-        """
-        Returns the active cycle of the program
-        Returns:
-            cycle: the active cycle of the program
-        """
-        # TODO: implement this
-        raise NotImplementedError()
-
-    def activate_cycle(self, cycle):
-        """
-        Activate the cycle
-        Args:
-            cycle: the cycle to activate
-        """
-        # TODO: implement this; deactivate the others
-        raise NotImplementedError()
-
 
 class DefaultProgramManager(models.Model):
     _name = "g2p.program.manager.default"

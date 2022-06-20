@@ -131,6 +131,8 @@ def setup(app):
     )
 
 
+autodoc_mock_imports = ["odoo"]
+
 todo_include_todos = True
 
 # Bibliographic Dublin Core info.

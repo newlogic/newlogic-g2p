@@ -174,7 +174,7 @@ class IDDocumentDeduplication(models.Model):
 
 class PhoneNumberDeduplication(models.Model):
     """
-    When this model is added, it should add also the PhoneNumberDeduplicationEligibility to the eligibility
+    When this model is added, it should add also the PhoneNumberDeduplicationEligibilityManager to the eligibility
     criteria.
     """
 
@@ -210,7 +210,7 @@ class IDPhoneEligibilityManager(models.Model):
         return selection
 
 
-class IDDocumentDeduplicationEligibility(models.Model):
+class IDDocumentDeduplicationEligibilityManager(models.Model):
     """
     This model is used to check if a beneficiary has the required documents to be deduplicated.
     It uses the IDDocumentDeduplication configuration to perform the check
@@ -228,7 +228,7 @@ class IDDocumentDeduplicationEligibility(models.Model):
         return self.enroll_eligible_registrants(program_memberships)
 
 
-class PhoneNumberDeduplicationEligibility(models.Model):
+class PhoneNumberDeduplicationEligibilityManager(models.Model):
     """
     This model is used to check if a beneficiary has a phone number to be deduplicated
     It uses the PhoneNumberDeduplication configuration to perform the check

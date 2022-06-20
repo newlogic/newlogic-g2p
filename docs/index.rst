@@ -1,19 +1,21 @@
-Newlogic G2P - Social Protection Solution
-=========================================
+OpenG2P - Social Protection Solution
+====================================
 
-
-`Newlogic G2P` is an open-source project that aims to streamline the management of social protection programs.
+`OpenG2P` is an open-source project that aims to streamline the management of social protection programs.
 It can be used on its own or in conjunction with other services.
 
-`Newlogic G2P` is based on an open-source ERP called `Odoo 15.0 <https://odoo.com/documentation/15.0/>`_. It allows
+.. image:: programs/images/openg2p_overview.png
+  :alt: OpenG2P overview
+
+`OpenG2P` is based on an open-source ERP called `Odoo 15.0 <https://odoo.com/documentation/15.0/>`_. It allows
 the project to take advantage of a vast ecosystem of existing integrations and modules.
 
-`Newlogic G2P` is currently in development, and everything is evolving rapidly as a result of our users' comments.
+`OpenG2P` is currently in development, and everything is evolving rapidly as a result of our users' comments.
 If you have any questions or needs, please do not hesitate to contact the team through Github discussion, Github
 issues or through our `Website <https://newlogic.com/contact/>`_.
 
 
-Getting started with Newlogic G2P
+Getting started with OpenG2P
 ---------------------------------
 
 :doc:`installing`
@@ -74,6 +76,21 @@ Development
     programs/notification_manager
 
 
+.. toctree::
+    :maxdepth: 2
+    :caption: Deduplication Service
+    :hidden:
+
+    deduplicator/index
+    deduplicator/install
+    deduplicator/gettingstarted
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Disbursement Service
+    :hidden:
+
+    disbursement/index
 
 .. toctree::
     :maxdepth: 2

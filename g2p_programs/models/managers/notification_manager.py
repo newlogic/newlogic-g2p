@@ -18,7 +18,7 @@ class Notification(models.Model):
         return selection
 
 
-class BaseNotification(models.AbstractModel):
+class BaseNotificationManager(models.AbstractModel):
     """
     This component is used to notify beneficiaries of their enrollment and other events related to the program
     """
@@ -44,7 +44,7 @@ class BaseNotification(models.AbstractModel):
         return
 
 
-class SMSNotification(models.Model):
+class SMSNotificationManager(models.Model):
     _name = "g2p.program.notification.manager.sms"
     _inherit = ["g2p.base.program.notification.manager", "g2p.manager.source.mixin"]
     _description = "SMS Program Notification Manager"

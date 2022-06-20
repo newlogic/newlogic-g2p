@@ -22,7 +22,7 @@ class EligibilityManager(models.Model):
         return selection
 
 
-class BaseEligibility(models.AbstractModel):
+class BaseEligibilityManager(models.AbstractModel):
     _name = "g2p.program_membership.manager"
     _inherit = "base.programs.manager"
     _description = "Base Eligibility"
@@ -61,7 +61,7 @@ class BaseEligibility(models.AbstractModel):
         raise NotImplementedError()
 
 
-class DefaultEligibility(models.Model):
+class DefaultEligibilityManager(models.Model):
     _name = "g2p.program_membership.manager.default"
     _inherit = ["g2p.program_membership.manager", "g2p.manager.source.mixin"]
     _description = "Simple Eligibility"

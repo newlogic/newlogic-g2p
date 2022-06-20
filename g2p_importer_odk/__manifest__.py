@@ -1,4 +1,4 @@
-# Part of Newlogic G2P. See LICENSE file for full copyright and licensing details.
+# Part of openG2P. See LICENSE file for full copyright and licensing details.
 
 {
     "name": "G2P ODK Importer",

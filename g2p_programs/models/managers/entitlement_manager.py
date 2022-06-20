@@ -44,7 +44,7 @@ class BaseEntitlementManager(models.AbstractModel):
         raise NotImplementedError()
 
 
-class DefaultCashEntitlement(models.Model):
+class DefaultCashEntitlementManager(models.Model):
     _name = "g2p.program.entitlement.manager.default"
     _inherit = ["g2p.base.program.entitlement.manager", "g2p.manager.source.mixin"]
     _description = "Default Entitlement Manager"

@@ -1,5 +1,7 @@
 # Concepts
 
+![OpenG2P Overview](images/openg2p_overview.png)
+
 ## Programs
 
 Programs, sometimes also called a campaign, define a social program. A program is organizing when, what and
@@ -31,12 +33,12 @@ easily add your managers if those do not fit your needs.
 
 The available managers are:
 
-- [Eligibility Manager](eligibility_manager.md)
-- [Entitlement Manager](entitlement_manager.md)
+- [Eligibility Manager](eligibility_manager.rst)
+- [Entitlement Manager](entitlement_manager.rst)
 - [Deduplication Manager](deduplication_manager.md)
-- [Notification Manager](notification_manager.md)
-- [Program Manager](program_manager.md)
-- [Cycle Manager](cycle_manager.md)
+- [Notification Manager](notification_manager.rst)
+- [Program Manager](program_manager.rst)
+- [Cycle Manager](cycle_manager.rst)
 
 ## Type of payment instruments
 
