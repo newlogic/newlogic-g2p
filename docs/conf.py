@@ -61,8 +61,8 @@ suppress_warnings = ["image.nonlocal_uri"]
 pygments_style = "default"
 
 intersphinx_mapping = {
-    "rtd": ("https://docs.readthedocs.io/en/stable/", None),
-    "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
+    # "rtd": ("https://docs.readthedocs.io/en/stable/", None),
+    # "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
 }
 
 html_theme = "sphinx_rtd_theme"

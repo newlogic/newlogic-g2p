@@ -42,6 +42,7 @@ Development
 
    installing
    configuring
+   architecture
    features
    contributing
 
