@@ -1,4 +1,4 @@
-# Concepts
+# Overview
 
 This building block provides an extensible entity resolution framework for finding/matching beneficiaries
 usually lacking unique identities helping programs deduplicate their beneficiary lists.

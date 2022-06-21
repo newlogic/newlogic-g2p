@@ -1,4 +1,4 @@
-# Concepts
+# Overview
 
 ![OpenG2P Overview](images/openg2p_overview.png)
 

@@ -1,4 +1,4 @@
-# Concepts
+# Overview
 
 Registrants are at the heart of openG2P.
 

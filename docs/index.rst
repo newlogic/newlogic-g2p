@@ -41,7 +41,6 @@ Development
    :hidden:
 
    installing
-   configuring
    architecture
    features
    contributing
