@@ -78,7 +78,6 @@ record matched the query.
 > Performance of queries depend on data quality of both the index and they query
 >
 > Querying with as much data as possible increases the likelihood of finding duplicates if any exists.
-{: .important}
 
 > Not finding a duplicate is not a certainty that none exist.
 >
