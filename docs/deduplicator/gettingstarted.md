@@ -1,12 +1,12 @@
 ---
 description: Get started with OpenG2P Deduplication Service
-keywords: documentation, docs, openg2p
+keywords: documentation, docs, openg2p, deduplication
 title: Get started with OpenG2P Deduplication Service
 ---
 
-# Getting started
+# Getting Started
 
-Provides a Rest API for persons/beneficiaries data to be indexed and queried. A typical use case will:
+Provides a REST API for persons/beneficiaries data to be indexed and queried. A typical use case will:
 
 1. index all enrolled beneficiaries into the deduplication service
 2. query the deduplication service to assert that an applicant is not already enrolled before proceeding
@@ -75,12 +75,10 @@ RESPONSE: HTTP 200
 Returns a list of map of beneficiaries with the id used to index the record and a list of reasons why the
 record matched the query.
 
-```
 > Performance of queries depend on data quality of both the index and they query
 >
 > Querying with as much data as possible increases the likelihood of finding duplicates if any exists.
 {: .important}
-```
 
 > Not finding a duplicate is not a certainty that none exist.
 >
@@ -98,7 +96,7 @@ Removing a beneficiary from the deduplication service, e.g., beneficiary disenro
 DELETE /index/{id}
 ```
 
-Where `id` is what was used to index beneficiary
+Where `id` is what was used to index the beneficiary
 
 ## Allowed fields
 

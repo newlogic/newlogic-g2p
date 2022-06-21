@@ -34,11 +34,11 @@ TODO
 ### Installing on Amazon EC2
 
 Amazon Web Services (AWS) is one of the many other options for installing Newlogic G2P. It's a good idea to
-read through the docker, as many of the steps remain the same or similar.
+read through the Docker instructions, as many of the steps remain the same or similar.
 
-To obtain a server you will need to first `create an AWS account <https://aws.amazon.com/>`\_. When launching
+To obtain a server you will need to first `create an AWS account <https://aws.amazon.com/>`. When launching
 your instance, select the Ubuntu Server 20.04 LTS AMI in step 1. The `t2.micro` instance type has the 1GB of
-memory recommended for if you don't expect many registrants and you don't expect many large activity.
+memory recommended for if you don't expect many registrants and you don't expect many large activities.
 
 When adjusting the security settings open up the ports for SSH, HTTP, and HTTPS. Once you have launched your
 instance, go to the Elastic IPs menu option under Network & Security, then allocate a new address and
@@ -47,15 +47,15 @@ associate it with your server in order to keep the IP address for your server co
 Before installing Newlogic G2P on your server, you need to install Docker and Docker Compose. Follow the
 instructions below.
 
-1. `Install Docker Engine on [Ubuntu](https://docs.docker.com/engine/install/ubuntu/).
+1. Install Docker Engine on [Ubuntu](https://docs.docker.com/engine/install/ubuntu/).
 
-2. `Install [Docker Compose](https://docs.docker.com/compose/install/).
+2. Install [Docker Compose](https://docs.docker.com/compose/install/).
 
 After installing Docker and Docker Compose you can follow our DigitalOcean instructions from running:
 
 `git clone https://github.com/newlogic/newlogic-g2p-docker`
 
-Continue with the docker instructions.
+Continue with the Docker instructions.
 
 Finally, configure an e-mail service such as
 [Amazon SES](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-smtp.html) because Amazon

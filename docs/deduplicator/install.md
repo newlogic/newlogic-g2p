@@ -42,7 +42,7 @@ instance e.g. `http://localhost:9200`
 docker run -p 9200:9200 openg2p/searchservice
 ```
 
-> Startup will fail if it cannot connect to elasticsearch!
+> Startup will fail if it cannot connect to Elasticsearch!
 >
 > {: .warning}
 

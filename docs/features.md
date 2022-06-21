@@ -17,7 +17,7 @@
 - Registration through RapidPro Integration
 - ETL to import data from ODK Central, KoboToolbox, Commcare, Forms.io ...
 - Beneficiary portal
-- Change Request
+- Change request
 - Delegation of Registrant and Beneficiary data storage to MOSIP
 - Integration of the identity verification app Inji
 
@@ -41,7 +41,7 @@
 - Payment instrument automatic selection
 - Asynchronous API
 - WebSub
-- GSMA Mobile money
+- GSMA Mobile Money API
 - In-kind
 - Eligibility and Entitlement managers based on GraphQL
 
@@ -64,7 +64,7 @@
 
 ## Management and Security
 
-- Fine access right customization
+- Fine grained access right customization
 - Multi-tenant
 - Audit log of agent's activity
 - OpenID Connect

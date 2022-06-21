@@ -5,11 +5,11 @@
 and
 [Examples](https://app.gitbook.com/o/-L_J6oxbPK3wAuGnofJl/s/-L_J6oxfkTjM9Go4YNSW/payment-hub-ee/overview/example)
 
-Business Overview :
+Business overview :
 
 <https://mifos.gitbook.io/docs/payment-hub-ee/business-overview>
 
-Technical Overview :
+Technical overview :
 
 <https://mifos.gitbook.io/docs/payment-hub-ee/overview>
 
@@ -24,4 +24,4 @@ the project with like-minded individuals, we have a number of open channels for 
 - To contribute code or documentation changes: submit a
   [pull request on Github](https://github.com/openg2p/openg2p-disburser/pulls).
 
-- Payment Hub Issue Tracker : <https://mifosforge.jira.com/jira/software/projects/MPH/boards/16/backlog>
+- Payment Hub issue tracker : <https://mifosforge.jira.com/jira/software/projects/MPH/boards/16/backlog>
