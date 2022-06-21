@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>g2p_programs.models.managers.cycle_manager &mdash; Newlogic G2P Docs</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/debug.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Newlogic G2P
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installing.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Registrants</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../registrants/concepts.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../registrants/exporting.html">Exporting Registrants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../registrants/importing.html">Importing Registrants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../registrants/api.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../programs/concepts.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../programs/dashboards.html">Dashboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../programs/program_manager.html">Program Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../programs/cycle_manager.html">Cycle Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../programs/eligibility_manager.html">Eligibility Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../programs/entitlement_manager.html">Entitlement Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../programs/deduplication_manager.html">Deduplication Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../programs/notification_manager.html">Notification Manager</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Deduplication Service</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../deduplicator/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../deduplicator/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../deduplicator/gettingstarted.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Disbursement Service</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../disbursement/index.html">Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../using/managing_users.html">Managing Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../using/audit_logs.html">Audit Logs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Newlogic G2P</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>g2p_programs.models.managers.cycle_manager</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for g2p_programs.models.managers.cycle_manager</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Part of Newlogic G2P. See LICENSE file for full copyright and licensing details.</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+
+<span class="kn">from</span> <span class="nn">odoo</span> <span class="kn">import</span> <span class="n">_</span><span class="p">,</span> <span class="n">api</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">odoo.exceptions</span> <span class="kn">import</span> <span class="n">ValidationError</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">constants</span>
+
+<span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">CycleManager</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">_name</span> <span class="o">=</span> <span class="s2">&quot;g2p.cycle.manager&quot;</span>
+    <span class="n">_description</span> <span class="o">=</span> <span class="s2">&quot;Cycle Manager&quot;</span>
+    <span class="n">_inherit</span> <span class="o">=</span> <span class="s2">&quot;g2p.manager.mixin&quot;</span>
+
+    <span class="n">program_id</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Many2one</span><span class="p">(</span><span class="s2">&quot;g2p.program&quot;</span><span class="p">,</span> <span class="s2">&quot;Program&quot;</span><span class="p">)</span>
+
+    <span class="nd">@api</span><span class="o">.</span><span class="n">model</span>
+    <span class="k">def</span> <span class="nf">_selection_manager_ref_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">selection</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_selection_manager_ref_id</span><span class="p">()</span>
+        <span class="n">new_manager</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;g2p.cycle.manager.default&quot;</span><span class="p">,</span> <span class="s2">&quot;Default&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">new_manager</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">selection</span><span class="p">:</span>
+            <span class="n">selection</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_manager</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">selection</span>
+
+
+<div class="viewcode-block" id="BaseCycleManager"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.BaseCycleManager">[docs]</a><span class="k">class</span> <span class="nc">BaseCycleManager</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">AbstractModel</span><span class="p">):</span>
+    <span class="n">_name</span> <span class="o">=</span> <span class="s2">&quot;g2p.base.cycle.manager&quot;</span>
+    <span class="n">_description</span> <span class="o">=</span> <span class="s2">&quot;Base Cycle Manager&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Char</span><span class="p">(</span><span class="s2">&quot;Manager Name&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">program_id</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Many2one</span><span class="p">(</span><span class="s2">&quot;g2p.program&quot;</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="s2">&quot;Program&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">auto_approve_entitlements</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span>
+        <span class="n">string</span><span class="o">=</span><span class="s2">&quot;Auto-approve Entitlements&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+
+<div class="viewcode-block" id="BaseCycleManager.check_eligibility"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.BaseCycleManager.check_eligibility">[docs]</a>    <span class="k">def</span> <span class="nf">check_eligibility</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">,</span> <span class="n">beneficiaries</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Validate the eligibility of each beneficiary for the cycle</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BaseCycleManager.prepare_entitlements"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.BaseCycleManager.prepare_entitlements">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_entitlements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prepare the entitlements for the cycle</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BaseCycleManager.validate_entitlements"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.BaseCycleManager.validate_entitlements">[docs]</a>    <span class="k">def</span> <span class="nf">validate_entitlements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">,</span> <span class="n">cycle_memberships</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Validate the entitlements for the cycle</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BaseCycleManager.new_cycle"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.BaseCycleManager.new_cycle">[docs]</a>    <span class="k">def</span> <span class="nf">new_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">new_start_date</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new cycle for the program</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BaseCycleManager.mark_distributed"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.BaseCycleManager.mark_distributed">[docs]</a>    <span class="k">def</span> <span class="nf">mark_distributed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mark the cycle as distributed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BaseCycleManager.mark_ended"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.BaseCycleManager.mark_ended">[docs]</a>    <span class="k">def</span> <span class="nf">mark_ended</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mark the cycle as ended</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BaseCycleManager.mark_cancelled"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.BaseCycleManager.mark_cancelled">[docs]</a>    <span class="k">def</span> <span class="nf">mark_cancelled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mark the cycle as cancelled</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BaseCycleManager.add_beneficiaries"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.BaseCycleManager.add_beneficiaries">[docs]</a>    <span class="k">def</span> <span class="nf">add_beneficiaries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">,</span> <span class="n">beneficiaries</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;draft&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add beneficiaries to the cycle</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BaseCycleManager.on_start_date_change"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.BaseCycleManager.on_start_date_change">[docs]</a>    <span class="k">def</span> <span class="nf">on_start_date_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Hook for when the start date change</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="BaseCycleManager.on_state_change"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.BaseCycleManager.on_state_change">[docs]</a>    <span class="k">def</span> <span class="nf">on_state_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Hook for when the state change</span>
+<span class="sd">        Args:</span>
+<span class="sd">            cycle:</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="DefaultCycleManager"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.DefaultCycleManager">[docs]</a><span class="k">class</span> <span class="nc">DefaultCycleManager</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">_name</span> <span class="o">=</span> <span class="s2">&quot;g2p.cycle.manager.default&quot;</span>
+    <span class="n">_inherit</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;g2p.base.cycle.manager&quot;</span><span class="p">,</span> <span class="s2">&quot;g2p.manager.source.mixin&quot;</span><span class="p">]</span>
+    <span class="n">_description</span> <span class="o">=</span> <span class="s2">&quot;Default Cycle Manager&quot;</span>
+
+    <span class="n">cycle_duration</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span><span class="s2">&quot;Cycle Duration&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">approver_group_id</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Many2one</span><span class="p">(</span>
+        <span class="n">comodel_name</span><span class="o">=</span><span class="s2">&quot;res.groups&quot;</span><span class="p">,</span>
+        <span class="n">string</span><span class="o">=</span><span class="s2">&quot;Approver Group&quot;</span><span class="p">,</span>
+        <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<div class="viewcode-block" id="DefaultCycleManager.check_eligibility"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.DefaultCycleManager.check_eligibility">[docs]</a>    <span class="k">def</span> <span class="nf">check_eligibility</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">,</span> <span class="n">beneficiaries</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param cycle: The cycle that is being verified</span>
+<span class="sd">        :type cycle: :class:`g2p_programs.models.cycle.G2PCycle`</span>
+<span class="sd">        :param beneficiaries: the beneficiaries that need to be verified. By Default the one with the state ``draft``</span>
+<span class="sd">                or ``enrolled`` are verified.</span>
+<span class="sd">        :type beneficiaries: list or None</span>
+
+<span class="sd">        :return: The list of eligible beneficiaries</span>
+<span class="sd">        :rtype: list</span>
+
+<span class="sd">        Validate the eligibility of each beneficiary for the cycle using the configured manager(s)</span>
+<span class="sd">        :class:`g2p_programs.models.managers.eligibility_manager.BaseEligibilityManager`. If there is multiple managers</span>
+<span class="sd">        for eligibility, each of them are run using the filtered list of eligible beneficiaries from the previous</span>
+<span class="sd">        one.</span>
+
+<span class="sd">        The ``state`` of beneficiaries is updated to either ``enrolled`` if they match the enrollment criteria</span>
+<span class="sd">        or ``not_eligible`` in case they do not match them.</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">rec</span><span class="o">.</span><span class="n">_ensure_can_edit_cycle</span><span class="p">(</span><span class="n">cycle</span><span class="p">)</span>
+
+            <span class="c1"># Get all the enrolled beneficiaries</span>
+            <span class="k">if</span> <span class="n">beneficiaries</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">beneficiaries</span> <span class="o">=</span> <span class="n">cycle</span><span class="o">.</span><span class="n">get_beneficiaries</span><span class="p">([</span><span class="s2">&quot;draft&quot;</span><span class="p">,</span> <span class="s2">&quot;enrolled&quot;</span><span class="p">])</span>
+
+            <span class="n">eligibility_managers</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">program_id</span><span class="o">.</span><span class="n">get_managers</span><span class="p">(</span>
+                <span class="n">constants</span><span class="o">.</span><span class="n">MANAGER_ELIGIBILITY</span>
+            <span class="p">)</span>
+            <span class="n">filtered_beneficiaries</span> <span class="o">=</span> <span class="n">beneficiaries</span>
+            <span class="k">for</span> <span class="n">manager</span> <span class="ow">in</span> <span class="n">eligibility_managers</span><span class="p">:</span>
+                <span class="n">filtered_beneficiaries</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">verify_cycle_eligibility</span><span class="p">(</span>
+                    <span class="n">cycle</span><span class="p">,</span> <span class="n">filtered_beneficiaries</span>
+                <span class="p">)</span>
+
+            <span class="n">filtered_beneficiaries</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;enrolled&quot;</span><span class="p">})</span>
+
+            <span class="n">beneficiaries_ids</span> <span class="o">=</span> <span class="n">beneficiaries</span><span class="o">.</span><span class="n">ids</span>
+            <span class="n">filtered_beneficiaries_ids</span> <span class="o">=</span> <span class="n">filtered_beneficiaries</span><span class="o">.</span><span class="n">ids</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Beneficiaries: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">beneficiaries_ids</span><span class="p">)</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Filtered beneficiaries: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filtered_beneficiaries_ids</span><span class="p">)</span>
+            <span class="n">ids_to_remove</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+                <span class="nb">set</span><span class="p">(</span><span class="n">beneficiaries_ids</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">filtered_beneficiaries_ids</span><span class="p">)</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Mark the beneficiaries as not eligible</span>
+            <span class="n">memberships_to_remove</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s2">&quot;g2p.cycle.membership&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">browse</span><span class="p">(</span>
+                <span class="n">ids_to_remove</span>
+            <span class="p">)</span>
+            <span class="n">memberships_to_remove</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;not_eligible&quot;</span><span class="p">})</span>
+
+            <span class="c1"># Disable the entitlements of the beneficiaries</span>
+            <span class="n">entitlements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s2">&quot;g2p.entitlement&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="p">(</span><span class="s2">&quot;cycle_id&quot;</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">cycle</span><span class="o">.</span><span class="n">id</span><span class="p">),</span>
+                    <span class="p">(</span><span class="s2">&quot;partner_id&quot;</span><span class="p">,</span> <span class="s2">&quot;in&quot;</span><span class="p">,</span> <span class="n">memberships_to_remove</span><span class="o">.</span><span class="n">mapped</span><span class="p">(</span><span class="s2">&quot;partner_id.id&quot;</span><span class="p">)),</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">entitlements</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;cancelled&quot;</span><span class="p">})</span>
+
+            <span class="k">return</span> <span class="n">filtered_beneficiaries</span></div>
+
+<div class="viewcode-block" id="DefaultCycleManager.prepare_entitlements"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.DefaultCycleManager.prepare_entitlements">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_entitlements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">rec</span><span class="o">.</span><span class="n">_ensure_can_edit_cycle</span><span class="p">(</span><span class="n">cycle</span><span class="p">)</span>
+            <span class="c1"># Get all the enrolled beneficiaries</span>
+            <span class="n">beneficiaries</span> <span class="o">=</span> <span class="n">cycle</span><span class="o">.</span><span class="n">get_beneficiaries</span><span class="p">([</span><span class="s2">&quot;enrolled&quot;</span><span class="p">])</span>
+
+            <span class="n">rec</span><span class="o">.</span><span class="n">program_id</span><span class="o">.</span><span class="n">get_manager</span><span class="p">(</span>
+                <span class="n">constants</span><span class="o">.</span><span class="n">MANAGER_ENTITLEMENT</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">prepare_entitlements</span><span class="p">(</span><span class="n">cycle</span><span class="p">,</span> <span class="n">beneficiaries</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DefaultCycleManager.mark_distributed"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.DefaultCycleManager.mark_distributed">[docs]</a>    <span class="k">def</span> <span class="nf">mark_distributed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
+        <span class="n">cycle</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">constants</span><span class="o">.</span><span class="n">STATE_DISTRIBUTED</span><span class="p">})</span></div>
+
+<div class="viewcode-block" id="DefaultCycleManager.mark_ended"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.DefaultCycleManager.mark_ended">[docs]</a>    <span class="k">def</span> <span class="nf">mark_ended</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
+        <span class="n">cycle</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">constants</span><span class="o">.</span><span class="n">STATE_ENDED</span><span class="p">})</span></div>
+
+<div class="viewcode-block" id="DefaultCycleManager.mark_cancelled"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.DefaultCycleManager.mark_cancelled">[docs]</a>    <span class="k">def</span> <span class="nf">mark_cancelled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
+        <span class="n">cycle</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">constants</span><span class="o">.</span><span class="n">STATE_CANCELLED</span><span class="p">})</span></div>
+
+<div class="viewcode-block" id="DefaultCycleManager.validate_entitlements"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.DefaultCycleManager.validate_entitlements">[docs]</a>    <span class="k">def</span> <span class="nf">validate_entitlements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">,</span> <span class="n">cycle_memberships</span><span class="p">):</span>
+        <span class="c1"># TODO: call the program&#39;s entitlement manager and validate the entitlements</span>
+        <span class="c1"># TODO: Use a Job attached to the cycle</span>
+        <span class="c1"># TODO: Implement validation workflow</span>
+        <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">rec</span><span class="o">.</span><span class="n">program_id</span><span class="o">.</span><span class="n">get_manager</span><span class="p">(</span>
+                <span class="n">constants</span><span class="o">.</span><span class="n">MANAGER_ENTITLEMENT</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">validate_entitlements</span><span class="p">(</span><span class="n">cycle_memberships</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DefaultCycleManager.new_cycle"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.DefaultCycleManager.new_cycle">[docs]</a>    <span class="k">def</span> <span class="nf">new_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">new_start_date</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Creating new cycle for program </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">program_id</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;New start date: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">new_start_date</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">cycle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s2">&quot;g2p.cycle&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;program_id&quot;</span><span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">program_id</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+                    <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;draft&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;sequence&quot;</span><span class="p">:</span> <span class="n">sequence</span><span class="p">,</span>
+                    <span class="s2">&quot;start_date&quot;</span><span class="p">:</span> <span class="n">new_start_date</span><span class="p">,</span>
+                    <span class="s2">&quot;end_date&quot;</span><span class="p">:</span> <span class="n">new_start_date</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">rec</span><span class="o">.</span><span class="n">cycle_duration</span><span class="p">),</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;New cycle created: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cycle</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">cycle</span></div>
+
+<div class="viewcode-block" id="DefaultCycleManager.copy_beneficiaries_from_program"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.DefaultCycleManager.copy_beneficiaries_from_program">[docs]</a>    <span class="k">def</span> <span class="nf">copy_beneficiaries_from_program</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;enrolled&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_can_edit_cycle</span><span class="p">(</span><span class="n">cycle</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">beneficiary_ids</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">program_id</span><span class="o">.</span><span class="n">get_beneficiaries</span><span class="p">([</span><span class="s2">&quot;enrolled&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">mapped</span><span class="p">(</span>
+                <span class="s2">&quot;partner_id.id&quot;</span>
+            <span class="p">)</span>
+            <span class="n">rec</span><span class="o">.</span><span class="n">add_beneficiaries</span><span class="p">(</span><span class="n">cycle</span><span class="p">,</span> <span class="n">beneficiary_ids</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DefaultCycleManager.add_beneficiaries"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.DefaultCycleManager.add_beneficiaries">[docs]</a>    <span class="k">def</span> <span class="nf">add_beneficiaries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">,</span> <span class="n">beneficiaries</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;draft&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add beneficiaries to the cycle</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_can_edit_cycle</span><span class="p">(</span><span class="n">cycle</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Adding beneficiaries to the cycle </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cycle</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Beneficiaries: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">beneficiaries</span><span class="p">)</span>
+
+        <span class="n">existing_ids</span> <span class="o">=</span> <span class="n">cycle</span><span class="o">.</span><span class="n">cycle_membership_ids</span><span class="o">.</span><span class="n">mapped</span><span class="p">(</span><span class="s2">&quot;partner_id.id&quot;</span><span class="p">)</span>
+        <span class="n">new_beneficiaries</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">beneficiaries</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">r</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">existing_ids</span><span class="p">:</span>
+                <span class="n">new_beneficiaries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="mi">0</span><span class="p">,</span>
+                        <span class="mi">0</span><span class="p">,</span>
+                        <span class="p">{</span>
+                            <span class="s2">&quot;partner_id&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">,</span>
+                            <span class="s2">&quot;enrollment_date&quot;</span><span class="p">:</span> <span class="n">fields</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">today</span><span class="p">(),</span>
+                            <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">state</span><span class="p">,</span>
+                        <span class="p">},</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+        <span class="k">if</span> <span class="n">new_beneficiaries</span><span class="p">:</span>
+            <span class="n">cycle</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;cycle_membership_ids&quot;</span><span class="p">:</span> <span class="n">new_beneficiaries</span><span class="p">})</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+    <span class="k">def</span> <span class="nf">_ensure_can_edit_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">cycle</span><span class="o">.</span><span class="n">state</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">cycle</span><span class="o">.</span><span class="n">STATE_DRAFT</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;The Cycle is not in Draft Mode&quot;</span><span class="p">))</span>
+
+<div class="viewcode-block" id="DefaultCycleManager.on_state_change"><a class="viewcode-back" href="../../../../programs/cycle_manager.html#g2p_programs.models.managers.cycle_manager.DefaultCycleManager.on_state_change">[docs]</a>    <span class="k">def</span> <span class="nf">on_state_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">cycle</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">cycle</span><span class="o">.</span><span class="n">STATE_APPROVED</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">approver_group_id</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;The cycle approver group is not specified!&quot;</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">approver_group_id</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">ids</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span>
+                        <span class="n">_</span><span class="p">(</span><span class="s2">&quot;You are not allowed to approve this cycle!&quot;</span><span class="p">)</span>
+                    <span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 Newlogic Pte. Ltd. Licensed under CC BY 4.0.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Newlogic G2P</span>
+    v: latest
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <!--    <dl>-->
+    <!--      <dt>Versions</dt>-->
+    <!---->
+    <!--      <dd><a href="#">latest</a></dd>-->
+    <!--      <dd><a href="#">1.0</a></dd>-->
+    <!--      <dd><a href="#">1.1</a></dd>-->
+    <!---->
+    <!--    </dl>-->
+    <!--    <dl>-->
+    <!--      <dt>Downloads</dt>-->
+    <!--      <dd><a href="#">PDF</a></dd>-->
+    <!--      <dd><a href="#">ePub</a></dd>-->
+    <!--      <dd><a href="#">HTML</a></dd>-->
+    <!--    </dl>-->
+    <dl>
+      <dt>Newlogic G2P</dt>
+      <dd>
+        <a href="https://github.com/newlogic/newlogic-g2p/">Project Home</a>
+      </dd>
+      <dd>
+        <a href="https://github.com/newlogic/newlogic-g2p/releases">Releases</a>
+      </dd>
+    </dl>
+    <!--    <dl>-->
+    <!--      <dt>Debug</dt>-->
+    <!--      <dd><a href="#" data-toggle="rst-debug-badge">Swap badge position</a></dd>-->
+    <!--    </dl>-->
+  </div>
+</div>
+
+</body>
+</html>

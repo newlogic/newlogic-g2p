@@ -1,6 +1,6 @@
-# Managing Registrants
+# Overview
 
-Registrants are at the heart of Newlogic G2P.
+Registrants are at the heart of openG2P.
 
 A registrant can be:
 
@@ -19,19 +19,25 @@ See:
 
 ::::
 
-## Concepts
-
-### Individual
+## Individual
 
 An `individual` is a registrant that represents a person. It will have all the fields of a `registrant` plus
 some additional ones.
 
-### Group
+![Individual List](images/individual_list.png)
+
+![Individual Interface](images/indivividual_ui.png)
+
+## Group
 
 A group is a `registrant` that represents a set of individuals. It will have all the fields of a `registrant`
 plus some additional ones.
 
-Groups could represent:
+![Group List](images/group_list.png)
+
+![Group Interface](images/group_ui.png)
+
+For example, groups could represent:
 
 - A household
 - A family
@@ -46,9 +52,11 @@ For example:
 - Children: 3
 - Elderly: 2
 
-### Group membership
+## Group membership
 
 Individuals can be part of one or more groups. They can have specific roles in a group.
+
+![Group Membership](images/group_membership.png)
 
 By default, the following roles exist:
 
@@ -58,11 +66,15 @@ By default, the following roles exist:
 
 An `admin` has the right to add other roles using the configuration menu.
 
+![Group Membership type](images/group_membership_type.png)
+
 An individual can be the head of a group but have another or no role in another group.
 
-### Registrants relations
+## Registrants relations
 
-When you need to store the relationship between registrants those relations can be uselful.
+When you need to store the relationship between registrants those relations can be useful.
+
+![](images/registrant_relations.png)
 
 You can define relationship type between different entities:
 
@@ -70,30 +82,22 @@ You can define relationship type between different entities:
 - Individual - Individual
 - Individual - Group
 
-For exemple:
+![](images/registrant_relation_config.png)
+
+For example:
 
 - Sibling (Individual - Individual)
 - Parent/Child (Individual - Individual)
 - Caretaker (Individual - Group)
-- Neighboor (Group - Group)
+- Neighbour (Group - Group)
 
-### ID Documents
+## ID Documents
 
 Registrants can have one or more ID Document.
+
+![](images/registrant_ids.png)
 
 The system does not enforce uniqueness of Document ID by default. If uniqueness is required, deduplication
 should be performed.
 
 ID Document types can be configured by an admin.
-
-## Importing Registrants
-
-### Import fron CSV/Excel
-
-### Import from ODK Central
-
-## Exporting Registrants
-
-### Export to Excel
-
-## API

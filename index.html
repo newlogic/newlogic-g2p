@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Newlogic G2P - Social Protection Solution &mdash; Newlogic G2P Docs</title>
+  <title>OpenG2P - Social Protection Solution &mdash; Newlogic G2P Docs</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -43,16 +43,43 @@
               <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installing.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="configuring.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Registrants</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="registrants/concepts.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registrants/exporting.html">Exporting Registrants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registrants/importing.html">Importing Registrants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registrants/api.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="programs/concepts.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programs/dashboards.html">Dashboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programs/program_manager.html">Program Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programs/cycle_manager.html">Cycle Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programs/eligibility_manager.html">Eligibility Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programs/entitlement_manager.html">Entitlement Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programs/deduplication_manager.html">Deduplication Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programs/notification_manager.html">Notification Manager</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Deduplication Service</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="deduplicator/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deduplicator/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deduplicator/gettingstarted.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Disbursement Service</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="disbursement/index.html">Overview</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Using</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="using/managing_registrants.html">Managing Registrants</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using/managing_programs.html">Managing Programs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using/managing_users.html">Managing Users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using/audit_logs.html">Audit Logs</a></li>
 </ul>
@@ -71,7 +98,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>Newlogic G2P - Social Protection Solution</li>
+      <li>OpenG2P - Social Protection Solution</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/newlogic/newlogic-g2p/blob/main/docs/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -81,17 +108,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="newlogic-g2p-social-protection-solution">
-<h1>Newlogic G2P - Social Protection Solution<a class="headerlink" href="#newlogic-g2p-social-protection-solution" title="Permalink to this headline"></a></h1>
-<p><cite>Newlogic G2P</cite> is an open-source project that aims to streamline the management of social protection programs.
+  <section id="openg2p-social-protection-solution">
+<h1>OpenG2P - Social Protection Solution<a class="headerlink" href="#openg2p-social-protection-solution" title="Permalink to this headline"></a></h1>
+<p><cite>OpenG2P</cite> is an open-source project that aims to streamline the management of social protection programs.
 It can be used on its own or in conjunction with other services.</p>
-<p><cite>Newlogic G2P</cite> is based on an open-source ERP called <a class="reference external" href="https://odoo.com/documentation/15.0/">Odoo 15.0</a>. It allows
+<img alt="OpenG2P overview" src="_images/openg2p_overview.png" />
+<p><cite>OpenG2P</cite> is based on an open-source ERP called <a class="reference external" href="https://odoo.com/documentation/15.0/">Odoo 15.0</a>. It allows
 the project to take advantage of a vast ecosystem of existing integrations and modules.</p>
-<p><cite>Newlogic G2P</cite> is currently in development, and everything is evolving rapidly as a result of our users’ comments.
+<p><cite>OpenG2P</cite> is currently in development, and everything is evolving rapidly as a result of our users’ comments.
 If you have any questions or needs, please do not hesitate to contact the team through Github discussion, Github
 issues or through our <a class="reference external" href="https://newlogic.com/contact/">Website</a>.</p>
-<section id="getting-started-with-newlogic-g2p">
-<h2>Getting started with Newlogic G2P<a class="headerlink" href="#getting-started-with-newlogic-g2p" title="Permalink to this headline"></a></h2>
+<section id="getting-started-with-openg2p">
+<h2>Getting started with OpenG2P<a class="headerlink" href="#getting-started-with-openg2p" title="Permalink to this headline"></a></h2>
 <dl class="simple">
 <dt><a class="reference internal" href="installing.html"><span class="doc">Installation</span></a></dt><dd><p>How to install this project on your server.</p>
 </dd>
@@ -107,6 +135,14 @@ issues or through our <a class="reference external" href="https://newlogic.com/c
 <dt><a class="reference internal" href="changelog.html"><span class="doc">Changelog</span></a></dt><dd><p>The project development changelog.</p>
 </dd>
 </dl>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">

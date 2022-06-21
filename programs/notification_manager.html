@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notification Manager &mdash; Newlogic G2P Docs</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/debug.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Overview" href="../deduplicator/index.html" />
+    <link rel="prev" title="Deduplication Manager" href="deduplication_manager.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Newlogic G2P
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installing.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Registrants</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../registrants/concepts.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../registrants/exporting.html">Exporting Registrants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../registrants/importing.html">Importing Registrants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../registrants/api.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program_manager.html">Program Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cycle_manager.html">Cycle Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eligibility_manager.html">Eligibility Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entitlement_manager.html">Entitlement Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deduplication_manager.html">Deduplication Manager</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Notification Manager</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Deduplication Service</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../deduplicator/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deduplicator/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deduplicator/gettingstarted.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Disbursement Service</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../disbursement/index.html">Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../using/managing_users.html">Managing Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using/audit_logs.html">Audit Logs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Newlogic G2P</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Notification Manager</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/newlogic/newlogic-g2p/blob/main/docs/programs/notification_manager.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="notification-manager">
+<h1>Notification Manager<a class="headerlink" href="#notification-manager" title="Permalink to this headline"></a></h1>
+<p>The notification managers allow notifying beneficiaries of some events happening in the programs or cycles.</p>
+<p><code class="xref py py-mod docutils literal notranslate"><span class="pre">g2p_programs.models.managers.notification_manager</span></code> provides the class  <a class="reference internal" href="#g2p_programs.models.managers.notification_manager.BaseNotificationManager" title="g2p_programs.models.managers.notification_manager.BaseNotificationManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseNotificationManager</span></code></a> define
+the interface for this manager. <a class="reference internal" href="#g2p_programs.models.managers.notification_manager.SMSNotificationManager" title="g2p_programs.models.managers.notification_manager.SMSNotificationManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">SMSNotificationManager</span></code></a> is the default implementation.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="g2p_programs.models.managers.notification_manager.BaseNotificationManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">g2p_programs.models.managers.notification_manager.</span></span><span class="sig-name descname"><span class="pre">BaseNotificationManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/g2p_programs/models/managers/notification_manager.html#BaseNotificationManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#g2p_programs.models.managers.notification_manager.BaseNotificationManager" title="Permalink to this definition"></a></dt>
+<dd><p>This component is used to notify beneficiaries of their enrollment and other events related to the program</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="g2p_programs.models.managers.notification_manager.SMSNotificationManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">g2p_programs.models.managers.notification_manager.</span></span><span class="sig-name descname"><span class="pre">SMSNotificationManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/g2p_programs/models/managers/notification_manager.html#SMSNotificationManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#g2p_programs.models.managers.notification_manager.SMSNotificationManager" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="g2p_programs.models.managers.notification_manager.SMSNotificationManager.on_cycle_ended">
+<span class="sig-name descname"><span class="pre">on_cycle_ended</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">program_memberships</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/g2p_programs/models/managers/notification_manager.html#SMSNotificationManager.on_cycle_ended"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#g2p_programs.models.managers.notification_manager.SMSNotificationManager.on_cycle_ended" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="g2p_programs.models.managers.notification_manager.SMSNotificationManager.on_cycle_ended_template">
+<span class="sig-name descname"><span class="pre">on_cycle_ended_template</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sms.template'</span></em><a class="headerlink" href="#g2p_programs.models.managers.notification_manager.SMSNotificationManager.on_cycle_ended_template" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="g2p_programs.models.managers.notification_manager.SMSNotificationManager.on_cycle_started">
+<span class="sig-name descname"><span class="pre">on_cycle_started</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">program_memberships</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/g2p_programs/models/managers/notification_manager.html#SMSNotificationManager.on_cycle_started"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#g2p_programs.models.managers.notification_manager.SMSNotificationManager.on_cycle_started" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="g2p_programs.models.managers.notification_manager.SMSNotificationManager.on_cycle_started_template">
+<span class="sig-name descname"><span class="pre">on_cycle_started_template</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sms.template'</span></em><a class="headerlink" href="#g2p_programs.models.managers.notification_manager.SMSNotificationManager.on_cycle_started_template" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="g2p_programs.models.managers.notification_manager.SMSNotificationManager.on_enrolled_in_program">
+<span class="sig-name descname"><span class="pre">on_enrolled_in_program</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">program_memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/g2p_programs/models/managers/notification_manager.html#SMSNotificationManager.on_enrolled_in_program"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#g2p_programs.models.managers.notification_manager.SMSNotificationManager.on_enrolled_in_program" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="g2p_programs.models.managers.notification_manager.SMSNotificationManager.on_enrolled_in_program_template">
+<span class="sig-name descname"><span class="pre">on_enrolled_in_program_template</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sms.template'</span></em><a class="headerlink" href="#g2p_programs.models.managers.notification_manager.SMSNotificationManager.on_enrolled_in_program_template" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="g2p_programs.models.managers.notification_manager.SMSTemplate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">g2p_programs.models.managers.notification_manager.</span></span><span class="sig-name descname"><span class="pre">SMSTemplate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/g2p_programs/models/managers/notification_manager.html#SMSTemplate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#g2p_programs.models.managers.notification_manager.SMSTemplate" title="Permalink to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="g2p_programs.models.managers.notification_manager.SMSTemplate.g2p_sms_id">
+<span class="sig-name descname"><span class="pre">g2p_sms_id</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'g2p.program.notification.manager.sms'</span></em><a class="headerlink" href="#g2p_programs.models.managers.notification_manager.SMSTemplate.g2p_sms_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="deduplication_manager.html" class="btn btn-neutral float-left" title="Deduplication Manager" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../deduplicator/index.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 Newlogic Pte. Ltd. Licensed under CC BY 4.0.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Newlogic G2P</span>
+    v: latest
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <!--    <dl>-->
+    <!--      <dt>Versions</dt>-->
+    <!---->
+    <!--      <dd><a href="#">latest</a></dd>-->
+    <!--      <dd><a href="#">1.0</a></dd>-->
+    <!--      <dd><a href="#">1.1</a></dd>-->
+    <!---->
+    <!--    </dl>-->
+    <!--    <dl>-->
+    <!--      <dt>Downloads</dt>-->
+    <!--      <dd><a href="#">PDF</a></dd>-->
+    <!--      <dd><a href="#">ePub</a></dd>-->
+    <!--      <dd><a href="#">HTML</a></dd>-->
+    <!--    </dl>-->
+    <dl>
+      <dt>Newlogic G2P</dt>
+      <dd>
+        <a href="https://github.com/newlogic/newlogic-g2p/">Project Home</a>
+      </dd>
+      <dd>
+        <a href="https://github.com/newlogic/newlogic-g2p/releases">Releases</a>
+      </dd>
+    </dl>
+    <!--    <dl>-->
+    <!--      <dt>Debug</dt>-->
+    <!--      <dd><a href="#" data-toggle="rst-debug-badge">Swap badge position</a></dd>-->
+    <!--    </dl>-->
+  </div>
+</div>
+
+</body>
+</html>

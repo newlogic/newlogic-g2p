@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Configuration" href="configuring.html" />
-    <link rel="prev" title="Newlogic G2P - Social Protection Solution" href="index.html" /> 
+    <link rel="next" title="Architecture" href="architecture.html" />
+    <link rel="prev" title="OpenG2P - Social Protection Solution" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,16 +56,43 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="configuring.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Registrants</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="registrants/concepts.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registrants/exporting.html">Exporting Registrants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registrants/importing.html">Importing Registrants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registrants/api.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="programs/concepts.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programs/dashboards.html">Dashboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programs/program_manager.html">Program Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programs/cycle_manager.html">Cycle Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programs/eligibility_manager.html">Eligibility Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programs/entitlement_manager.html">Entitlement Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programs/deduplication_manager.html">Deduplication Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programs/notification_manager.html">Notification Manager</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Deduplication Service</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="deduplicator/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deduplicator/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deduplicator/gettingstarted.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Disbursement Service</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="disbursement/index.html">Overview</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Using</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="using/managing_registrants.html">Managing Registrants</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using/managing_programs.html">Managing Programs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using/managing_users.html">Managing Users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using/audit_logs.html">Audit Logs</a></li>
 </ul>
@@ -127,22 +154,22 @@ make it better for everyone.</p>
 <section id="installing-on-amazon-ec2">
 <h3>Installing on Amazon EC2<a class="headerlink" href="#installing-on-amazon-ec2" title="Permalink to this headline"></a></h3>
 <p>Amazon Web Services (AWS) is one of the many other options for installing Newlogic G2P. It’s a good idea to
-read through the docker, as many of the steps remain the same or similar.</p>
-<p>To obtain a server you will need to first <code class="docutils literal notranslate"><span class="pre">create</span> <span class="pre">an</span> <span class="pre">AWS</span> <span class="pre">account</span> <span class="pre">&lt;https://aws.amazon.com/&gt;</span></code>_. When launching
+read through the Docker instructions, as many of the steps remain the same or similar.</p>
+<p>To obtain a server you will need to first <code class="docutils literal notranslate"><span class="pre">create</span> <span class="pre">an</span> <span class="pre">AWS</span> <span class="pre">account</span> <span class="pre">&lt;https://aws.amazon.com/&gt;</span></code>. When launching
 your instance, select the Ubuntu Server 20.04 LTS AMI in step 1. The <code class="docutils literal notranslate"><span class="pre">t2.micro</span></code> instance type has the 1GB of
-memory recommended for if you don’t expect many registrants and you don’t expect many large activity.</p>
+memory recommended for if you don’t expect many registrants and you don’t expect many large activities.</p>
 <p>When adjusting the security settings open up the ports for SSH, HTTP, and HTTPS. Once you have launched your
 instance, go to the Elastic IPs menu option under Network &amp; Security, then allocate a new address and
 associate it with your server in order to keep the IP address for your server consistent.</p>
 <p>Before installing Newlogic G2P on your server, you need to install Docker and Docker Compose. Follow the
 instructions below.</p>
 <ol class="arabic simple">
-<li><p>`Install Docker Engine on <a class="reference external" href="https://docs.docker.com/engine/install/ubuntu/">Ubuntu</a>.</p></li>
-<li><p>`Install <a class="reference external" href="https://docs.docker.com/compose/install/">Docker Compose</a>.</p></li>
+<li><p>Install Docker Engine on <a class="reference external" href="https://docs.docker.com/engine/install/ubuntu/">Ubuntu</a>.</p></li>
+<li><p>Install <a class="reference external" href="https://docs.docker.com/compose/install/">Docker Compose</a>.</p></li>
 </ol>
 <p>After installing Docker and Docker Compose you can follow our DigitalOcean instructions from running:</p>
 <p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/newlogic/newlogic-g2p-docker</span></code></p>
-<p>Continue with the docker instructions.</p>
+<p>Continue with the Docker instructions.</p>
 <p>Finally, configure an e-mail service such as
 <a class="reference external" href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-smtp.html">Amazon SES</a> because Amazon
 restricts emails sent from EC2.</p>
@@ -154,8 +181,8 @@ restricts emails sent from EC2.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Newlogic G2P - Social Protection Solution" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="configuring.html" class="btn btn-neutral float-right" title="Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="OpenG2P - Social Protection Solution" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="architecture.html" class="btn btn-neutral float-right" title="Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

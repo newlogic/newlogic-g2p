@@ -18,9 +18,7 @@
         <script src="../_static/debug.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Managing Users" href="managing_users.html" />
-    <link rel="prev" title="Managing Registrants" href="managing_registrants.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,40 +42,43 @@
               <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installing.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../configuring.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Registrants</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../registrants/concepts.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../registrants/exporting.html">Exporting Registrants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../registrants/importing.html">Importing Registrants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../registrants/api.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../programs/concepts.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programs/dashboards.html">Dashboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programs/program_manager.html">Program Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programs/cycle_manager.html">Cycle Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programs/eligibility_manager.html">Eligibility Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programs/entitlement_manager.html">Entitlement Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programs/deduplication_manager.html">Deduplication Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programs/notification_manager.html">Notification Manager</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Deduplication Service</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../deduplicator/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deduplicator/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deduplicator/gettingstarted.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Disbursement Service</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../disbursement/index.html">Overview</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Using</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="managing_registrants.html">Managing Registrants</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Managing Programs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#concepts">Concepts</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#programs">Programs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cycle">Cycle</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#beneficiary">Beneficiary</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#managers">Managers</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#eligibility-manager">Eligibility Manager</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#entitlement-manager">Entitlement Manager</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#deduplication-manager">Deduplication Manager</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#notification-manager">Notification Manager</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#program-manager">Program Manager</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#cycle-manager">Cycle Manager</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#type-of-payment-instruments">Type of payment instruments</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#cash-transfer">Cash Transfer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mobile-money">Mobile money</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#voucher-program">Voucher program</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#voucher-for-restricted-cash-programs">Voucher for restricted cash programs</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="managing_users.html">Managing Users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="audit_logs.html">Audit Logs</a></li>
 </ul>
@@ -198,10 +199,7 @@ Odoo POS to record what is distributed against a given voucher.</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="managing_registrants.html" class="btn btn-neutral float-left" title="Managing Registrants" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="managing_users.html" class="btn btn-neutral float-right" title="Managing Users" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

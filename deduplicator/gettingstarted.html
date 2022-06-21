@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started &mdash; Newlogic G2P Docs</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/debug.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Overview" href="../disbursement/index.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Newlogic G2P
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installing.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Registrants</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../registrants/concepts.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../registrants/exporting.html">Exporting Registrants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../registrants/importing.html">Importing Registrants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../registrants/api.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../programs/concepts.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programs/dashboards.html">Dashboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programs/program_manager.html">Program Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programs/cycle_manager.html">Cycle Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programs/eligibility_manager.html">Eligibility Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programs/entitlement_manager.html">Entitlement Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programs/deduplication_manager.html">Deduplication Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programs/notification_manager.html">Notification Manager</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Deduplication Service</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#api">API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#indexing-beneficiary">Indexing Beneficiary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#searching-for-beneficiary">Searching for Beneficiary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#de-indexing-beneficiary">De-indexing Beneficiary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#allowed-fields">Allowed fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kibana-ui">Kibana UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-it-all-works">How it all works</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Disbursement Service</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../disbursement/index.html">Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../using/managing_users.html">Managing Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using/audit_logs.html">Audit Logs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Newlogic G2P</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Getting Started</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/newlogic/newlogic-g2p/blob/main/docs/deduplicator/gettingstarted.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline"></a></h1>
+<p>Provides a REST API for persons/beneficiaries data to be indexed and queried. A typical use case will:</p>
+<ol class="arabic simple">
+<li><p>index all enrolled beneficiaries into the deduplication service</p></li>
+<li><p>query the deduplication service to assert that an applicant is not already enrolled before proceeding</p></li>
+<li><p>use for deduplicating existing beneficiary lists</p></li>
+</ol>
+<section id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline"></a></h2>
+<section id="indexing-beneficiary">
+<h3>Indexing Beneficiary<a class="headerlink" href="#indexing-beneficiary" title="Permalink to this headline"></a></h3>
+<p>Adding a beneficiary to the deduplication service, e.g., beneficiary add to your program</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>POST /index
+<span class="o">{</span>
+    <span class="s2">&quot;city&quot;</span>: <span class="s2">&quot;Freetown&quot;</span>,
+    <span class="s2">&quot;email&quot;</span>: <span class="s2">&quot;saltonmassally@gmail.com&quot;</span>,
+    <span class="s2">&quot;first_name&quot;</span>: <span class="s2">&quot;Salton&quot;</span>,
+    <span class="s2">&quot;id&quot;</span>: <span class="s2">&quot;{id}&quot;</span>,
+    <span class="s2">&quot;last_name&quot;</span>: <span class="s2">&quot;Massally&quot;</span>,
+    <span class="s2">&quot;phone&quot;</span>: <span class="s2">&quot;07722015&quot;</span>,
+    <span class="s2">&quot;state&quot;</span>: <span class="s2">&quot;Freetown&quot;</span>,
+    <span class="s2">&quot;street&quot;</span>: <span class="s2">&quot;5 Foday Drive&quot;</span>,
+    <span class="s2">&quot;street2&quot;</span>: <span class="s2">&quot;Hill Station&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>NOTE</strong> <code class="docutils literal notranslate"><span class="pre">id</span></code> must be unique, ideally beneficiary ID in your database. This is what is returned for matches.</p>
+</div></blockquote>
+</section>
+<section id="searching-for-beneficiary">
+<h3>Searching for Beneficiary<a class="headerlink" href="#searching-for-beneficiary" title="Permalink to this headline"></a></h3>
+<p>Checks indexed beneficiaries for similar matches</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>POST /index/search
+<span class="o">{</span>
+  <span class="s2">&quot;attributes&quot;</span>: <span class="o">{</span>
+    <span class="s2">&quot;first_name&quot;</span>: <span class="s2">&quot;Salton&quot;</span>,
+    <span class="s2">&quot;last_name&quot;</span>: <span class="s2">&quot;Massally&quot;</span>,
+    <span class="s2">&quot;phone&quot;</span>: <span class="o">[</span><span class="s2">&quot;202-555-1234&quot;</span>, <span class="s2">&quot;317-555-1234&quot;</span><span class="o">]</span>,
+    <span class="s2">&quot;email&quot;</span>: <span class="s2">&quot;saltonmassally@gmail.com&quot;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>RESPONSE: HTTP <span class="m">200</span>
+
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">&quot;beneficiary&quot;</span>: <span class="s2">&quot;{id}&quot;</span>,
+        <span class="s2">&quot;reasons&quot;</span>: <span class="o">[</span>
+            <span class="s2">&quot;email -&gt;  Input: saltonmassally@gmail.com | Match: saltonmassally@gmail.com | Type: match_fuzzy &quot;</span>,
+            <span class="s2">&quot;first_name.metaphone -&gt;  Input: Salton | Match: Salton | Type: match &quot;</span>,
+            <span class="s2">&quot;first_name.nysiis -&gt;  Input: Salton | Match: Salton | Type: match &quot;</span>,
+            <span class="s2">&quot;first_name.soundex -&gt;  Input: Salton | Match: Salton | Type: match &quot;</span>,
+            <span class="s2">&quot;first_name -&gt;  Input: Salton | Match: Salton | Type: match_fuzzy &quot;</span>,
+            <span class="s2">&quot;last_name.metaphone -&gt;  Input: Massally | Match: Massally | Type: match &quot;</span>,
+            <span class="s2">&quot;last_name.nysiis -&gt;  Input: Massally | Match: Massally | Type: match &quot;</span>,
+            <span class="s2">&quot;last_name.soundex -&gt;  Input: Massally | Match: Massally | Type: match &quot;</span>,
+            <span class="s2">&quot;last_name -&gt;  Input: Massally | Match: Massally | Type: match_fuzzy &quot;</span>
+        <span class="o">]</span>
+    <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>Returns a list of map of beneficiaries with the id used to index the record and a list of reasons why the
+record matched the query.</p>
+<blockquote>
+<div><p>Performance of queries depend on data quality of both the index and they query</p>
+<p>Querying with as much data as possible increases the likelihood of finding duplicates if any exists.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Not finding a duplicate is not a certainty that none exist.</p>
+<p>Especially if unique IDs are lacking or multiple IDs are supported, the frameworks approach to deduplication
+is probabilistic and depends on factors like data quality, and matching strategies employed (e.g. biometric
+provides greater assurances than entity resolution). Inversely, matching a duplicate simply means that there
+is a high probability that they both refer to the same person (usually &gt; 95% if data quality is ideal) and
+not that its a certain match. Consequently some human intervention is necessary. {: .important}</p>
+</div></blockquote>
+</section>
+<section id="de-indexing-beneficiary">
+<h3>De-indexing Beneficiary<a class="headerlink" href="#de-indexing-beneficiary" title="Permalink to this headline"></a></h3>
+<p>Removing a beneficiary from the deduplication service, e.g., beneficiary disenrolled from your program</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>DELETE /index/<span class="o">{</span>id<span class="o">}</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">id</span></code> is what was used to index the beneficiary</p>
+</section>
+</section>
+<section id="allowed-fields">
+<h2>Allowed fields<a class="headerlink" href="#allowed-fields" title="Permalink to this headline"></a></h2>
+<p>Table shows a list of beneficiary attributes allowed for indexing and querying:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>String</p></td>
+<td><p>Required; beneficiary’s unique ID in your database</p></td>
+</tr>
+<tr class="row-odd"><td><p>identity</p></td>
+<td><p>String</p></td>
+<td><p>Identity records in the form <strong>type-number</strong>. e.g. passport-1234567</p></td>
+</tr>
+<tr class="row-even"><td><p>first_name</p></td>
+<td><p>String</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>middle_name</p></td>
+<td><p>String</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>last_name</p></td>
+<td><p>String</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>phone</p></td>
+<td><p>String</p></td>
+<td><p>Please remove the country code e.g. 0778763839 and not +232778763839</p></td>
+</tr>
+<tr class="row-even"><td><p>email</p></td>
+<td><p>String</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>street</p></td>
+<td><p>String</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>street2</p></td>
+<td><p>String</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>city</p></td>
+<td><p>String</p></td>
+<td><p>City or town depending on context</p></td>
+</tr>
+<tr class="row-even"><td><p>state</p></td>
+<td><p>String</p></td>
+<td><p>State or District depending on context</p></td>
+</tr>
+<tr class="row-odd"><td><p>postal_code</p></td>
+<td><p>String</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>dob</p></td>
+<td><p>String</p></td>
+<td><p>please use form 1990/07/23</p></td>
+</tr>
+<tr class="row-odd"><td><p>bank</p></td>
+<td><p>String</p></td>
+<td><p>Name of bank or any organization that payment is sent to</p></td>
+</tr>
+<tr class="row-even"><td><p>bank_account</p></td>
+<td><p>String</p></td>
+<td><p>Bank account number</p></td>
+</tr>
+<tr class="row-odd"><td><p>emergency_contact_name</p></td>
+<td><p>String</p></td>
+<td><p>Name of person listed as emergency contact</p></td>
+</tr>
+<tr class="row-even"><td><p>emergency_contact_phone</p></td>
+<td><p>String</p></td>
+<td><p>Phone of person listed as emergency contact; without country code</p></td>
+</tr>
+</tbody>
+</table>
+<p>You do not need to provide all this data when indexing or querying for records; however the better your data
+quality, the better the precision of your result; i.e. try to supply all these fields for both index and query
+operations!</p>
+</section>
+<section id="kibana-ui">
+<h2>Kibana UI<a class="headerlink" href="#kibana-ui" title="Permalink to this headline"></a></h2>
+<p>The docker-compose ships with Kibana, providing the power to visualize your beneficiary data in custom ways
+and run queries against the elasticsearch backend.</p>
+<p><strong>Navigate to <code class="docutils literal notranslate"><span class="pre">http://&lt;you-ip-address&gt;:5601</span></code></strong></p>
+<p><img alt="kibana_query_ui" src="../_images/kibana_query_ui.png" /></p>
+</section>
+<section id="how-it-all-works">
+<h2>How it all works<a class="headerlink" href="#how-it-all-works" title="Permalink to this headline"></a></h2>
+<p>The default implementation works via the process of entity resolution. It compares attributes of the query
+provided against its database of indexed beneficiaries to find a match very likely referencing the same
+person.</p>
+<p>Below is the set of matching rules employed:</p>
+<ul class="simple">
+<li><p>identity (ID Type Number)</p></li>
+<li><p>first_name, last_name, phone</p></li>
+<li><p>first_name, phone</p></li>
+<li><p>first_name, last_name, phone</p></li>
+<li><p>last_name, phone</p></li>
+<li><p>first_name, last_name, email</p></li>
+<li><p>first_name, phone</p></li>
+<li><p>last_name, phone</p></li>
+<li><p>first_name, last_name, middle_name, dob</p></li>
+<li><p>first_name, last_name, street, street2, city, state</p></li>
+<li><p>first_name, last_name, street, city, state</p></li>
+<li><p>first_name, last_name, street, state</p></li>
+<li><p>first_name, last_name, middle_name, street2, state</p></li>
+<li><p>first_name, last_name, street, postal_code</p></li>
+<li><p>first_name, last_name, dob, city, state</p></li>
+<li><p>first_name, last_name, emergency_contact_phone</p></li>
+<li><p>first_name, last_name, middle_name, emergency_contact_name</p></li>
+<li><p>first_name, last_name, bank_account_bank, bank_account_number</p></li>
+<li><p>first_name, bank_account_bank, bank_account_number</p></li>
+<li><p>last_name, bank_account_bank, bank_account_number</p></li>
+</ul>
+<blockquote>
+<div><p><strong><em>NOTE:</em></strong> To compensate for typos and near infinite representation of the same information, we employ a
+selection of fuzzy matching and phonetics algorithms when indexing and querying</p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../disbursement/index.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 Newlogic Pte. Ltd. Licensed under CC BY 4.0.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Newlogic G2P</span>
+    v: latest
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <!--    <dl>-->
+    <!--      <dt>Versions</dt>-->
+    <!---->
+    <!--      <dd><a href="#">latest</a></dd>-->
+    <!--      <dd><a href="#">1.0</a></dd>-->
+    <!--      <dd><a href="#">1.1</a></dd>-->
+    <!---->
+    <!--    </dl>-->
+    <!--    <dl>-->
+    <!--      <dt>Downloads</dt>-->
+    <!--      <dd><a href="#">PDF</a></dd>-->
+    <!--      <dd><a href="#">ePub</a></dd>-->
+    <!--      <dd><a href="#">HTML</a></dd>-->
+    <!--    </dl>-->
+    <dl>
+      <dt>Newlogic G2P</dt>
+      <dd>
+        <a href="https://github.com/newlogic/newlogic-g2p/">Project Home</a>
+      </dd>
+      <dd>
+        <a href="https://github.com/newlogic/newlogic-g2p/releases">Releases</a>
+      </dd>
+    </dl>
+    <!--    <dl>-->
+    <!--      <dt>Debug</dt>-->
+    <!--      <dd><a href="#" data-toggle="rst-debug-badge">Swap badge position</a></dd>-->
+    <!--    </dl>-->
+  </div>
+</div>
+
+</body>
+</html>
